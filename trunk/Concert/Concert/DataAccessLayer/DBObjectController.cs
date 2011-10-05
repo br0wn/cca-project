@@ -1,0 +1,41 @@
+﻿using System;
+using System.IO;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Db4objects.Db4o;
+using Db4objects.Db4o.Config;
+using Concert.DBObjectDefinition;
+
+namespace Concert.DataAccessLayer
+{
+    class DBObjectController
+    {
+        public readonly static string YapFileName =
+            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "concerts.yap");
+
+        public static IObjectContainer db;
+
+        public static IEmbeddedConfiguration config;
+
+        public static void StoreObject(object obj)
+        {
+            db.Store(obj);
+        }
+
+        public static void DeleteObject(object obj)
+        {
+            db.Delete(obj);
+        }
+
+        public static IEnumerable<DBObjectDefinition.Concert> GetAllConcerts()
+        {
+            return db.Query<DBObjectDefinition.Concert>(c => true);
+        }
+
+        public static IEnumerable<Location> GetAllLocations()
+        {
+            return db.Query<Location>(l => true);
+        }
+    }
+}
