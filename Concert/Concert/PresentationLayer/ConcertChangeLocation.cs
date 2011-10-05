@@ -15,7 +15,6 @@ namespace Concert.PresentationLayer
     {
         public ConcertChangeLocation()
         {
-            MessageBox.Show("nekaj");
             InitializeComponent();
             LoadLocationData();
         }
