@@ -25,6 +25,7 @@ namespace Concert
             {
                 Application.Run(new MainControlPanel());
             }
+            //nekaj
 
 
             // vaadssssss
