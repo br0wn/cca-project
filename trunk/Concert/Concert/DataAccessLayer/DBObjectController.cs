@@ -37,5 +37,10 @@ namespace Concert.DataAccessLayer
         {
             return db.Query<Location>(l => true);
         }
+
+        public static IEnumerable<Song> GetAllTracks()
+        {
+            return db.Query<Song>(s => true);
+        }
     }
 }
