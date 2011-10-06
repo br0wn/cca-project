@@ -11,8 +11,8 @@ namespace Concert.DataAccessLayer
 {
     class DBObjectController
     {
-        public readonly static string YapFileName = 
-            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "concerts.yap");
+        public readonly static string YapFileName = "../../db4o reference/concerts.yap";
+            //Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "concerts.yap");
 
         public static IObjectContainer db;
 
