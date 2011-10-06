@@ -43,5 +43,12 @@ namespace Concert.PresentationLayer
             newLocation.MdiParent = this;
             newLocation.Show();
         }
+
+        private void trackControlToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TrackControlPanel trackPanel = new TrackControlPanel();
+            trackPanel.MdiParent = this;
+            trackPanel.Show();
+        }
     }
 }

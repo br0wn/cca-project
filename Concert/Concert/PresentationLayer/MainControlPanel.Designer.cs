@@ -43,6 +43,7 @@
             this.artistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.albumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.trackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.trackControlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -144,9 +145,18 @@
             // 
             // trackToolStripMenuItem
             // 
+            this.trackToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.trackControlToolStripMenuItem});
             this.trackToolStripMenuItem.Name = "trackToolStripMenuItem";
             this.trackToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.trackToolStripMenuItem.Text = "Track";
+            // 
+            // trackControlToolStripMenuItem
+            // 
+            this.trackControlToolStripMenuItem.Name = "trackControlToolStripMenuItem";
+            this.trackControlToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.trackControlToolStripMenuItem.Text = "Track Control";
+            this.trackControlToolStripMenuItem.Click += new System.EventHandler(this.trackControlToolStripMenuItem_Click);
             // 
             // MainControlPanel
             // 
@@ -183,6 +193,7 @@
         private System.Windows.Forms.ToolStripMenuItem artistToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem albumToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem trackToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem trackControlToolStripMenuItem;
     }
 }
 
