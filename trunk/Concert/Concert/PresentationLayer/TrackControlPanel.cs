@@ -39,7 +39,56 @@ namespace Concert.PresentationLayer
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-
+            if (ValidateChildren())
+            {
+                string name = textBoxTrackName.Text;
+                int length = int.Parse(textBoxTrackLength.Text);
+                DBObjectController.StoreObject(new Song(name, length));
+                MessageBox.Show("You have successfully added new track", "Success confirmation");
+                ClearForm();
+            }
         }
+
+        private void ClearForm()
+        {
+            textBoxTrackName.Clear();
+            textBoxTrackLength.Clear();
+        }
+
+        private void textBoxTrackName_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(((TextBox)sender).Text) || ((TextBox)sender).Text == string.Empty)
+            {
+                errorProviderTrack.SetError((TextBox)sender, "Empty fields are not allowed");
+            }
+            else
+            {
+                errorProviderTrack.SetError((TextBox)sender, string.Empty);
+            }
+        }
+
+        private void textBoxTrackLength_Validating(object sender, CancelEventArgs e)
+        {
+            string text = ((TextBox)sender).Text;
+            if (string.IsNullOrWhiteSpace(text) || text == string.Empty)
+            {
+                errorProviderTrack.SetError((TextBox)sender, "Empty fields are not allowed");
+            }
+            else if (!IsNumeric(text))
+            {
+                errorProviderTrack.SetError((TextBox)sender, "Only numeric value is allowed");
+            }
+            else
+            {
+                errorProviderTrack.SetError((TextBox)sender, string.Empty);
+            }
+        }
+
+        private bool IsNumeric(string text)
+        {
+            return digits.IsMatch(text);
+        }
+
+
     }
 }
