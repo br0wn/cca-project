@@ -65,6 +65,7 @@
             this.dataGridViewTracks.ReadOnly = true;
             this.dataGridViewTracks.Size = new System.Drawing.Size(246, 136);
             this.dataGridViewTracks.TabIndex = 0;
+            this.dataGridViewTracks.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewTracks_RowEnter);
             // 
             // TrackName
             // 
@@ -86,7 +87,7 @@
             this.groupBoxTrack.Controls.Add(this.textBoxTrackNameCurrent);
             this.groupBoxTrack.Controls.Add(this.buttonSave);
             this.groupBoxTrack.Controls.Add(this.dataGridViewTracks);
-            this.groupBoxTrack.Location = new System.Drawing.Point(12, 12);
+            this.groupBoxTrack.Location = new System.Drawing.Point(12, 11);
             this.groupBoxTrack.Name = "groupBoxTrack";
             this.groupBoxTrack.Size = new System.Drawing.Size(285, 219);
             this.groupBoxTrack.TabIndex = 1;
@@ -96,7 +97,7 @@
             // labelTrackLengthCurrent
             // 
             this.labelTrackLengthCurrent.AutoSize = true;
-            this.labelTrackLengthCurrent.Location = new System.Drawing.Point(154, 176);
+            this.labelTrackLengthCurrent.Location = new System.Drawing.Point(174, 166);
             this.labelTrackLengthCurrent.Name = "labelTrackLengthCurrent";
             this.labelTrackLengthCurrent.Size = new System.Drawing.Size(46, 13);
             this.labelTrackLengthCurrent.TabIndex = 4;
@@ -105,7 +106,7 @@
             // labelTrackNameCurrent
             // 
             this.labelTrackNameCurrent.AutoSize = true;
-            this.labelTrackNameCurrent.Location = new System.Drawing.Point(60, 176);
+            this.labelTrackNameCurrent.Location = new System.Drawing.Point(62, 166);
             this.labelTrackNameCurrent.Name = "labelTrackNameCurrent";
             this.labelTrackNameCurrent.Size = new System.Drawing.Size(41, 13);
             this.labelTrackNameCurrent.TabIndex = 2;
@@ -113,26 +114,27 @@
             // 
             // textBoxTrackLengthCurrent
             // 
-            this.textBoxTrackLengthCurrent.Location = new System.Drawing.Point(157, 192);
+            this.textBoxTrackLengthCurrent.Location = new System.Drawing.Point(175, 182);
             this.textBoxTrackLengthCurrent.Name = "textBoxTrackLengthCurrent";
             this.textBoxTrackLengthCurrent.Size = new System.Drawing.Size(88, 20);
             this.textBoxTrackLengthCurrent.TabIndex = 3;
             // 
             // textBoxTrackNameCurrent
             // 
-            this.textBoxTrackNameCurrent.Location = new System.Drawing.Point(63, 192);
+            this.textBoxTrackNameCurrent.Location = new System.Drawing.Point(63, 182);
             this.textBoxTrackNameCurrent.Name = "textBoxTrackNameCurrent";
             this.textBoxTrackNameCurrent.Size = new System.Drawing.Size(88, 20);
             this.textBoxTrackNameCurrent.TabIndex = 2;
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(17, 190);
+            this.buttonSave.Location = new System.Drawing.Point(17, 180);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(40, 23);
             this.buttonSave.TabIndex = 1;
             this.buttonSave.Text = "Save";
             this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
             // groupBoxNewTrack
             // 
@@ -157,6 +159,7 @@
             this.buttonCancel.TabIndex = 5;
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
             // buttonAdd
             // 

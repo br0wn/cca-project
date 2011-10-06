@@ -46,6 +46,7 @@ namespace Concert.PresentationLayer
                 DBObjectController.StoreObject(new Song(name, length));
                 MessageBox.Show("You have successfully added new track", "Success confirmation");
                 ClearForm();
+                LoadTrackData();
             }
         }
 
@@ -89,6 +90,80 @@ namespace Concert.PresentationLayer
             return digits.IsMatch(text);
         }
 
+        private void buttonCancel_Click(object sender, EventArgs e)
+        {
+            textBoxTrackName.Text = string.Empty;
+            textBoxTrackLength.Text = string.Empty;
+            errorProviderTrack.SetError(textBoxTrackName, string.Empty);
+            errorProviderTrack.SetError(textBoxTrackLength, string.Empty);
+        }
 
+        private void buttonSave_Click(object sender, EventArgs e)
+        {
+            ValidateCurrentSelection();
+            if (NoErrorProviderMsg())
+            {
+                Song song = (Song)dataGridViewTracks.CurrentRow.Tag;
+                song.Name = textBoxTrackNameCurrent.Text;
+                song.Length = int.Parse(textBoxTrackLengthCurrent.Text);
+                DBObjectController.StoreObject(song);
+                LoadTrackData();
+            }
+        }
+
+        private bool NoErrorProviderMsg()
+        {
+            return (errorProviderTrack.GetError(textBoxTrackNameCurrent) == string.Empty &&
+                     errorProviderTrack.GetError(textBoxTrackLengthCurrent) == string.Empty );
+        }
+
+        private void ValidateCurrentSelection()
+        {
+            ValidateCurrentName();
+            ValidateCurrentLength();
+        }
+
+        private void ValidateCurrentName()
+        {
+            string text = textBoxTrackNameCurrent.Text;
+            if (string.IsNullOrWhiteSpace(text) || text == string.Empty)
+            {
+                errorProviderTrack.SetError(textBoxTrackNameCurrent, "Empty fields are not allowed");
+            }
+            else
+            {
+                errorProviderTrack.SetError(textBoxTrackNameCurrent, string.Empty);
+            }
+        }
+
+        private void ValidateCurrentLength()
+        {
+            string text = textBoxTrackLengthCurrent.Text;
+            if (string.IsNullOrWhiteSpace(text) || text == string.Empty)
+            {
+                errorProviderTrack.SetError(textBoxTrackLengthCurrent, "Empty fields are not allowed");
+            }
+            else if (!IsNumeric(text))
+            {
+                errorProviderTrack.SetError(textBoxTrackLengthCurrent, "Only numeric value is allowed");
+            }
+            else
+            {
+                errorProviderTrack.SetError(textBoxTrackLengthCurrent, string.Empty);
+            }
+        }
+
+        private void dataGridViewTracks_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            ClearCurrentErrorProvider();
+            textBoxTrackNameCurrent.Text = ((DataGridView)sender).Rows[e.RowIndex].Cells[0].Value.ToString();
+            textBoxTrackLengthCurrent.Text = ((DataGridView)sender).Rows[e.RowIndex].Cells[1].Value.ToString();
+        }
+
+        private void ClearCurrentErrorProvider()
+        {
+            errorProviderTrack.SetError(textBoxTrackNameCurrent, string.Empty);
+            errorProviderTrack.SetError(textBoxTrackLengthCurrent, string.Empty);
+        }
     }
 }
