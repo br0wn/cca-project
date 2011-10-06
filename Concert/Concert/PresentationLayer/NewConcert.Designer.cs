@@ -203,6 +203,7 @@
             this.Name = "NewConcert";
             this.Text = "NewConcert";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.NewConcert_FormClosing);
+            this.Load += new System.EventHandler(this.NewConcert_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderConcert)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewLocation)).EndInit();
             this.groupBoxLocation.ResumeLayout(false);

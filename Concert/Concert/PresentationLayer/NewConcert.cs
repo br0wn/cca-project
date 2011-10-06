@@ -130,5 +130,10 @@ namespace Concert.PresentationLayer
         {
             location = (Location)dataGridViewLocation.CurrentRow.Tag;
         }
+
+        private void NewConcert_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
