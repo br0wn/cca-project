@@ -11,7 +11,7 @@ namespace Concert.DataAccessLayer
 {
     class DBObjectController
     {
-        public readonly static string YapFileName =
+        public readonly static string YapFileName = 
             Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "concerts.yap");
 
         public static IObjectContainer db;
