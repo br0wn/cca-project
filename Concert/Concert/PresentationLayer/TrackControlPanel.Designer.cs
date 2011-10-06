@@ -28,25 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.dataGridViewTracks = new System.Windows.Forms.DataGridView();
             this.TrackName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TrackLength = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBoxTrack = new System.Windows.Forms.GroupBox();
-            this.buttonSave = new System.Windows.Forms.Button();
-            this.textBoxTrackNameCurrent = new System.Windows.Forms.TextBox();
-            this.textBoxTrackLengthCurrent = new System.Windows.Forms.TextBox();
-            this.labelTrackNameCurrent = new System.Windows.Forms.Label();
             this.labelTrackLengthCurrent = new System.Windows.Forms.Label();
+            this.labelTrackNameCurrent = new System.Windows.Forms.Label();
+            this.textBoxTrackLengthCurrent = new System.Windows.Forms.TextBox();
+            this.textBoxTrackNameCurrent = new System.Windows.Forms.TextBox();
+            this.buttonSave = new System.Windows.Forms.Button();
             this.groupBoxNewTrack = new System.Windows.Forms.GroupBox();
-            this.labelTrackName = new System.Windows.Forms.Label();
-            this.textBoxTrackName = new System.Windows.Forms.TextBox();
+            this.buttonCancel = new System.Windows.Forms.Button();
+            this.buttonAdd = new System.Windows.Forms.Button();
             this.textBoxTrackLength = new System.Windows.Forms.TextBox();
             this.labelTrackLength = new System.Windows.Forms.Label();
-            this.buttonAdd = new System.Windows.Forms.Button();
-            this.buttonCancel = new System.Windows.Forms.Button();
+            this.textBoxTrackName = new System.Windows.Forms.TextBox();
+            this.labelTrackName = new System.Windows.Forms.Label();
+            this.errorProviderTrack = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTracks)).BeginInit();
             this.groupBoxTrack.SuspendLayout();
             this.groupBoxNewTrack.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderTrack)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridViewTracks
@@ -90,28 +93,14 @@
             this.groupBoxTrack.TabStop = false;
             this.groupBoxTrack.Text = "Track Control";
             // 
-            // buttonSave
+            // labelTrackLengthCurrent
             // 
-            this.buttonSave.Location = new System.Drawing.Point(17, 190);
-            this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(40, 23);
-            this.buttonSave.TabIndex = 1;
-            this.buttonSave.Text = "Save";
-            this.buttonSave.UseVisualStyleBackColor = true;
-            // 
-            // textBoxTrackNameCurrent
-            // 
-            this.textBoxTrackNameCurrent.Location = new System.Drawing.Point(63, 192);
-            this.textBoxTrackNameCurrent.Name = "textBoxTrackNameCurrent";
-            this.textBoxTrackNameCurrent.Size = new System.Drawing.Size(88, 20);
-            this.textBoxTrackNameCurrent.TabIndex = 2;
-            // 
-            // textBoxTrackLengthCurrent
-            // 
-            this.textBoxTrackLengthCurrent.Location = new System.Drawing.Point(157, 192);
-            this.textBoxTrackLengthCurrent.Name = "textBoxTrackLengthCurrent";
-            this.textBoxTrackLengthCurrent.Size = new System.Drawing.Size(88, 20);
-            this.textBoxTrackLengthCurrent.TabIndex = 3;
+            this.labelTrackLengthCurrent.AutoSize = true;
+            this.labelTrackLengthCurrent.Location = new System.Drawing.Point(154, 176);
+            this.labelTrackLengthCurrent.Name = "labelTrackLengthCurrent";
+            this.labelTrackLengthCurrent.Size = new System.Drawing.Size(46, 13);
+            this.labelTrackLengthCurrent.TabIndex = 4;
+            this.labelTrackLengthCurrent.Text = "Length :";
             // 
             // labelTrackNameCurrent
             // 
@@ -122,14 +111,28 @@
             this.labelTrackNameCurrent.TabIndex = 2;
             this.labelTrackNameCurrent.Text = "Name :";
             // 
-            // labelTrackLengthCurrent
+            // textBoxTrackLengthCurrent
             // 
-            this.labelTrackLengthCurrent.AutoSize = true;
-            this.labelTrackLengthCurrent.Location = new System.Drawing.Point(154, 176);
-            this.labelTrackLengthCurrent.Name = "labelTrackLengthCurrent";
-            this.labelTrackLengthCurrent.Size = new System.Drawing.Size(46, 13);
-            this.labelTrackLengthCurrent.TabIndex = 4;
-            this.labelTrackLengthCurrent.Text = "Length :";
+            this.textBoxTrackLengthCurrent.Location = new System.Drawing.Point(157, 192);
+            this.textBoxTrackLengthCurrent.Name = "textBoxTrackLengthCurrent";
+            this.textBoxTrackLengthCurrent.Size = new System.Drawing.Size(88, 20);
+            this.textBoxTrackLengthCurrent.TabIndex = 3;
+            // 
+            // textBoxTrackNameCurrent
+            // 
+            this.textBoxTrackNameCurrent.Location = new System.Drawing.Point(63, 192);
+            this.textBoxTrackNameCurrent.Name = "textBoxTrackNameCurrent";
+            this.textBoxTrackNameCurrent.Size = new System.Drawing.Size(88, 20);
+            this.textBoxTrackNameCurrent.TabIndex = 2;
+            // 
+            // buttonSave
+            // 
+            this.buttonSave.Location = new System.Drawing.Point(17, 190);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(40, 23);
+            this.buttonSave.TabIndex = 1;
+            this.buttonSave.Text = "Save";
+            this.buttonSave.UseVisualStyleBackColor = true;
             // 
             // groupBoxNewTrack
             // 
@@ -146,37 +149,14 @@
             this.groupBoxNewTrack.TabStop = false;
             this.groupBoxNewTrack.Text = "New track";
             // 
-            // labelTrackName
+            // buttonCancel
             // 
-            this.labelTrackName.AutoSize = true;
-            this.labelTrackName.Location = new System.Drawing.Point(53, 22);
-            this.labelTrackName.Name = "labelTrackName";
-            this.labelTrackName.Size = new System.Drawing.Size(41, 13);
-            this.labelTrackName.TabIndex = 0;
-            this.labelTrackName.Text = "Name :";
-            // 
-            // textBoxTrackName
-            // 
-            this.textBoxTrackName.Location = new System.Drawing.Point(100, 19);
-            this.textBoxTrackName.Name = "textBoxTrackName";
-            this.textBoxTrackName.Size = new System.Drawing.Size(117, 20);
-            this.textBoxTrackName.TabIndex = 1;
-            // 
-            // textBoxTrackLength
-            // 
-            this.textBoxTrackLength.Location = new System.Drawing.Point(100, 45);
-            this.textBoxTrackLength.Name = "textBoxTrackLength";
-            this.textBoxTrackLength.Size = new System.Drawing.Size(117, 20);
-            this.textBoxTrackLength.TabIndex = 3;
-            // 
-            // labelTrackLength
-            // 
-            this.labelTrackLength.AutoSize = true;
-            this.labelTrackLength.Location = new System.Drawing.Point(48, 48);
-            this.labelTrackLength.Name = "labelTrackLength";
-            this.labelTrackLength.Size = new System.Drawing.Size(46, 13);
-            this.labelTrackLength.TabIndex = 2;
-            this.labelTrackLength.Text = "Length :";
+            this.buttonCancel.Location = new System.Drawing.Point(167, 71);
+            this.buttonCancel.Name = "buttonCancel";
+            this.buttonCancel.Size = new System.Drawing.Size(50, 23);
+            this.buttonCancel.TabIndex = 5;
+            this.buttonCancel.Text = "Cancel";
+            this.buttonCancel.UseVisualStyleBackColor = true;
             // 
             // buttonAdd
             // 
@@ -188,14 +168,43 @@
             this.buttonAdd.UseVisualStyleBackColor = true;
             this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
             // 
-            // buttonCancel
+            // textBoxTrackLength
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(167, 71);
-            this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(50, 23);
-            this.buttonCancel.TabIndex = 5;
-            this.buttonCancel.Text = "Cancel";
-            this.buttonCancel.UseVisualStyleBackColor = true;
+            this.textBoxTrackLength.Location = new System.Drawing.Point(100, 45);
+            this.textBoxTrackLength.Name = "textBoxTrackLength";
+            this.textBoxTrackLength.Size = new System.Drawing.Size(117, 20);
+            this.textBoxTrackLength.TabIndex = 3;
+            this.textBoxTrackLength.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxTrackLength_Validating);
+            // 
+            // labelTrackLength
+            // 
+            this.labelTrackLength.AutoSize = true;
+            this.labelTrackLength.Location = new System.Drawing.Point(48, 48);
+            this.labelTrackLength.Name = "labelTrackLength";
+            this.labelTrackLength.Size = new System.Drawing.Size(46, 13);
+            this.labelTrackLength.TabIndex = 2;
+            this.labelTrackLength.Text = "Length :";
+            // 
+            // textBoxTrackName
+            // 
+            this.textBoxTrackName.Location = new System.Drawing.Point(100, 19);
+            this.textBoxTrackName.Name = "textBoxTrackName";
+            this.textBoxTrackName.Size = new System.Drawing.Size(117, 20);
+            this.textBoxTrackName.TabIndex = 1;
+            this.textBoxTrackName.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxTrackName_Validating);
+            // 
+            // labelTrackName
+            // 
+            this.labelTrackName.AutoSize = true;
+            this.labelTrackName.Location = new System.Drawing.Point(53, 22);
+            this.labelTrackName.Name = "labelTrackName";
+            this.labelTrackName.Size = new System.Drawing.Size(41, 13);
+            this.labelTrackName.TabIndex = 0;
+            this.labelTrackName.Text = "Name :";
+            // 
+            // errorProviderTrack
+            // 
+            this.errorProviderTrack.ContainerControl = this;
             // 
             // TrackControlPanel
             // 
@@ -211,6 +220,7 @@
             this.groupBoxTrack.PerformLayout();
             this.groupBoxNewTrack.ResumeLayout(false);
             this.groupBoxNewTrack.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderTrack)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -233,5 +243,6 @@
         private System.Windows.Forms.Label labelTrackLength;
         private System.Windows.Forms.TextBox textBoxTrackName;
         private System.Windows.Forms.Label labelTrackName;
+        private System.Windows.Forms.ErrorProvider errorProviderTrack;
     }
 }
