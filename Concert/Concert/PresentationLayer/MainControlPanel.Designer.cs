@@ -148,6 +148,7 @@
 			this.editBandToolStripMenuItem.Name = "editBandToolStripMenuItem";
 			this.editBandToolStripMenuItem.Size = new System.Drawing.Size( 152, 22 );
 			this.editBandToolStripMenuItem.Text = "Edit Band";
+			this.editBandToolStripMenuItem.Click += new System.EventHandler( this.editBandToolStripMenuItem_Click );
 			// 
 			// artistToolStripMenuItem
 			// 
