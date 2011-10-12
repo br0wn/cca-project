@@ -75,6 +75,12 @@
     <Compile Include="PresentationLayer\MainControlPanel.Designer.cs">
       <DependentUpon>MainControlPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationLayer\NewBandForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationLayer\NewBandForm.Designer.cs">
+      <DependentUpon>NewBandForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationLayer\NewConcert.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -103,6 +109,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationLayer\MainControlPanel.resx">
       <DependentUpon>MainControlPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationLayer\NewBandForm.resx">
+      <DependentUpon>NewBandForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationLayer\NewConcert.resx">
       <DependentUpon>NewConcert.cs</DependentUpon>

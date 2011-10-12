@@ -50,5 +50,12 @@ namespace Concert.PresentationLayer
             trackPanel.MdiParent = this;
             trackPanel.Show();
         }
+
+		private void newBandToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			NewBandForm newBandForm = new NewBandForm();
+			newBandForm.MdiParent = this;
+			newBandForm.Show();
+		}
     }
 }
