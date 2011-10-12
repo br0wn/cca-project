@@ -168,7 +168,16 @@ namespace Concert.PresentationLayer
 				MessageBox.Show( message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error );
 			}
 
-			Band band = new Band( bandName, availableArtists, availableAlbums );
+			Band band = new Band( bandName, addedArtists, addedAlbums );
+
+			try{
+				DBObjectController.StoreObject(band);
+			}
+			catch(Exception ex){
+				MessageBox.Show( "Error while updating record: \n\n"+ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error );
+				return;
+			}
+
 			MessageBox.Show("Band successfully added!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information ); 
 
 			this.Close();
