@@ -71,5 +71,12 @@ namespace Concert.PresentationLayer
             newArtistForm.MdiParent = this;
             newArtistForm.Show();
         }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EditArtistForm editArtistForm = new EditArtistForm();
+            editArtistForm.MdiParent = this;
+            editArtistForm.Show();
+        }
     }
 }
