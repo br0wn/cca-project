@@ -64,5 +64,12 @@ namespace Concert.PresentationLayer
             newLocation.MdiParent = this;
             newLocation.Show();
         }
+
+        private void newArtistToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            NewArtistForm newArtistForm = new NewArtistForm();
+            newArtistForm.MdiParent = this;
+            newArtistForm.Show();
+        }
     }
 }
