@@ -21,6 +21,7 @@ namespace Concert.DataAccessLayer
         public static void StoreObject(object obj)
         {
             db.Store(obj);
+			db.Commit();
         }
 
         public static void DeleteObject(object obj)
