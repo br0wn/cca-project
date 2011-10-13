@@ -32,16 +32,9 @@ namespace Concert.PresentationLayer
             newConcert.Show();
         }
 
-        private void showLocationsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void newLocationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            NewLocation newLocation = new NewLocation();
-            newLocation.MdiParent = this;
-            newLocation.Show();
+            
         }
 
         private void trackControlToolStripMenuItem_Click(object sender, EventArgs e)
@@ -64,5 +57,12 @@ namespace Concert.PresentationLayer
 			editBandForm.MdiParent = this;
 			editBandForm.Show( );
 		}
+
+        private void locationControlToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            NewLocation newLocation = new NewLocation();
+            newLocation.MdiParent = this;
+            newLocation.Show();
+        }
     }
 }
