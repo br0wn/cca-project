@@ -165,5 +165,10 @@ namespace Concert.PresentationLayer
             errorProviderTrack.SetError(textBoxTrackNameCurrent, string.Empty);
             errorProviderTrack.SetError(textBoxTrackLengthCurrent, string.Empty);
         }
+
+        private void dataGridViewTracks_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            DBObjectController.DeleteObject(e.Row.Tag);
+        }
     }
 }
