@@ -254,5 +254,10 @@ namespace Concert.PresentationLayer
                 errorProviderLocation.SetError(textBoxSeatCountCurrent, string.Empty);
             }
         }
+
+        private void dataGridViewLocation_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            DBObjectController.DeleteObject(e.Row.Tag);
+        }
     }
 }

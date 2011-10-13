@@ -55,7 +55,6 @@
             // dataGridViewTracks
             // 
             this.dataGridViewTracks.AllowUserToAddRows = false;
-            this.dataGridViewTracks.AllowUserToDeleteRows = false;
             this.dataGridViewTracks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewTracks.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.TrackName,
@@ -66,6 +65,7 @@
             this.dataGridViewTracks.Size = new System.Drawing.Size(246, 136);
             this.dataGridViewTracks.TabIndex = 0;
             this.dataGridViewTracks.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewTracks_RowEnter);
+            this.dataGridViewTracks.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dataGridViewTracks_UserDeletedRow);
             // 
             // TrackName
             // 

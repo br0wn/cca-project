@@ -27,6 +27,7 @@ namespace Concert.DataAccessLayer
         public static void DeleteObject(object obj)
         {
             db.Delete(obj);
+            db.Commit();
         }
 
         public static IEnumerable<DBObjectDefinition.Concert> GetAllConcerts()

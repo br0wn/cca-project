@@ -148,7 +148,6 @@
             // dataGridViewLocation
             // 
             this.dataGridViewLocation.AllowUserToAddRows = false;
-            this.dataGridViewLocation.AllowUserToDeleteRows = false;
             this.dataGridViewLocation.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewLocation.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.LocationCountry,
@@ -161,6 +160,7 @@
             this.dataGridViewLocation.Size = new System.Drawing.Size(452, 183);
             this.dataGridViewLocation.TabIndex = 15;
             this.dataGridViewLocation.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewLocation_RowEnter);
+            this.dataGridViewLocation.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dataGridViewLocation_UserDeletedRow);
             // 
             // LocationCountry
             // 
