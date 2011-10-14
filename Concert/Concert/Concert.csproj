@@ -137,6 +137,9 @@
     <EmbeddedResource Include="PresentationLayer\ConcertView.resx">
       <DependentUpon>ConcertView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PresentationLayer\EditAlbumForm.resx">
+      <DependentUpon>EditAlbumForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PresentationLayer\EditArtistForm.resx">
       <DependentUpon>EditArtistForm.cs</DependentUpon>
     </EmbeddedResource>

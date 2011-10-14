@@ -12,5 +12,15 @@ namespace Concert.PresentationLayer {
         public EditAlbumForm() {
             InitializeComponent();
         }
+
+        private void EditAlbumForm_Load(object sender, EventArgs e) {
+            //this.listBoxAvaliableAlbums.DataSource = DB
+        }
+
+        private void buttonSave_Click(object sender, EventArgs e) {
+
+        }
+
+        
     }
 }
