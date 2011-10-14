@@ -10,39 +10,39 @@ using Concert.PresentationLayer;
 
 namespace Concert.PresentationLayer
 {
-    public partial class MainControlPanel : Form
-    {
+	public partial class MainControlPanel : Form
+	{
 
-        public MainControlPanel()
-        {
-            InitializeComponent();
-        }
+		public MainControlPanel()
+		{
+			InitializeComponent();
+		}
 
-        private void showConcertsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ConcertView concertView = new ConcertView();
-            concertView.MdiParent = this;
-            concertView.Show();
-        }
+		private void showConcertsToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			ConcertView concertView = new ConcertView();
+			concertView.MdiParent = this;
+			concertView.Show();
+		}
 
-        private void addNewConcertToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            NewConcert newConcert = new NewConcert();
-            newConcert.MdiParent = this;
-            newConcert.Show();
-        }
+		private void addNewConcertToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			NewConcert newConcert = new NewConcert();
+			newConcert.MdiParent = this;
+			newConcert.Show();
+		}
 
-        private void newLocationToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            
-        }
+		private void newLocationToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			
+		}
 
-        private void trackControlToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            TrackControlPanel trackPanel = new TrackControlPanel();
-            trackPanel.MdiParent = this;
-            trackPanel.Show();
-        }
+		private void trackControlToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			TrackControlPanel trackPanel = new TrackControlPanel();
+			trackPanel.MdiParent = this;
+			trackPanel.Show();
+		}
 
 		private void newBandToolStripMenuItem_Click( object sender, EventArgs e )
 		{
@@ -58,25 +58,32 @@ namespace Concert.PresentationLayer
 			editBandForm.Show( );
 		}
 
-        private void locationControlToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            NewLocation newLocation = new NewLocation();
-            newLocation.MdiParent = this;
-            newLocation.Show();
-        }
+		private void locationControlToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			NewLocation newLocation = new NewLocation();
+			newLocation.MdiParent = this;
+			newLocation.Show();
+		}
 
-        private void newArtistToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            NewArtistForm newArtistForm = new NewArtistForm();
-            newArtistForm.MdiParent = this;
-            newArtistForm.Show();
-        }
+		private void newArtistToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			NewArtistForm newArtistForm = new NewArtistForm();
+			newArtistForm.MdiParent = this;
+			newArtistForm.Show();
+		}
+<<<<<<< .mine
 
-        private void editToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            EditArtistForm editArtistForm = new EditArtistForm();
-            editArtistForm.MdiParent = this;
-            editArtistForm.Show();
-        }
-    }
+		private void newAlbumToolStripMenuItem_Click(object sender, EventArgs e) {
+
+		}
+=======
+
+		private void editToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			EditArtistForm editArtistForm = new EditArtistForm();
+			editArtistForm.MdiParent = this;
+			editArtistForm.Show();
+		}
+>>>>>>> .r34
+	}
 }

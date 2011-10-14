@@ -65,5 +65,9 @@ namespace Concert.PresentationLayer
                 LoadConcertData();
             }
         }
+
+        private void ConcertView_Load(object sender, EventArgs e) {
+
+        }
     }
 }

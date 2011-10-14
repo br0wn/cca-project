@@ -41,10 +41,10 @@
             this.textBoxSeatCount = new System.Windows.Forms.TextBox();
             this.textBoxAddress = new System.Windows.Forms.TextBox();
             this.groupBoxLocation = new System.Windows.Forms.GroupBox();
+            this.buttonAssignLocation = new System.Windows.Forms.Button();
             this.labelSeatCount = new System.Windows.Forms.Label();
             this.labelPostalCode = new System.Windows.Forms.Label();
             this.textBoxPostalCode = new System.Windows.Forms.TextBox();
-            this.buttonAssignLocation = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewArtist)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBand)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewConcerts)).BeginInit();
@@ -167,6 +167,17 @@
             this.groupBoxLocation.TabStop = false;
             this.groupBoxLocation.Text = "Location Information";
             // 
+            // buttonAssignLocation
+            // 
+            this.buttonAssignLocation.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonAssignLocation.Location = new System.Drawing.Point(9, 26);
+            this.buttonAssignLocation.Name = "buttonAssignLocation";
+            this.buttonAssignLocation.Size = new System.Drawing.Size(27, 23);
+            this.buttonAssignLocation.TabIndex = 9;
+            this.buttonAssignLocation.Text = "*";
+            this.buttonAssignLocation.UseVisualStyleBackColor = true;
+            this.buttonAssignLocation.Click += new System.EventHandler(this.buttonAssignLocation_Click);
+            // 
             // labelSeatCount
             // 
             this.labelSeatCount.AutoSize = true;
@@ -193,17 +204,6 @@
             this.textBoxPostalCode.Size = new System.Drawing.Size(100, 20);
             this.textBoxPostalCode.TabIndex = 6;
             // 
-            // buttonAssignLocation
-            // 
-            this.buttonAssignLocation.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonAssignLocation.Location = new System.Drawing.Point(9, 26);
-            this.buttonAssignLocation.Name = "buttonAssignLocation";
-            this.buttonAssignLocation.Size = new System.Drawing.Size(27, 23);
-            this.buttonAssignLocation.TabIndex = 9;
-            this.buttonAssignLocation.Text = "*";
-            this.buttonAssignLocation.UseVisualStyleBackColor = true;
-            this.buttonAssignLocation.Click += new System.EventHandler(this.buttonAssignLocation_Click);
-            // 
             // ConcertView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -215,6 +215,7 @@
             this.Controls.Add(this.groupBoxLocation);
             this.Name = "ConcertView";
             this.Text = "ConcertView";
+            this.Load += new System.EventHandler(this.ConcertView_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewArtist)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBand)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewConcerts)).EndInit();
