@@ -71,12 +71,12 @@ namespace Concert.PresentationLayer
 			newArtistForm.MdiParent = this;
 			newArtistForm.Show();
 		}
-<<<<<<< .mine
+
 
 		private void newAlbumToolStripMenuItem_Click(object sender, EventArgs e) {
 
 		}
-=======
+
 
 		private void editToolStripMenuItem_Click(object sender, EventArgs e)
 		{
@@ -84,6 +84,13 @@ namespace Concert.PresentationLayer
 			editArtistForm.MdiParent = this;
 			editArtistForm.Show();
 		}
->>>>>>> .r34
+
+        private void addNewAlbumToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            NewAlbumForm newAlbumForm = new NewAlbumForm();
+            newAlbumForm.MdiParent = this;
+            newAlbumForm.Show();
+        }
+
 	}
 }
