@@ -75,6 +75,7 @@
             this.buttonRemoveSong.TabIndex = 4;
             this.buttonRemoveSong.Text = ">";
             this.buttonRemoveSong.UseVisualStyleBackColor = true;
+            this.buttonRemoveSong.Click += new System.EventHandler(this.buttonRemoveSong_Click);
             // 
             // buttonAddSong
             // 
@@ -84,6 +85,7 @@
             this.buttonAddSong.TabIndex = 5;
             this.buttonAddSong.Text = "<";
             this.buttonAddSong.UseVisualStyleBackColor = true;
+            this.buttonAddSong.Click += new System.EventHandler(this.buttonAddSong_Click);
             // 
             // labelAlbumSongs
             // 
@@ -120,6 +122,7 @@
             this.buttonCancle.TabIndex = 9;
             this.buttonCancle.Text = "Cancle";
             this.buttonCancle.UseVisualStyleBackColor = true;
+            this.buttonCancle.Click += new System.EventHandler(this.buttonCancle_Click);
             // 
             // NewAlbumForm
             // 
@@ -137,7 +140,7 @@
             this.Controls.Add(this.textBoxAlbumName);
             this.Controls.Add(this.labelAlbumName);
             this.Name = "NewAlbumForm";
-            this.Text = "NewAlbumForm";
+            this.Text = "Add new album";
             this.ResumeLayout(false);
             this.PerformLayout();
 
