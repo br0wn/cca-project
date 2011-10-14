@@ -29,7 +29,20 @@ namespace Concert.PresentationLayer {
         }
 
         private void buttonRemoveSong_Click(object sender, EventArgs e) {
+            if (this.listBoxSongs.Items.Count == 0)
+            {
+                return;
+            }
 
+            int songIndex = this.listBoxSongs.SelectedIndex;
+            Song song = this.addedSongs[songIndex];
+            this.addedSongs.RemoveAt(songIndex);
+            this.avaliableSongs.Add(song);
+
+            this.listBoxAvaliableSongs.DataSource = null;
+            this.listBoxSongs.DataSource = null;
+            this.listBoxAvaliableSongs.DataSource = this.avaliableSongs;
+            this.listBoxSongs.DataSource = this.addedSongs;
         }
 
         private void buttonAddSong_Click(object sender, EventArgs e) {
@@ -37,6 +50,7 @@ namespace Concert.PresentationLayer {
             {
                 return;
             }
+
             int songIndex = this.listBoxAvaliableSongs.SelectedIndex;
             Song song = this.avaliableSongs[songIndex];
             this.avaliableSongs.RemoveAt(songIndex);
