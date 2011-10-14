@@ -47,6 +47,8 @@
             this.albumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.trackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.trackControlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newAlbumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addNewAlbumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -170,6 +172,9 @@
             // 
             // albumToolStripMenuItem
             // 
+            this.albumToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newAlbumToolStripMenuItem,
+            this.addNewAlbumToolStripMenuItem});
             this.albumToolStripMenuItem.Name = "albumToolStripMenuItem";
             this.albumToolStripMenuItem.Size = new System.Drawing.Size(65, 24);
             this.albumToolStripMenuItem.Text = "Album";
@@ -185,9 +190,26 @@
             // trackControlToolStripMenuItem
             // 
             this.trackControlToolStripMenuItem.Name = "trackControlToolStripMenuItem";
+<<<<<<< .mine
+            this.trackControlToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+=======
             this.trackControlToolStripMenuItem.Size = new System.Drawing.Size(166, 24);
+>>>>>>> .r34
             this.trackControlToolStripMenuItem.Text = "Track Control";
             this.trackControlToolStripMenuItem.Click += new System.EventHandler(this.trackControlToolStripMenuItem_Click);
+            // 
+            // newAlbumToolStripMenuItem
+            // 
+            this.newAlbumToolStripMenuItem.Name = "newAlbumToolStripMenuItem";
+            this.newAlbumToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.newAlbumToolStripMenuItem.Text = "Show albums";
+            this.newAlbumToolStripMenuItem.Click += new System.EventHandler(this.newAlbumToolStripMenuItem_Click);
+            // 
+            // addNewAlbumToolStripMenuItem
+            // 
+            this.addNewAlbumToolStripMenuItem.Name = "addNewAlbumToolStripMenuItem";
+            this.addNewAlbumToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.addNewAlbumToolStripMenuItem.Text = "Add new album";
             // 
             // MainControlPanel
             // 
@@ -224,11 +246,16 @@
         private System.Windows.Forms.ToolStripMenuItem albumToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem trackToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem trackControlToolStripMenuItem;
+<<<<<<< .mine
+        private System.Windows.Forms.ToolStripMenuItem newAlbumToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addNewAlbumToolStripMenuItem;
+=======
         private System.Windows.Forms.ToolStripMenuItem newBandToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editBandToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem locationControlToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newArtistToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+>>>>>>> .r34
     }
 }
 
