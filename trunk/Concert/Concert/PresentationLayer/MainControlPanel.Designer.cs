@@ -171,8 +171,8 @@
             // albumToolStripMenuItem
             // 
             this.albumToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.newAlbumToolStripMenuItem,
-            this.addNewAlbumToolStripMenuItem});
+            this.addNewAlbumToolStripMenuItem,
+            this.newAlbumToolStripMenuItem});
             this.albumToolStripMenuItem.Name = "albumToolStripMenuItem";
             this.albumToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
             this.albumToolStripMenuItem.Text = "Album";
@@ -180,15 +180,15 @@
             // newAlbumToolStripMenuItem
             // 
             this.newAlbumToolStripMenuItem.Name = "newAlbumToolStripMenuItem";
-            this.newAlbumToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
-            this.newAlbumToolStripMenuItem.Text = "Show albums";
+            this.newAlbumToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newAlbumToolStripMenuItem.Text = "Edit Album";
             this.newAlbumToolStripMenuItem.Click += new System.EventHandler(this.newAlbumToolStripMenuItem_Click);
             // 
             // addNewAlbumToolStripMenuItem
             // 
             this.addNewAlbumToolStripMenuItem.Name = "addNewAlbumToolStripMenuItem";
-            this.addNewAlbumToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
-            this.addNewAlbumToolStripMenuItem.Text = "Add new album";
+            this.addNewAlbumToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.addNewAlbumToolStripMenuItem.Text = "New Album";
             this.addNewAlbumToolStripMenuItem.Click += new System.EventHandler(this.addNewAlbumToolStripMenuItem_Click);
             // 
             // trackToolStripMenuItem
