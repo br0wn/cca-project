@@ -69,6 +69,12 @@
     <Compile Include="PresentationLayer\ConcertView.Designer.cs">
       <DependentUpon>ConcertView.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationLayer\EditAlbumForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationLayer\EditAlbumForm.Designer.cs">
+      <DependentUpon>EditAlbumForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationLayer\EditArtistForm.cs">
       <SubType>Form</SubType>
     </Compile>
