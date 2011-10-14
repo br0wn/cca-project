@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.dateTimePickerConcert = new System.Windows.Forms.DateTimePicker();
+            this.Cancel = new System.Windows.Forms.Button();
+            this.Add = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.InstrumentsListBox1 = new System.Windows.Forms.ListBox();
-            this.Add = new System.Windows.Forms.Button();
-            this.Cancel = new System.Windows.Forms.Button();
+            this.dateTimePickerConcert = new System.Windows.Forms.DateTimePicker();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -54,70 +54,46 @@
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(9, 12);
+            this.groupBox1.Location = new System.Drawing.Point(7, 10);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(324, 374);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Size = new System.Drawing.Size(243, 304);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Artist";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
-            // label1
+            // Cancel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(17, 38);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(78, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "First name:";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.Cancel.Location = new System.Drawing.Point(160, 270);
+            this.Cancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Cancel.Name = "Cancel";
+            this.Cancel.Size = new System.Drawing.Size(62, 26);
+            this.Cancel.TabIndex = 17;
+            this.Cancel.Text = "Cancel";
+            this.Cancel.UseVisualStyleBackColor = true;
+            this.Cancel.Click += new System.EventHandler(this.Cancel_Click);
             // 
-            // label2
+            // Add
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(17, 77);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(78, 17);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Last name:";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(101, 38);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(196, 22);
-            this.textBox1.TabIndex = 2;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(101, 77);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(196, 22);
-            this.textBox2.TabIndex = 3;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(17, 117);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(73, 17);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Birth date:";
-            // 
-            // dateTimePickerConcert
-            // 
-            this.dateTimePickerConcert.Location = new System.Drawing.Point(101, 117);
-            this.dateTimePickerConcert.Margin = new System.Windows.Forms.Padding(4);
-            this.dateTimePickerConcert.Name = "dateTimePickerConcert";
-            this.dateTimePickerConcert.Size = new System.Drawing.Size(196, 22);
-            this.dateTimePickerConcert.TabIndex = 14;
+            this.Add.Location = new System.Drawing.Point(16, 270);
+            this.Add.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Add.Name = "Add";
+            this.Add.Size = new System.Drawing.Size(62, 26);
+            this.Add.TabIndex = 16;
+            this.Add.Text = "Add";
+            this.Add.UseVisualStyleBackColor = true;
+            this.Add.Click += new System.EventHandler(this.Add_Click);
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.InstrumentsListBox1);
-            this.groupBox2.Location = new System.Drawing.Point(22, 159);
+            this.groupBox2.Location = new System.Drawing.Point(16, 129);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(274, 155);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Size = new System.Drawing.Size(206, 126);
             this.groupBox2.TabIndex = 15;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Instruments";
@@ -125,37 +101,73 @@
             // InstrumentsListBox1
             // 
             this.InstrumentsListBox1.FormattingEnabled = true;
-            this.InstrumentsListBox1.ItemHeight = 16;
-            this.InstrumentsListBox1.Location = new System.Drawing.Point(12, 26);
+            this.InstrumentsListBox1.Location = new System.Drawing.Point(9, 21);
+            this.InstrumentsListBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.InstrumentsListBox1.Name = "InstrumentsListBox1";
-            this.InstrumentsListBox1.Size = new System.Drawing.Size(249, 116);
+            this.InstrumentsListBox1.Size = new System.Drawing.Size(188, 95);
             this.InstrumentsListBox1.TabIndex = 0;
             // 
-            // Add
+            // dateTimePickerConcert
             // 
-            this.Add.Location = new System.Drawing.Point(22, 332);
-            this.Add.Name = "Add";
-            this.Add.Size = new System.Drawing.Size(82, 32);
-            this.Add.TabIndex = 16;
-            this.Add.Text = "Add";
-            this.Add.UseVisualStyleBackColor = true;
+            this.dateTimePickerConcert.Location = new System.Drawing.Point(76, 95);
+            this.dateTimePickerConcert.Name = "dateTimePickerConcert";
+            this.dateTimePickerConcert.Size = new System.Drawing.Size(148, 20);
+            this.dateTimePickerConcert.TabIndex = 14;
             // 
-            // Cancel
+            // label3
             // 
-            this.Cancel.Location = new System.Drawing.Point(214, 332);
-            this.Cancel.Name = "Cancel";
-            this.Cancel.Size = new System.Drawing.Size(82, 32);
-            this.Cancel.TabIndex = 17;
-            this.Cancel.Text = "Cancel";
-            this.Cancel.UseVisualStyleBackColor = true;
-            this.Cancel.Click += new System.EventHandler(this.Cancel_Click);
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(13, 95);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(55, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Birth date:";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(76, 63);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(148, 20);
+            this.textBox2.TabIndex = 3;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(76, 31);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(148, 20);
+            this.textBox1.TabIndex = 2;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(13, 63);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(59, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Last name:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(13, 31);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(58, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "First name:";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // NewArtistForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(338, 398);
+            this.ClientSize = new System.Drawing.Size(254, 323);
             this.Controls.Add(this.groupBox1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "NewArtistForm";
             this.Text = "NewArtistForm";
             this.groupBox1.ResumeLayout(false);

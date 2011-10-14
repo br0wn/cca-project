@@ -30,5 +30,9 @@ namespace Concert.PresentationLayer
         {
             this.Close();
         }
+
+        private void Add_Click(object sender, EventArgs e) {
+
+        }
     }
 }

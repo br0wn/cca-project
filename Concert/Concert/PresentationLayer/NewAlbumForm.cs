@@ -61,5 +61,31 @@ namespace Concert.PresentationLayer {
             this.listBoxAvaliableSongs.DataSource = this.avaliableSongs;
             this.listBoxSongs.DataSource = this.addedSongs;
         }
+
+        private void buttonAddAlbum_Click(object sender, EventArgs e)
+        {
+            string albumName = this.textBoxAlbumName.Text.Trim();
+            if (albumName == string.Empty)
+            {
+                MessageBox.Show("Album name cannot be empty","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                return;
+            }
+            Album album = new Album(albumName);
+            foreach (Song song in this.addedSongs)
+            {
+                album.AddTrack(song);
+            }
+            try
+            {
+                DBObjectController.StoreObject(album);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error while addign album");
+                return;
+            }
+            MessageBox.Show("Album added successfully!");
+            this.Close();
+        }
     }
 }

@@ -113,6 +113,7 @@
             this.buttonAddAlbum.TabIndex = 8;
             this.buttonAddAlbum.Text = "Add";
             this.buttonAddAlbum.UseVisualStyleBackColor = true;
+            this.buttonAddAlbum.Click += new System.EventHandler(this.buttonAddAlbum_Click);
             // 
             // buttonCancle
             // 
