@@ -54,6 +54,7 @@
             this.listBoxAvaliableAlbums.Name = "listBoxAvaliableAlbums";
             this.listBoxAvaliableAlbums.Size = new System.Drawing.Size(287, 134);
             this.listBoxAvaliableAlbums.TabIndex = 1;
+            this.listBoxAvaliableAlbums.Click += new System.EventHandler(this.listBoxAvaliableAlbums_Click);
             // 
             // labelAlbumName
             // 
@@ -141,6 +142,7 @@
             this.buttoncancel.TabIndex = 12;
             this.buttoncancel.Text = "Cancel";
             this.buttoncancel.UseVisualStyleBackColor = true;
+            this.buttoncancel.Click += new System.EventHandler(this.buttoncancel_Click);
             // 
             // buttonEdit
             // 
@@ -150,6 +152,7 @@
             this.buttonEdit.TabIndex = 13;
             this.buttonEdit.Text = "Edit";
             this.buttonEdit.UseVisualStyleBackColor = true;
+            this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
             // 
             // EditAlbumForm
             // 
