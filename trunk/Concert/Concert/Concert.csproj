@@ -81,6 +81,12 @@
     <Compile Include="PresentationLayer\EditBandForm.Designer.cs">
       <DependentUpon>EditBandForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationLayer\NewAlbumForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationLayer\NewAlbumForm.Designer.cs">
+      <DependentUpon>NewAlbumForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationLayer\NewArtistForm.cs">
       <SubType>Form</SubType>
     </Compile>
