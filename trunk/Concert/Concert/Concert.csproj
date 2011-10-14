@@ -146,6 +146,9 @@
     <EmbeddedResource Include="PresentationLayer\MainControlPanel.resx">
       <DependentUpon>MainControlPanel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PresentationLayer\NewAlbumForm.resx">
+      <DependentUpon>NewAlbumForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PresentationLayer\NewArtistForm.resx">
       <DependentUpon>NewArtistForm.cs</DependentUpon>
     </EmbeddedResource>
