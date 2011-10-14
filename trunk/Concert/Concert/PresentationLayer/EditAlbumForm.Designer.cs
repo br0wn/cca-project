@@ -36,6 +36,7 @@
             this.buttonSave = new System.Windows.Forms.Button();
             this.buttoncancel = new System.Windows.Forms.Button();
             this.buttonEdit = new System.Windows.Forms.Button();
+            this.buttonDelete = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // labelAvaliableAlbums
@@ -55,6 +56,7 @@
             this.listBoxAvaliableAlbums.Size = new System.Drawing.Size(287, 134);
             this.listBoxAvaliableAlbums.TabIndex = 1;
             this.listBoxAvaliableAlbums.Click += new System.EventHandler(this.listBoxAvaliableAlbums_Click);
+            this.listBoxAvaliableAlbums.SelectedIndexChanged += new System.EventHandler(this.listBoxAvaliableAlbums_SelectedIndexChanged);
             // 
             // labelAlbumName
             // 
@@ -148,17 +150,28 @@
             // 
             this.buttonEdit.Location = new System.Drawing.Point(103, 388);
             this.buttonEdit.Name = "buttonEdit";
-            this.buttonEdit.Size = new System.Drawing.Size(119, 23);
+            this.buttonEdit.Size = new System.Drawing.Size(58, 23);
             this.buttonEdit.TabIndex = 13;
             this.buttonEdit.Text = "Edit";
             this.buttonEdit.UseVisualStyleBackColor = true;
             this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
+            // 
+            // buttonDelete
+            // 
+            this.buttonDelete.Location = new System.Drawing.Point(165, 388);
+            this.buttonDelete.Name = "buttonDelete";
+            this.buttonDelete.Size = new System.Drawing.Size(58, 23);
+            this.buttonDelete.TabIndex = 14;
+            this.buttonDelete.Text = "Delete";
+            this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
             // EditAlbumForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(330, 443);
+            this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.buttonEdit);
             this.Controls.Add(this.buttoncancel);
             this.Controls.Add(this.buttonSave);
@@ -195,5 +208,6 @@
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Button buttoncancel;
         private System.Windows.Forms.Button buttonEdit;
+        private System.Windows.Forms.Button buttonDelete;
     }
 }

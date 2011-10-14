@@ -65,5 +65,13 @@ namespace Concert.PresentationLayer {
 
         }
 
+        private void buttonDelete_Click(object sender, EventArgs e) {
+
+        }
+
+        private void listBoxAvaliableAlbums_SelectedIndexChanged(object sender, EventArgs e) {
+
+        }
+
     }
 }
