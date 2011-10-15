@@ -22,13 +22,20 @@ namespace Concert.PresentationLayer {
             InitializeComponent();
             this.editMode = false;
             this.setEdit(false);
-            listBoxAvaliableAlbums.DataSource = DBObjectController.GetAllAlbums().ToList();
+            this.loadExternalData();
+            //listBoxAvaliableAlbums.DataSource = DBObjectController.GetAllAlbums().ToList();
         }
 
         private void EditAlbumForm_Load(object sender, EventArgs e) {
             //this.listBoxAvaliableAlbums.DataSource = DB
         }
-
+        private void loadExternalData()
+        {
+            this.albums = null;
+            this.albums = DBObjectController.GetAllAlbums().ToList();
+            this.listBoxAvaliableAlbums.DataSource = null;
+            this.listBoxAvaliableAlbums.DataSource = this.albums;
+        }
         private void buttonSave_Click(object sender, EventArgs e) {
             this.setEdit(false);
         }
