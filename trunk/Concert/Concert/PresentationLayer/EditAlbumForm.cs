@@ -13,6 +13,10 @@ namespace Concert.PresentationLayer {
     public partial class EditAlbumForm : Form
     {
         private bool editMode;
+        private List<Album> albums = new List<Album>();
+        private List<Song> avaliableSongsFull = new List<Song>();
+        private List<Song> avaliableSongs = new List<Song>();
+        private List<Song> addedSongs = new List<Song>();
 
         public EditAlbumForm() {
             InitializeComponent();
