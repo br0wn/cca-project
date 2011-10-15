@@ -23,11 +23,9 @@ namespace Concert.PresentationLayer {
             this.editMode = false;
             this.setEdit(false);
             this.loadExternalData();
-            //listBoxAvaliableAlbums.DataSource = DBObjectController.GetAllAlbums().ToList();
         }
 
         private void EditAlbumForm_Load(object sender, EventArgs e) {
-            //this.listBoxAvaliableAlbums.DataSource = DB
         }
         private void loadExternalData()
         {
@@ -79,9 +77,31 @@ namespace Concert.PresentationLayer {
         private void buttonDelete_Click(object sender, EventArgs e) {
 
         }
+        private void loadAlbumData(int selectedIndex)
+        {
+            this.addedSongs = null;
+            this.avaliableSongs = new List<Song>();
+
+            Album album = this.albums[selectedIndex];
+            this.textBoxAlbumName.Text = album.Name;
+            this.addedSongs = album.Songs;
+            this.avaliableSongsFull.Clear();
+            this.avaliableSongsFull = DBObjectController.GetAllTracks().ToList();
+            foreach (Song song in this.avaliableSongsFull)
+            {
+                if (!this.addedSongs.Contains(song))
+                {
+                    this.avaliableSongs.Add(song);
+                }
+            }
+            this.listBoxAddedSgons.DataSource = null;
+            this.listBoxAvaliableSongs.DataSource = null;
+            this.listBoxAddedSgons.DataSource = this.addedSongs;
+            this.listBoxAvaliableSongs.DataSource = this.avaliableSongs;
+        }
 
         private void listBoxAvaliableAlbums_SelectedIndexChanged(object sender, EventArgs e) {
-
+            this.loadAlbumData(((ListBox)sender).SelectedIndex);
         }
 
     }
