@@ -67,7 +67,7 @@ namespace Concert.PresentationLayer {
             MessageBox.Show("Album updated");
             this.setEdit(false);
             loadAlbumData(albumIndex);
-            //this.loadExternalData();
+            this.loadExternalData();
 
         }
 
@@ -108,6 +108,10 @@ namespace Concert.PresentationLayer {
         }
         private void loadAlbumData(int selectedIndex)
         {
+            if (selectedIndex < 0)
+            {
+                return;
+            }
             this.addedSongs = null;
             this.avaliableSongs = new List<Song>();
 
