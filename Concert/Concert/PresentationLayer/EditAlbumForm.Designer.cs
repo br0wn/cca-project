@@ -90,6 +90,7 @@
             this.buttonRemoveSong.TabIndex = 6;
             this.buttonRemoveSong.Text = ">";
             this.buttonRemoveSong.UseVisualStyleBackColor = true;
+            this.buttonRemoveSong.Click += new System.EventHandler(this.buttonRemoveSong_Click_1);
             // 
             // listBoxAvaliableSongs
             // 
@@ -107,6 +108,7 @@
             this.buttonAddSong.TabIndex = 8;
             this.buttonAddSong.Text = "<";
             this.buttonAddSong.UseVisualStyleBackColor = true;
+            this.buttonAddSong.Click += new System.EventHandler(this.buttonAddSong_Click);
             // 
             // labelAlbumSongs
             // 
