@@ -34,8 +34,41 @@ namespace Concert.PresentationLayer {
             this.listBoxAvaliableAlbums.DataSource = null;
             this.listBoxAvaliableAlbums.DataSource = this.albums;
         }
-        private void buttonSave_Click(object sender, EventArgs e) {
+        private void buttonSave_Click(object sender, EventArgs e)
+        {
+            string albumName = this.textBoxAlbumName.Text.Trim();
+            if (albumName == string.Empty)
+            {
+                MessageBox.Show("Album name cannot be empty");
+                return;
+            }
+            List<Song> songs = DBObjectController.GetAllTracks().ToList();
+            int albumIndex = this.listBoxAvaliableAlbums.SelectedIndex;
+            Album album = this.albums[albumIndex];
+
+            album.Name = albumName;
+            foreach (Song song in this.addedSongs)
+            {
+                if (!album.Songs.Contains(song))
+                {
+                    album.AddTrack(song);
+                }
+            }
+            try
+            {
+                DBObjectController.StoreObject(album);
+            }
+            catch
+            {
+
+                MessageBox.Show("Error while updating record");
+                return;
+            }
+            MessageBox.Show("Album updated");
             this.setEdit(false);
+            loadAlbumData(albumIndex);
+            //this.loadExternalData();
+
         }
 
         private void buttonEdit_Click(object sender, EventArgs e) {
@@ -69,10 +102,6 @@ namespace Concert.PresentationLayer {
         private void listBoxAvaliableAlbums_Click(object sender, EventArgs e) {
             
         }
-        private void loadAlbumSongs(int albumIndex)
-        {
-
-        }
 
         private void buttonDelete_Click(object sender, EventArgs e) {
 
@@ -102,6 +131,51 @@ namespace Concert.PresentationLayer {
 
         private void listBoxAvaliableAlbums_SelectedIndexChanged(object sender, EventArgs e) {
             this.loadAlbumData(((ListBox)sender).SelectedIndex);
+        }
+
+        private void buttonRemoveSong_Click(object sender, EventArgs e) {
+            MessageBox.Show("Test");
+            if (this.listBoxAddedSgons.Items.Count == 0) return;
+            if (this.listBoxAddedSgons.SelectedIndex < 0) return;
+
+            int songIndex = this.listBoxAddedSgons.SelectedIndex;
+            Song song = this.addedSongs[songIndex];
+            this.addedSongs.RemoveAt(songIndex);
+            this.avaliableSongs.Add(song);
+
+            this.listBoxAvaliableSongs.DataSource = null;
+            this.listBoxAddedSgons.DataSource = null;
+            this.listBoxAvaliableSongs.DataSource = this.avaliableSongs;
+            this.listBoxAddedSgons.DataSource = this.addedSongs;
+        }
+
+        private void buttonAddSong_Click(object sender, EventArgs e) {
+            if (this.listBoxAvaliableSongs.Items.Count == 0) return;
+            if (this.listBoxAvaliableSongs.SelectedIndex < 0) return;
+
+            int songIndex = this.listBoxAvaliableSongs.SelectedIndex;
+            Song song = this.avaliableSongs[songIndex];
+            this.avaliableSongs.RemoveAt(songIndex);
+            this.addedSongs.Add(song);
+
+            this.listBoxAvaliableSongs.DataSource = this.listBoxAddedSgons.DataSource = null;
+            this.listBoxAvaliableSongs.DataSource = this.avaliableSongs;
+            this.listBoxAddedSgons.DataSource = this.addedSongs;
+        }
+
+        private void buttonRemoveSong_Click_1(object sender, EventArgs e) {           
+            if (this.listBoxAddedSgons.Items.Count == 0) return;
+            if (this.listBoxAddedSgons.SelectedIndex < 0) return;
+
+            int songIndex = this.listBoxAddedSgons.SelectedIndex;
+            Song song = this.addedSongs[songIndex];
+            this.addedSongs.RemoveAt(songIndex);
+            this.avaliableSongs.Add(song);
+
+            this.listBoxAvaliableSongs.DataSource = null;
+            this.listBoxAddedSgons.DataSource = null;
+            this.listBoxAvaliableSongs.DataSource = this.avaliableSongs;
+            this.listBoxAddedSgons.DataSource = this.addedSongs;
         }
 
     }
