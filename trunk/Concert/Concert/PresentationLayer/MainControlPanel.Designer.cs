@@ -210,6 +210,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::Concert.Properties.Resources.Background;
             this.ClientSize = new System.Drawing.Size(722, 572);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.menuStrip);
