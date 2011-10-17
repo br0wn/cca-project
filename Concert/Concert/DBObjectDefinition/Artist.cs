@@ -24,10 +24,14 @@ namespace Concert.DBObjectDefinition
             BirthDate = birthDate;
             instruments = new List<string>();
         }
+        public void ResetInst()
+        {
+            instruments.Clear();
+        }
 
         public void AddInst(string inst)
         {
-            this.instruments.Add(inst);
+            instruments.Add(inst);
         }
 
         public override string ToString()
