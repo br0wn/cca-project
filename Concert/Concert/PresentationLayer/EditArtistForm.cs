@@ -6,6 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Concert.DBObjectDefinition;
+using Concert.DataAccessLayer;
 
 namespace Concert.PresentationLayer
 {
@@ -14,7 +16,60 @@ namespace Concert.PresentationLayer
         public EditArtistForm()
         {
             InitializeComponent();
+            this.ArtistsListBox1.DataSource = null;
+            this.ArtistsListBox1.DataSource = DBObjectController.GetAllArtists().ToList();
+            int selectedIndex = ArtistsListBox1.SelectedIndex;
+            select();
+            
         }
+
+        private void select() {
+            Artist artist = (Artist)ArtistsListBox1.SelectedItem;
+            textBox1.Text = artist.Firstname;
+            textBox2.Text = artist.Lastname;
+            dateTimePickerConcert.Value = artist.BirthDate;
+            checkBox1.Checked = false;
+            checkBox2.Checked = false;
+            checkBox3.Checked = false;
+            checkBox4.Checked = false;
+            checkBox5.Checked = false;
+            checkBox6.Checked = false;
+            foreach (string instrument in artist.Instruments)
+            {
+                //MessageBox.Show(instrument);
+                switch (instrument)
+                { 
+                    case "Piano":
+                        checkBox1.Checked= true;
+                        break;
+                    case "Bass guitar":
+                        checkBox2.Checked = true;
+                        break;
+                    case "Drums":
+                        checkBox3.Checked = true;
+                        break;
+                    case "Guitar":
+                        checkBox4.Checked = true;
+                        break;
+                    case "Sax":
+                        checkBox5.Checked = true;
+                        break;
+                    case "Percussion":
+                        checkBox6.Checked = true;
+                        break;
+                }
+            }
+        }
+
+        private void defineInstruments(List<string> lista)
+        {
+            if (checkBox1.Checked) lista.Add("Piano");
+            if (checkBox2.Checked) lista.Add("Bass guitar");
+            if (checkBox3.Checked) lista.Add("Drums");
+            if (checkBox4.Checked) lista.Add("Guitar");
+            if (checkBox5.Checked) lista.Add("Sax");
+            if (checkBox6.Checked) lista.Add("Percussion");
+        } 
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -24,6 +79,48 @@ namespace Concert.PresentationLayer
         private void ArtistsListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string firstName = textBox1.Text.Trim();
+            string lastName = textBox2.Text.Trim();
+            DateTime birthdate = dateTimePickerConcert.Value;
+            List<string> instruments = new List<string>();
+            defineInstruments(instruments);
+            Artist artist = new Artist(firstName, lastName, birthdate);
+
+            foreach (string instrument in instruments)
+            {
+                artist.AddInst(instrument);
+            }
+
+            if (firstName == string.Empty)
+            {
+                MessageBox.Show("Artist name cannot be empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (lastName == string.Empty)
+            {
+                MessageBox.Show("Artist last name cannot be empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            try
+            {
+                DBObjectController.StoreObject(artist);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error while addign artist");
+                return;
+            }
+            MessageBox.Show("Artist added successfully!");
+        }
+
+        private void ArtistsListBox1_Click(object sender, EventArgs e)
+        {
+            select();
         }
     }
 }

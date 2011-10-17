@@ -36,7 +36,12 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.InstrumentsListBox1 = new System.Windows.Forms.ListBox();
+            this.checkBox6 = new System.Windows.Forms.CheckBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBox5 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
@@ -50,6 +55,7 @@
             this.ArtistsListBox1.Name = "ArtistsListBox1";
             this.ArtistsListBox1.Size = new System.Drawing.Size(287, 116);
             this.ArtistsListBox1.TabIndex = 0;
+            this.ArtistsListBox1.Click += new System.EventHandler(this.ArtistsListBox1_Click);
             this.ArtistsListBox1.SelectedIndexChanged += new System.EventHandler(this.ArtistsListBox1_SelectedIndexChanged);
             // 
             // label1
@@ -103,7 +109,12 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.InstrumentsListBox1);
+            this.groupBox2.Controls.Add(this.checkBox6);
+            this.groupBox2.Controls.Add(this.checkBox1);
+            this.groupBox2.Controls.Add(this.checkBox5);
+            this.groupBox2.Controls.Add(this.checkBox2);
+            this.groupBox2.Controls.Add(this.checkBox4);
+            this.groupBox2.Controls.Add(this.checkBox3);
             this.groupBox2.Location = new System.Drawing.Point(15, 243);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(287, 155);
@@ -111,14 +122,65 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Instruments";
             // 
-            // InstrumentsListBox1
+            // checkBox6
             // 
-            this.InstrumentsListBox1.FormattingEnabled = true;
-            this.InstrumentsListBox1.ItemHeight = 16;
-            this.InstrumentsListBox1.Location = new System.Drawing.Point(6, 33);
-            this.InstrumentsListBox1.Name = "InstrumentsListBox1";
-            this.InstrumentsListBox1.Size = new System.Drawing.Size(275, 116);
-            this.InstrumentsListBox1.TabIndex = 0;
+            this.checkBox6.AutoSize = true;
+            this.checkBox6.Location = new System.Drawing.Point(164, 117);
+            this.checkBox6.Name = "checkBox6";
+            this.checkBox6.Size = new System.Drawing.Size(100, 21);
+            this.checkBox6.TabIndex = 26;
+            this.checkBox6.Text = "Percussion";
+            this.checkBox6.UseVisualStyleBackColor = true;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(26, 33);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(66, 21);
+            this.checkBox1.TabIndex = 21;
+            this.checkBox1.Text = "Piano";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // checkBox5
+            // 
+            this.checkBox5.AutoSize = true;
+            this.checkBox5.Location = new System.Drawing.Point(164, 75);
+            this.checkBox5.Name = "checkBox5";
+            this.checkBox5.Size = new System.Drawing.Size(53, 21);
+            this.checkBox5.TabIndex = 25;
+            this.checkBox5.Text = "Sax";
+            this.checkBox5.UseVisualStyleBackColor = true;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(26, 75);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(101, 21);
+            this.checkBox2.TabIndex = 22;
+            this.checkBox2.Text = "Bass guitar";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // checkBox4
+            // 
+            this.checkBox4.AutoSize = true;
+            this.checkBox4.Location = new System.Drawing.Point(164, 33);
+            this.checkBox4.Name = "checkBox4";
+            this.checkBox4.Size = new System.Drawing.Size(69, 21);
+            this.checkBox4.TabIndex = 24;
+            this.checkBox4.Text = "Guitar";
+            this.checkBox4.UseVisualStyleBackColor = true;
+            // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Location = new System.Drawing.Point(26, 117);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(71, 21);
+            this.checkBox3.TabIndex = 23;
+            this.checkBox3.Text = "Drums";
+            this.checkBox3.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
@@ -128,6 +190,7 @@
             this.button1.TabIndex = 19;
             this.button1.Text = "Save changes";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -157,6 +220,7 @@
             this.Name = "EditArtistForm";
             this.Text = "EditArtistForm";
             this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -172,8 +236,13 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.ListBox InstrumentsListBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.CheckBox checkBox6;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBox5;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox checkBox4;
+        private System.Windows.Forms.CheckBox checkBox3;
     }
 }
