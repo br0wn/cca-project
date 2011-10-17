@@ -17,7 +17,6 @@ namespace Concert.PresentationLayer
         {
             InitializeComponent();
             loadArtists();
-            int selectedIndex = ArtistsListBox1.SelectedIndex;
             select();
             
         }
@@ -122,6 +121,7 @@ namespace Concert.PresentationLayer
             }
             MessageBox.Show("Artist edited successfully!");
             loadArtists();
+            select();
         }
 
         private void ArtistsListBox1_Click(object sender, EventArgs e)
