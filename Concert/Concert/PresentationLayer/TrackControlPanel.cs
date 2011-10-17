@@ -155,9 +155,7 @@ namespace Concert.PresentationLayer
 
         private void dataGridViewTracks_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
-            ClearCurrentErrorProvider();
-            textBoxTrackNameCurrent.Text = ((DataGridView)sender).Rows[e.RowIndex].Cells[0].Value.ToString();
-            textBoxTrackLengthCurrent.Text = ((DataGridView)sender).Rows[e.RowIndex].Cells[1].Value.ToString();
+            
         }
 
         private void ClearCurrentErrorProvider()
@@ -169,6 +167,26 @@ namespace Concert.PresentationLayer
         private void dataGridViewTracks_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
             DBObjectController.DeleteObject(e.Row.Tag);
+        }
+
+        private void dataGridViewTracks_SelectionChanged(object sender, EventArgs e)
+        {
+            if (((DataGridView)sender).CurrentRow != null)
+            {
+                ClearCurrentErrorProvider();
+                textBoxTrackNameCurrent.Text = ((DataGridView)sender).CurrentRow.Cells[0].Value.ToString();
+                textBoxTrackLengthCurrent.Text = ((DataGridView)sender).CurrentRow.Cells[1].Value.ToString();
+            }
+            else
+            {
+                ClearCurrentForm();
+            }
+        }
+
+        private void ClearCurrentForm()
+        {
+            textBoxTrackNameCurrent.Clear();
+            textBoxTrackLengthCurrent.Clear();
         }
     }
 }

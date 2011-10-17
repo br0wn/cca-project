@@ -30,8 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridViewTracks = new System.Windows.Forms.DataGridView();
-            this.TrackName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TrackLength = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBoxTrack = new System.Windows.Forms.GroupBox();
             this.labelTrackLengthCurrent = new System.Windows.Forms.Label();
             this.labelTrackNameCurrent = new System.Windows.Forms.Label();
@@ -46,6 +44,8 @@
             this.textBoxTrackName = new System.Windows.Forms.TextBox();
             this.labelTrackName = new System.Windows.Forms.Label();
             this.errorProviderTrack = new System.Windows.Forms.ErrorProvider(this.components);
+            this.TrackName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TrackLength = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTracks)).BeginInit();
             this.groupBoxTrack.SuspendLayout();
             this.groupBoxNewTrack.SuspendLayout();
@@ -62,22 +62,11 @@
             this.dataGridViewTracks.Location = new System.Drawing.Point(17, 19);
             this.dataGridViewTracks.Name = "dataGridViewTracks";
             this.dataGridViewTracks.ReadOnly = true;
-            this.dataGridViewTracks.Size = new System.Drawing.Size(246, 136);
+            this.dataGridViewTracks.Size = new System.Drawing.Size(313, 136);
             this.dataGridViewTracks.TabIndex = 0;
             this.dataGridViewTracks.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewTracks_RowEnter);
+            this.dataGridViewTracks.SelectionChanged += new System.EventHandler(this.dataGridViewTracks_SelectionChanged);
             this.dataGridViewTracks.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dataGridViewTracks_UserDeletedRow);
-            // 
-            // TrackName
-            // 
-            this.TrackName.HeaderText = "Name";
-            this.TrackName.Name = "TrackName";
-            this.TrackName.ReadOnly = true;
-            // 
-            // TrackLength
-            // 
-            this.TrackLength.HeaderText = "Length";
-            this.TrackLength.Name = "TrackLength";
-            this.TrackLength.ReadOnly = true;
             // 
             // groupBoxTrack
             // 
@@ -89,7 +78,7 @@
             this.groupBoxTrack.Controls.Add(this.dataGridViewTracks);
             this.groupBoxTrack.Location = new System.Drawing.Point(12, 11);
             this.groupBoxTrack.Name = "groupBoxTrack";
-            this.groupBoxTrack.Size = new System.Drawing.Size(285, 219);
+            this.groupBoxTrack.Size = new System.Drawing.Size(350, 219);
             this.groupBoxTrack.TabIndex = 1;
             this.groupBoxTrack.TabStop = false;
             this.groupBoxTrack.Text = "Track Control";
@@ -97,7 +86,7 @@
             // labelTrackLengthCurrent
             // 
             this.labelTrackLengthCurrent.AutoSize = true;
-            this.labelTrackLengthCurrent.Location = new System.Drawing.Point(174, 166);
+            this.labelTrackLengthCurrent.Location = new System.Drawing.Point(209, 166);
             this.labelTrackLengthCurrent.Name = "labelTrackLengthCurrent";
             this.labelTrackLengthCurrent.Size = new System.Drawing.Size(46, 13);
             this.labelTrackLengthCurrent.TabIndex = 4;
@@ -114,7 +103,7 @@
             // 
             // textBoxTrackLengthCurrent
             // 
-            this.textBoxTrackLengthCurrent.Location = new System.Drawing.Point(175, 182);
+            this.textBoxTrackLengthCurrent.Location = new System.Drawing.Point(210, 182);
             this.textBoxTrackLengthCurrent.Name = "textBoxTrackLengthCurrent";
             this.textBoxTrackLengthCurrent.Size = new System.Drawing.Size(88, 20);
             this.textBoxTrackLengthCurrent.TabIndex = 3;
@@ -123,7 +112,7 @@
             // 
             this.textBoxTrackNameCurrent.Location = new System.Drawing.Point(63, 182);
             this.textBoxTrackNameCurrent.Name = "textBoxTrackNameCurrent";
-            this.textBoxTrackNameCurrent.Size = new System.Drawing.Size(88, 20);
+            this.textBoxTrackNameCurrent.Size = new System.Drawing.Size(141, 20);
             this.textBoxTrackNameCurrent.TabIndex = 2;
             // 
             // buttonSave
@@ -146,14 +135,14 @@
             this.groupBoxNewTrack.Controls.Add(this.labelTrackName);
             this.groupBoxNewTrack.Location = new System.Drawing.Point(12, 237);
             this.groupBoxNewTrack.Name = "groupBoxNewTrack";
-            this.groupBoxNewTrack.Size = new System.Drawing.Size(285, 100);
+            this.groupBoxNewTrack.Size = new System.Drawing.Size(350, 100);
             this.groupBoxNewTrack.TabIndex = 2;
             this.groupBoxNewTrack.TabStop = false;
             this.groupBoxNewTrack.Text = "New track";
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(167, 71);
+            this.buttonCancel.Location = new System.Drawing.Point(222, 71);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(50, 23);
             this.buttonCancel.TabIndex = 5;
@@ -163,7 +152,7 @@
             // 
             // buttonAdd
             // 
-            this.buttonAdd.Location = new System.Drawing.Point(100, 71);
+            this.buttonAdd.Location = new System.Drawing.Point(131, 71);
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.Size = new System.Drawing.Size(50, 23);
             this.buttonAdd.TabIndex = 4;
@@ -173,16 +162,16 @@
             // 
             // textBoxTrackLength
             // 
-            this.textBoxTrackLength.Location = new System.Drawing.Point(100, 45);
+            this.textBoxTrackLength.Location = new System.Drawing.Point(131, 45);
             this.textBoxTrackLength.Name = "textBoxTrackLength";
-            this.textBoxTrackLength.Size = new System.Drawing.Size(117, 20);
+            this.textBoxTrackLength.Size = new System.Drawing.Size(141, 20);
             this.textBoxTrackLength.TabIndex = 3;
             this.textBoxTrackLength.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxTrackLength_Validating);
             // 
             // labelTrackLength
             // 
             this.labelTrackLength.AutoSize = true;
-            this.labelTrackLength.Location = new System.Drawing.Point(48, 48);
+            this.labelTrackLength.Location = new System.Drawing.Point(79, 48);
             this.labelTrackLength.Name = "labelTrackLength";
             this.labelTrackLength.Size = new System.Drawing.Size(46, 13);
             this.labelTrackLength.TabIndex = 2;
@@ -190,16 +179,16 @@
             // 
             // textBoxTrackName
             // 
-            this.textBoxTrackName.Location = new System.Drawing.Point(100, 19);
+            this.textBoxTrackName.Location = new System.Drawing.Point(131, 19);
             this.textBoxTrackName.Name = "textBoxTrackName";
-            this.textBoxTrackName.Size = new System.Drawing.Size(117, 20);
+            this.textBoxTrackName.Size = new System.Drawing.Size(141, 20);
             this.textBoxTrackName.TabIndex = 1;
             this.textBoxTrackName.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxTrackName_Validating);
             // 
             // labelTrackName
             // 
             this.labelTrackName.AutoSize = true;
-            this.labelTrackName.Location = new System.Drawing.Point(53, 22);
+            this.labelTrackName.Location = new System.Drawing.Point(84, 22);
             this.labelTrackName.Name = "labelTrackName";
             this.labelTrackName.Size = new System.Drawing.Size(41, 13);
             this.labelTrackName.TabIndex = 0;
@@ -209,11 +198,24 @@
             // 
             this.errorProviderTrack.ContainerControl = this;
             // 
+            // TrackName
+            // 
+            this.TrackName.HeaderText = "Name";
+            this.TrackName.Name = "TrackName";
+            this.TrackName.ReadOnly = true;
+            this.TrackName.Width = 150;
+            // 
+            // TrackLength
+            // 
+            this.TrackLength.HeaderText = "Length";
+            this.TrackLength.Name = "TrackLength";
+            this.TrackLength.ReadOnly = true;
+            // 
             // TrackControlPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(312, 347);
+            this.ClientSize = new System.Drawing.Size(379, 347);
             this.Controls.Add(this.groupBoxNewTrack);
             this.Controls.Add(this.groupBoxTrack);
             this.Name = "TrackControlPanel";
@@ -231,8 +233,6 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridViewTracks;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TrackName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TrackLength;
         private System.Windows.Forms.GroupBox groupBoxTrack;
         private System.Windows.Forms.Label labelTrackLengthCurrent;
         private System.Windows.Forms.Label labelTrackNameCurrent;
@@ -247,5 +247,7 @@
         private System.Windows.Forms.TextBox textBoxTrackName;
         private System.Windows.Forms.Label labelTrackName;
         private System.Windows.Forms.ErrorProvider errorProviderTrack;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TrackName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TrackLength;
     }
 }
