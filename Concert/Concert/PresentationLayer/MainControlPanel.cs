@@ -33,11 +33,6 @@ namespace Concert.PresentationLayer
 			newConcert.Show();
 		}
 
-		private void newLocationToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			
-		}
-
 		private void trackControlToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			TrackControlPanel trackPanel = new TrackControlPanel();
@@ -72,9 +67,6 @@ namespace Concert.PresentationLayer
 			newArtistForm.MdiParent = this;
 			newArtistForm.Show();
 		}
-
-
-  
 
 		private void editToolStripMenuItem_Click(object sender, EventArgs e)
 		{
