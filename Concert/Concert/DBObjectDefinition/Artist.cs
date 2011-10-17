@@ -25,6 +25,11 @@ namespace Concert.DBObjectDefinition
             instruments = new List<string>();
         }
 
+        public void AddInst(string inst)
+        {
+            this.instruments.Add(inst);
+        }
+
         public override string ToString()
         {
             StringBuilder artistInfo = new StringBuilder(firstname + ", " + lastname + " - " + birthDate + " { ");

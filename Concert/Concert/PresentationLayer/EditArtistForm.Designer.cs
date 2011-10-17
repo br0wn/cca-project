@@ -50,6 +50,7 @@
             this.ArtistsListBox1.Name = "ArtistsListBox1";
             this.ArtistsListBox1.Size = new System.Drawing.Size(287, 116);
             this.ArtistsListBox1.TabIndex = 0;
+            this.ArtistsListBox1.SelectedIndexChanged += new System.EventHandler(this.ArtistsListBox1_SelectedIndexChanged);
             // 
             // label1
             // 

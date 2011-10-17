@@ -20,5 +20,10 @@ namespace Concert.PresentationLayer
         {
             this.Close();
         }
+
+        private void ArtistsListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
