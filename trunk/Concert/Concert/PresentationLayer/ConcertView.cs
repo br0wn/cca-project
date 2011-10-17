@@ -70,20 +70,7 @@ namespace Concert.PresentationLayer
 
         private void dataGridViewConcerts_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
-            if (((DBObjectDefinition.Concert)((DataGridView)sender).Rows[e.RowIndex].Tag).GeoLocation != null)
-            {
-                textBoxCountry.Text = ((DBObjectDefinition.Concert)((DataGridView)sender).Rows[e.RowIndex].Tag).GeoLocation.Country;
-                textBoxAddress.Text = ((DBObjectDefinition.Concert)((DataGridView)sender).Rows[e.RowIndex].Tag).GeoLocation.Address;
-                textBoxPostalCode.Text = ((DBObjectDefinition.Concert)((DataGridView)sender).Rows[e.RowIndex].Tag).GeoLocation.PostalCode.ToString();
-                textBoxSeatCount.Text = ((DBObjectDefinition.Concert)((DataGridView)sender).Rows[e.RowIndex].Tag).GeoLocation.SeatCount.ToString();
-            }
-            else 
-            {
-                textBoxCountry.Text = string.Empty;
-                textBoxAddress.Text = string.Empty;
-                textBoxPostalCode.Text = string.Empty;
-                textBoxSeatCount.Text = string.Empty;
-            }
+            
         }
 
         private void buttonAssignLocation_Click(object sender, EventArgs e)
@@ -100,7 +87,24 @@ namespace Concert.PresentationLayer
 
         private void dataGridViewConcerts_SelectionChanged(object sender, EventArgs e)
         {
-            RefreshBandData();
+            if (((DataGridView)sender).CurrentRow != null)
+            {
+                if (((DBObjectDefinition.Concert)((DataGridView)sender).CurrentRow.Tag).GeoLocation != null)
+                {
+                    textBoxCountry.Text = ((DBObjectDefinition.Concert)((DataGridView)sender).CurrentRow.Tag).GeoLocation.Country;
+                    textBoxAddress.Text = ((DBObjectDefinition.Concert)((DataGridView)sender).CurrentRow.Tag).GeoLocation.Address;
+                    textBoxPostalCode.Text = ((DBObjectDefinition.Concert)((DataGridView)sender).CurrentRow.Tag).GeoLocation.PostalCode.ToString();
+                    textBoxSeatCount.Text = ((DBObjectDefinition.Concert)((DataGridView)sender).CurrentRow.Tag).GeoLocation.SeatCount.ToString();
+                }
+                else
+                {
+                    textBoxCountry.Text = string.Empty;
+                    textBoxAddress.Text = string.Empty;
+                    textBoxPostalCode.Text = string.Empty;
+                    textBoxSeatCount.Text = string.Empty;
+                }
+                RefreshBandData();
+            }
         }
 
         private void dataGridViewBand_SelectionChanged(object sender, EventArgs e)
