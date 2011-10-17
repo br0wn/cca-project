@@ -188,5 +188,15 @@ namespace Concert.PresentationLayer
             textBoxTrackNameCurrent.Clear();
             textBoxTrackLengthCurrent.Clear();
         }
+
+        private void TrackControlPanel_Load(object sender, EventArgs e)
+        {
+            MdiParent.MainMenuStrip.Enabled = false;
+        }
+
+        private void TrackControlPanel_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            MdiParent.MainMenuStrip.Enabled = true;
+        }
     }
 }

@@ -30,6 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridViewTracks = new System.Windows.Forms.DataGridView();
+            this.TrackName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TrackLength = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBoxTrack = new System.Windows.Forms.GroupBox();
             this.labelTrackLengthCurrent = new System.Windows.Forms.Label();
             this.labelTrackNameCurrent = new System.Windows.Forms.Label();
@@ -44,8 +46,6 @@
             this.textBoxTrackName = new System.Windows.Forms.TextBox();
             this.labelTrackName = new System.Windows.Forms.Label();
             this.errorProviderTrack = new System.Windows.Forms.ErrorProvider(this.components);
-            this.TrackName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TrackLength = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTracks)).BeginInit();
             this.groupBoxTrack.SuspendLayout();
             this.groupBoxNewTrack.SuspendLayout();
@@ -67,6 +67,19 @@
             this.dataGridViewTracks.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewTracks_RowEnter);
             this.dataGridViewTracks.SelectionChanged += new System.EventHandler(this.dataGridViewTracks_SelectionChanged);
             this.dataGridViewTracks.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dataGridViewTracks_UserDeletedRow);
+            // 
+            // TrackName
+            // 
+            this.TrackName.HeaderText = "Name";
+            this.TrackName.Name = "TrackName";
+            this.TrackName.ReadOnly = true;
+            this.TrackName.Width = 150;
+            // 
+            // TrackLength
+            // 
+            this.TrackLength.HeaderText = "Length";
+            this.TrackLength.Name = "TrackLength";
+            this.TrackLength.ReadOnly = true;
             // 
             // groupBoxTrack
             // 
@@ -198,19 +211,6 @@
             // 
             this.errorProviderTrack.ContainerControl = this;
             // 
-            // TrackName
-            // 
-            this.TrackName.HeaderText = "Name";
-            this.TrackName.Name = "TrackName";
-            this.TrackName.ReadOnly = true;
-            this.TrackName.Width = 150;
-            // 
-            // TrackLength
-            // 
-            this.TrackLength.HeaderText = "Length";
-            this.TrackLength.Name = "TrackLength";
-            this.TrackLength.ReadOnly = true;
-            // 
             // TrackControlPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -220,6 +220,8 @@
             this.Controls.Add(this.groupBoxTrack);
             this.Name = "TrackControlPanel";
             this.Text = "TrackControlPanel";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.TrackControlPanel_FormClosed);
+            this.Load += new System.EventHandler(this.TrackControlPanel_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTracks)).EndInit();
             this.groupBoxTrack.ResumeLayout(false);
             this.groupBoxTrack.PerformLayout();

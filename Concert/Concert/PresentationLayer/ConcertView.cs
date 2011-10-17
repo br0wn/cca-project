@@ -70,7 +70,7 @@ namespace Concert.PresentationLayer
 
         private void dataGridViewConcerts_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
-            
+
         }
 
         private void buttonAssignLocation_Click(object sender, EventArgs e)
@@ -110,6 +110,16 @@ namespace Concert.PresentationLayer
         private void dataGridViewBand_SelectionChanged(object sender, EventArgs e)
         {
             RefreshArtistData();
+        }
+
+        private void ConcertView_Load(object sender, EventArgs e)
+        {
+            MdiParent.MainMenuStrip.Enabled = false;
+        }
+
+        private void ConcertView_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            MdiParent.MainMenuStrip.Enabled = true;
         }
     }
 }
