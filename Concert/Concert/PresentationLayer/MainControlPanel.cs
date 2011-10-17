@@ -16,6 +16,7 @@ namespace Concert.PresentationLayer
 		public MainControlPanel()
 		{
 			InitializeComponent();
+            Icon = Properties.Resources.pikachu;
 		}
 
 		private void showConcertsToolStripMenuItem_Click(object sender, EventArgs e)
