@@ -32,7 +32,6 @@
             this.dataGridViewArtist = new System.Windows.Forms.DataGridView();
             this.labelCountry = new System.Windows.Forms.Label();
             this.dataGridViewBand = new System.Windows.Forms.DataGridView();
-            this.BandName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.labelAddress = new System.Windows.Forms.Label();
             this.dataGridViewConcerts = new System.Windows.Forms.DataGridView();
             this.ConcertName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -45,10 +44,18 @@
             this.labelSeatCount = new System.Windows.Forms.Label();
             this.labelPostalCode = new System.Windows.Forms.Label();
             this.textBoxPostalCode = new System.Windows.Forms.TextBox();
+            this.dataGridViewTracks = new System.Windows.Forms.DataGridView();
+            this.BandName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TrackName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TrackLength = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ArtistName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ArtistBirthDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ArtistInstruments = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewArtist)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBand)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewConcerts)).BeginInit();
             this.groupBoxLocation.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTracks)).BeginInit();
             this.SuspendLayout();
             // 
             // textBoxCountry
@@ -61,10 +68,17 @@
             // 
             // dataGridViewArtist
             // 
+            this.dataGridViewArtist.AllowUserToAddRows = false;
+            this.dataGridViewArtist.AllowUserToDeleteRows = false;
             this.dataGridViewArtist.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewArtist.Location = new System.Drawing.Point(185, 178);
+            this.dataGridViewArtist.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ArtistName,
+            this.ArtistBirthDate,
+            this.ArtistInstruments});
+            this.dataGridViewArtist.Location = new System.Drawing.Point(12, 343);
             this.dataGridViewArtist.Name = "dataGridViewArtist";
-            this.dataGridViewArtist.Size = new System.Drawing.Size(363, 150);
+            this.dataGridViewArtist.ReadOnly = true;
+            this.dataGridViewArtist.Size = new System.Drawing.Size(564, 150);
             this.dataGridViewArtist.TabIndex = 14;
             // 
             // labelCountry
@@ -78,18 +92,17 @@
             // 
             // dataGridViewBand
             // 
+            this.dataGridViewBand.AllowUserToAddRows = false;
+            this.dataGridViewBand.AllowUserToDeleteRows = false;
             this.dataGridViewBand.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewBand.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.BandName});
             this.dataGridViewBand.Location = new System.Drawing.Point(12, 178);
             this.dataGridViewBand.Name = "dataGridViewBand";
-            this.dataGridViewBand.Size = new System.Drawing.Size(146, 150);
+            this.dataGridViewBand.ReadOnly = true;
+            this.dataGridViewBand.Size = new System.Drawing.Size(209, 150);
             this.dataGridViewBand.TabIndex = 13;
-            // 
-            // BandName
-            // 
-            this.BandName.HeaderText = "Name";
-            this.BandName.Name = "BandName";
+            this.dataGridViewBand.SelectionChanged += new System.EventHandler(this.dataGridViewBand_SelectionChanged);
             // 
             // labelAddress
             // 
@@ -110,9 +123,10 @@
             this.Date});
             this.dataGridViewConcerts.Location = new System.Drawing.Point(12, 12);
             this.dataGridViewConcerts.Name = "dataGridViewConcerts";
-            this.dataGridViewConcerts.Size = new System.Drawing.Size(344, 150);
+            this.dataGridViewConcerts.Size = new System.Drawing.Size(345, 150);
             this.dataGridViewConcerts.TabIndex = 12;
             this.dataGridViewConcerts.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewConcerts_RowEnter);
+            this.dataGridViewConcerts.SelectionChanged += new System.EventHandler(this.dataGridViewConcerts_SelectionChanged);
             this.dataGridViewConcerts.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.dataGridViewConcerts_UserDeletingRow);
             // 
             // ConcertName
@@ -160,7 +174,7 @@
             this.groupBoxLocation.Controls.Add(this.labelSeatCount);
             this.groupBoxLocation.Controls.Add(this.labelPostalCode);
             this.groupBoxLocation.Controls.Add(this.textBoxPostalCode);
-            this.groupBoxLocation.Location = new System.Drawing.Point(371, 12);
+            this.groupBoxLocation.Location = new System.Drawing.Point(363, 12);
             this.groupBoxLocation.Name = "groupBoxLocation";
             this.groupBoxLocation.Size = new System.Drawing.Size(211, 150);
             this.groupBoxLocation.TabIndex = 15;
@@ -204,23 +218,79 @@
             this.textBoxPostalCode.Size = new System.Drawing.Size(100, 20);
             this.textBoxPostalCode.TabIndex = 6;
             // 
+            // dataGridViewTracks
+            // 
+            this.dataGridViewTracks.AllowUserToAddRows = false;
+            this.dataGridViewTracks.AllowUserToDeleteRows = false;
+            this.dataGridViewTracks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewTracks.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.TrackName,
+            this.TrackLength});
+            this.dataGridViewTracks.Location = new System.Drawing.Point(232, 178);
+            this.dataGridViewTracks.Name = "dataGridViewTracks";
+            this.dataGridViewTracks.ReadOnly = true;
+            this.dataGridViewTracks.Size = new System.Drawing.Size(344, 150);
+            this.dataGridViewTracks.TabIndex = 16;
+            // 
+            // BandName
+            // 
+            this.BandName.HeaderText = "Name";
+            this.BandName.Name = "BandName";
+            this.BandName.ReadOnly = true;
+            this.BandName.Width = 150;
+            // 
+            // TrackName
+            // 
+            this.TrackName.HeaderText = "Track";
+            this.TrackName.Name = "TrackName";
+            this.TrackName.ReadOnly = true;
+            this.TrackName.Width = 150;
+            // 
+            // TrackLength
+            // 
+            this.TrackLength.HeaderText = "Length";
+            this.TrackLength.Name = "TrackLength";
+            this.TrackLength.ReadOnly = true;
+            this.TrackLength.Width = 150;
+            // 
+            // ArtistName
+            // 
+            this.ArtistName.HeaderText = "Name";
+            this.ArtistName.Name = "ArtistName";
+            this.ArtistName.ReadOnly = true;
+            this.ArtistName.Width = 150;
+            // 
+            // ArtistBirthDate
+            // 
+            this.ArtistBirthDate.HeaderText = "Birth date";
+            this.ArtistBirthDate.Name = "ArtistBirthDate";
+            this.ArtistBirthDate.ReadOnly = true;
+            // 
+            // ArtistInstruments
+            // 
+            this.ArtistInstruments.HeaderText = "Instruments";
+            this.ArtistInstruments.Name = "ArtistInstruments";
+            this.ArtistInstruments.ReadOnly = true;
+            this.ArtistInstruments.Width = 270;
+            // 
             // ConcertView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(594, 341);
+            this.ClientSize = new System.Drawing.Size(594, 540);
+            this.Controls.Add(this.dataGridViewTracks);
             this.Controls.Add(this.dataGridViewArtist);
             this.Controls.Add(this.dataGridViewBand);
             this.Controls.Add(this.dataGridViewConcerts);
             this.Controls.Add(this.groupBoxLocation);
             this.Name = "ConcertView";
             this.Text = "ConcertView";
-            this.Load += new System.EventHandler(this.ConcertView_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewArtist)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBand)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewConcerts)).EndInit();
             this.groupBoxLocation.ResumeLayout(false);
             this.groupBoxLocation.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTracks)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -231,7 +301,6 @@
         private System.Windows.Forms.DataGridView dataGridViewArtist;
         private System.Windows.Forms.Label labelCountry;
         private System.Windows.Forms.DataGridView dataGridViewBand;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BandName;
         private System.Windows.Forms.Label labelAddress;
         private System.Windows.Forms.DataGridView dataGridViewConcerts;
         private System.Windows.Forms.DataGridViewTextBoxColumn ConcertName;
@@ -244,5 +313,12 @@
         private System.Windows.Forms.Label labelPostalCode;
         private System.Windows.Forms.TextBox textBoxPostalCode;
         private System.Windows.Forms.Button buttonAssignLocation;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ArtistName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ArtistBirthDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ArtistInstruments;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BandName;
+        private System.Windows.Forms.DataGridView dataGridViewTracks;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TrackName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TrackLength;
     }
 }

@@ -31,6 +31,38 @@ namespace Concert.PresentationLayer
             }
         }
 
+        private void RefreshBandData()
+        {
+            if (dataGridViewConcerts.CurrentRow != null)
+            {
+                dataGridViewBand.Rows.Clear();
+                foreach (Band band in ((DBObjectDefinition.Concert)dataGridViewConcerts.CurrentRow.Tag).Bands)
+                {
+                    DataGridViewRow row = new DataGridViewRow();
+                    row.CreateCells(dataGridViewBand, new object[] { band.Name });
+                    row.Tag = band;
+                    dataGridViewBand.Rows.Add(row);
+                }
+            }
+        }
+
+        private void RefreshArtistData()
+        {
+            if (dataGridViewBand.CurrentRow != null)
+            {
+                dataGridViewArtist.Rows.Clear();
+                foreach (Artist artist in ((DBObjectDefinition.Band)dataGridViewBand.CurrentRow.Tag).Artist)
+                {
+                    DataGridViewRow row = new DataGridViewRow();
+                    row.CreateCells(dataGridViewBand, new object[] { artist.Firstname + " " + artist.Lastname,
+                                                                     artist.BirthDate.ToString("dd.MM.YYYY"),
+                                                                     artist.Instruments});
+                    row.Tag = artist;
+                    dataGridViewArtist.Rows.Add(row);
+                }
+            }
+        }
+
         private void dataGridViewConcerts_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
         {
             DBObjectController.DeleteObject(e.Row.Tag);
@@ -66,8 +98,14 @@ namespace Concert.PresentationLayer
             }
         }
 
-        private void ConcertView_Load(object sender, EventArgs e) {
+        private void dataGridViewConcerts_SelectionChanged(object sender, EventArgs e)
+        {
+            RefreshBandData();
+        }
 
+        private void dataGridViewBand_SelectionChanged(object sender, EventArgs e)
+        {
+            RefreshArtistData();
         }
     }
 }
