@@ -160,6 +160,7 @@
             this.dataGridViewLocation.Size = new System.Drawing.Size(452, 183);
             this.dataGridViewLocation.TabIndex = 15;
             this.dataGridViewLocation.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewLocation_RowEnter);
+            this.dataGridViewLocation.SelectionChanged += new System.EventHandler(this.dataGridViewLocation_SelectionChanged);
             this.dataGridViewLocation.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dataGridViewLocation_UserDeletedRow);
             // 
             // LocationCountry
