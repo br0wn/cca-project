@@ -46,9 +46,11 @@
             this.buttonSetLocation = new System.Windows.Forms.Button();
             this.buttonAddNewLocation = new System.Windows.Forms.Button();
             this.checkedListBoxBands = new System.Windows.Forms.CheckedListBox();
+            this.groupBoxBands = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderConcert)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewLocation)).BeginInit();
             this.groupBoxLocation.SuspendLayout();
+            this.groupBoxBands.SuspendLayout();
             this.SuspendLayout();
             // 
             // dateTimePickerConcert
@@ -75,7 +77,7 @@
             // 
             // buttonAddConcert
             // 
-            this.buttonAddConcert.Location = new System.Drawing.Point(10, 304);
+            this.buttonAddConcert.Location = new System.Drawing.Point(313, 341);
             this.buttonAddConcert.Name = "buttonAddConcert";
             this.buttonAddConcert.Size = new System.Drawing.Size(100, 23);
             this.buttonAddConcert.TabIndex = 11;
@@ -191,17 +193,27 @@
             // checkedListBoxBands
             // 
             this.checkedListBoxBands.FormattingEnabled = true;
-            this.checkedListBoxBands.Location = new System.Drawing.Point(161, 304);
+            this.checkedListBoxBands.Location = new System.Drawing.Point(16, 28);
             this.checkedListBoxBands.Name = "checkedListBoxBands";
-            this.checkedListBoxBands.Size = new System.Drawing.Size(120, 94);
+            this.checkedListBoxBands.Size = new System.Drawing.Size(156, 94);
             this.checkedListBoxBands.TabIndex = 17;
+            // 
+            // groupBoxBands
+            // 
+            this.groupBoxBands.Controls.Add(this.checkedListBoxBands);
+            this.groupBoxBands.Location = new System.Drawing.Point(12, 300);
+            this.groupBoxBands.Name = "groupBoxBands";
+            this.groupBoxBands.Size = new System.Drawing.Size(200, 143);
+            this.groupBoxBands.TabIndex = 18;
+            this.groupBoxBands.TabStop = false;
+            this.groupBoxBands.Text = "Band Information";
             // 
             // NewConcert
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(546, 399);
-            this.Controls.Add(this.checkedListBoxBands);
+            this.ClientSize = new System.Drawing.Size(546, 455);
+            this.Controls.Add(this.groupBoxBands);
             this.Controls.Add(this.groupBoxLocation);
             this.Controls.Add(this.dateTimePickerConcert);
             this.Controls.Add(this.labelDate);
@@ -217,6 +229,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderConcert)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewLocation)).EndInit();
             this.groupBoxLocation.ResumeLayout(false);
+            this.groupBoxBands.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -241,5 +254,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn LocationPostalCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn LocationSeatCount;
         private System.Windows.Forms.CheckedListBox checkedListBoxBands;
+        private System.Windows.Forms.GroupBox groupBoxBands;
     }
 }
