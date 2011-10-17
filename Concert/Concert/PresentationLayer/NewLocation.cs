@@ -259,5 +259,29 @@ namespace Concert.PresentationLayer
         {
             DBObjectController.DeleteObject(e.Row.Tag);
         }
+
+        private void dataGridViewLocation_SelectionChanged(object sender, EventArgs e)
+        {
+            ClearCurrentErrorProvider();
+            if (((DataGridView)sender).CurrentRow != null)
+            {
+                textBoxCountryCurrent.Text = ((DataGridView)sender).CurrentRow.Cells[0].Value.ToString();
+                textBoxAddressCurrent.Text = ((DataGridView)sender).CurrentRow.Cells[1].Value.ToString();
+                textBoxPostalCodeCurrent.Text = ((DataGridView)sender).CurrentRow.Cells[2].Value.ToString();
+                textBoxSeatCountCurrent.Text = ((DataGridView)sender).CurrentRow.Cells[3].Value.ToString();
+            }
+            else
+            {
+                ClearCurrentSelection();
+            }
+        }
+
+        private void ClearCurrentSelection()
+        {
+            textBoxCountryCurrent.Clear();
+            textBoxAddressCurrent.Clear();
+            textBoxPostalCodeCurrent.Clear();
+            textBoxSeatCountCurrent.Clear();
+        }
     }
 }
