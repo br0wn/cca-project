@@ -18,10 +18,14 @@ namespace Concert.PresentationLayer
 
         private Location location;
 
+        List<Band> bands;
+
         public NewConcert()
         {
+            bands = new List<Band>();
             InitializeComponent();
             LoadLocations();
+            LoadBands();
         }
 
         private void LoadLocations()
@@ -39,6 +43,16 @@ namespace Concert.PresentationLayer
             }
         }
 
+        private void LoadBands()
+        {
+            foreach (Band item in DBObjectController.GetAllBands())
+            {
+                bands.Add(item);
+                checkedListBoxBands.Items.Add(item.Name);
+            }
+            checkedListBoxBands.CheckOnClick = true;
+        }
+
         private void buttonAddConcert_Click(object sender, EventArgs e)
         {
             if (location != null)
@@ -50,14 +64,23 @@ namespace Concert.PresentationLayer
                     DateTime date = dateTimePickerConcert.Value;
                     DBObjectDefinition.Concert concert = new Concert.DBObjectDefinition.Concert(name, ticketPrice, date.Date);
                     concert.GeoLocation = location;
+                    AddHiredBands(concert);
                     DBObjectController.StoreObject(concert);
-                    MessageBox.Show("You have successfully added new concert.", "Success confirmation");
+                    MessageBox.Show("You have successfully added new concert." + concert.Bands.Count, "Success confirmation");
                     ClearForm();
                 }
             }
             else 
             {
                 MessageBox.Show("Location is not set, please choose valid location.", "Information incomplete");
+            }
+        }
+
+        private void AddHiredBands(DBObjectDefinition.Concert concert)
+        {
+            foreach (int index in checkedListBoxBands.CheckedIndices)
+            {
+                concert.AddBand(bands[index]);
             }
         }
 

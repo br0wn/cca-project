@@ -45,6 +45,7 @@
             this.groupBoxLocation = new System.Windows.Forms.GroupBox();
             this.buttonSetLocation = new System.Windows.Forms.Button();
             this.buttonAddNewLocation = new System.Windows.Forms.Button();
+            this.checkedListBoxBands = new System.Windows.Forms.CheckedListBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderConcert)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewLocation)).BeginInit();
             this.groupBoxLocation.SuspendLayout();
@@ -74,7 +75,7 @@
             // 
             // buttonAddConcert
             // 
-            this.buttonAddConcert.Location = new System.Drawing.Point(205, 314);
+            this.buttonAddConcert.Location = new System.Drawing.Point(10, 304);
             this.buttonAddConcert.Name = "buttonAddConcert";
             this.buttonAddConcert.Size = new System.Drawing.Size(100, 23);
             this.buttonAddConcert.TabIndex = 11;
@@ -187,11 +188,20 @@
             this.buttonAddNewLocation.Text = "*New Location";
             this.buttonAddNewLocation.UseVisualStyleBackColor = true;
             // 
+            // checkedListBoxBands
+            // 
+            this.checkedListBoxBands.FormattingEnabled = true;
+            this.checkedListBoxBands.Location = new System.Drawing.Point(161, 304);
+            this.checkedListBoxBands.Name = "checkedListBoxBands";
+            this.checkedListBoxBands.Size = new System.Drawing.Size(120, 94);
+            this.checkedListBoxBands.TabIndex = 17;
+            // 
             // NewConcert
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(546, 399);
+            this.Controls.Add(this.checkedListBoxBands);
             this.Controls.Add(this.groupBoxLocation);
             this.Controls.Add(this.dateTimePickerConcert);
             this.Controls.Add(this.labelDate);
@@ -230,5 +240,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn LocationAddress;
         private System.Windows.Forms.DataGridViewTextBoxColumn LocationPostalCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn LocationSeatCount;
+        private System.Windows.Forms.CheckedListBox checkedListBoxBands;
     }
 }
