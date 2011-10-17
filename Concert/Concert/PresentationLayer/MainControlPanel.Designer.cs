@@ -180,14 +180,14 @@
             // addNewAlbumToolStripMenuItem
             // 
             this.addNewAlbumToolStripMenuItem.Name = "addNewAlbumToolStripMenuItem";
-            this.addNewAlbumToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.addNewAlbumToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.addNewAlbumToolStripMenuItem.Text = "New Album";
             this.addNewAlbumToolStripMenuItem.Click += new System.EventHandler(this.addNewAlbumToolStripMenuItem_Click);
             // 
             // newAlbumToolStripMenuItem
             // 
             this.newAlbumToolStripMenuItem.Name = "newAlbumToolStripMenuItem";
-            this.newAlbumToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newAlbumToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.newAlbumToolStripMenuItem.Text = "Edit Album";
             this.newAlbumToolStripMenuItem.Click += new System.EventHandler(this.newAlbumToolStripMenuItem_Click);
             // 
@@ -216,7 +216,9 @@
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip;
             this.Name = "MainControlPanel";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainControlPanel";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
             this.menuStrip.ResumeLayout(false);
