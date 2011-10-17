@@ -16,11 +16,15 @@ namespace Concert.PresentationLayer
         public EditArtistForm()
         {
             InitializeComponent();
-            this.ArtistsListBox1.DataSource = null;
-            this.ArtistsListBox1.DataSource = DBObjectController.GetAllArtists().ToList();
+            loadArtists();
             int selectedIndex = ArtistsListBox1.SelectedIndex;
             select();
             
+        }
+
+        private void loadArtists() {
+            this.ArtistsListBox1.DataSource = null;
+            this.ArtistsListBox1.DataSource = DBObjectController.GetAllArtists().ToList();
         }
 
         private void select() {
@@ -83,24 +87,25 @@ namespace Concert.PresentationLayer
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string firstName = textBox1.Text.Trim();
-            string lastName = textBox2.Text.Trim();
-            DateTime birthdate = dateTimePickerConcert.Value;
+            DBObjectDefinition.Artist artist = (DBObjectDefinition.Artist) ArtistsListBox1.SelectedItem;
+            artist.Firstname = textBox1.Text.Trim();
+            artist.Lastname = textBox2.Text.Trim();
+            artist.BirthDate = dateTimePickerConcert.Value;
             List<string> instruments = new List<string>();
             defineInstruments(instruments);
-            Artist artist = new Artist(firstName, lastName, birthdate);
+            artist.ResetInst();
 
             foreach (string instrument in instruments)
             {
                 artist.AddInst(instrument);
             }
 
-            if (firstName == string.Empty)
+            if (textBox1.Text == string.Empty)
             {
                 MessageBox.Show("Artist name cannot be empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (lastName == string.Empty)
+            if (textBox2.Text == string.Empty)
             {
                 MessageBox.Show("Artist last name cannot be empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -112,10 +117,11 @@ namespace Concert.PresentationLayer
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error while addign artist");
+                MessageBox.Show("Error while editing artist");
                 return;
             }
-            MessageBox.Show("Artist added successfully!");
+            MessageBox.Show("Artist edited successfully!");
+            loadArtists();
         }
 
         private void ArtistsListBox1_Click(object sender, EventArgs e)
