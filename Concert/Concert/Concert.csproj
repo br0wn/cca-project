@@ -187,7 +187,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Project resources\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="db4o reference\Db4objects.Db4o.dll" />
   </ItemGroup>
