@@ -318,6 +318,8 @@
             this.Controls.Add(this.groupBoxLocation);
             this.Name = "NewLocation";
             this.Text = "NewLocation";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.NewLocation_FormClosed);
+            this.Load += new System.EventHandler(this.NewLocation_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderLocation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewLocation)).EndInit();
             this.groupBoxLocation.ResumeLayout(false);

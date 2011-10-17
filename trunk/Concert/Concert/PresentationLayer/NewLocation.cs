@@ -283,5 +283,15 @@ namespace Concert.PresentationLayer
             textBoxPostalCodeCurrent.Clear();
             textBoxSeatCountCurrent.Clear();
         }
+
+        private void NewLocation_Load(object sender, EventArgs e)
+        {
+            MdiParent.MainMenuStrip.Enabled = false;
+        }
+
+        private void NewLocation_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            MdiParent.MainMenuStrip.Enabled = true;
+        }
     }
 }

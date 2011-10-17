@@ -156,7 +156,12 @@ namespace Concert.PresentationLayer
 
         private void NewConcert_Load(object sender, EventArgs e)
         {
+            MdiParent.MainMenuStrip.Enabled = false;
+        }
 
+        private void NewConcert_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            MdiParent.MainMenuStrip.Enabled = true;
         }
     }
 }

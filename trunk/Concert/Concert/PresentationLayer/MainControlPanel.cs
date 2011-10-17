@@ -21,7 +21,7 @@ namespace Concert.PresentationLayer
 
 		private void showConcertsToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			ConcertView concertView = new ConcertView();
+            ConcertView concertView = new ConcertView();
 			concertView.MdiParent = this;
 			concertView.Show();
 		}
