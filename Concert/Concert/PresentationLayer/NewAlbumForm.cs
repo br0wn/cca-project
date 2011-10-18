@@ -17,11 +17,14 @@ namespace Concert.PresentationLayer {
         }
         private List<Song> avaliableSongs = new List<Song>();
         private List<Song> addedSongs = new List<Song>();
+        private List<Band> avaliableBands = new List<Band>();
 
         private void loadExternalData()
         {
             this.avaliableSongs = DBObjectController.GetAllTracks().ToList();
             this.listBoxAvaliableSongs.DataSource = this.avaliableSongs;
+            this.avaliableBands = DBObjectController.GetAllBands().ToList();
+            this.listBoxAvaliableBands.DataSource = this.avaliableBands;
         }
 
         private void buttonCancle_Click(object sender, EventArgs e) {
@@ -75,8 +78,12 @@ namespace Concert.PresentationLayer {
             {
                 album.AddTrack(song);
             }
+            int bandIndex = this.listBoxAvaliableBands.SelectedIndex;
+            Band band = this.avaliableBands[bandIndex];
+            band.AddAlbum(album);
             try
             {
+                DBObjectController.StoreObject(band);
                 DBObjectController.StoreObject(album);
             }
             catch (Exception ex)
@@ -84,8 +91,17 @@ namespace Concert.PresentationLayer {
                 MessageBox.Show("Error while addign album");
                 return;
             }
-            MessageBox.Show("Album added successfully!");
-            this.Close();
+            MessageBox.Show("Album added successfully!");            
+        }
+
+        private void NewAlbumForm_Load(object sender, EventArgs e)
+        {
+            MdiParent.MainMenuStrip.Enabled = false;
+        }
+
+        private void NewAlbumForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            MdiParent.MainMenuStrip.Enabled = true;
         }
     }
 }

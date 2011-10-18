@@ -25,7 +25,9 @@ namespace Concert.PresentationLayer {
             this.loadExternalData();
         }
 
-        private void EditAlbumForm_Load(object sender, EventArgs e) {
+        private void EditAlbumForm_Load(object sender, EventArgs e)
+        {
+            MdiParent.MainMenuStrip.Enabled = false;
         }
         private void loadExternalData()
         {
@@ -180,6 +182,11 @@ namespace Concert.PresentationLayer {
             this.listBoxAddedSgons.DataSource = null;
             this.listBoxAvaliableSongs.DataSource = this.avaliableSongs;
             this.listBoxAddedSgons.DataSource = this.addedSongs;
+        }
+
+        private void EditAlbumForm_FormClosed(object sender, FormClosedEventArgs e) {
+            MdiParent.MainMenuStrip.Enabled = true;
+
         }
 
     }
