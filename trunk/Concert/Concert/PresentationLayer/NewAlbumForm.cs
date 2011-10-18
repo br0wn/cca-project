@@ -11,9 +11,11 @@ using Concert.DataAccessLayer;
 
 namespace Concert.PresentationLayer {
     public partial class NewAlbumForm : Form {
+
         public NewAlbumForm() {
             InitializeComponent();
             this.loadExternalData();
+            this.SetDisplayMember();
         }
         private List<Song> avaliableSongs = new List<Song>();
         private List<Song> addedSongs = new List<Song>();
@@ -83,7 +85,10 @@ namespace Concert.PresentationLayer {
             band.AddAlbum(album);
             try
             {
-                DBObjectController.StoreObject(band);
+                if (checkBoxAddalbum.Checked)
+                {
+                    DBObjectController.StoreObject(band);
+                }
                 DBObjectController.StoreObject(album);
             }
             catch (Exception ex)
@@ -113,6 +118,12 @@ namespace Concert.PresentationLayer {
         private void NewAlbumForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             MdiParent.MainMenuStrip.Enabled = true;
+        }
+        private void SetDisplayMember()
+        {
+            this.listBoxAvaliableSongs.DisplayMember = "Name";
+            this.listBoxSongs.DisplayMember = "Name";
+            this.listBoxAvaliableBands.DisplayMember = "Name";
         }
     }
 }
