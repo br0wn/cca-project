@@ -25,9 +25,12 @@ namespace Concert.PresentationLayer
 				this.listBoxAddedArtists.Enabled = 
 				this.listBoxAvailableArtists.Enabled =
 				this.buttonAddArtist.Enabled =
-				this.buttonRemoveArtist.Enabled = value;
+				this.buttonRemoveArtist.Enabled =
+				this.buttonDeleteAlbum.Enabled =
+				this.listBoxBands.Enabled = value;
 
 				this.listBoxBands.Enabled =
+				this.buttonDelete.Enabled =
 				this.buttonEdit.Enabled = !(value);
 			}
 			get
@@ -38,6 +41,7 @@ namespace Concert.PresentationLayer
 
 		private List<Band> bands = new List<Band>();
 		private List<Artist> availableArtistsFullList = new List<Artist>();
+		private List<Album> albums = new List<Album>( );
 
 		private List<Artist> availableArtists = new List<Artist>();
 		private List<Artist> addedArtists = new List<Artist>();
@@ -46,6 +50,8 @@ namespace Concert.PresentationLayer
 		public EditBandForm( )
 		{
 			InitializeComponent( );
+
+			setListsDisplayMember( );
 			getBands();
 
 			this.EditMode = false;
@@ -61,15 +67,40 @@ namespace Concert.PresentationLayer
 			this.listBoxBands.DataSource = this.bands;
 		}
 
+		private void setListsDisplayMember( )
+		{
+			this.listBoxBands.DisplayMember = "Name";
+			this.listBoxAddedArtists.DisplayMember = "FullName";
+			this.listBoxAvailableArtists.DisplayMember = "FullName";
+		}
+
 		private void refreshArtistsFullList()
 		{
 			this.availableArtistsFullList.Clear();
 			this.availableArtistsFullList = DBObjectController.GetAllArtists( ).ToList( );
 		}
 
+		private void refreshArtistsLists( )
+		{
+			this.listBoxAddedArtists.DataSource = null;
+			this.listBoxAvailableArtists.DataSource = null;
+			this.listBoxAddedArtists.DataSource = this.addedArtists;
+			this.listBoxAvailableArtists.DataSource = this.availableArtists;
+
+			setListsDisplayMember( );
+		}
+
+		private void refreshAlbumsList( )
+		{
+			this.listBoxAlbums.DataSource = null;
+			this.listBoxAlbums.DataSource = this.albums;
+			this.listBoxAlbums.DisplayMember = "Name";
+		}
+
 		private void loadBandData( int selectedIndex )
 		{
 			// dodat provjere selectedIndex-a i broja bendova
+			if ( selectedIndex < 0 ) return;
 
 			this.addedArtists = null;
 			this.availableArtists = new List<Artist>();
@@ -87,10 +118,16 @@ namespace Concert.PresentationLayer
 				}
 			}
 
-			this.listBoxAddedArtists.DataSource = null;
-			this.listBoxAvailableArtists.DataSource = null;
-			this.listBoxAddedArtists.DataSource = this.addedArtists;
-			this.listBoxAvailableArtists.DataSource = this.availableArtists;
+			List<Album> albums = DBObjectController.GetAllAlbums( ).ToList();
+			foreach ( Album album in albums )
+			{
+				if ( this.bands[ selectedIndex ].Albums.Contains( album ) )
+				{
+					this.albums.Add( album );
+				}
+			}
+
+			refreshArtistsLists( );
 		}
 
 		//events
@@ -110,9 +147,7 @@ namespace Concert.PresentationLayer
 			this.addedArtists.RemoveAt( artistIndex );
 			this.availableArtists.Add( artist );
 
-			this.listBoxAvailableArtists.DataSource = this.listBoxAddedArtists.DataSource = null;
-			this.listBoxAvailableArtists.DataSource = this.availableArtists;
-			this.listBoxAddedArtists.DataSource = this.addedArtists;
+			refreshArtistsLists( );
 		}
 
 		private void buttonAddArtist_Click( object sender, EventArgs e )
@@ -125,9 +160,7 @@ namespace Concert.PresentationLayer
 			this.availableArtists.RemoveAt( artistIndex );
 			this.addedArtists.Add( artist );
 
-			this.listBoxAvailableArtists.DataSource = this.listBoxAddedArtists.DataSource = null;
-			this.listBoxAvailableArtists.DataSource = this.availableArtists;
-			this.listBoxAddedArtists.DataSource = this.addedArtists;
+			refreshArtistsLists( );
 		}
 
 		private void buttonEdit_Click( object sender, EventArgs e )
@@ -175,6 +208,12 @@ namespace Concert.PresentationLayer
 				band.AddArtist( artist );
 			}
 
+			foreach ( Album album in band.Albums )
+			{
+				if ( this.albums.Contains( album ) ) continue;
+				band.Albums.Remove( album );
+			}
+
 			try
 			{
 				DBObjectController.StoreObject( band );
@@ -188,13 +227,64 @@ namespace Concert.PresentationLayer
 			MessageBox.Show( "Band successfully added!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information ); 
 
 			this.EditMode = false;
-			loadBandData( bandIndex );
+			//loadBandData( bandIndex );
+			
+			this.listBoxBands.DataSource = null;
+			this.listBoxBands.DataSource = bands;
+			this.listBoxBands.SelectedIndex = bandIndex;
+
+			setListsDisplayMember( );
 		}
 
 		private void buttonCancel_Click( object sender, EventArgs e )
 		{
 			this.EditMode = false;
 			loadBandData( this.listBoxBands.SelectedIndex );
+		}
+
+		private void buttonDelete_Click( object sender, EventArgs e )
+		{
+			int selectedIndex = this.listBoxBands.SelectedIndex;
+			if ( selectedIndex < 0 ) return;
+
+			Band band = this.bands[ selectedIndex ];
+
+			try
+			{
+				DBObjectController.DeleteObject( band );
+			}
+			catch ( Exception ex )
+			{
+				MessageBox.Show( "Cannot delete object!\n\n" + ex.ToString( ), "Error" );
+				return;
+			}
+
+			bands.RemoveAt( selectedIndex );
+
+			this.listBoxBands.DataSource = null;
+			this.listBoxBands.DataSource = bands;
+			this.listBoxBands.SelectedIndex = 0;
+
+			setListsDisplayMember( );
+		}
+
+		private void buttonDeleteAlbum_Click( object sender, EventArgs e )
+		{
+			int selectedIndex = this.listBoxAlbums.SelectedIndex;
+			if ( selectedIndex < 0 ) return;
+
+			this.albums.RemoveAt( selectedIndex );
+			refreshAlbumsList( );
+		}
+
+		private void EditBandForm_Load( object sender, EventArgs e )
+		{
+			MdiParent.MainMenuStrip.Enabled = false;
+		}
+
+		private void EditBandForm_FormClosed( object sender, FormClosedEventArgs e )
+		{
+			MdiParent.MainMenuStrip.Enabled = true;
 		}
 	}
 }
