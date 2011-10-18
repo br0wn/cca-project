@@ -45,5 +45,16 @@ namespace Concert.DBObjectDefinition
             artistInfo.Append("}\r\n");
             return artistInfo.ToString();
         }
+        //public override bool Equals(object obj)
+        //{
+        //    bool sameFirstName;
+        //    bool sameLastName;
+        //    bool sameInstruments;
+
+        //    sameFirstName = this.Firstname == ((Artist)obj).Firstname;
+ 
+
+        //    return base.Equals(obj);
+        //}
     }
 }
