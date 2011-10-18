@@ -189,6 +189,7 @@
             this.Controls.Add(this.labelAvaliableAlbums);
             this.Name = "EditAlbumForm";
             this.Text = "Edit album";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.EditAlbumForm_FormClosed);
             this.Load += new System.EventHandler(this.EditAlbumForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -33,6 +33,7 @@
             this.labelAvaliableSongs = new System.Windows.Forms.Label();
             this.buttonAddAlbum = new System.Windows.Forms.Button();
             this.buttonCancle = new System.Windows.Forms.Button();
+            this.listBoxAvaliableBands = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // labelAlbumName
@@ -107,7 +108,7 @@
             // 
             // buttonAddAlbum
             // 
-            this.buttonAddAlbum.Location = new System.Drawing.Point(14, 227);
+            this.buttonAddAlbum.Location = new System.Drawing.Point(14, 350);
             this.buttonAddAlbum.Name = "buttonAddAlbum";
             this.buttonAddAlbum.Size = new System.Drawing.Size(75, 23);
             this.buttonAddAlbum.TabIndex = 8;
@@ -117,19 +118,28 @@
             // 
             // buttonCancle
             // 
-            this.buttonCancle.Location = new System.Drawing.Point(228, 227);
+            this.buttonCancle.Location = new System.Drawing.Point(228, 350);
             this.buttonCancle.Name = "buttonCancle";
             this.buttonCancle.Size = new System.Drawing.Size(75, 23);
             this.buttonCancle.TabIndex = 9;
-            this.buttonCancle.Text = "Cancle";
+            this.buttonCancle.Text = "Cancel";
             this.buttonCancle.UseVisualStyleBackColor = true;
             this.buttonCancle.Click += new System.EventHandler(this.buttonCancle_Click);
+            // 
+            // listBoxAvaliableBands
+            // 
+            this.listBoxAvaliableBands.FormattingEnabled = true;
+            this.listBoxAvaliableBands.Location = new System.Drawing.Point(8, 224);
+            this.listBoxAvaliableBands.Name = "listBoxAvaliableBands";
+            this.listBoxAvaliableBands.Size = new System.Drawing.Size(294, 108);
+            this.listBoxAvaliableBands.TabIndex = 10;
             // 
             // NewAlbumForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(314, 262);
+            this.ClientSize = new System.Drawing.Size(314, 389);
+            this.Controls.Add(this.listBoxAvaliableBands);
             this.Controls.Add(this.buttonCancle);
             this.Controls.Add(this.buttonAddAlbum);
             this.Controls.Add(this.labelAvaliableSongs);
@@ -142,6 +152,8 @@
             this.Controls.Add(this.labelAlbumName);
             this.Name = "NewAlbumForm";
             this.Text = "Add new album";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.NewAlbumForm_FormClosed);
+            this.Load += new System.EventHandler(this.NewAlbumForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -159,5 +171,6 @@
         private System.Windows.Forms.Label labelAvaliableSongs;
         private System.Windows.Forms.Button buttonAddAlbum;
         private System.Windows.Forms.Button buttonCancle;
+        private System.Windows.Forms.ListBox listBoxAvaliableBands;
     }
 }
