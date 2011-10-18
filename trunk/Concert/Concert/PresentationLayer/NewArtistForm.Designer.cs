@@ -114,9 +114,9 @@
             this.checkBox6.AutoSize = true;
             this.checkBox6.Location = new System.Drawing.Point(166, 118);
             this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(100, 21);
+            this.checkBox6.Size = new System.Drawing.Size(65, 21);
             this.checkBox6.TabIndex = 5;
-            this.checkBox6.Text = "Percussion";
+            this.checkBox6.Text = "Vocal";
             this.checkBox6.UseVisualStyleBackColor = true;
             // 
             // checkBox5

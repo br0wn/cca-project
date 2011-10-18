@@ -77,7 +77,7 @@ namespace Concert.PresentationLayer
                         case "Sax":
                             checkBox5.Checked = true;
                             break;
-                        case "Percussion":
+                        case "Vocal":
                             checkBox6.Checked = true;
                             break;
                     }
@@ -93,7 +93,7 @@ namespace Concert.PresentationLayer
             if (checkBox3.Checked) lista.Add("Drums");
             if (checkBox4.Checked) lista.Add("Guitar");
             if (checkBox5.Checked) lista.Add("Sax");
-            if (checkBox6.Checked) lista.Add("Percussion");
+            if (checkBox6.Checked) lista.Add("Vocal");
         } 
 
         private void button2_Click(object sender, EventArgs e)
