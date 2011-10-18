@@ -151,5 +151,15 @@ namespace Concert.PresentationLayer
             select();
             
         }
+
+        private void EditArtistForm_Load(object sender, EventArgs e)
+        {
+            MdiParent.MainMenuStrip.Enabled = false;
+        }
+
+        private void EditArtistForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            MdiParent.MainMenuStrip.Enabled = true;
+        }
     }
 }

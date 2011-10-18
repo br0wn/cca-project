@@ -39,6 +39,7 @@ namespace Concert.PresentationLayer
             string firstName = textBox1.Text.Trim();
             string lastName = textBox2.Text.Trim();
             DateTime birthdate = dateTimePickerConcert.Value;
+            birthdate = birthdate.Date;
             List<string> instruments= new List<string>();
             defineInstruments(instruments);
             Artist artist = new Artist(firstName, lastName, birthdate);
@@ -69,7 +70,7 @@ namespace Concert.PresentationLayer
                 return;
             }
             MessageBox.Show("Artist added successfully!");
-            this.Close();
+            clearMethod();
         }
         private void defineInstruments(List<string> lista) {
             if (checkBox1.Checked) lista.Add("Piano");
@@ -78,12 +79,38 @@ namespace Concert.PresentationLayer
             if (checkBox4.Checked) lista.Add("Guitar");
             if (checkBox5.Checked) lista.Add("Sax");
             if (checkBox6.Checked) lista.Add("Percussion");
-        }  
+        }
 
-
+        private void clearMethod()
+        {
+            this.textBox1.Clear();
+            this.textBox2.Clear();
+            checkBox1.Checked = false;
+            checkBox2.Checked = false;
+            checkBox3.Checked = false;
+            checkBox4.Checked = false;
+            checkBox5.Checked = false;
+            checkBox6.Checked = false;
+            dateTimePickerConcert.Value = DateTime.Today;
+        }
         private void groupBox2_Enter(object sender, EventArgs e)
         {
         
+        }
+
+        private void NewArtistForm_Load(object sender, EventArgs e)
+        {
+            MdiParent.MainMenuStrip.Enabled = false;
+        }
+
+        private void NewArtistForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+           
+        }
+
+        private void NewArtistForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            MdiParent.MainMenuStrip.Enabled = true;
         }
     }
 }

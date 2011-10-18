@@ -36,7 +36,7 @@ namespace Concert.DBObjectDefinition
 
         public override string ToString()
         {
-            StringBuilder artistInfo = new StringBuilder(firstname + ", " + lastname + " - " + birthDate + " { ");
+            StringBuilder artistInfo = new StringBuilder(firstname + ", " + lastname + " - " + birthDate.ToString("dd.MM.yyyy") + " { ");
             foreach (string item in instruments)
             {
                 artistInfo.Append(item + " ");

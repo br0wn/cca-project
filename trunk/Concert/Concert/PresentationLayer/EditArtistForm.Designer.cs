@@ -256,6 +256,8 @@
             this.Controls.Add(this.ArtistsListBox1);
             this.Name = "EditArtistForm";
             this.Text = "EditArtistForm";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.EditArtistForm_FormClosed);
+            this.Load += new System.EventHandler(this.EditArtistForm_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.Edit.ResumeLayout(false);
