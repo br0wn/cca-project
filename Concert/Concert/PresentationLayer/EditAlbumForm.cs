@@ -186,7 +186,6 @@ namespace Concert.PresentationLayer {
 
         private void EditAlbumForm_FormClosed(object sender, FormClosedEventArgs e) {
             MdiParent.MainMenuStrip.Enabled = true;
-
         }
 
     }
