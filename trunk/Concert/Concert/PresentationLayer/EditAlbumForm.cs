@@ -104,10 +104,20 @@ namespace Concert.PresentationLayer {
         private void listBoxAvaliableAlbums_Click(object sender, EventArgs e) {
             
         }
-
+        private void clearForm()
+        {
+            this.listBoxAddedSgons.DataSource = null;
+            this.listBoxAvaliableSongs.DataSource = null;
+            this.textBoxAlbumName.Clear();
+        }
         private void buttonDelete_Click(object sender, EventArgs e)
         {
             int albumIndex = this.listBoxAvaliableAlbums.SelectedIndex;
+            if (albumIndex < 0)
+            {
+                this.clearForm();
+                return;
+            }
             Album album = this.albums[albumIndex];
             
             try
