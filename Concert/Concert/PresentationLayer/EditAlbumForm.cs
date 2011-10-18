@@ -82,10 +82,13 @@ namespace Concert.PresentationLayer {
             if (editMode == true) {
                 listBoxAvaliableAlbums.Enabled = false;
                 buttonEdit.Enabled = true;
+                buttonDelete.Enabled = false;
+
             }
             else
             {
                 listBoxAvaliableAlbums.Enabled = true;
+                buttonDelete.Enabled = true;
             }
             textBoxAlbumName.Enabled = editMode;
             listBoxAddedSgons.Enabled = editMode;
@@ -110,6 +113,11 @@ namespace Concert.PresentationLayer {
             this.listBoxAvaliableSongs.DataSource = null;
             this.textBoxAlbumName.Clear();
         }
+        private void SetListsDisplayMember()
+        {
+            this.listBoxAddedSgons.DisplayMember = "";
+            
+        }
         private void buttonDelete_Click(object sender, EventArgs e)
         {
             int albumIndex = this.listBoxAvaliableAlbums.SelectedIndex;
@@ -129,8 +137,14 @@ namespace Concert.PresentationLayer {
                     
                 throw;
             }
-            loadAlbumData(albumIndex);
+            this.ClearAlbumData();
             this.loadExternalData();
+        }
+        private void ClearAlbumData()
+        {
+            this.listBoxAddedSgons.DataSource = null;
+            this.listBoxAvaliableSongs.DataSource = null;
+            this.textBoxAlbumName.Clear();
         }
         private void loadAlbumData(int selectedIndex)
         {
@@ -212,5 +226,6 @@ namespace Concert.PresentationLayer {
             MdiParent.MainMenuStrip.Enabled = true;
         }
 
+        
     }
 }
