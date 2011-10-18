@@ -128,5 +128,28 @@ namespace Concert.PresentationLayer
         {
             select();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            DBObjectDefinition.Artist artist = (DBObjectDefinition.Artist)ArtistsListBox1.SelectedItem;
+
+
+            switch (MessageBox.Show("Are you sure you want to delete the selected artist?",
+                            "Delete the artist",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Question))
+            {
+                case DialogResult.Yes:
+                    DBObjectController.DeleteObject(artist);
+                    break;
+
+                case DialogResult.No:
+                    // "No" processing
+                    break;
+            }
+            loadArtists();
+            select();
+            
+        }
     }
 }

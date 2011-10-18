@@ -69,7 +69,7 @@ namespace Concert.PresentationLayer
                 return;
             }
             MessageBox.Show("Artist added successfully!");
-            //MessageBox.Show(firstName +" "+ lastName + " " + birthdate.ToString() + " " + instruments.First().ToString());
+            this.Close();
         }
         private void defineInstruments(List<string> lista) {
             if (checkBox1.Checked) lista.Add("Piano");

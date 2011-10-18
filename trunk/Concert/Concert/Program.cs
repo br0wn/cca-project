@@ -23,6 +23,7 @@ namespace Concert
             DBObjectController.config.Common.ObjectClass(typeof(DBObjectDefinition.Concert)).CascadeOnUpdate(true);
             DBObjectController.config.Common.ObjectClass(typeof(DBObjectDefinition.Album)).CascadeOnUpdate(true);
             DBObjectController.config.Common.ObjectClass(typeof(DBObjectDefinition.Artist)).CascadeOnUpdate(true);
+            DBObjectController.config.Common.ObjectClass(typeof(DBObjectDefinition.Artist)).CascadeOnDelete(true);
 
             using (DBObjectController.db = Db4oEmbedded.OpenFile(DBObjectController.config, DBObjectController.YapFileName))
             {
