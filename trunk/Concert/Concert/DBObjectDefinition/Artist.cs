@@ -14,6 +14,7 @@ namespace Concert.DBObjectDefinition
 
         public string Firstname { get { return firstname; } set { firstname = value; } }
         public string Lastname { get { return lastname; } set { lastname = value; } }
+		public string FullName { get { return firstname + " " + lastname; } }
         public List<string> Instruments { get { return instruments; } set { instruments = value; } }
         public DateTime BirthDate { get { return birthDate; } set { birthDate = value; } }
 
