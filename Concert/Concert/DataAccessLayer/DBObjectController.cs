@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using Db4objects.Db4o;
 using Db4objects.Db4o.Config;
+
 using Concert.DBObjectDefinition;
 
 namespace Concert.DataAccessLayer
