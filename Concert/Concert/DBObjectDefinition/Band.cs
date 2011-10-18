@@ -54,5 +54,21 @@ namespace Concert.DBObjectDefinition
             }
             return bandList.ToString();
         }
+
+		//public override bool Equals( object obj )
+		//{
+		//    Band band = ( Band ) obj;
+
+		//    bool sameName = this.Name == band.Name;
+		//    bool sameArtists = this.artists.Count == band.Artist.Count;
+		//    bool sameAlbums = this.albums.Count == band.Albums.Count;
+
+		//    if ( !( sameName && sameArtists && sameAlbums ) ) return false;
+
+		//    foreach ( Artist artist in band.Artist )
+		//    {
+		//        sameArtists &= this.Artist.Contains(
+		//    }
+		//}
     }
 }
