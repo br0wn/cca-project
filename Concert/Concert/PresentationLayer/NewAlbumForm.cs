@@ -91,7 +91,18 @@ namespace Concert.PresentationLayer {
                 MessageBox.Show("Error while addign album");
                 return;
             }
-            MessageBox.Show("Album added successfully!");            
+            MessageBox.Show("Album added successfully!");
+            this.clearForm();
+        }
+
+        private void clearForm()
+        {
+            this.textBoxAlbumName.Clear();
+            this.listBoxSongs.DataSource = null;
+            this.listBoxAvaliableSongs.DataSource = null;
+            this.avaliableSongs.Clear();
+            this.addedSongs.Clear();
+            this.loadExternalData();
         }
 
         private void NewAlbumForm_Load(object sender, EventArgs e)
