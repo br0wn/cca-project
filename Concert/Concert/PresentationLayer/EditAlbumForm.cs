@@ -20,9 +20,11 @@ namespace Concert.PresentationLayer {
 
         public EditAlbumForm() {
             InitializeComponent();
+
             this.editMode = false;
             this.setEdit(false);
             this.loadExternalData();
+            this.SetDisplayMember();
         }
 
         private void EditAlbumForm_Load(object sender, EventArgs e)
@@ -226,6 +228,11 @@ namespace Concert.PresentationLayer {
             MdiParent.MainMenuStrip.Enabled = true;
         }
 
-        
+        private void SetDisplayMember()
+        {
+            this.listBoxAddedSgons.DisplayMember = "Name";
+            this.listBoxAvaliableAlbums.DisplayMember = "Name";
+            this.listBoxAvaliableSongs.DisplayMember = "Name";
+        }
     }
 }
