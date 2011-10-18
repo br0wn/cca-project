@@ -46,5 +46,26 @@ namespace Concert.DBObjectDefinition
             }
             return songList.ToString();
         }
+        public override bool Equals(object obj)
+        {
+            bool sameName = this.Name == ((Album) obj).Name;
+            bool sameSongs = true;
+            foreach (Song song in Songs)
+            {
+                foreach (Song song1 in ((Album) obj).Songs)
+                {
+                    if (!song.Equals(song1))
+                    {
+                        sameSongs = false;
+                        break;
+                    }
+                }
+                if (!sameSongs)
+                {
+                    break;
+                }
+            }
+            return sameSongs && sameName;
+        }
     }
 }
