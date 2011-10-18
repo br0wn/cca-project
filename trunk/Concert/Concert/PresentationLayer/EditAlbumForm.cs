@@ -105,8 +105,22 @@ namespace Concert.PresentationLayer {
             
         }
 
-        private void buttonDelete_Click(object sender, EventArgs e) {
-
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            int albumIndex = this.listBoxAvaliableAlbums.SelectedIndex;
+            Album album = this.albums[albumIndex];
+            
+            try
+            {
+                DBObjectController.DeleteObject(album);
+            }
+            catch (Exception)
+            {
+                    
+                throw;
+            }
+            loadAlbumData(albumIndex);
+            this.loadExternalData();
         }
         private void loadAlbumData(int selectedIndex)
         {
