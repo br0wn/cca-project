@@ -27,9 +27,11 @@ namespace Concert.PresentationLayer
             int artistIndex = this.ArtistsListBox1.SelectedIndex;
             if (artistIndex < 0)
             {
-                this.ArtistsListBox1.DataSource = null; ;
+                this.ArtistsListBox1.DataSource = null;
+                button1.Enabled = false;
                 return;
             }
+            else button1.Enabled = true;
         }
 
         private void Select() {
