@@ -29,6 +29,7 @@ namespace Concert.PresentationLayer
             {
                 this.ArtistsListBox1.DataSource = null;
                 button1.Enabled = false;
+                button3.Enabled = false;
                 return;
             }
             else button1.Enabled = true;
@@ -143,7 +144,7 @@ namespace Concert.PresentationLayer
                 MessageBox.Show("Error while editing artist");
                 return;
             }
-            MessageBox.Show("Artist edited successfully!");
+            MessageBox.Show("Artist edited successfully!", "Success",MessageBoxButtons.OK, MessageBoxIcon.Information);
             LoadArtists();
             Select();
         }

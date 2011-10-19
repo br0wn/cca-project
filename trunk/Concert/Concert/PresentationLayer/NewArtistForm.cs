@@ -69,7 +69,7 @@ namespace Concert.PresentationLayer
                 MessageBox.Show("Error while addign artist");
                 return;
             }
-            MessageBox.Show("Artist added successfully!");
+            MessageBox.Show("Artist added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             clearMethod();
         }
         private void defineInstruments(List<string> lista) {
