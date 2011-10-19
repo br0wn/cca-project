@@ -73,5 +73,12 @@ namespace Concert.Properties {
                 return ((System.Drawing.Icon)(obj));
             }
         }
+        
+        internal static System.Drawing.Bitmap speaker_music_blue1 {
+            get {
+                object obj = ResourceManager.GetObject("speaker-music-blue1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
