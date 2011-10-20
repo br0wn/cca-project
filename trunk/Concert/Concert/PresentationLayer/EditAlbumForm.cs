@@ -30,6 +30,7 @@ namespace Concert.PresentationLayer {
         private void EditAlbumForm_Load(object sender, EventArgs e)
         {
             MdiParent.MainMenuStrip.Enabled = false;
+            this.SetDisplayMember();
         }
         private void loadExternalData()
         {
@@ -37,6 +38,7 @@ namespace Concert.PresentationLayer {
             this.albums = DBObjectController.GetAllAlbums().ToList();
             this.listBoxAvaliableAlbums.DataSource = null;
             this.listBoxAvaliableAlbums.DataSource = this.albums;
+            this.SetDisplayMember();
         }
         private void buttonSave_Click(object sender, EventArgs e)
         {
@@ -100,6 +102,7 @@ namespace Concert.PresentationLayer {
             buttonRemoveSong.Enabled = editMode;
             buttonAddSong.Enabled = editMode;
             this.editMode = editMode;
+            this.SetDisplayMember();
         }
 
         private void buttoncancel_Click(object sender, EventArgs e) {
