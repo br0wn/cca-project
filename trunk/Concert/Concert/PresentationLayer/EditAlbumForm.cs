@@ -172,7 +172,7 @@ namespace Concert.PresentationLayer {
             else if (selectedIndex < 0 && albumSaved == false)
             {
                 this.buttonEdit.Enabled = false;
-                this.buttonSave.Enabled = false;
+               // this.buttonSave.Enabled = false;
                 return;
             }
             this.addedSongs = null;
