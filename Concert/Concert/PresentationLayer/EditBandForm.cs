@@ -118,7 +118,11 @@ namespace Concert.PresentationLayer
 				}
 			}
 
-			this.albums = this.bands[ selectedIndex ].Albums;
+			this.albums = new List<Album>( );
+			foreach( Album album in this.bands[ selectedIndex ].Albums)
+			{
+				this.albums.Add( album );
+			}
 
 			refreshArtistsLists( );
 			refreshAlbumsList( );
@@ -168,6 +172,7 @@ namespace Concert.PresentationLayer
 
 		private void buttonEdit_Click( object sender, EventArgs e )
 		{
+			if ( this.listBoxBands.SelectedIndex < 0 ) return;
 			this.EditMode = true;
 		}
 
@@ -254,6 +259,10 @@ namespace Concert.PresentationLayer
 
 			try
 			{
+				foreach ( Album album in band.Albums )
+				{
+					DBObjectController.DeleteObject( album );
+				}
 				DBObjectController.DeleteObject( band );
 			}
 			catch ( Exception ex )
