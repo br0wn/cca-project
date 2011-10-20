@@ -135,6 +135,7 @@ namespace Concert.PresentationLayer {
             foreach (Band band in DBObjectController.GetBandsByAlbum(album))
             {
                 band.Albums.Remove(album);
+                DBObjectController.StoreObject(band);
             }
             try
             {
