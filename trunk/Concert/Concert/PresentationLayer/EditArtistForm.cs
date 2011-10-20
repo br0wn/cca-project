@@ -42,6 +42,7 @@ namespace Concert.PresentationLayer
         }
         private void Select(Artist art)
         {
+            ArtistsListBox1.SelectedItem = art;
             textBox1.Text = art.Firstname;
             textBox2.Text = art.Lastname;
             dateTimePickerConcert.Value = art.BirthDate;
