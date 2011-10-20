@@ -61,6 +61,9 @@
             this.textBoxCurrentTicketPrice = new System.Windows.Forms.TextBox();
             this.textBoxCurrentName = new System.Windows.Forms.TextBox();
             this.errorProviderConcert = new System.Windows.Forms.ErrorProvider(this.components);
+            this.groupBoxBands = new System.Windows.Forms.GroupBox();
+            this.labelCurrentConcertBands = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewArtist)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBand)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewConcerts)).BeginInit();
@@ -68,6 +71,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTracks)).BeginInit();
             this.groupBoxConcerts.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderConcert)).BeginInit();
+            this.groupBoxBands.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // textBoxCountry
@@ -87,7 +92,7 @@
             this.ArtistName,
             this.ArtistBirthDate,
             this.ArtistInstruments});
-            this.dataGridViewArtist.Location = new System.Drawing.Point(10, 425);
+            this.dataGridViewArtist.Location = new System.Drawing.Point(562, 463);
             this.dataGridViewArtist.Name = "dataGridViewArtist";
             this.dataGridViewArtist.ReadOnly = true;
             this.dataGridViewArtist.Size = new System.Drawing.Size(564, 150);
@@ -130,7 +135,7 @@
             this.dataGridViewBand.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewBand.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.BandName});
-            this.dataGridViewBand.Location = new System.Drawing.Point(10, 260);
+            this.dataGridViewBand.Location = new System.Drawing.Point(20, 52);
             this.dataGridViewBand.Name = "dataGridViewBand";
             this.dataGridViewBand.ReadOnly = true;
             this.dataGridViewBand.Size = new System.Drawing.Size(209, 150);
@@ -156,6 +161,9 @@
             // dataGridViewConcerts
             // 
             this.dataGridViewConcerts.AllowUserToAddRows = false;
+            this.dataGridViewConcerts.AllowUserToResizeColumns = false;
+            this.dataGridViewConcerts.AllowUserToResizeRows = false;
+            this.dataGridViewConcerts.BackgroundColor = System.Drawing.Color.White;
             this.dataGridViewConcerts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewConcerts.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ConcertName,
@@ -163,10 +171,8 @@
             this.Date});
             this.dataGridViewConcerts.Location = new System.Drawing.Point(22, 25);
             this.dataGridViewConcerts.Name = "dataGridViewConcerts";
-            this.dataGridViewConcerts.ReadOnly = true;
             this.dataGridViewConcerts.Size = new System.Drawing.Size(360, 150);
             this.dataGridViewConcerts.TabIndex = 12;
-            this.dataGridViewConcerts.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewConcerts_RowEnter);
             this.dataGridViewConcerts.SelectionChanged += new System.EventHandler(this.dataGridViewConcerts_SelectionChanged);
             this.dataGridViewConcerts.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.dataGridViewConcerts_UserDeletingRow);
             // 
@@ -267,7 +273,7 @@
             this.dataGridViewTracks.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.TrackName,
             this.TrackLength});
-            this.dataGridViewTracks.Location = new System.Drawing.Point(230, 260);
+            this.dataGridViewTracks.Location = new System.Drawing.Point(580, 275);
             this.dataGridViewTracks.Name = "dataGridViewTracks";
             this.dataGridViewTracks.ReadOnly = true;
             this.dataGridViewTracks.Size = new System.Drawing.Size(344, 150);
@@ -371,15 +377,44 @@
             this.errorProviderConcert.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errorProviderConcert.ContainerControl = this;
             // 
+            // groupBoxBands
+            // 
+            this.groupBoxBands.Controls.Add(this.labelCurrentConcertBands);
+            this.groupBoxBands.Controls.Add(this.dataGridViewBand);
+            this.groupBoxBands.Location = new System.Drawing.Point(12, 275);
+            this.groupBoxBands.Name = "groupBoxBands";
+            this.groupBoxBands.Size = new System.Drawing.Size(264, 239);
+            this.groupBoxBands.TabIndex = 18;
+            this.groupBoxBands.TabStop = false;
+            this.groupBoxBands.Text = "Band Control Panel";
+            // 
+            // labelCurrentConcertBands
+            // 
+            this.labelCurrentConcertBands.AutoSize = true;
+            this.labelCurrentConcertBands.Location = new System.Drawing.Point(78, 26);
+            this.labelCurrentConcertBands.Name = "labelCurrentConcertBands";
+            this.labelCurrentConcertBands.Size = new System.Drawing.Size(74, 13);
+            this.labelCurrentConcertBands.TabIndex = 15;
+            this.labelCurrentConcertBands.Text = "Current Bands";
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(302, 327);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(240, 150);
+            this.dataGridView1.TabIndex = 19;
+            // 
             // ConcertView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(993, 579);
+            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.groupBoxBands);
             this.Controls.Add(this.groupBoxConcerts);
             this.Controls.Add(this.dataGridViewTracks);
             this.Controls.Add(this.dataGridViewArtist);
-            this.Controls.Add(this.dataGridViewBand);
             this.Name = "ConcertView";
             this.Text = "ConcertView";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ConcertView_FormClosed);
@@ -393,6 +428,9 @@
             this.groupBoxConcerts.ResumeLayout(false);
             this.groupBoxConcerts.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderConcert)).EndInit();
+            this.groupBoxBands.ResumeLayout(false);
+            this.groupBoxBands.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -431,5 +469,8 @@
         private System.Windows.Forms.TextBox textBoxCurrentTicketPrice;
         private System.Windows.Forms.TextBox textBoxCurrentName;
         private System.Windows.Forms.ErrorProvider errorProviderConcert;
+        private System.Windows.Forms.GroupBox groupBoxBands;
+        private System.Windows.Forms.Label labelCurrentConcertBands;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
