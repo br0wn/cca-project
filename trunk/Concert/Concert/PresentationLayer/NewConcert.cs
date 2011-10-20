@@ -133,6 +133,8 @@ namespace Concert.PresentationLayer
             textBoxConcertName.Clear();
             textBoxTicketPrice.Clear();
             dateTimePickerConcert.Value = DateTime.Now;
+            location = null;
+            checkedListBoxBands.ClearSelected();
         }
 
         private void dateTimePickerConcert_Validating(object sender, CancelEventArgs e)
@@ -151,7 +153,10 @@ namespace Concert.PresentationLayer
 
         private void buttonSetLocation_Click(object sender, EventArgs e)
         {
-            location = (Location)dataGridViewLocation.CurrentRow.Tag;
+            if (dataGridViewLocation.CurrentRow != null)
+            {
+                location = (Location)dataGridViewLocation.CurrentRow.Tag;
+            }
         }
 
         private void NewConcert_Load(object sender, EventArgs e)
@@ -162,6 +167,14 @@ namespace Concert.PresentationLayer
         private void NewConcert_FormClosed(object sender, FormClosedEventArgs e)
         {
             MdiParent.MainMenuStrip.Enabled = true;
+        }
+
+        private void buttonAddNewLocation_Click(object sender, EventArgs e)
+        {
+            PresentationLayer.NewLocation locationForm = new PresentationLayer.NewLocation();
+            locationForm.ShowDialog();
+            MdiParent.MainMenuStrip.Enabled = false;
+            LoadLocations();
         }
     }
 }

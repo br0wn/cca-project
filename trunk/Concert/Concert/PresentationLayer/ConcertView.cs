@@ -36,6 +36,7 @@ namespace Concert.PresentationLayer
             if (dataGridViewConcerts.CurrentRow != null)
             {
                 dataGridViewBand.Rows.Clear();
+                DBObjectDefinition.Concert c = (DBObjectDefinition.Concert)((DBObjectDefinition.Concert)dataGridViewConcerts.CurrentRow.Tag);
                 foreach (Band band in ((DBObjectDefinition.Concert)dataGridViewConcerts.CurrentRow.Tag).Bands)
                 {
                     DataGridViewRow row = new DataGridViewRow();

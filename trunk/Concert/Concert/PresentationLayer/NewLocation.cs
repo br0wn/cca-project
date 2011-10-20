@@ -286,12 +286,18 @@ namespace Concert.PresentationLayer
 
         private void NewLocation_Load(object sender, EventArgs e)
         {
-            MdiParent.MainMenuStrip.Enabled = false;
+            if (MdiParent != null)
+            {
+                MdiParent.MainMenuStrip.Enabled = false;
+            }
         }
 
         private void NewLocation_FormClosed(object sender, FormClosedEventArgs e)
         {
-            MdiParent.MainMenuStrip.Enabled = true;
+            if (MdiParent != null)
+            {
+                MdiParent.MainMenuStrip.Enabled = true;
+            }
         }
     }
 }
