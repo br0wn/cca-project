@@ -57,7 +57,7 @@ namespace Concert.PresentationLayer
                     DataGridViewRow row = new DataGridViewRow();
                     row.CreateCells(dataGridViewBand, new object[] { artist.Firstname + " " + artist.Lastname,
                                                                      artist.BirthDate.ToString("dd.MM.YYYY"),
-                                                                     artist.Instruments});
+                                                                     artist.Instruments.});
                     row.Tag = artist;
                     dataGridViewArtist.Rows.Add(row);
                 }
