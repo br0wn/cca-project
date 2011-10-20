@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.textBoxCountry = new System.Windows.Forms.TextBox();
             this.dataGridViewArtist = new System.Windows.Forms.DataGridView();
             this.ArtistName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,11 +52,22 @@
             this.dataGridViewTracks = new System.Windows.Forms.DataGridView();
             this.TrackName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TrackLength = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBoxConcerts = new System.Windows.Forms.GroupBox();
+            this.labelCurrentDate = new System.Windows.Forms.Label();
+            this.labelCurrentTicketPrice = new System.Windows.Forms.Label();
+            this.labelCurrentName = new System.Windows.Forms.Label();
+            this.buttonSave = new System.Windows.Forms.Button();
+            this.textBoxCurrentDate = new System.Windows.Forms.TextBox();
+            this.textBoxCurrentTicketPrice = new System.Windows.Forms.TextBox();
+            this.textBoxCurrentName = new System.Windows.Forms.TextBox();
+            this.errorProviderConcert = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewArtist)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBand)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewConcerts)).BeginInit();
             this.groupBoxLocation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTracks)).BeginInit();
+            this.groupBoxConcerts.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderConcert)).BeginInit();
             this.SuspendLayout();
             // 
             // textBoxCountry
@@ -75,11 +87,12 @@
             this.ArtistName,
             this.ArtistBirthDate,
             this.ArtistInstruments});
-            this.dataGridViewArtist.Location = new System.Drawing.Point(12, 343);
+            this.dataGridViewArtist.Location = new System.Drawing.Point(10, 425);
             this.dataGridViewArtist.Name = "dataGridViewArtist";
             this.dataGridViewArtist.ReadOnly = true;
             this.dataGridViewArtist.Size = new System.Drawing.Size(564, 150);
             this.dataGridViewArtist.TabIndex = 14;
+            this.dataGridViewArtist.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewArtist_CellDoubleClick);
             // 
             // ArtistName
             // 
@@ -117,7 +130,7 @@
             this.dataGridViewBand.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewBand.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.BandName});
-            this.dataGridViewBand.Location = new System.Drawing.Point(12, 178);
+            this.dataGridViewBand.Location = new System.Drawing.Point(10, 260);
             this.dataGridViewBand.Name = "dataGridViewBand";
             this.dataGridViewBand.ReadOnly = true;
             this.dataGridViewBand.Size = new System.Drawing.Size(209, 150);
@@ -148,9 +161,10 @@
             this.ConcertName,
             this.TicketPrice,
             this.Date});
-            this.dataGridViewConcerts.Location = new System.Drawing.Point(12, 12);
+            this.dataGridViewConcerts.Location = new System.Drawing.Point(22, 25);
             this.dataGridViewConcerts.Name = "dataGridViewConcerts";
-            this.dataGridViewConcerts.Size = new System.Drawing.Size(345, 150);
+            this.dataGridViewConcerts.ReadOnly = true;
+            this.dataGridViewConcerts.Size = new System.Drawing.Size(360, 150);
             this.dataGridViewConcerts.TabIndex = 12;
             this.dataGridViewConcerts.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewConcerts_RowEnter);
             this.dataGridViewConcerts.SelectionChanged += new System.EventHandler(this.dataGridViewConcerts_SelectionChanged);
@@ -201,7 +215,7 @@
             this.groupBoxLocation.Controls.Add(this.labelSeatCount);
             this.groupBoxLocation.Controls.Add(this.labelPostalCode);
             this.groupBoxLocation.Controls.Add(this.textBoxPostalCode);
-            this.groupBoxLocation.Location = new System.Drawing.Point(363, 12);
+            this.groupBoxLocation.Location = new System.Drawing.Point(396, 25);
             this.groupBoxLocation.Name = "groupBoxLocation";
             this.groupBoxLocation.Size = new System.Drawing.Size(211, 150);
             this.groupBoxLocation.TabIndex = 15;
@@ -211,7 +225,7 @@
             // buttonAssignLocation
             // 
             this.buttonAssignLocation.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonAssignLocation.Location = new System.Drawing.Point(9, 26);
+            this.buttonAssignLocation.Location = new System.Drawing.Point(9, 24);
             this.buttonAssignLocation.Name = "buttonAssignLocation";
             this.buttonAssignLocation.Size = new System.Drawing.Size(27, 23);
             this.buttonAssignLocation.TabIndex = 9;
@@ -253,7 +267,7 @@
             this.dataGridViewTracks.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.TrackName,
             this.TrackLength});
-            this.dataGridViewTracks.Location = new System.Drawing.Point(232, 178);
+            this.dataGridViewTracks.Location = new System.Drawing.Point(230, 260);
             this.dataGridViewTracks.Name = "dataGridViewTracks";
             this.dataGridViewTracks.ReadOnly = true;
             this.dataGridViewTracks.Size = new System.Drawing.Size(344, 150);
@@ -273,16 +287,99 @@
             this.TrackLength.ReadOnly = true;
             this.TrackLength.Width = 150;
             // 
+            // groupBoxConcerts
+            // 
+            this.groupBoxConcerts.Controls.Add(this.labelCurrentDate);
+            this.groupBoxConcerts.Controls.Add(this.labelCurrentTicketPrice);
+            this.groupBoxConcerts.Controls.Add(this.labelCurrentName);
+            this.groupBoxConcerts.Controls.Add(this.buttonSave);
+            this.groupBoxConcerts.Controls.Add(this.groupBoxLocation);
+            this.groupBoxConcerts.Controls.Add(this.textBoxCurrentDate);
+            this.groupBoxConcerts.Controls.Add(this.textBoxCurrentTicketPrice);
+            this.groupBoxConcerts.Controls.Add(this.textBoxCurrentName);
+            this.groupBoxConcerts.Controls.Add(this.dataGridViewConcerts);
+            this.groupBoxConcerts.Location = new System.Drawing.Point(10, 20);
+            this.groupBoxConcerts.Name = "groupBoxConcerts";
+            this.groupBoxConcerts.Size = new System.Drawing.Size(628, 234);
+            this.groupBoxConcerts.TabIndex = 17;
+            this.groupBoxConcerts.TabStop = false;
+            this.groupBoxConcerts.Text = "Concert Control Panel";
+            // 
+            // labelCurrentDate
+            // 
+            this.labelCurrentDate.AutoSize = true;
+            this.labelCurrentDate.Location = new System.Drawing.Point(267, 180);
+            this.labelCurrentDate.Name = "labelCurrentDate";
+            this.labelCurrentDate.Size = new System.Drawing.Size(30, 13);
+            this.labelCurrentDate.TabIndex = 19;
+            this.labelCurrentDate.Text = "Date";
+            // 
+            // labelCurrentTicketPrice
+            // 
+            this.labelCurrentTicketPrice.AutoSize = true;
+            this.labelCurrentTicketPrice.Location = new System.Drawing.Point(168, 180);
+            this.labelCurrentTicketPrice.Name = "labelCurrentTicketPrice";
+            this.labelCurrentTicketPrice.Size = new System.Drawing.Size(63, 13);
+            this.labelCurrentTicketPrice.TabIndex = 18;
+            this.labelCurrentTicketPrice.Text = "Ticket price";
+            // 
+            // labelCurrentName
+            // 
+            this.labelCurrentName.AutoSize = true;
+            this.labelCurrentName.Location = new System.Drawing.Point(68, 180);
+            this.labelCurrentName.Name = "labelCurrentName";
+            this.labelCurrentName.Size = new System.Drawing.Size(35, 13);
+            this.labelCurrentName.TabIndex = 17;
+            this.labelCurrentName.Text = "Name";
+            // 
+            // buttonSave
+            // 
+            this.buttonSave.Location = new System.Drawing.Point(16, 194);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(48, 23);
+            this.buttonSave.TabIndex = 16;
+            this.buttonSave.Text = "Save";
+            this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
+            // 
+            // textBoxCurrentDate
+            // 
+            this.textBoxCurrentDate.Location = new System.Drawing.Point(270, 196);
+            this.textBoxCurrentDate.Name = "textBoxCurrentDate";
+            this.textBoxCurrentDate.Size = new System.Drawing.Size(72, 20);
+            this.textBoxCurrentDate.TabIndex = 15;
+            this.textBoxCurrentDate.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxCurrentDate_Validating);
+            // 
+            // textBoxCurrentTicketPrice
+            // 
+            this.textBoxCurrentTicketPrice.Location = new System.Drawing.Point(171, 196);
+            this.textBoxCurrentTicketPrice.Name = "textBoxCurrentTicketPrice";
+            this.textBoxCurrentTicketPrice.Size = new System.Drawing.Size(72, 20);
+            this.textBoxCurrentTicketPrice.TabIndex = 14;
+            this.textBoxCurrentTicketPrice.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxCurrentTicketPrice_Validating);
+            // 
+            // textBoxCurrentName
+            // 
+            this.textBoxCurrentName.Location = new System.Drawing.Point(70, 196);
+            this.textBoxCurrentName.Name = "textBoxCurrentName";
+            this.textBoxCurrentName.Size = new System.Drawing.Size(74, 20);
+            this.textBoxCurrentName.TabIndex = 13;
+            this.textBoxCurrentName.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxCurrentName_Validating);
+            // 
+            // errorProviderConcert
+            // 
+            this.errorProviderConcert.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.errorProviderConcert.ContainerControl = this;
+            // 
             // ConcertView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(594, 504);
+            this.ClientSize = new System.Drawing.Size(993, 579);
+            this.Controls.Add(this.groupBoxConcerts);
             this.Controls.Add(this.dataGridViewTracks);
             this.Controls.Add(this.dataGridViewArtist);
             this.Controls.Add(this.dataGridViewBand);
-            this.Controls.Add(this.dataGridViewConcerts);
-            this.Controls.Add(this.groupBoxLocation);
             this.Name = "ConcertView";
             this.Text = "ConcertView";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ConcertView_FormClosed);
@@ -293,6 +390,9 @@
             this.groupBoxLocation.ResumeLayout(false);
             this.groupBoxLocation.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTracks)).EndInit();
+            this.groupBoxConcerts.ResumeLayout(false);
+            this.groupBoxConcerts.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderConcert)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -322,5 +422,14 @@
         private System.Windows.Forms.DataGridView dataGridViewTracks;
         private System.Windows.Forms.DataGridViewTextBoxColumn TrackName;
         private System.Windows.Forms.DataGridViewTextBoxColumn TrackLength;
+        private System.Windows.Forms.GroupBox groupBoxConcerts;
+        private System.Windows.Forms.Label labelCurrentDate;
+        private System.Windows.Forms.Label labelCurrentTicketPrice;
+        private System.Windows.Forms.Label labelCurrentName;
+        private System.Windows.Forms.Button buttonSave;
+        private System.Windows.Forms.TextBox textBoxCurrentDate;
+        private System.Windows.Forms.TextBox textBoxCurrentTicketPrice;
+        private System.Windows.Forms.TextBox textBoxCurrentName;
+        private System.Windows.Forms.ErrorProvider errorProviderConcert;
     }
 }
