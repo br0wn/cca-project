@@ -213,7 +213,6 @@ namespace Concert.PresentationLayer {
             this.listBoxAvaliableSongs.DataSource = this.avaliableSongs;
             this.listBoxAddedSgons.DataSource = this.addedSongs;
             this.SetDisplayMember();
-
         }
 
         private void buttonRemoveSong_Click_1(object sender, EventArgs e) {           
@@ -230,7 +229,6 @@ namespace Concert.PresentationLayer {
             this.listBoxAvaliableSongs.DataSource = this.avaliableSongs;
             this.listBoxAddedSgons.DataSource = this.addedSongs;
             this.SetDisplayMember();
-
         }
 
         private void EditAlbumForm_FormClosed(object sender, FormClosedEventArgs e) {
