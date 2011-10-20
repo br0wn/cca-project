@@ -57,6 +57,26 @@ namespace Concert.PresentationLayer
 			this.EditMode = false;
 		}
 
+		public EditBandForm( Band band )
+		{
+			InitializeComponent( );
+
+			setListsDisplayMember( );
+			getBands( );
+
+			int index = this.bands.IndexOf( band );
+			if ( index >= 0 && index < this.bands.Count )
+			{
+				this.listBoxBands.SelectedIndex = index;
+			}
+			else
+			{
+				MessageBox.Show( "Band passed as argument does not exist! Selecting first band in list", "Warrning" );
+			}
+
+			this.EditMode = false;
+		}
+
 		// internals
 
 		private void getBands( )
@@ -259,6 +279,13 @@ namespace Concert.PresentationLayer
 
 			try
 			{
+				List<Concert.DBObjectDefinition.Concert> concerts = DBObjectController.GetConcertsByBand( band ).ToList( );
+				foreach ( Concert.DBObjectDefinition.Concert concert in concerts )
+				{
+					concert.Bands.Remove( band );
+					DBObjectController.StoreObject( concert );
+				}
+
 				foreach ( Album album in band.Albums )
 				{
 					DBObjectController.DeleteObject( album );
