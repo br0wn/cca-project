@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Concert.DBObjectDefinition
 {
-    class Artist
+    public class Artist
     {
         private string firstname;
         private string lastname;
@@ -25,6 +25,11 @@ namespace Concert.DBObjectDefinition
             BirthDate = birthDate;
             instruments = new List<string>();
         }
+        public Artist()
+        { 
+            
+        }
+
         public void ResetInst()
         {
             instruments.Clear();
