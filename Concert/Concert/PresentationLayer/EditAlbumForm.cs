@@ -30,6 +30,10 @@ namespace Concert.PresentationLayer {
         private void EditAlbumForm_Load(object sender, EventArgs e)
         {
             MdiParent.MainMenuStrip.Enabled = false;
+            if (listBoxAvaliableAlbums.SelectedIndex < 0)
+            {
+                this.buttonEdit.Enabled = false;                
+            }
             this.SetDisplayMember();
         }
         private void loadExternalData()
@@ -120,7 +124,7 @@ namespace Concert.PresentationLayer {
         }
         private void SetListsDisplayMember()
         {
-            this.listBoxAddedSgons.DisplayMember = "";
+            this.listBoxAddedSgons.DisplayMember = "Name";
             
         }
         private void buttonDelete_Click(object sender, EventArgs e)
@@ -159,6 +163,8 @@ namespace Concert.PresentationLayer {
         {
             if (selectedIndex < 0)
             {
+                this.buttonEdit.Enabled = false;
+                this.buttonSave.Enabled = false;
                 return;
             }
             this.addedSongs = null;
