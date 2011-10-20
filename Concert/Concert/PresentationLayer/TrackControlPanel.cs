@@ -153,11 +153,6 @@ namespace Concert.PresentationLayer
             }
         }
 
-        private void dataGridViewTracks_RowEnter(object sender, DataGridViewCellEventArgs e)
-        {
-            
-        }
-
         private void ClearCurrentErrorProvider()
         {
             errorProviderTrack.SetError(textBoxTrackNameCurrent, string.Empty);
@@ -166,6 +161,12 @@ namespace Concert.PresentationLayer
 
         private void dataGridViewTracks_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
+            foreach (Album album in DBObjectController.GetAlbumsByTrack((Song)e.Row.Tag))
+            {
+                Song s = (Song)e.Row.Tag;
+                album.Songs.Remove(s);
+                DBObjectController.StoreObject(album);
+            }
             DBObjectController.DeleteObject(e.Row.Tag);
         }
 

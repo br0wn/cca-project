@@ -277,7 +277,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(594, 540);
+            this.ClientSize = new System.Drawing.Size(594, 504);
             this.Controls.Add(this.dataGridViewTracks);
             this.Controls.Add(this.dataGridViewArtist);
             this.Controls.Add(this.dataGridViewBand);

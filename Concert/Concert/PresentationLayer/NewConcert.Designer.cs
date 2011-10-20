@@ -189,6 +189,7 @@
             this.buttonAddNewLocation.TabIndex = 15;
             this.buttonAddNewLocation.Text = "*New Location";
             this.buttonAddNewLocation.UseVisualStyleBackColor = true;
+            this.buttonAddNewLocation.Click += new System.EventHandler(this.buttonAddNewLocation_Click);
             // 
             // checkedListBoxBands
             // 

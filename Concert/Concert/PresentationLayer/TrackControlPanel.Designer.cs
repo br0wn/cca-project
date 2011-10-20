@@ -64,7 +64,6 @@
             this.dataGridViewTracks.ReadOnly = true;
             this.dataGridViewTracks.Size = new System.Drawing.Size(313, 136);
             this.dataGridViewTracks.TabIndex = 0;
-            this.dataGridViewTracks.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewTracks_RowEnter);
             this.dataGridViewTracks.SelectionChanged += new System.EventHandler(this.dataGridViewTracks_SelectionChanged);
             this.dataGridViewTracks.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dataGridViewTracks_UserDeletedRow);
             // 
