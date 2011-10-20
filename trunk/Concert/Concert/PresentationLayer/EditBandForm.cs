@@ -118,16 +118,19 @@ namespace Concert.PresentationLayer
 				}
 			}
 
-			List<Album> albums = DBObjectController.GetAllAlbums( ).ToList();
-			foreach ( Album album in albums )
-			{
-				if ( this.bands[ selectedIndex ].Albums.Contains( album ) )
-				{
-					this.albums.Add( album );
-				}
-			}
+			this.albums = this.bands[ selectedIndex ].Albums;
 
 			refreshArtistsLists( );
+			refreshAlbumsList( );
+		}
+
+		private void clearBandInfo( )
+		{
+			this.textBoxBandName.Text = "";
+			this.listBoxAddedArtists.DataSource = null;
+			this.listBoxAvailableArtists.DataSource = null;
+			this.listBoxAlbums.DataSource = null;
+			
 		}
 
 		//events
@@ -263,7 +266,12 @@ namespace Concert.PresentationLayer
 
 			this.listBoxBands.DataSource = null;
 			this.listBoxBands.DataSource = bands;
-			this.listBoxBands.SelectedIndex = 0;
+
+			this.listBoxBands.SelectedIndex = ( bands.Count == 0 ) ? -1 : 0 ;
+			if ( this.bands.Count == 0 )
+			{
+				clearBandInfo( );
+			}
 
 			setListsDisplayMember( );
 		}
