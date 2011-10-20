@@ -132,7 +132,10 @@ namespace Concert.PresentationLayer {
                 return;
             }
             Album album = this.albums[albumIndex];
-            
+            foreach (Band band in DBObjectController.GetBandsByAlbum(album))
+            {
+                band.Albums.Remove(album);
+            }
             try
             {
                 DBObjectController.DeleteObject(album);
