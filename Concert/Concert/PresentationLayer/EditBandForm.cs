@@ -321,14 +321,20 @@ namespace Concert.PresentationLayer
 			refreshAlbumsList( );
 		}
 
-		private void EditBandForm_Load( object sender, EventArgs e )
-		{
-			MdiParent.MainMenuStrip.Enabled = false;
-		}
+        private void EditBandForm_Load(object sender, EventArgs e)
+        {
+            if (MdiParent != null)
+            {
+                MdiParent.MainMenuStrip.Enabled = false;
+            }
+        }
 
-		private void EditBandForm_FormClosed( object sender, FormClosedEventArgs e )
-		{
-			MdiParent.MainMenuStrip.Enabled = true;
-		}
+        private void EditBandForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (MdiParent != null)
+            {
+                MdiParent.MainMenuStrip.Enabled = true;
+            }
+        }
 	}
 }

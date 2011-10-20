@@ -63,11 +63,36 @@ namespace Concert.PresentationLayer
                     string instruments = "";
                     foreach (string instrument in artist.Instruments)
                     {
-                        instruments += instrument + " ";
+                        instruments += instrument + ", ";
                     }
-                    row.CreateCells(dataGridViewBand, new object[] { artist.Firstname + " " + artist.Lastname,
+                    instruments = (instruments == "") ? "" : instruments.Remove(instruments.Length - 2);
+                    row.CreateCells(dataGridViewArtist, new object[] { artist.Firstname + " " + artist.Lastname,
                                                                      artist.BirthDate.ToString("dd.MM.yyyy"),
-                                                                     artist.Instruments.ToString()});
+                                                                     instruments});
+                    row.Tag = artist;
+                    dataGridViewArtist.Rows.Add(row);
+                }
+            }
+        }
+
+        private void RefreshAlbumData()
+        {
+            if (dataGridViewBand.CurrentRow != null)
+            {
+                dataGridViewArtist.Rows.Clear();
+                foreach (Artist artist in ((DBObjectDefinition.Band)dataGridViewBand.CurrentRow.Tag).Artist)
+                {
+                    DataGridViewRow row = new DataGridViewRow();
+                    string date = artist.BirthDate.ToString("dd.MM.yyyy");
+                    string instruments = "";
+                    foreach (string instrument in artist.Instruments)
+                    {
+                        instruments += instrument + ", ";
+                    }
+                    instruments = (instruments == "") ? "" : instruments.Remove(instruments.Length - 2);
+                    row.CreateCells(dataGridViewArtist, new object[] { artist.Firstname + " " + artist.Lastname,
+                                                                     artist.BirthDate.ToString("dd.MM.yyyy"),
+                                                                     instruments});
                     row.Tag = artist;
                     dataGridViewArtist.Rows.Add(row);
                 }
@@ -77,11 +102,6 @@ namespace Concert.PresentationLayer
         private void dataGridViewConcerts_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
         {
             DBObjectController.DeleteObject(e.Row.Tag);
-        }
-
-        private void dataGridViewConcerts_RowEnter(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
 
         private void buttonAssignLocation_Click(object sender, EventArgs e)
@@ -137,6 +157,7 @@ namespace Concert.PresentationLayer
         private void dataGridViewBand_SelectionChanged(object sender, EventArgs e)
         {
             RefreshArtistData();
+            RefreshAlbumData();
         }
 
         private void ConcertView_Load(object sender, EventArgs e)
