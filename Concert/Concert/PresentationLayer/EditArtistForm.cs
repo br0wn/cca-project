@@ -228,12 +228,18 @@ namespace Concert.PresentationLayer
 
         private void EditArtistForm_Load(object sender, EventArgs e)
         {
-            MdiParent.MainMenuStrip.Enabled = false;
+            if (MdiParent != null)
+            {
+                MdiParent.MainMenuStrip.Enabled = false;
+            }
         }
 
         private void EditArtistForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            MdiParent.MainMenuStrip.Enabled = true;
+            if (MdiParent != null)
+            {
+                MdiParent.MainMenuStrip.Enabled = true;
+            }
         }
     }
 }
