@@ -54,7 +54,7 @@ namespace Concert.PresentationLayer {
                 MessageBox.Show("Album name cannot be empty");
                 return;
             }
-            List<Song> songs = DBObjectController.GetAllTracks().ToList();
+            List<Song> songs = DBObjectController.GetAvailableTracks().ToList();
             int albumIndex = this.listBoxAvaliableAlbums.SelectedIndex;
             Album album = this.albums[albumIndex];
 
@@ -182,7 +182,7 @@ namespace Concert.PresentationLayer {
             this.textBoxAlbumName.Text = album.Name;
             this.addedSongs = album.Songs;
             this.avaliableSongsFull.Clear();
-            this.avaliableSongsFull = DBObjectController.GetAllTracks().ToList();
+            this.avaliableSongsFull = DBObjectController.GetAvailableTracks().ToList();
             foreach (Song song in this.avaliableSongsFull)
             {
                 if (!this.addedSongs.Contains(song))

@@ -23,7 +23,7 @@ namespace Concert.PresentationLayer {
 
         private void loadExternalData()
         {
-            this.avaliableSongs = DBObjectController.GetAllTracks().ToList();
+            this.avaliableSongs = DBObjectController.GetAvailableTracks().ToList();
             this.listBoxAvaliableSongs.DataSource = this.avaliableSongs;
             this.avaliableBands = DBObjectController.GetAllBands().ToList();
             this.listBoxAvaliableBands.DataSource = this.avaliableBands;
