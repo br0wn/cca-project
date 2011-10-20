@@ -27,6 +27,7 @@ namespace Concert.PresentationLayer {
             this.listBoxAvaliableSongs.DataSource = this.avaliableSongs;
             this.avaliableBands = DBObjectController.GetAllBands().ToList();
             this.listBoxAvaliableBands.DataSource = this.avaliableBands;
+            this.SetDisplayMember();
         }
 
         private void buttonCancle_Click(object sender, EventArgs e) {
@@ -48,6 +49,8 @@ namespace Concert.PresentationLayer {
             this.listBoxSongs.DataSource = null;
             this.listBoxAvaliableSongs.DataSource = this.avaliableSongs;
             this.listBoxSongs.DataSource = this.addedSongs;
+            this.SetDisplayMember();
+
         }
 
         private void buttonAddSong_Click(object sender, EventArgs e) {
@@ -65,6 +68,8 @@ namespace Concert.PresentationLayer {
             this.listBoxAvaliableSongs.DataSource = null;
             this.listBoxAvaliableSongs.DataSource = this.avaliableSongs;
             this.listBoxSongs.DataSource = this.addedSongs;
+            this.SetDisplayMember();
+
         }
 
         private void buttonAddAlbum_Click(object sender, EventArgs e)
