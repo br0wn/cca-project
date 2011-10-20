@@ -17,16 +17,18 @@ namespace Concert.PresentationLayer {
         private List<Song> avaliableSongsFull = new List<Song>();
         private List<Song> avaliableSongs = new List<Song>();
         private List<Song> addedSongs = new List<Song>();
+        private bool albumSaved;
 
         public EditAlbumForm() {
             InitializeComponent();
-
+            this.albumSaved = false;
             this.editMode = false;
             this.setEdit(false);
             this.loadExternalData();
             this.SetDisplayMember();
         }
-
+        //- u track control se kod dodavanja i spremnanja ne provjerava length...
+        //- u edit album kad se sehva nesto, vise ne prikazuje album songs
         private void EditAlbumForm_Load(object sender, EventArgs e)
         {
             MdiParent.MainMenuStrip.Enabled = false;
@@ -76,6 +78,7 @@ namespace Concert.PresentationLayer {
             }
             MessageBox.Show("Album updated");
             this.setEdit(false);
+            this.albumSaved = true;
             loadAlbumData(albumIndex);
             this.loadExternalData();
 
@@ -161,7 +164,12 @@ namespace Concert.PresentationLayer {
         }
         private void loadAlbumData(int selectedIndex)
         {
-            if (selectedIndex < 0)
+            if (selectedIndex < 0 && this.albumSaved)
+            {
+                this.albumSaved = false;                
+                return;
+            }
+            else if (selectedIndex < 0 && albumSaved == false)
             {
                 this.buttonEdit.Enabled = false;
                 this.buttonSave.Enabled = false;
