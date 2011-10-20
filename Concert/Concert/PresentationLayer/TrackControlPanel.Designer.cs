@@ -208,6 +208,7 @@
             // 
             // errorProviderTrack
             // 
+            this.errorProviderTrack.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errorProviderTrack.ContainerControl = this;
             // 
             // TrackControlPanel

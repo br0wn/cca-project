@@ -46,6 +46,29 @@ namespace Concert.DataAccessLayer
             return db.Query<Song>(s => true);
         }
 
+        public static IEnumerable<Song> GetAvailableTracks()
+        {
+            List<Song> availableSongs = new List<Song>();
+            IEnumerable<Album> albums = GetAllAlbums();
+            foreach (Song song in GetAllTracks())
+            {
+                bool available = true;
+                foreach (Album album in albums)
+                {
+                    if (album.Songs.Contains(song))
+                    {
+                        available = false;
+                        break;
+                    }
+                }
+                if (available)
+                {
+                    availableSongs.Add(song);
+                }
+            }
+            return availableSongs;
+        }
+
 		public static IEnumerable<Artist> GetAllArtists()
 		{
 			return db.Query<Artist>( a => true );

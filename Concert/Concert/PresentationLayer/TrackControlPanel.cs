@@ -39,7 +39,8 @@ namespace Concert.PresentationLayer
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            if (ValidateChildren())
+            ValidateChildren();
+            if (ErrorProviderSet())
             {
                 string name = textBoxTrackName.Text;
                 int length = int.Parse(textBoxTrackLength.Text);
@@ -48,6 +49,12 @@ namespace Concert.PresentationLayer
                 ClearForm();
                 LoadTrackData();
             }
+        }
+
+        private bool ErrorProviderSet()
+        {
+            return errorProviderTrack.GetError(textBoxTrackLength) == string.Empty &&
+                   errorProviderTrack.GetError(textBoxTrackName) == string.Empty;
         }
 
         private void ClearForm()
