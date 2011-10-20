@@ -70,12 +70,11 @@ namespace Concert.PresentationLayer
 
         private void textBoxTrackLength_Validating(object sender, CancelEventArgs e)
         {
-            string text = ((TextBox)sender).Text;
-            if (string.IsNullOrWhiteSpace(text) || text == string.Empty)
+            if (string.IsNullOrWhiteSpace(((TextBox)sender).Text) || (((TextBox)sender).Text) == string.Empty)
             {
                 errorProviderTrack.SetError((TextBox)sender, "Empty fields are not allowed");
             }
-            else if (!IsNumeric(text))
+            else if (!IsNumeric((((TextBox)sender).Text)))
             {
                 errorProviderTrack.SetError((TextBox)sender, "Only numeric value is allowed");
             }
