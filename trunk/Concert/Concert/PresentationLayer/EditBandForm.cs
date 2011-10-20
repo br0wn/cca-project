@@ -288,7 +288,7 @@ namespace Concert.PresentationLayer
 
 				foreach ( Album album in band.Albums )
 				{
-					DBObjectController.DeleteObject( album );
+					if( album != null ) DBObjectController.DeleteObject( album );
 				}
 				DBObjectController.DeleteObject( band );
 			}
