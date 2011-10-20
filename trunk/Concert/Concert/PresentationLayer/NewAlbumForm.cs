@@ -87,7 +87,8 @@ namespace Concert.PresentationLayer {
             }
             int bandIndex = this.listBoxAvaliableBands.SelectedIndex;
             Band band = this.avaliableBands[bandIndex];
-            band.AddAlbum(album);
+            band.Albums.Add(album);
+            //band.AddAlbum(album);
             try
             {
                 if (checkBoxAddalbum.Checked)
