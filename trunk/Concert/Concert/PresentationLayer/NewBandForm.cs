@@ -31,6 +31,20 @@ namespace Concert.PresentationLayer
 			this.listBoxAvailableArtists.DataSource = this.availableArtists;
         }
 
+		private void refresh( )
+		{
+			this.textBox1.Text = "";
+			this.listBoxAddedArtists.DataSource = null;
+			this.listBoxAvailableArtists.DataSource = null;
+
+			this.addedArtists = new List<Artist>( );
+			this.availableArtists = DBObjectController.GetAllArtists( ).ToList( );
+
+			this.listBoxAvailableArtists.DataSource = this.availableArtists;
+			this.listBoxAddedArtists.DataSource = this.addedArtists;
+
+		}
+
         // EVENTS
 
         private void buttonRemoveArtist_Click(object sender, EventArgs e)
@@ -105,9 +119,9 @@ namespace Concert.PresentationLayer
 				return;
 			}
 
-			MessageBox.Show("Band successfully added!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information ); 
+			MessageBox.Show("Band successfully added!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information );
 
-			this.Close();
+			refresh( );
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)
