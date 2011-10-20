@@ -20,6 +20,12 @@ namespace Concert.PresentationLayer
             Select();
             
         }
+        public EditArtistForm(Artist artist)
+        {
+            InitializeComponent();
+            LoadArtists();
+            Select(artist);
+        }
 
         private void LoadArtists() {
             this.ArtistsListBox1.DataSource = null;
@@ -33,6 +39,43 @@ namespace Concert.PresentationLayer
                 return;
             }
             else button1.Enabled = true;
+        }
+        private void Select(Artist art)
+        {
+            textBox1.Text = art.Firstname;
+            textBox2.Text = art.Lastname;
+            dateTimePickerConcert.Value = art.BirthDate;
+            checkBox1.Checked = false;
+            checkBox2.Checked = false;
+            checkBox3.Checked = false;
+            checkBox4.Checked = false;
+            checkBox5.Checked = false;
+            checkBox6.Checked = false;
+            foreach (string instrument in art.Instruments)
+            {
+                //MessageBox.Show(instrument);
+                switch (instrument)
+                {
+                    case "Piano":
+                        checkBox1.Checked = true;
+                        break;
+                    case "Bass guitar":
+                        checkBox2.Checked = true;
+                        break;
+                    case "Drums":
+                        checkBox3.Checked = true;
+                        break;
+                    case "Guitar":
+                        checkBox4.Checked = true;
+                        break;
+                    case "Sax":
+                        checkBox5.Checked = true;
+                        break;
+                    case "Vocal":
+                        checkBox6.Checked = true;
+                        break;
+                }
+            }
         }
 
         private void Select() {
