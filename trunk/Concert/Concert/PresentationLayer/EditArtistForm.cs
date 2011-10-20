@@ -165,6 +165,11 @@ namespace Concert.PresentationLayer
                             MessageBoxIcon.Question))
             {
                 case DialogResult.Yes:
+                    foreach (Band band in DBObjectController.GetBandsByArtist(artist))
+                    {
+                        band.Artist.Remove(artist);
+                        DBObjectController.StoreObject(band);
+                    }
                     DBObjectController.DeleteObject(artist);
                     break;
 
