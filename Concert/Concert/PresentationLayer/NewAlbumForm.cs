@@ -84,15 +84,15 @@ namespace Concert.PresentationLayer {
             foreach (Song song in this.addedSongs)
             {
                 album.AddTrack(song);
-            }
-            int bandIndex = this.listBoxAvaliableBands.SelectedIndex;
-            Band band = this.avaliableBands[bandIndex];
-            band.Albums.Add(album);
-            //band.AddAlbum(album);
+            }           
             try
             {
                 if (checkBoxAddalbum.Checked)
                 {
+                    int bandIndex = this.listBoxAvaliableBands.SelectedIndex;
+                    Band band = this.avaliableBands[bandIndex];
+                    //band.Albums.Add(album);
+                    band.AddAlbum(album);
                     DBObjectController.StoreObject(band);
                 }
                 DBObjectController.StoreObject(album);
