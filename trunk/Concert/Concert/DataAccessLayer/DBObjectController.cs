@@ -66,5 +66,10 @@ namespace Concert.DataAccessLayer
 		{
 			return db.Query<Band>( b => true );
 		}
+
+         public static IEnumerable<Band> GetBandsByArtist(Artist artist)
+        {
+            return db.Query<Band>(b => b.Artist.Contains(artist));
+        }
     }
 }
