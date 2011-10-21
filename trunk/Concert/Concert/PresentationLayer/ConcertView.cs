@@ -60,42 +60,24 @@ namespace Concert.PresentationLayer
                 {
                     DataGridViewRow row = new DataGridViewRow();
                     string date = artist.BirthDate.ToString("dd.MM.yyyy");
-                    string instruments = "";
-                    foreach (string instrument in artist.Instruments)
-                    {
-                        instruments += instrument + ", ";
-                    }
-                    instruments = (instruments == "") ? "" : instruments.Remove(instruments.Length - 2);
-                    row.CreateCells(dataGridViewArtist, new object[] { artist.Firstname + " " + artist.Lastname,
-                                                                     artist.BirthDate.ToString("dd.MM.yyyy"),
-                                                                     instruments});
+                    row.CreateCells(dataGridViewArtist, new object[] { artist.FullName,
+                                                                     artist.BirthDate.ToString("dd.MM.yyyy")});
                     row.Tag = artist;
                     dataGridViewArtist.Rows.Add(row);
                 }
             }
         }
 
-        private void RefreshAlbumData()
+        private void RefreshTrackData()
         {
-            if (dataGridViewBand.CurrentRow != null)
+            dataGridViewTracks.Rows.Clear();
+            foreach (Song track in ((Album)comboBoxAlbums.SelectedItem).Songs)
             {
-                dataGridViewArtist.Rows.Clear();
-                foreach (Artist artist in ((DBObjectDefinition.Band)dataGridViewBand.CurrentRow.Tag).Artist)
-                {
-                    DataGridViewRow row = new DataGridViewRow();
-                    string date = artist.BirthDate.ToString("dd.MM.yyyy");
-                    string instruments = "";
-                    foreach (string instrument in artist.Instruments)
-                    {
-                        instruments += instrument + ", ";
-                    }
-                    instruments = (instruments == "") ? "" : instruments.Remove(instruments.Length - 2);
-                    row.CreateCells(dataGridViewArtist, new object[] { artist.Firstname + " " + artist.Lastname,
-                                                                     artist.BirthDate.ToString("dd.MM.yyyy"),
-                                                                     instruments});
-                    row.Tag = artist;
-                    dataGridViewArtist.Rows.Add(row);
-                }
+                DataGridViewRow row = new DataGridViewRow();
+
+                row.CreateCells(dataGridViewArtist, new object[] { track.Name, track.Length.ToString() });
+                row.Tag = track;
+                dataGridViewTracks.Rows.Add(row);
             }
         }
 
@@ -157,7 +139,9 @@ namespace Concert.PresentationLayer
         private void dataGridViewBand_SelectionChanged(object sender, EventArgs e)
         {
             RefreshArtistData();
-            RefreshAlbumData();
+            comboBoxAlbums.DataSource = null;
+            comboBoxAlbums.DataSource = ((Band)dataGridViewBand.CurrentRow.Tag).Albums;
+            comboBoxAlbums.DisplayMember = "Name";
         }
 
         private void ConcertView_Load(object sender, EventArgs e)
@@ -250,6 +234,26 @@ namespace Concert.PresentationLayer
             return errorProviderConcert.GetError(textBoxCurrentName) == string.Empty &&
                    errorProviderConcert.GetError(textBoxCurrentTicketPrice) == string.Empty &&
                    errorProviderConcert.GetError(textBoxCurrentDate) == string.Empty;
+        }
+
+        private void comboBoxAlbums_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxAlbums.SelectedItem != null)
+            {
+                RefreshTrackData();
+            }
+            else
+            {
+                comboBoxAlbums.Items.Clear();
+                dataGridViewTracks.Rows.Clear();
+            }
+        }
+
+        private void dataGridViewTracks_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            TrackControlPanel tcp = new TrackControlPanel((Song)dataGridViewTracks.CurrentRow.Tag);
+            tcp.ShowDialog();
+            RefreshTrackData();
         }
     }
 }
