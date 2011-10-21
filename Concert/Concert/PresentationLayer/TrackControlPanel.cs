@@ -25,12 +25,14 @@ namespace Concert.PresentationLayer
 
         public TrackControlPanel(Song song)
         {
+            InitializeComponent();
             LoadTrackData();
             foreach (DataGridViewRow row in dataGridViewTracks.Rows)
             {
-                if ((Song)row.Tag == song)
-                { 
-                    break; 
+                if (((Song)row.Tag).Name == song.Name && ((Song)row.Tag).Length == song.Length)
+                {
+                    row.Selected = true;
+                    break;
                 }
             }
         }
