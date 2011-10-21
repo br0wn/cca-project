@@ -23,6 +23,18 @@ namespace Concert.PresentationLayer
             dataGridViewTracks.Select();
         }
 
+        public TrackControlPanel(Song song)
+        {
+            LoadTrackData();
+            foreach (DataGridViewRow row in dataGridViewTracks.Rows)
+            {
+                if ((Song)row.Tag == song)
+                { 
+                    break; 
+                }
+            }
+        }
+
         private void LoadTrackData()
         {
             dataGridViewTracks.Rows.Clear();
@@ -198,12 +210,18 @@ namespace Concert.PresentationLayer
 
         private void TrackControlPanel_Load(object sender, EventArgs e)
         {
-            MdiParent.MainMenuStrip.Enabled = false;
+            if (MdiParent != null)
+            {
+                MdiParent.MainMenuStrip.Enabled = false;
+            }
         }
 
         private void TrackControlPanel_FormClosed(object sender, FormClosedEventArgs e)
         {
-            MdiParent.MainMenuStrip.Enabled = true;
+            if (MdiParent != null)
+            {
+                MdiParent.MainMenuStrip.Enabled = true;
+            }
         }
     }
 }
