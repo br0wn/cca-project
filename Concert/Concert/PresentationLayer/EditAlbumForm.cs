@@ -194,6 +194,7 @@ namespace Concert.PresentationLayer {
             this.listBoxAvaliableSongs.DataSource = null;
             this.listBoxAddedSgons.DataSource = this.addedSongs;
             this.listBoxAvaliableSongs.DataSource = this.avaliableSongs;
+            this.SetDisplayMember();
         }
 
         private void listBoxAvaliableAlbums_SelectedIndexChanged(object sender, EventArgs e) {
