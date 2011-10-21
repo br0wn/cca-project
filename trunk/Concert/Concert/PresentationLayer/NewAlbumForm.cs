@@ -91,9 +91,9 @@ namespace Concert.PresentationLayer {
             band.AddAlbum(album);
                     
             try
-            {                
-                DBObjectController.StoreObject(band);                
+            {
                 DBObjectController.StoreObject(album);
+                DBObjectController.StoreObject(band);                
             }
             catch (Exception ex)
             {
