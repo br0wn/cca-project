@@ -128,5 +128,15 @@ namespace Concert.PresentationLayer
         {
 			this.Close();
         }
+
+        private void NewBandForm_Load(object sender, EventArgs e)
+        {
+            MdiParent.MainMenuStrip.Enabled = false;
+        }
+
+        private void NewBandForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            MdiParent.MainMenuStrip.Enabled = true;
+        }
     }
 }

@@ -71,6 +71,7 @@ namespace Concert.PresentationLayer
         private void RefreshTrackData()
         {
             dataGridViewTracks.Rows.Clear();
+            Album a = (Album)comboBoxAlbums.SelectedItem;
             foreach (Song track in ((Album)comboBoxAlbums.SelectedItem).Songs)
             {
                 DataGridViewRow row = new DataGridViewRow();
@@ -88,13 +89,16 @@ namespace Concert.PresentationLayer
 
         private void buttonAssignLocation_Click(object sender, EventArgs e)
         {
-            ConcertChangeLocation changeLocation = new ConcertChangeLocation();
-            changeLocation.ShowDialog();
-            if (changeLocation.geoLocation != null)
+            if (dataGridViewConcerts.CurrentRow != null)
             {
-                ((DBObjectDefinition.Concert)dataGridViewConcerts.CurrentRow.Tag).GeoLocation = changeLocation.geoLocation;
-                DBObjectController.StoreObject((DBObjectDefinition.Concert)dataGridViewConcerts.CurrentRow.Tag);
-                LoadConcertData();
+                ConcertChangeLocation changeLocation = new ConcertChangeLocation();
+                changeLocation.ShowDialog();
+                if (changeLocation.geoLocation != null)
+                {
+                    ((DBObjectDefinition.Concert)dataGridViewConcerts.CurrentRow.Tag).GeoLocation = changeLocation.geoLocation;
+                    DBObjectController.StoreObject((DBObjectDefinition.Concert)dataGridViewConcerts.CurrentRow.Tag);
+                    LoadConcertData();
+                }
             }
         }
 
@@ -251,6 +255,7 @@ namespace Concert.PresentationLayer
 
         private void dataGridViewTracks_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            Song s = (Song)dataGridViewTracks.CurrentRow.Tag;
             TrackControlPanel tcp = new TrackControlPanel((Song)dataGridViewTracks.CurrentRow.Tag);
             tcp.ShowDialog();
             RefreshTrackData();
