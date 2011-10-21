@@ -35,7 +35,6 @@
             this.buttonCancle = new System.Windows.Forms.Button();
             this.listBoxAvaliableBands = new System.Windows.Forms.ListBox();
             this.labelAddAlbum = new System.Windows.Forms.Label();
-            this.checkBoxAddalbum = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // labelAlbumName
@@ -120,7 +119,7 @@
             // 
             // buttonCancle
             // 
-            this.buttonCancle.Location = new System.Drawing.Point(221, 405);
+            this.buttonCancle.Location = new System.Drawing.Point(228, 405);
             this.buttonCancle.Name = "buttonCancle";
             this.buttonCancle.Size = new System.Drawing.Size(75, 23);
             this.buttonCancle.TabIndex = 9;
@@ -133,7 +132,7 @@
             this.listBoxAvaliableBands.FormattingEnabled = true;
             this.listBoxAvaliableBands.Location = new System.Drawing.Point(8, 262);
             this.listBoxAvaliableBands.Name = "listBoxAvaliableBands";
-            this.listBoxAvaliableBands.Size = new System.Drawing.Size(295, 108);
+            this.listBoxAvaliableBands.Size = new System.Drawing.Size(295, 134);
             this.listBoxAvaliableBands.TabIndex = 10;
             // 
             // labelAddAlbum
@@ -145,22 +144,11 @@
             this.labelAddAlbum.TabIndex = 11;
             this.labelAddAlbum.Text = "Bands:";
             // 
-            // checkBoxAddalbum
-            // 
-            this.checkBoxAddalbum.AutoSize = true;
-            this.checkBoxAddalbum.Location = new System.Drawing.Point(8, 382);
-            this.checkBoxAddalbum.Name = "checkBoxAddalbum";
-            this.checkBoxAddalbum.Size = new System.Drawing.Size(115, 17);
-            this.checkBoxAddalbum.TabIndex = 12;
-            this.checkBoxAddalbum.Text = "Add album to band";
-            this.checkBoxAddalbum.UseVisualStyleBackColor = true;
-            // 
             // NewAlbumForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(315, 440);
-            this.Controls.Add(this.checkBoxAddalbum);
             this.Controls.Add(this.labelAddAlbum);
             this.Controls.Add(this.listBoxAvaliableBands);
             this.Controls.Add(this.buttonCancle);
@@ -196,6 +184,5 @@
         private System.Windows.Forms.Button buttonCancle;
         private System.Windows.Forms.ListBox listBoxAvaliableBands;
         private System.Windows.Forms.Label labelAddAlbum;
-        private System.Windows.Forms.CheckBox checkBoxAddalbum;
     }
 }
