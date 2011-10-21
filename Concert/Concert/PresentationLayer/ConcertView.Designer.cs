@@ -65,6 +65,7 @@
             this.ArtistBirthDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TrackName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TrackLength = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBoxAlbum = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewArtist)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBand)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewConcerts)).BeginInit();
@@ -76,6 +77,7 @@
             this.tabControlArtistAlbum.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.groupBoxAlbum.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBoxCountry
@@ -357,7 +359,7 @@
             // comboBoxAlbums
             // 
             this.comboBoxAlbums.FormattingEnabled = true;
-            this.comboBoxAlbums.Location = new System.Drawing.Point(18, 15);
+            this.comboBoxAlbums.Location = new System.Drawing.Point(47, 19);
             this.comboBoxAlbums.Name = "comboBoxAlbums";
             this.comboBoxAlbums.Size = new System.Drawing.Size(121, 21);
             this.comboBoxAlbums.TabIndex = 16;
@@ -375,7 +377,7 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.comboBoxAlbums);
+            this.tabPage1.Controls.Add(this.groupBoxAlbum);
             this.tabPage1.Controls.Add(this.dataGridViewTracks);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
@@ -422,6 +424,16 @@
             this.TrackLength.Name = "TrackLength";
             this.TrackLength.ReadOnly = true;
             // 
+            // groupBoxAlbum
+            // 
+            this.groupBoxAlbum.Controls.Add(this.comboBoxAlbums);
+            this.groupBoxAlbum.Location = new System.Drawing.Point(18, 6);
+            this.groupBoxAlbum.Name = "groupBoxAlbum";
+            this.groupBoxAlbum.Size = new System.Drawing.Size(200, 49);
+            this.groupBoxAlbum.TabIndex = 17;
+            this.groupBoxAlbum.TabStop = false;
+            this.groupBoxAlbum.Text = "Album Information";
+            // 
             // ConcertView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -446,6 +458,7 @@
             this.tabControlArtistAlbum.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
+            this.groupBoxAlbum.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -488,5 +501,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ArtistBirthDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn TrackName;
         private System.Windows.Forms.DataGridViewTextBoxColumn TrackLength;
+        private System.Windows.Forms.GroupBox groupBoxAlbum;
     }
 }
