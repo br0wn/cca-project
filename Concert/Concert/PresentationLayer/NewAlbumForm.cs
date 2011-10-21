@@ -97,7 +97,7 @@ namespace Concert.PresentationLayer {
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error while addign album");
+                MessageBox.Show("Error while adding album");
                 return;
             }
             MessageBox.Show("Album added successfully!");
