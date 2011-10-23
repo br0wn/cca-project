@@ -198,7 +198,6 @@
     <Content Include="db4o reference\Db4objects.Db4o.dll" />
     <None Include="Resources\speaker-music-blue11.jpg" />
     <None Include="Resources\pikachu.ico" />
-    <None Include="Resources\Background.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
