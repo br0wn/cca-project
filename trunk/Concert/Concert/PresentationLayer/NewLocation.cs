@@ -14,7 +14,7 @@ namespace Concert.PresentationLayer
 {
     public partial class NewLocation : Form
     {
-        private Regex digits = new Regex(@"\d+");
+        private Regex digits = new Regex(@"^\d+^$");
 
         public NewLocation()
         {
