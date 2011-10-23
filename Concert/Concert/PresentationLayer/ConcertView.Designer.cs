@@ -142,7 +142,6 @@
             // dataGridViewBand
             // 
             this.dataGridViewBand.AllowUserToAddRows = false;
-            this.dataGridViewBand.AllowUserToDeleteRows = false;
             this.dataGridViewBand.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewBand.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.BandName});
@@ -152,6 +151,7 @@
             this.dataGridViewBand.Size = new System.Drawing.Size(208, 233);
             this.dataGridViewBand.TabIndex = 13;
             this.dataGridViewBand.SelectionChanged += new System.EventHandler(this.dataGridViewBand_SelectionChanged);
+            this.dataGridViewBand.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dataGridViewBand_UserDeletedRow);
             // 
             // BandName
             // 

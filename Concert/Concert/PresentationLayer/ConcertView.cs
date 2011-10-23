@@ -313,5 +313,13 @@ namespace Concert.PresentationLayer
             string to = string.IsNullOrEmpty(textBoxFindConcertTicketPriceTo.Text) ? "1000" : textBoxFindConcertTicketPriceTo.Text; 
             return digits.IsMatch(from) && digits.IsMatch(to) ? true : false;
         }
+
+        private void dataGridViewBand_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            DBObjectDefinition.Concert concert = (DBObjectDefinition.Concert)dataGridViewConcerts.CurrentRow.Tag;
+            Band band = (Band)dataGridViewBand.CurrentRow.Tag;
+            concert.Bands.Remove(band);
+            DBObjectController.StoreObject(band);
+        }
     }
 }
