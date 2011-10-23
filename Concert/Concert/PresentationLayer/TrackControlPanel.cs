@@ -229,7 +229,11 @@ namespace Concert.PresentationLayer
             }
             if ( !string.IsNullOrEmpty(s.TrackPath))
             {
-                File.Delete(@"..\..\" + s.TrackPath);
+                string url = @"..\..\" + s.TrackPath;
+                if (File.Exists(url))
+                {
+                    File.Delete(url);
+                }
             }
             DBObjectController.DeleteObject(e.Row.Tag);
         }
@@ -268,7 +272,10 @@ namespace Concert.PresentationLayer
                     url += subPath[i] + "\\";
                 }
                 url += track.TrackPath;
-                axWindowsMediaPlayer.URL = url;
+                if ( File.Exists(url))
+                {
+                    axWindowsMediaPlayer.URL = url;
+                }
             }
         }
     }
