@@ -176,17 +176,6 @@ namespace Concert.PresentationLayer
             errorProviderTrack.SetError(textBoxTrackLengthCurrent, string.Empty);
         }
 
-        private void dataGridViewTracks_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
-        {
-            foreach (Album album in DBObjectController.GetAlbumsByTrack((Song)e.Row.Tag))
-            {
-                Song s = (Song)e.Row.Tag;
-                album.Songs.Remove(s);
-                DBObjectController.StoreObject(album);
-            }
-            DBObjectController.DeleteObject(e.Row.Tag);
-        }
-
         private void dataGridViewTracks_SelectionChanged(object sender, EventArgs e)
         {
             if (((DataGridView)sender).CurrentRow != null)
@@ -221,6 +210,17 @@ namespace Concert.PresentationLayer
             {
                 MdiParent.MainMenuStrip.Enabled = true;
             }
+        }
+
+        private void dataGridViewTracks_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
+        {
+            foreach (Album album in DBObjectController.GetAlbumsByTrack((Song)e.Row.Tag))
+            {
+                Song s = (Song)e.Row.Tag;
+                album.Songs.Remove(s);
+                DBObjectController.StoreObject(album);
+            }
+            DBObjectController.DeleteObject(e.Row.Tag);
         }
     }
 }

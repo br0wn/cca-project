@@ -54,7 +54,7 @@
             // 
             // dateTimePickerConcert
             // 
-            this.dateTimePickerConcert.Location = new System.Drawing.Point(82, 69);
+            this.dateTimePickerConcert.Location = new System.Drawing.Point(82, 93);
             this.dateTimePickerConcert.Name = "dateTimePickerConcert";
             this.dateTimePickerConcert.Size = new System.Drawing.Size(148, 20);
             this.dateTimePickerConcert.TabIndex = 13;
@@ -63,7 +63,7 @@
             // labelDate
             // 
             this.labelDate.AutoSize = true;
-            this.labelDate.Location = new System.Drawing.Point(40, 72);
+            this.labelDate.Location = new System.Drawing.Point(40, 96);
             this.labelDate.Name = "labelDate";
             this.labelDate.Size = new System.Drawing.Size(36, 13);
             this.labelDate.TabIndex = 12;
@@ -76,7 +76,7 @@
             // 
             // buttonAddConcert
             // 
-            this.buttonAddConcert.Location = new System.Drawing.Point(202, 346);
+            this.buttonAddConcert.Location = new System.Drawing.Point(200, 397);
             this.buttonAddConcert.Name = "buttonAddConcert";
             this.buttonAddConcert.Size = new System.Drawing.Size(89, 23);
             this.buttonAddConcert.TabIndex = 11;
@@ -86,7 +86,7 @@
             // 
             // textBoxTicketPrice
             // 
-            this.textBoxTicketPrice.Location = new System.Drawing.Point(82, 38);
+            this.textBoxTicketPrice.Location = new System.Drawing.Point(82, 53);
             this.textBoxTicketPrice.Name = "textBoxTicketPrice";
             this.textBoxTicketPrice.Size = new System.Drawing.Size(100, 20);
             this.textBoxTicketPrice.TabIndex = 10;
@@ -95,7 +95,7 @@
             // labelTicketPrice
             // 
             this.labelTicketPrice.AutoSize = true;
-            this.labelTicketPrice.Location = new System.Drawing.Point(7, 41);
+            this.labelTicketPrice.Location = new System.Drawing.Point(7, 56);
             this.labelTicketPrice.Name = "labelTicketPrice";
             this.labelTicketPrice.Size = new System.Drawing.Size(69, 13);
             this.labelTicketPrice.TabIndex = 9;
@@ -131,7 +131,7 @@
             this.dataGridViewLocation.Location = new System.Drawing.Point(12, 49);
             this.dataGridViewLocation.Name = "dataGridViewLocation";
             this.dataGridViewLocation.ReadOnly = true;
-            this.dataGridViewLocation.Size = new System.Drawing.Size(469, 105);
+            this.dataGridViewLocation.Size = new System.Drawing.Size(469, 164);
             this.dataGridViewLocation.TabIndex = 14;
             this.dataGridViewLocation.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewLocation_CellDoubleClick);
             // 
@@ -165,7 +165,7 @@
             this.groupBoxLocation.Controls.Add(this.dataGridViewLocation);
             this.groupBoxLocation.Location = new System.Drawing.Point(12, 161);
             this.groupBoxLocation.Name = "groupBoxLocation";
-            this.groupBoxLocation.Size = new System.Drawing.Size(496, 172);
+            this.groupBoxLocation.Size = new System.Drawing.Size(496, 230);
             this.groupBoxLocation.TabIndex = 15;
             this.groupBoxLocation.TabStop = false;
             this.groupBoxLocation.Text = "Location Information";
@@ -203,7 +203,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(520, 381);
+            this.ClientSize = new System.Drawing.Size(520, 432);
             this.Controls.Add(this.groupBoxBands);
             this.Controls.Add(this.groupBoxLocation);
             this.Controls.Add(this.dateTimePickerConcert);

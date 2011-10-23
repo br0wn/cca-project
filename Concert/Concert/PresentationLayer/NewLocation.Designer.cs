@@ -162,6 +162,7 @@
             this.dataGridViewLocation.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewLocation_RowEnter);
             this.dataGridViewLocation.SelectionChanged += new System.EventHandler(this.dataGridViewLocation_SelectionChanged);
             this.dataGridViewLocation.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dataGridViewLocation_UserDeletedRow);
+            this.dataGridViewLocation.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.dataGridViewLocation_UserDeletingRow);
             // 
             // LocationCountry
             // 

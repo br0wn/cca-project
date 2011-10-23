@@ -66,6 +66,7 @@
             this.dataGridViewTracks.TabIndex = 0;
             this.dataGridViewTracks.SelectionChanged += new System.EventHandler(this.dataGridViewTracks_SelectionChanged);
             this.dataGridViewTracks.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dataGridViewTracks_UserDeletedRow);
+            this.dataGridViewTracks.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.dataGridViewTracks_UserDeletingRow);
             // 
             // TrackName
             // 

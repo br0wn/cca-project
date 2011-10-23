@@ -262,11 +262,6 @@ namespace Concert.PresentationLayer
             }
         }
 
-        private void dataGridViewLocation_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
-        {
-            DBObjectController.DeleteObject(e.Row.Tag);
-        }
-
         private void dataGridViewLocation_SelectionChanged(object sender, EventArgs e)
         {
             ClearCurrentErrorProvider();
@@ -305,6 +300,11 @@ namespace Concert.PresentationLayer
             {
                 MdiParent.MainMenuStrip.Enabled = true;
             }
+        }
+
+        private void dataGridViewLocation_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
+        {
+            DBObjectController.DeleteObject(e.Row.Tag);
         }
     }
 }
