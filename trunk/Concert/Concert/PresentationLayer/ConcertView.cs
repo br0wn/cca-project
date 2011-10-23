@@ -133,6 +133,7 @@ namespace Concert.PresentationLayer
             else 
             {
                 ClearErrorProvider();
+                ClearCurrentForm();
             }
         }
 
@@ -141,6 +142,13 @@ namespace Concert.PresentationLayer
             errorProviderConcert.SetError(textBoxCurrentName, string.Empty);
             errorProviderConcert.SetError(textBoxCurrentDate, string.Empty);
             errorProviderConcert.SetError(textBoxCurrentTicketPrice, string.Empty);
+        }
+
+        private void ClearCurrentForm()
+        {
+            textBoxCurrentName.Clear();
+            textBoxCurrentTicketPrice.Clear();
+            textBoxCurrentDate.Clear();
         }
 
         private void dataGridViewBand_SelectionChanged(object sender, EventArgs e)
@@ -224,15 +232,23 @@ namespace Concert.PresentationLayer
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            ValidateChildren();
-            if (NoErrorProviderMsg())
+            if (dataGridViewConcerts.CurrentRow != null)
             {
-                DBObjectDefinition.Concert concert = ((DBObjectDefinition.Concert)dataGridViewConcerts.CurrentRow.Tag);
-                concert.Name = textBoxCurrentName.Text;
-                concert.TicketPrice = int.Parse(textBoxCurrentTicketPrice.Text);
-                concert.Date = DateTime.Parse(textBoxCurrentDate.Text);
-                DBObjectController.StoreObject(dataGridViewConcerts.CurrentRow.Tag);
-                LoadConcertData();
+                ValidateChildren();
+                if (NoErrorProviderMsg())
+                {
+                    DBObjectDefinition.Concert concert = ((DBObjectDefinition.Concert)dataGridViewConcerts.CurrentRow.Tag);
+                    concert.Name = textBoxCurrentName.Text;
+                    concert.TicketPrice = int.Parse(textBoxCurrentTicketPrice.Text);
+                    concert.Date = DateTime.Parse(textBoxCurrentDate.Text);
+                    DBObjectController.StoreObject(dataGridViewConcerts.CurrentRow.Tag);
+                    LoadConcertData();
+                }
+            }
+            else
+            {
+                ClearCurrentForm();
+                ClearErrorProvider();
             }
         }
 

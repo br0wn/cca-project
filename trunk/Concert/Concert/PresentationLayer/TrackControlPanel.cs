@@ -110,14 +110,21 @@ namespace Concert.PresentationLayer
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            ValidateCurrentSelection();
-            if (NoErrorProviderMsg())
+            if (dataGridViewTracks.CurrentRow != null)
             {
-                Song song = (Song)dataGridViewTracks.CurrentRow.Tag;
-                song.Name = textBoxTrackNameCurrent.Text;
-                song.Length = int.Parse(textBoxTrackLengthCurrent.Text);
-                DBObjectController.StoreObject(song);
-                LoadTrackData();
+                ValidateCurrentSelection();
+                if (NoErrorProviderMsg())
+                {
+                    Song song = (Song)dataGridViewTracks.CurrentRow.Tag;
+                    song.Name = textBoxTrackNameCurrent.Text;
+                    song.Length = int.Parse(textBoxTrackLengthCurrent.Text);
+                    DBObjectController.StoreObject(song);
+                    LoadTrackData();
+                }
+            }
+            else
+            {
+                ClearCurrentForm();
             }
         }
 

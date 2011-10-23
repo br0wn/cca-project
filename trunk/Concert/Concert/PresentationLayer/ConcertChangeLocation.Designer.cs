@@ -46,7 +46,7 @@
             this.LocationAddress,
             this.LocationPostalCode,
             this.LocationSeatCount});
-            this.dataGridViewLocation.Location = new System.Drawing.Point(12, 12);
+            this.dataGridViewLocation.Location = new System.Drawing.Point(0, 1);
             this.dataGridViewLocation.Name = "dataGridViewLocation";
             this.dataGridViewLocation.ReadOnly = true;
             this.dataGridViewLocation.Size = new System.Drawing.Size(452, 183);
@@ -81,7 +81,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(481, 262);
+            this.ClientSize = new System.Drawing.Size(452, 184);
             this.Controls.Add(this.dataGridViewLocation);
             this.Name = "ConcertChangeLocation";
             this.Text = "ConcertChangeLocation";
