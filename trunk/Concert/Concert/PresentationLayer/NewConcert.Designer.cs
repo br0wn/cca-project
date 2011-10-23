@@ -43,7 +43,6 @@
             this.LocationPostalCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LocationSeatCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBoxLocation = new System.Windows.Forms.GroupBox();
-            this.buttonSetLocation = new System.Windows.Forms.Button();
             this.buttonAddNewLocation = new System.Windows.Forms.Button();
             this.checkedListBoxBands = new System.Windows.Forms.CheckedListBox();
             this.groupBoxBands = new System.Windows.Forms.GroupBox();
@@ -55,7 +54,7 @@
             // 
             // dateTimePickerConcert
             // 
-            this.dateTimePickerConcert.Location = new System.Drawing.Point(244, 12);
+            this.dateTimePickerConcert.Location = new System.Drawing.Point(82, 69);
             this.dateTimePickerConcert.Name = "dateTimePickerConcert";
             this.dateTimePickerConcert.Size = new System.Drawing.Size(148, 20);
             this.dateTimePickerConcert.TabIndex = 13;
@@ -64,7 +63,7 @@
             // labelDate
             // 
             this.labelDate.AutoSize = true;
-            this.labelDate.Location = new System.Drawing.Point(202, 15);
+            this.labelDate.Location = new System.Drawing.Point(40, 72);
             this.labelDate.Name = "labelDate";
             this.labelDate.Size = new System.Drawing.Size(36, 13);
             this.labelDate.TabIndex = 12;
@@ -77,9 +76,9 @@
             // 
             // buttonAddConcert
             // 
-            this.buttonAddConcert.Location = new System.Drawing.Point(313, 341);
+            this.buttonAddConcert.Location = new System.Drawing.Point(202, 346);
             this.buttonAddConcert.Name = "buttonAddConcert";
-            this.buttonAddConcert.Size = new System.Drawing.Size(100, 23);
+            this.buttonAddConcert.Size = new System.Drawing.Size(89, 23);
             this.buttonAddConcert.TabIndex = 11;
             this.buttonAddConcert.Text = "Add concert!!!";
             this.buttonAddConcert.UseVisualStyleBackColor = true;
@@ -129,11 +128,12 @@
             this.LocationAddress,
             this.LocationPostalCode,
             this.LocationSeatCount});
-            this.dataGridViewLocation.Location = new System.Drawing.Point(20, 30);
+            this.dataGridViewLocation.Location = new System.Drawing.Point(12, 49);
             this.dataGridViewLocation.Name = "dataGridViewLocation";
             this.dataGridViewLocation.ReadOnly = true;
-            this.dataGridViewLocation.Size = new System.Drawing.Size(446, 105);
+            this.dataGridViewLocation.Size = new System.Drawing.Size(469, 105);
             this.dataGridViewLocation.TabIndex = 14;
+            this.dataGridViewLocation.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewLocation_CellDoubleClick);
             // 
             // LocationCountry
             // 
@@ -161,33 +161,23 @@
             // 
             // groupBoxLocation
             // 
-            this.groupBoxLocation.Controls.Add(this.buttonSetLocation);
             this.groupBoxLocation.Controls.Add(this.buttonAddNewLocation);
             this.groupBoxLocation.Controls.Add(this.dataGridViewLocation);
-            this.groupBoxLocation.Location = new System.Drawing.Point(12, 83);
+            this.groupBoxLocation.Location = new System.Drawing.Point(12, 161);
             this.groupBoxLocation.Name = "groupBoxLocation";
-            this.groupBoxLocation.Size = new System.Drawing.Size(480, 195);
+            this.groupBoxLocation.Size = new System.Drawing.Size(496, 172);
             this.groupBoxLocation.TabIndex = 15;
             this.groupBoxLocation.TabStop = false;
             this.groupBoxLocation.Text = "Location Information";
             // 
-            // buttonSetLocation
-            // 
-            this.buttonSetLocation.Location = new System.Drawing.Point(20, 153);
-            this.buttonSetLocation.Name = "buttonSetLocation";
-            this.buttonSetLocation.Size = new System.Drawing.Size(110, 23);
-            this.buttonSetLocation.TabIndex = 16;
-            this.buttonSetLocation.Text = "Use this location";
-            this.buttonSetLocation.UseVisualStyleBackColor = true;
-            this.buttonSetLocation.Click += new System.EventHandler(this.buttonSetLocation_Click);
-            // 
             // buttonAddNewLocation
             // 
-            this.buttonAddNewLocation.Location = new System.Drawing.Point(149, 153);
+            this.buttonAddNewLocation.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonAddNewLocation.Location = new System.Drawing.Point(12, 20);
             this.buttonAddNewLocation.Name = "buttonAddNewLocation";
-            this.buttonAddNewLocation.Size = new System.Drawing.Size(89, 23);
+            this.buttonAddNewLocation.Size = new System.Drawing.Size(28, 23);
             this.buttonAddNewLocation.TabIndex = 15;
-            this.buttonAddNewLocation.Text = "*New Location";
+            this.buttonAddNewLocation.Text = "*";
             this.buttonAddNewLocation.UseVisualStyleBackColor = true;
             this.buttonAddNewLocation.Click += new System.EventHandler(this.buttonAddNewLocation_Click);
             // 
@@ -202,9 +192,9 @@
             // groupBoxBands
             // 
             this.groupBoxBands.Controls.Add(this.checkedListBoxBands);
-            this.groupBoxBands.Location = new System.Drawing.Point(12, 300);
+            this.groupBoxBands.Location = new System.Drawing.Point(318, 12);
             this.groupBoxBands.Name = "groupBoxBands";
-            this.groupBoxBands.Size = new System.Drawing.Size(200, 143);
+            this.groupBoxBands.Size = new System.Drawing.Size(190, 143);
             this.groupBoxBands.TabIndex = 18;
             this.groupBoxBands.TabStop = false;
             this.groupBoxBands.Text = "Band Information";
@@ -213,7 +203,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(546, 455);
+            this.ClientSize = new System.Drawing.Size(520, 381);
             this.Controls.Add(this.groupBoxBands);
             this.Controls.Add(this.groupBoxLocation);
             this.Controls.Add(this.dateTimePickerConcert);
@@ -249,7 +239,6 @@
         private System.Windows.Forms.Label labelConcertName;
         private System.Windows.Forms.GroupBox groupBoxLocation;
         private System.Windows.Forms.DataGridView dataGridViewLocation;
-        private System.Windows.Forms.Button buttonSetLocation;
         private System.Windows.Forms.Button buttonAddNewLocation;
         private System.Windows.Forms.DataGridViewTextBoxColumn LocationCountry;
         private System.Windows.Forms.DataGridViewTextBoxColumn LocationAddress;
