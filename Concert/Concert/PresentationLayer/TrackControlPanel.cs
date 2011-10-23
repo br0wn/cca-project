@@ -14,7 +14,7 @@ namespace Concert.PresentationLayer
 {
     public partial class TrackControlPanel : Form
     {
-        private Regex digits = new Regex(@"^\d+^$");
+        private Regex digits = new Regex(@"^\d+$");
 
         public TrackControlPanel()
         {
