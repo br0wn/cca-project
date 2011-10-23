@@ -176,5 +176,10 @@ namespace Concert.PresentationLayer
             MdiParent.MainMenuStrip.Enabled = false;
             LoadLocations();
         }
+
+        private void dataGridViewLocation_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            location = (Location)((DataGridView)sender).CurrentRow.Tag;
+        }
     }
 }

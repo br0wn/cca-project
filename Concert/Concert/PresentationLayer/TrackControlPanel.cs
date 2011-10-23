@@ -27,14 +27,6 @@ namespace Concert.PresentationLayer
         {
             InitializeComponent();
             LoadTrackData();
-            foreach (DataGridViewRow row in dataGridViewTracks.Rows)
-            {
-                if (((Song)row.Tag).Name == song.Name && ((Song)row.Tag).Length == song.Length)
-                {
-                    row.Selected = true;
-                    break;
-                }
-            }
         }
 
         private void LoadTrackData()
@@ -43,9 +35,7 @@ namespace Concert.PresentationLayer
             foreach (Song item in DBObjectController.GetAllTracks())
             {
                 DataGridViewRow row = new DataGridViewRow();
-                row.CreateCells(dataGridViewTracks, new object[] { 
-                                                                    item.Name,
-                                                                    item.Length });
+                row.CreateCells(dataGridViewTracks, new object[] { item.Name, item.Length });
                 row.Tag = item;
                 dataGridViewTracks.Rows.Add(row);
             }
@@ -68,7 +58,7 @@ namespace Concert.PresentationLayer
         private bool ErrorProviderSet()
         {
             return errorProviderTrack.GetError(textBoxTrackLength) == string.Empty &&
-                   errorProviderTrack.GetError(textBoxTrackName) == string.Empty;
+                   errorProviderTrack.GetError(textBoxTrackName)   == string.Empty;
         }
 
         private void ClearForm()
@@ -133,8 +123,8 @@ namespace Concert.PresentationLayer
 
         private bool NoErrorProviderMsg()
         {
-            return (errorProviderTrack.GetError(textBoxTrackNameCurrent) == string.Empty &&
-                     errorProviderTrack.GetError(textBoxTrackLengthCurrent) == string.Empty );
+            return errorProviderTrack.GetError(textBoxTrackNameCurrent)   == string.Empty &&
+                   errorProviderTrack.GetError(textBoxTrackLengthCurrent) == string.Empty;
         }
 
         private void ValidateCurrentSelection()

@@ -25,6 +25,7 @@ namespace Concert.PresentationLayer
 
         private void LoadConcertData()
         {
+            DBObjectController.GetAllAlbums();
             dataGridViewConcerts.Rows.Clear();
             foreach (DBObjectDefinition.Concert item in DBObjectController.GetAllConcerts())
             {
@@ -37,9 +38,11 @@ namespace Concert.PresentationLayer
 
         private void RefreshBandData()
         {
+            dataGridViewBand.Rows.Clear();
+            dataGridViewArtist.Rows.Clear();
+            comboBoxAlbums.DataSource = null;
             if (dataGridViewConcerts.CurrentRow != null)
             {
-                dataGridViewBand.Rows.Clear();
                 DBObjectDefinition.Concert c = (DBObjectDefinition.Concert)((DBObjectDefinition.Concert)dataGridViewConcerts.CurrentRow.Tag);
                 foreach (Band band in ((DBObjectDefinition.Concert)dataGridViewConcerts.CurrentRow.Tag).Bands)
                 {
@@ -259,6 +262,40 @@ namespace Concert.PresentationLayer
             TrackControlPanel tcp = new TrackControlPanel((Song)dataGridViewTracks.CurrentRow.Tag);
             tcp.ShowDialog();
             RefreshTrackData();
+        }
+
+        private void RefreshConcertData()
+        {
+            if (ValidateTicketPrice() && dateTimePickerConcertDateFrom != null && dateTimePickerConcertDateTo != null)
+            {
+                dataGridViewConcerts.Rows.Clear();
+                string from = string.IsNullOrEmpty(textBoxFindConcertTicketPriceFrom.Text) ? "0" : textBoxFindConcertTicketPriceFrom.Text;
+                string to = string.IsNullOrEmpty(textBoxFindConcertTicketPriceTo.Text) ? "1000" : textBoxFindConcertTicketPriceTo.Text; 
+                foreach (DBObjectDefinition.Concert item in DBObjectController.GetCustomConcerts(textBoxFindConcertName.Text,
+                                                                                                 int.Parse(from),
+                                                                                                 int.Parse(to),
+                                                                                                 dateTimePickerConcertDateFrom.Value,
+                                                                                                 dateTimePickerConcertDateTo.Value))
+                {
+                    DataGridViewRow row = new DataGridViewRow();
+                    row.CreateCells(dataGridViewConcerts, new object[] { item.Name, item.TicketPrice.ToString(), item.Date.ToString("dd.MM.yyyy.") });
+                    row.Tag = item;
+                    dataGridViewConcerts.Rows.Add(row);
+                }
+                RefreshBandData();
+            }
+        }
+
+        private void textBoxFind_TextChanged(object sender, EventArgs e)
+        {
+            RefreshConcertData();
+        }
+
+        private bool ValidateTicketPrice()
+        {
+            string from = string.IsNullOrEmpty(textBoxFindConcertTicketPriceFrom.Text) ? "0" : textBoxFindConcertTicketPriceFrom.Text; 
+            string to = string.IsNullOrEmpty(textBoxFindConcertTicketPriceTo.Text) ? "1000" : textBoxFindConcertTicketPriceTo.Text; 
+            return digits.IsMatch(from) && digits.IsMatch(to) ? true : false;
         }
     }
 }

@@ -36,6 +36,33 @@ namespace Concert.DataAccessLayer
             return db.Query<DBObjectDefinition.Concert>(c => true);
         }
 
+        public static IEnumerable<DBObjectDefinition.Concert> GetCustomConcerts(string name, int fromPrice, int toPrice, DateTime fromDate, DateTime toDate)
+        {
+            List<DBObjectDefinition.Concert> concerts = new List<DBObjectDefinition.Concert>();
+            if (!string.IsNullOrEmpty(name))
+            {
+                foreach (DBObjectDefinition.Concert concert in db.Query<DBObjectDefinition.Concert>(c => c.Name.ToLower().Contains(name.ToLower()) &&
+                                                                                                         c.TicketPrice >= fromPrice                &&
+                                                                                                         c.TicketPrice <= toPrice                  &&
+                                                                                                         c.Date >= fromDate                        &&
+                                                                                                         c.Date <= toDate ))
+                {
+                    concerts.Add(concert);
+                }
+            }
+            else
+            {
+                foreach (DBObjectDefinition.Concert concert in db.Query<DBObjectDefinition.Concert>(c => c.TicketPrice >= fromPrice &&
+                                                                                                         c.TicketPrice <= toPrice &&
+                                                                                                         c.Date >= fromDate &&
+                                                                                                         c.Date <= toDate))
+                {
+                    concerts.Add(concert);
+                }
+            }
+            return concerts;
+        }
+
         public static IEnumerable<Location> GetAllLocations()
         {
             return db.Query<Location>(l => true);
