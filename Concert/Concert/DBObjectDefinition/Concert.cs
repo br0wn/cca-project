@@ -7,12 +7,14 @@ namespace Concert.DBObjectDefinition
 {
     public class Concert
     {
+        private string id;
         private string name;
         private int ticketPrice;
         private DateTime date;
         private Location geoLocation;
         private List<Band> bands;
 
+        public string ID { get { return id; } }
         public string Name { get { return name; } set { name = value; } }
         public int TicketPrice { get { return ticketPrice; } set { ticketPrice = value; } }
         public DateTime Date { get { return date; } set { date = value; } }
@@ -29,6 +31,7 @@ namespace Concert.DBObjectDefinition
 
         public Concert(string name, int ticketPrice, DateTime date, Location location, List<Band> bands)
         {
+            id = name + DateTime.Now.ToString();
             Name = name;
             TicketPrice = ticketPrice;
             Date = date;

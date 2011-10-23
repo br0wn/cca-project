@@ -7,11 +7,13 @@ namespace Concert.DBObjectDefinition
 {
     public class Artist
     {
+        private string id;
         private string firstname;
         private string lastname;
         private List<string> instruments;
         private DateTime birthDate;
 
+        public string ID { get { return id; } }
         public string Firstname { get { return firstname; } set { firstname = value; } }
         public string Lastname { get { return lastname; } set { lastname = value; } }
 		public string FullName { get { return firstname + " " + lastname; } }
@@ -22,6 +24,7 @@ namespace Concert.DBObjectDefinition
         {
             Firstname = firstname;
             Lastname = lastname;
+            id = FullName + DateTime.Now.ToString();
             BirthDate = birthDate;
             instruments = new List<string>();
         }
