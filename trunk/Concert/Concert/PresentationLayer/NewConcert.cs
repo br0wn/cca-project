@@ -66,7 +66,7 @@ namespace Concert.PresentationLayer
                     concert.GeoLocation = location;
                     AddHiredBands(concert);
                     DBObjectController.StoreObject(concert);
-                    MessageBox.Show("You have successfully added new concert." + concert.Bands.Count, "Success confirmation");
+                    MessageBox.Show("You have successfully added new concert.", "Success confirmation");
                     ClearForm();
                 }
             }
