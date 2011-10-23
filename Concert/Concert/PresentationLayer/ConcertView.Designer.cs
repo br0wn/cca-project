@@ -150,8 +150,9 @@
             this.dataGridViewBand.ReadOnly = true;
             this.dataGridViewBand.Size = new System.Drawing.Size(208, 233);
             this.dataGridViewBand.TabIndex = 13;
+            this.dataGridViewBand.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewBand_CellDoubleClick);
             this.dataGridViewBand.SelectionChanged += new System.EventHandler(this.dataGridViewBand_SelectionChanged);
-            this.dataGridViewBand.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dataGridViewBand_UserDeletedRow);
+            this.dataGridViewBand.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.dataGridViewBand_UserDeletingRow);
             // 
             // BandName
             // 
