@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TrackControlPanel));
             this.dataGridViewTracks = new System.Windows.Forms.DataGridView();
             this.TrackName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TrackLength = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -39,6 +40,10 @@
             this.textBoxTrackNameCurrent = new System.Windows.Forms.TextBox();
             this.buttonSave = new System.Windows.Forms.Button();
             this.groupBoxNewTrack = new System.Windows.Forms.GroupBox();
+            this.groupBoxUploadTrack = new System.Windows.Forms.GroupBox();
+            this.buttonUpload = new System.Windows.Forms.Button();
+            this.labelPath = new System.Windows.Forms.Label();
+            this.textBoxPath = new System.Windows.Forms.TextBox();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.textBoxTrackLength = new System.Windows.Forms.TextBox();
@@ -46,10 +51,16 @@
             this.textBoxTrackName = new System.Windows.Forms.TextBox();
             this.labelTrackName = new System.Windows.Forms.Label();
             this.errorProviderTrack = new System.Windows.Forms.ErrorProvider(this.components);
+            this.axWindowsMediaPlayer = new AxWMPLib.AxWindowsMediaPlayer();
+            this.panelWMPlayer = new System.Windows.Forms.Panel();
+            this.buttonPlay = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTracks)).BeginInit();
             this.groupBoxTrack.SuspendLayout();
             this.groupBoxNewTrack.SuspendLayout();
+            this.groupBoxUploadTrack.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderTrack)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer)).BeginInit();
+            this.panelWMPlayer.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridViewTracks
@@ -66,6 +77,7 @@
             this.dataGridViewTracks.TabIndex = 0;
             this.dataGridViewTracks.SelectionChanged += new System.EventHandler(this.dataGridViewTracks_SelectionChanged);
             this.dataGridViewTracks.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.dataGridViewTracks_UserDeletingRow);
+            this.dataGridViewTracks.DoubleClick += new System.EventHandler(this.dataGridViewTracks_DoubleClick);
             // 
             // TrackName
             // 
@@ -139,6 +151,7 @@
             // 
             // groupBoxNewTrack
             // 
+            this.groupBoxNewTrack.Controls.Add(this.groupBoxUploadTrack);
             this.groupBoxNewTrack.Controls.Add(this.buttonCancel);
             this.groupBoxNewTrack.Controls.Add(this.buttonAdd);
             this.groupBoxNewTrack.Controls.Add(this.textBoxTrackLength);
@@ -147,10 +160,50 @@
             this.groupBoxNewTrack.Controls.Add(this.labelTrackName);
             this.groupBoxNewTrack.Location = new System.Drawing.Point(12, 237);
             this.groupBoxNewTrack.Name = "groupBoxNewTrack";
-            this.groupBoxNewTrack.Size = new System.Drawing.Size(350, 100);
+            this.groupBoxNewTrack.Size = new System.Drawing.Size(594, 100);
             this.groupBoxNewTrack.TabIndex = 2;
             this.groupBoxNewTrack.TabStop = false;
             this.groupBoxNewTrack.Text = "New track";
+            // 
+            // groupBoxUploadTrack
+            // 
+            this.groupBoxUploadTrack.Controls.Add(this.buttonPlay);
+            this.groupBoxUploadTrack.Controls.Add(this.buttonUpload);
+            this.groupBoxUploadTrack.Controls.Add(this.labelPath);
+            this.groupBoxUploadTrack.Controls.Add(this.textBoxPath);
+            this.groupBoxUploadTrack.Location = new System.Drawing.Point(296, 16);
+            this.groupBoxUploadTrack.Name = "groupBoxUploadTrack";
+            this.groupBoxUploadTrack.Size = new System.Drawing.Size(282, 75);
+            this.groupBoxUploadTrack.TabIndex = 7;
+            this.groupBoxUploadTrack.TabStop = false;
+            this.groupBoxUploadTrack.Text = "Upload Track";
+            // 
+            // buttonUpload
+            // 
+            this.buttonUpload.Location = new System.Drawing.Point(127, 45);
+            this.buttonUpload.Name = "buttonUpload";
+            this.buttonUpload.Size = new System.Drawing.Size(75, 23);
+            this.buttonUpload.TabIndex = 8;
+            this.buttonUpload.Text = "Upload";
+            this.buttonUpload.UseVisualStyleBackColor = true;
+            this.buttonUpload.Click += new System.EventHandler(this.buttonUpload_Click);
+            // 
+            // labelPath
+            // 
+            this.labelPath.AutoSize = true;
+            this.labelPath.Location = new System.Drawing.Point(26, 22);
+            this.labelPath.Name = "labelPath";
+            this.labelPath.Size = new System.Drawing.Size(35, 13);
+            this.labelPath.TabIndex = 7;
+            this.labelPath.Text = "Path :";
+            // 
+            // textBoxPath
+            // 
+            this.textBoxPath.Location = new System.Drawing.Point(67, 19);
+            this.textBoxPath.Name = "textBoxPath";
+            this.textBoxPath.ReadOnly = true;
+            this.textBoxPath.Size = new System.Drawing.Size(198, 20);
+            this.textBoxPath.TabIndex = 6;
             // 
             // buttonCancel
             // 
@@ -211,11 +264,41 @@
             this.errorProviderTrack.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errorProviderTrack.ContainerControl = this;
             // 
+            // axWindowsMediaPlayer
+            // 
+            this.axWindowsMediaPlayer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.axWindowsMediaPlayer.Enabled = true;
+            this.axWindowsMediaPlayer.Location = new System.Drawing.Point(0, 0);
+            this.axWindowsMediaPlayer.Name = "axWindowsMediaPlayer";
+            this.axWindowsMediaPlayer.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer.OcxState")));
+            this.axWindowsMediaPlayer.Size = new System.Drawing.Size(225, 209);
+            this.axWindowsMediaPlayer.TabIndex = 3;
+            // 
+            // panelWMPlayer
+            // 
+            this.panelWMPlayer.Controls.Add(this.axWindowsMediaPlayer);
+            this.panelWMPlayer.Location = new System.Drawing.Point(375, 18);
+            this.panelWMPlayer.Name = "panelWMPlayer";
+            this.panelWMPlayer.Size = new System.Drawing.Size(225, 209);
+            this.panelWMPlayer.TabIndex = 4;
+            // 
+            // buttonPlay
+            // 
+            this.buttonPlay.BackgroundImage = global::Concert.Properties.Resources.play;
+            this.buttonPlay.Location = new System.Drawing.Point(208, 44);
+            this.buttonPlay.Name = "buttonPlay";
+            this.buttonPlay.Size = new System.Drawing.Size(24, 24);
+            this.buttonPlay.TabIndex = 9;
+            this.buttonPlay.UseVisualStyleBackColor = true;
+            this.buttonPlay.Visible = false;
+            this.buttonPlay.Click += new System.EventHandler(this.buttonPlay_Click);
+            // 
             // TrackControlPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(379, 347);
+            this.ClientSize = new System.Drawing.Size(618, 347);
+            this.Controls.Add(this.panelWMPlayer);
             this.Controls.Add(this.groupBoxNewTrack);
             this.Controls.Add(this.groupBoxTrack);
             this.Name = "TrackControlPanel";
@@ -227,7 +310,11 @@
             this.groupBoxTrack.PerformLayout();
             this.groupBoxNewTrack.ResumeLayout(false);
             this.groupBoxNewTrack.PerformLayout();
+            this.groupBoxUploadTrack.ResumeLayout(false);
+            this.groupBoxUploadTrack.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderTrack)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer)).EndInit();
+            this.panelWMPlayer.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -251,5 +338,12 @@
         private System.Windows.Forms.ErrorProvider errorProviderTrack;
         private System.Windows.Forms.DataGridViewTextBoxColumn TrackName;
         private System.Windows.Forms.DataGridViewTextBoxColumn TrackLength;
+        private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer;
+        private System.Windows.Forms.Panel panelWMPlayer;
+        private System.Windows.Forms.GroupBox groupBoxUploadTrack;
+        private System.Windows.Forms.Button buttonUpload;
+        private System.Windows.Forms.Label labelPath;
+        private System.Windows.Forms.TextBox textBoxPath;
+        private System.Windows.Forms.Button buttonPlay;
     }
 }
