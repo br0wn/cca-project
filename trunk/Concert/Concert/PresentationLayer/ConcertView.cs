@@ -14,7 +14,7 @@ namespace Concert.PresentationLayer
 {
     public partial class ConcertView : Form
     {
-        private Regex digits = new Regex(@"^\d+^$");
+        private Regex digits = new Regex(@"^\d+$");
         private Regex date = new Regex(@"^\d\d?[.]\d\d?[.]\d{4}$");
 
         public ConcertView()
