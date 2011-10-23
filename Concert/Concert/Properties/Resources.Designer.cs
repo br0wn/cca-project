@@ -60,13 +60,6 @@ namespace Concert.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap Background {
-            get {
-                object obj = ResourceManager.GetObject("Background", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         internal static System.Drawing.Icon pikachu {
             get {
                 object obj = ResourceManager.GetObject("pikachu", resourceCulture);
