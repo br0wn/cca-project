@@ -153,10 +153,19 @@ namespace Concert.PresentationLayer
 
         private void dataGridViewBand_SelectionChanged(object sender, EventArgs e)
         {
-            RefreshArtistData();
-            comboBoxAlbums.DataSource = null;
-            comboBoxAlbums.DataSource = ((Band)dataGridViewBand.CurrentRow.Tag).Albums;
-            comboBoxAlbums.DisplayMember = "Name";
+            if (dataGridViewBand.CurrentRow != null)
+            {
+                RefreshArtistData();
+                comboBoxAlbums.DataSource = null;
+                comboBoxAlbums.DataSource = ((Band)dataGridViewBand.CurrentRow.Tag).Albums;
+                comboBoxAlbums.DisplayMember = "Name";
+            }
+            else
+            {
+                dataGridViewArtist.Rows.Clear();
+                comboBoxAlbums.DataSource = null;
+                dataGridViewTracks.Rows.Clear();
+            }
         }
 
         private void ConcertView_Load(object sender, EventArgs e)
@@ -314,7 +323,15 @@ namespace Concert.PresentationLayer
             return digits.IsMatch(from) && digits.IsMatch(to) ? true : false;
         }
 
-        private void dataGridViewBand_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        private void dataGridViewBand_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Band band = (Band)dataGridViewBand.CurrentRow.Tag;
+            EditBandForm editBandForm = new EditBandForm(band);
+            editBandForm.ShowDialog();
+            RefreshBandData();
+        }
+
+        private void dataGridViewBand_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
         {
             DBObjectDefinition.Concert concert = (DBObjectDefinition.Concert)dataGridViewConcerts.CurrentRow.Tag;
             Band band = (Band)dataGridViewBand.CurrentRow.Tag;
