@@ -60,6 +60,12 @@
     <Compile Include="DBObjectDefinition\Concert.cs" />
     <Compile Include="DBObjectDefinition\Location.cs" />
     <Compile Include="DBObjectDefinition\Song.cs" />
+    <Compile Include="PresentationLayer\ConcertAddBand.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationLayer\ConcertAddBand.Designer.cs">
+      <DependentUpon>ConcertAddBand.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationLayer\ConcertChangeLocation.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,6 +140,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="PresentationLayer\ConcertAddBand.resx">
+      <DependentUpon>ConcertAddBand.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PresentationLayer\ConcertChangeLocation.resx">
       <DependentUpon>ConcertChangeLocation.cs</DependentUpon>
     </EmbeddedResource>

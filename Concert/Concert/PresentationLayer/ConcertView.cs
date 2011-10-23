@@ -314,6 +314,10 @@ namespace Concert.PresentationLayer
         private void textBoxFind_TextChanged(object sender, EventArgs e)
         {
             RefreshConcertData();
+            if (dataGridViewConcerts.CurrentRow == null)
+            {
+                ClearCurrentForm();
+            }
         }
 
         private bool ValidateTicketPrice()
@@ -336,7 +340,17 @@ namespace Concert.PresentationLayer
             DBObjectDefinition.Concert concert = (DBObjectDefinition.Concert)dataGridViewConcerts.CurrentRow.Tag;
             Band band = (Band)dataGridViewBand.CurrentRow.Tag;
             concert.Bands.Remove(band);
-            DBObjectController.StoreObject(band);
+            DBObjectController.StoreObject(concert);
+        }
+
+        private void buttonAddBands_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewConcerts.CurrentRow != null)
+            {
+                ConcertAddBand hireBand = new ConcertAddBand((DBObjectDefinition.Concert)dataGridViewConcerts.CurrentRow.Tag);
+                hireBand.ShowDialog();
+                RefreshBandData();
+            }
         }
     }
 }

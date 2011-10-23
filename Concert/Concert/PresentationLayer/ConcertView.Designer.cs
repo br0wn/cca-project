@@ -78,6 +78,7 @@
             this.TrackLength = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.errorProviderFindInput = new System.Windows.Forms.ErrorProvider(this.components);
+            this.buttonAddBands = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewArtist)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBand)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewConcerts)).BeginInit();
@@ -145,7 +146,7 @@
             this.dataGridViewBand.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewBand.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.BandName});
-            this.dataGridViewBand.Location = new System.Drawing.Point(20, 24);
+            this.dataGridViewBand.Location = new System.Drawing.Point(45, 24);
             this.dataGridViewBand.Name = "dataGridViewBand";
             this.dataGridViewBand.ReadOnly = true;
             this.dataGridViewBand.Size = new System.Drawing.Size(208, 233);
@@ -469,6 +470,7 @@
             // 
             // groupBoxBands
             // 
+            this.groupBoxBands.Controls.Add(this.buttonAddBands);
             this.groupBoxBands.Controls.Add(this.dataGridViewBand);
             this.groupBoxBands.Controls.Add(this.tabControlArtistAlbum);
             this.groupBoxBands.Location = new System.Drawing.Point(10, 353);
@@ -482,7 +484,7 @@
             // 
             this.tabControlArtistAlbum.Controls.Add(this.tabPage1);
             this.tabControlArtistAlbum.Controls.Add(this.tabPage2);
-            this.tabControlArtistAlbum.Location = new System.Drawing.Point(259, 24);
+            this.tabControlArtistAlbum.Location = new System.Drawing.Point(267, 24);
             this.tabControlArtistAlbum.Name = "tabControlArtistAlbum";
             this.tabControlArtistAlbum.SelectedIndex = 0;
             this.tabControlArtistAlbum.Size = new System.Drawing.Size(346, 237);
@@ -562,6 +564,17 @@
             // 
             this.errorProviderFindInput.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errorProviderFindInput.ContainerControl = this;
+            // 
+            // buttonAddBands
+            // 
+            this.buttonAddBands.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonAddBands.Location = new System.Drawing.Point(13, 24);
+            this.buttonAddBands.Name = "buttonAddBands";
+            this.buttonAddBands.Size = new System.Drawing.Size(25, 25);
+            this.buttonAddBands.TabIndex = 20;
+            this.buttonAddBands.Text = "+";
+            this.buttonAddBands.UseVisualStyleBackColor = true;
+            this.buttonAddBands.Click += new System.EventHandler(this.buttonAddBands_Click);
             // 
             // ConcertView
             // 
@@ -647,5 +660,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBoxFindConcertTicketPriceTo;
         private System.Windows.Forms.ErrorProvider errorProviderFindInput;
+        private System.Windows.Forms.Button buttonAddBands;
     }
 }

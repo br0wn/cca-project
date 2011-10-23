@@ -126,9 +126,20 @@ namespace Concert.DataAccessLayer
 			return db.Query<Band>( b => true );
 		}
 
-         public static IEnumerable<Band> GetBandsByArtist(Artist artist)
+        public static IEnumerable<Band> GetBandsByArtist(Artist artist)
         {
             return db.Query<Band>(b => b.Artist.Contains(artist));
+        }
+
+        public static IEnumerable<Band> GetAdjectiveBands(IEnumerable<Band> bands)
+        {
+            List<Band> adjectiveBands = new List<Band>();
+            adjectiveBands.AddRange(GetAllBands());
+            foreach (Band band in bands)
+            {
+                adjectiveBands.Remove(band);
+            }
+            return adjectiveBands;
         }
     }
 }
