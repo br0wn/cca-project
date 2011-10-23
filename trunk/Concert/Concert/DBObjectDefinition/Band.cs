@@ -7,16 +7,19 @@ namespace Concert.DBObjectDefinition
 {
     public class Band
     {
+        private string id;
         private string name;
         private List<Artist> artists;
         private List<Album> albums;
 
+        public string ID { get { return id; } }
         public List<Artist> Artist { get { return artists; } }
         public List<Album> Albums { get { return albums; } }
         public string Name { get { return name; } set { name = value; } }
 
         public Band(string name)
         {
+            id = name + DateTime.Now.ToString();
             Name = name;
             this.artists = new List<Artist>();
             this.albums = new List<Album>();

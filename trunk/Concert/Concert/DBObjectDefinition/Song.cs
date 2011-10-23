@@ -7,8 +7,11 @@ namespace Concert.DBObjectDefinition
 {
     public class Song
     {
+        private string id;
         private string name;
         private int length;
+
+        public string ID { get { return id; } }
 
         public string Name
         {
@@ -36,6 +39,7 @@ namespace Concert.DBObjectDefinition
 
         public Song(string name, int length)
         {
+            id = name + DateTime.Now.ToString();
             Name = name;
             Length = length;
         }

@@ -7,11 +7,13 @@ namespace Concert.DBObjectDefinition
 {
     public class Location
     {
+        private string id;
         private string country;
         private string address;
         private int postalCode;
         private int seatCount;
 
+        public string ID { get { return id; } }
         public string Country { get { return country; } set { country = value; } }
         public string Address { get { return address; } set { address = value; } }
         public int PostalCode { get { return postalCode; } set { postalCode = value; } }
@@ -19,6 +21,7 @@ namespace Concert.DBObjectDefinition
 
         public Location(string country, string address, int postalCode, int seatCount)
         {
+            id = address + DateTime.Now.ToString();
             Country = country;
             Address = address;
             PostalCode = postalCode;
