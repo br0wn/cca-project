@@ -74,34 +74,41 @@ namespace Concert.PresentationLayer {
 
         private void buttonAddAlbum_Click(object sender, EventArgs e)
         {
-            string albumName = this.textBoxAlbumName.Text.Trim();
-            if (albumName == string.Empty)
+            if (listBoxAvaliableBands.SelectedIndex >= 0)
             {
-                MessageBox.Show("Album name cannot be empty","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
-                return;
+                string albumName = this.textBoxAlbumName.Text.Trim();
+                if (albumName == string.Empty)
+                {
+                    MessageBox.Show("Album name cannot be empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                Album album = new Album(albumName);
+                foreach (Song song in this.addedSongs)
+                {
+                    album.AddTrack(song);
+                }
+                int bandIndex = this.listBoxAvaliableBands.SelectedIndex;
+                Band band = this.availableBands[bandIndex];
+                //band.Albums.Add(album);
+                band.AddAlbum(album);
+
+                try
+                {
+                    DBObjectController.StoreObject(album);
+                    DBObjectController.StoreObject(band);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error while adding album");
+                    return;
+                }
+                MessageBox.Show("Album added successfully!");
+                this.ClearForm();
             }
-            Album album = new Album(albumName);
-            foreach (Song song in this.addedSongs)
+            else
             {
-                album.AddTrack(song);
+                MessageBox.Show("Please select valid band, or add new band if one does not exist.", "Selected band error");
             }
-            int bandIndex = this.listBoxAvaliableBands.SelectedIndex;
-            Band band = this.availableBands[bandIndex];
-            //band.Albums.Add(album);
-            band.AddAlbum(album);
-                    
-            try
-            {
-                DBObjectController.StoreObject(album);
-                DBObjectController.StoreObject(band);                
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error while adding album");
-                return;
-            }
-            MessageBox.Show("Album added successfully!");
-            this.ClearForm();
         }
 
         private void ClearForm()
