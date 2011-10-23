@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Concert.DataAccessLayer;
 using Concert.DBObjectDefinition;
+using System.IO;
 
 namespace Concert.PresentationLayer
 {
@@ -48,7 +49,8 @@ namespace Concert.PresentationLayer
             {
                 string name = textBoxTrackName.Text;
                 int length = int.Parse(textBoxTrackLength.Text);
-                DBObjectController.StoreObject(new Song(name, length));
+                bool trackUploaded = !string.IsNullOrEmpty(textBoxPath.Text);
+                DBObjectController.StoreObject(new Song(name, length, trackUploaded, textBoxPath.Text));
                 MessageBox.Show("You have successfully added new track", "Success confirmation");
                 ClearForm();
                 LoadTrackData();
@@ -63,8 +65,10 @@ namespace Concert.PresentationLayer
 
         private void ClearForm()
         {
+            buttonPlay.Visible = false;
             textBoxTrackName.Clear();
             textBoxTrackLength.Clear();
+            textBoxPath.Clear();
         }
 
         private void textBoxTrackName_Validating(object sender, CancelEventArgs e)
@@ -102,8 +106,11 @@ namespace Concert.PresentationLayer
 
         private void buttonCancel_Click(object sender, EventArgs e)
         {
-            textBoxTrackName.Text = string.Empty;
-            textBoxTrackLength.Text = string.Empty;
+            if (axWindowsMediaPlayer.URL == textBoxPath.Text)
+            {
+                axWindowsMediaPlayer.URL = string.Empty;
+            }
+            ClearForm();
             errorProviderTrack.SetError(textBoxTrackName, string.Empty);
             errorProviderTrack.SetError(textBoxTrackLength, string.Empty);
         }
@@ -214,13 +221,55 @@ namespace Concert.PresentationLayer
 
         private void dataGridViewTracks_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
         {
+            Song s = (Song)e.Row.Tag;
             foreach (Album album in DBObjectController.GetAlbumsByTrack((Song)e.Row.Tag))
             {
-                Song s = (Song)e.Row.Tag;
                 album.Songs.Remove(s);
                 DBObjectController.StoreObject(album);
             }
+            if ( !string.IsNullOrEmpty(s.TrackPath))
+            {
+                File.Delete(@"..\..\" + s.TrackPath);
+            }
             DBObjectController.DeleteObject(e.Row.Tag);
+        }
+
+        private void buttonUpload_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog uploadDialog = new OpenFileDialog();
+            uploadDialog.Filter = "Audio files (*.mp3)|*.mp3";
+            uploadDialog.InitialDirectory = @"C:\";
+
+            if (uploadDialog.ShowDialog() == DialogResult.OK)
+            {
+                textBoxPath.Text = uploadDialog.FileName;
+                buttonPlay.Visible = true;
+            }
+            else
+            {
+                buttonPlay.Visible = false;
+            }
+        }
+
+        private void buttonPlay_Click(object sender, EventArgs e)
+        {
+            axWindowsMediaPlayer.URL = textBoxPath.Text;
+        }
+
+        private void dataGridViewTracks_DoubleClick(object sender, EventArgs e)
+        {
+            Song track = (Song)dataGridViewTracks.CurrentRow.Tag;
+            if (!string.IsNullOrEmpty(track.TrackPath))
+            {
+                string[] subPath = Application.ExecutablePath.Split('\\');
+                string url = "";
+                for (int i = 0; i < subPath.Length - 3; i++)
+                {
+                    url += subPath[i] + "\\";
+                }
+                url += track.TrackPath;
+                axWindowsMediaPlayer.URL = url;
+            }
         }
     }
 }
