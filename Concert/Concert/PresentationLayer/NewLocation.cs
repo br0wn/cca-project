@@ -174,16 +174,23 @@ namespace Concert.PresentationLayer
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            ValidateCurrentSelection();
-            if (NoCurrentErrorProviderMsg())
+            if (dataGridViewLocation.CurrentRow != null)
             {
-                DBObjectDefinition.Location location = (DBObjectDefinition.Location)dataGridViewLocation.CurrentRow.Tag;
-                location.Country = textBoxCountryCurrent.Text;
-                location.Address = textBoxAddressCurrent.Text;
-                location.PostalCode = int.Parse(textBoxPostalCodeCurrent.Text);
-                location.SeatCount = int.Parse(textBoxSeatCountCurrent.Text);
-                DBObjectController.StoreObject(location);
-                LoadLocationData();
+                ValidateCurrentSelection();
+                if (NoCurrentErrorProviderMsg())
+                {
+                    DBObjectDefinition.Location location = (DBObjectDefinition.Location)dataGridViewLocation.CurrentRow.Tag;
+                    location.Country = textBoxCountryCurrent.Text;
+                    location.Address = textBoxAddressCurrent.Text;
+                    location.PostalCode = int.Parse(textBoxPostalCodeCurrent.Text);
+                    location.SeatCount = int.Parse(textBoxSeatCountCurrent.Text);
+                    DBObjectController.StoreObject(location);
+                    LoadLocationData();
+                }
+            }
+            else
+            {
+                ClearCurrentSelection();
             }
         }
 
