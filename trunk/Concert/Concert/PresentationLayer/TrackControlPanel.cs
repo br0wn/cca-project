@@ -217,6 +217,7 @@ namespace Concert.PresentationLayer
             {
                 MdiParent.MainMenuStrip.Enabled = true;
             }
+            
         }
 
         private void dataGridViewTracks_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)

@@ -26,6 +26,7 @@ namespace Concert.PresentationLayer
         private void LoadConcertData()
         {
             DBObjectController.GetAllAlbums();
+            DBObjectController.GetAllTracks();
             dataGridViewConcerts.Rows.Clear();
             foreach (DBObjectDefinition.Concert item in DBObjectController.GetAllConcerts())
             {
