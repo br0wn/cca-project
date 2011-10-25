@@ -155,6 +155,7 @@ namespace Concert.PresentationLayer {
             }
             this.ClearAlbumData();
             this.loadExternalData();
+            this.buttonEdit.Enabled = true;
         }
         private void ClearAlbumData()
         {
