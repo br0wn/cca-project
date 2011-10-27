@@ -252,7 +252,7 @@ namespace Concert.PresentationLayer
 				return;
 			}
 
-			MessageBox.Show( "Band successfully added!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information ); 
+			MessageBox.Show( "Band successfully edited!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information ); 
 
 			this.EditMode = false;
 			//loadBandData( bandIndex );
