@@ -3,22 +3,12 @@ using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Db4objects.Db4o;
-using Db4objects.Db4o.Config;
-
 using Concert.DBObjectDefinition;
 
 namespace Concert.DataAccessLayer
 {
     class DBObjectController
     {
-        public readonly static string YapFileName = "../../db4o reference/concerts.yap";
-            //Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "concerts.yap");
-
-        public static IObjectContainer db;
-
-        public static IEmbeddedConfiguration config;
-
         public static void StoreObject(object obj)
         {
             db.Store(obj);
