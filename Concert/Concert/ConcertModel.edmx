@@ -538,14 +538,14 @@
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="ConcertBand" TypeName="ConcertModel.ConcertBand" StoreEntitySet="ConcertBand">
-      <EndProperty Name="Concert">
-        <ScalarProperty Name="Id" ColumnName="Concert_Id" />
-      </EndProperty>
-      <EndProperty Name="Band">
-        <ScalarProperty Name="Id" ColumnName="Band_Id" />
-      </EndProperty>
-    </AssociationSetMapping>
+          <AssociationSetMapping Name="ConcertBand" TypeName="ConcertModel.ConcertBand" StoreEntitySet="ConcertBand" >
+            <EndProperty Name="Band">
+              <ScalarProperty Name="Id" ColumnName="Band_Id" />
+            </EndProperty>
+            <EndProperty Name="Concert">
+              <ScalarProperty Name="Id" ColumnName="Concert_Id" />
+            </EndProperty>
+          </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
