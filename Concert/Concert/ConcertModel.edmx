@@ -1,0 +1,610 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ConcertModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="ConcertModelStoreContainer">
+    <EntitySet Name="Album" EntityType="ConcertModel.Store.Album" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Artist" EntityType="ConcertModel.Store.Artist" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Band" EntityType="ConcertModel.Store.Band" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Concert" EntityType="ConcertModel.Store.Concert" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Country" EntityType="ConcertModel.Store.Country" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Location" EntityType="ConcertModel.Store.Location" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Track" EntityType="ConcertModel.Store.Track" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Instrument" EntityType="ConcertModel.Store.Instrument" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="InstrumentArtist" EntityType="ConcertModel.Store.InstrumentArtist" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ArtistBand" EntityType="ConcertModel.Store.ArtistBand" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ConcertBand" EntityType="ConcertModel.Store.ConcertBand" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_InstrumentArtist_Instrument" Association="ConcertModel.Store.FK_InstrumentArtist_Instrument">
+      <End Role="Instrument" EntitySet="Instrument" />
+      <End Role="InstrumentArtist" EntitySet="InstrumentArtist" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InstrumentArtist_Artist" Association="ConcertModel.Store.FK_InstrumentArtist_Artist">
+      <End Role="Artist" EntitySet="Artist" />
+      <End Role="InstrumentArtist" EntitySet="InstrumentArtist" />
+    </AssociationSet>
+    <AssociationSet Name="BandAlbum" Association="ConcertModel.Store.BandAlbum">
+      <End Role="Band" EntitySet="Band" />
+      <End Role="Album" EntitySet="Album" />
+    </AssociationSet>
+    <AssociationSet Name="AlbumTrack" Association="ConcertModel.Store.AlbumTrack">
+      <End Role="Album" EntitySet="Album" />
+      <End Role="Track" EntitySet="Track" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ArtistBand_Artist" Association="ConcertModel.Store.FK_ArtistBand_Artist">
+      <End Role="Artist" EntitySet="Artist" />
+      <End Role="ArtistBand" EntitySet="ArtistBand" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ArtistBand_Band" Association="ConcertModel.Store.FK_ArtistBand_Band">
+      <End Role="Band" EntitySet="Band" />
+      <End Role="ArtistBand" EntitySet="ArtistBand" />
+    </AssociationSet>
+    <AssociationSet Name="CountryLocation" Association="ConcertModel.Store.CountryLocation">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="Location" EntitySet="Location" />
+    </AssociationSet>
+    <AssociationSet Name="LocationConcert" Association="ConcertModel.Store.LocationConcert">
+      <End Role="Location" EntitySet="Location" />
+      <End Role="Concert" EntitySet="Concert" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ConcertBand_Concert" Association="ConcertModel.Store.FK_ConcertBand_Concert">
+      <End Role="Concert" EntitySet="Concert" />
+      <End Role="ConcertBand" EntitySet="ConcertBand" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ConcertBand_Band" Association="ConcertModel.Store.FK_ConcertBand_Band">
+      <End Role="Band" EntitySet="Band" />
+      <End Role="ConcertBand" EntitySet="ConcertBand" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Album">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Band_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Artist">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="BirthDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Band">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Concert">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TicketPrice" Type="int" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Location_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Location">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SeatCount" Type="int" Nullable="false" />
+    <Property Name="Country_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Track">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Length" Type="int" Nullable="false" />
+    <Property Name="Album_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Instrument">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="InstrumentArtist">
+    <Key>
+      <PropertyRef Name="Instrument_Id" />
+      <PropertyRef Name="Artist_Id" />
+    </Key>
+    <Property Name="Instrument_Id" Type="int" Nullable="false" />
+    <Property Name="Artist_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ArtistBand">
+    <Key>
+      <PropertyRef Name="Artist_Id" />
+      <PropertyRef Name="Band_Id" />
+    </Key>
+    <Property Name="Artist_Id" Type="int" Nullable="false" />
+    <Property Name="Band_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ConcertBand">
+    <Key>
+      <PropertyRef Name="Concert_Id" />
+      <PropertyRef Name="Band_Id" />
+    </Key>
+    <Property Name="Concert_Id" Type="int" Nullable="false" />
+    <Property Name="Band_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="BandAlbum">
+    <End Role="Band" Type="ConcertModel.Store.Band" Multiplicity="1" />
+    <End Role="Album" Type="ConcertModel.Store.Album" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Band">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Album">
+        <PropertyRef Name="Band_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AlbumTrack">
+    <End Role="Album" Type="ConcertModel.Store.Album" Multiplicity="1" />
+    <End Role="Track" Type="ConcertModel.Store.Track" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Album">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Track">
+        <PropertyRef Name="Album_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CountryLocation">
+    <End Role="Country" Type="ConcertModel.Store.Country" Multiplicity="1" />
+    <End Role="Location" Type="ConcertModel.Store.Location" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Location">
+        <PropertyRef Name="Country_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LocationConcert">
+    <End Role="Location" Type="ConcertModel.Store.Location" Multiplicity="1" />
+    <End Role="Concert" Type="ConcertModel.Store.Concert" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Location">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Concert">
+        <PropertyRef Name="Location_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InstrumentArtist_Instrument">
+    <End Role="Instrument" Type="ConcertModel.Store.Instrument" Multiplicity="1" />
+    <End Role="InstrumentArtist" Type="ConcertModel.Store.InstrumentArtist" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Instrument">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InstrumentArtist">
+        <PropertyRef Name="Instrument_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InstrumentArtist_Artist">
+    <End Role="InstrumentArtist" Type="ConcertModel.Store.InstrumentArtist" Multiplicity="*" />
+    <End Role="Artist" Type="ConcertModel.Store.Artist" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Artist">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InstrumentArtist">
+        <PropertyRef Name="Artist_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ArtistBand_Artist">
+    <End Role="Artist" Type="ConcertModel.Store.Artist" Multiplicity="1" />
+    <End Role="ArtistBand" Type="ConcertModel.Store.ArtistBand" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Artist">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ArtistBand">
+        <PropertyRef Name="Artist_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ArtistBand_Band">
+    <End Role="ArtistBand" Type="ConcertModel.Store.ArtistBand" Multiplicity="*" />
+    <End Role="Band" Type="ConcertModel.Store.Band" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Band">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ArtistBand">
+        <PropertyRef Name="Band_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ConcertBand_Concert">
+    <End Role="Concert" Type="ConcertModel.Store.Concert" Multiplicity="1" />
+    <End Role="ConcertBand" Type="ConcertModel.Store.ConcertBand" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Concert">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ConcertBand">
+        <PropertyRef Name="Concert_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ConcertBand_Band">
+    <End Role="ConcertBand" Type="ConcertModel.Store.ConcertBand" Multiplicity="*" />
+    <End Role="Band" Type="ConcertModel.Store.Band" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Band">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ConcertBand">
+        <PropertyRef Name="Band_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ConcertModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="ConcertEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Album" EntityType="ConcertModel.Album" />
+          <EntitySet Name="Artist" EntityType="ConcertModel.Artist" />
+          <EntitySet Name="Band" EntityType="ConcertModel.Band" />
+          <EntitySet Name="Concert" EntityType="ConcertModel.Concert" />
+          <EntitySet Name="Country" EntityType="ConcertModel.Country" />
+          <EntitySet Name="Location" EntityType="ConcertModel.Location" />
+          <EntitySet Name="Track" EntityType="ConcertModel.Track" />
+          <EntitySet Name="Instrument" EntityType="ConcertModel.Instrument" />
+          <AssociationSet Name="InstrumentArtist" Association="ConcertModel.InstrumentArtist">
+            <End Role="Instrument" EntitySet="Instrument" />
+            <End Role="Artist" EntitySet="Artist" />
+          </AssociationSet>
+          <AssociationSet Name="BandAlbum" Association="ConcertModel.BandAlbum">
+            <End Role="Band" EntitySet="Band" />
+            <End Role="Album" EntitySet="Album" />
+          </AssociationSet>
+          <AssociationSet Name="AlbumTrack" Association="ConcertModel.AlbumTrack">
+            <End Role="Album" EntitySet="Album" />
+            <End Role="Track" EntitySet="Track" />
+          </AssociationSet>
+          <AssociationSet Name="ArtistBand" Association="ConcertModel.ArtistBand">
+            <End Role="Artist" EntitySet="Artist" />
+            <End Role="Band" EntitySet="Band" />
+          </AssociationSet>
+          <AssociationSet Name="CountryLocation" Association="ConcertModel.CountryLocation">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="Location" EntitySet="Location" />
+          </AssociationSet>
+          <AssociationSet Name="LocationConcert" Association="ConcertModel.LocationConcert">
+            <End Role="Location" EntitySet="Location" />
+            <End Role="Concert" EntitySet="Concert" />
+          </AssociationSet>
+          <AssociationSet Name="ConcertBand" Association="ConcertModel.ConcertBand">
+            <End Role="Concert" EntitySet="Concert" />
+            <End Role="Band" EntitySet="Band" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Album">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="Band" Relationship="ConcertModel.BandAlbum" FromRole="Album" ToRole="Band" />
+          <NavigationProperty Name="Track" Relationship="ConcertModel.AlbumTrack" FromRole="Album" ToRole="Track" />
+        </EntityType>
+        <EntityType Name="Artist">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" />
+          <Property Name="LastName" Type="String" Nullable="false" />
+          <Property Name="BirthDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Instrument" Relationship="ConcertModel.InstrumentArtist" FromRole="Artist" ToRole="Instrument" />
+          <NavigationProperty Name="Band" Relationship="ConcertModel.ArtistBand" FromRole="Artist" ToRole="Band" />
+        </EntityType>
+        <EntityType Name="Band">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="Album" Relationship="ConcertModel.BandAlbum" FromRole="Band" ToRole="Album" />
+          <NavigationProperty Name="Artist" Relationship="ConcertModel.ArtistBand" FromRole="Band" ToRole="Artist" />
+          <NavigationProperty Name="Concert" Relationship="ConcertModel.ConcertBand" FromRole="Band" ToRole="Concert" />
+        </EntityType>
+        <EntityType Name="Concert">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="TicketPrice" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Location" Relationship="ConcertModel.LocationConcert" FromRole="Concert" ToRole="Location" />
+          <NavigationProperty Name="Band" Relationship="ConcertModel.ConcertBand" FromRole="Concert" ToRole="Band" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="Location" Relationship="ConcertModel.CountryLocation" FromRole="Country" ToRole="Location" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Address" Type="String" Nullable="false" />
+          <Property Name="SeatCount" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Country" Relationship="ConcertModel.CountryLocation" FromRole="Location" ToRole="Country" />
+          <NavigationProperty Name="Concert" Relationship="ConcertModel.LocationConcert" FromRole="Location" ToRole="Concert" />
+        </EntityType>
+        <EntityType Name="Track">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Length" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Album" Relationship="ConcertModel.AlbumTrack" FromRole="Track" ToRole="Album" />
+        </EntityType>
+        <EntityType Name="Instrument">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" />
+          <NavigationProperty Name="Artist" Relationship="ConcertModel.InstrumentArtist" FromRole="Instrument" ToRole="Artist" />
+        </EntityType>
+        <Association Name="InstrumentArtist">
+          <End Type="ConcertModel.Instrument" Role="Instrument" Multiplicity="*" />
+          <End Type="ConcertModel.Artist" Role="Artist" Multiplicity="*" />
+        </Association>
+        <Association Name="BandAlbum">
+          <End Type="ConcertModel.Band" Role="Band" Multiplicity="1" />
+          <End Type="ConcertModel.Album" Role="Album" Multiplicity="*" />
+        </Association>
+        <Association Name="AlbumTrack">
+          <End Type="ConcertModel.Album" Role="Album" Multiplicity="1" />
+          <End Type="ConcertModel.Track" Role="Track" Multiplicity="*" />
+        </Association>
+        <Association Name="ArtistBand">
+          <End Type="ConcertModel.Artist" Role="Artist" Multiplicity="*" />
+          <End Type="ConcertModel.Band" Role="Band" Multiplicity="*" />
+        </Association>
+        <Association Name="CountryLocation">
+          <End Type="ConcertModel.Country" Role="Country" Multiplicity="1" />
+          <End Type="ConcertModel.Location" Role="Location" Multiplicity="*" />
+        </Association>
+        <Association Name="LocationConcert">
+          <End Type="ConcertModel.Location" Role="Location" Multiplicity="1" />
+          <End Type="ConcertModel.Concert" Role="Concert" Multiplicity="*" />
+        </Association>
+        <Association Name="ConcertBand">
+          <End Type="ConcertModel.Concert" Role="Concert" Multiplicity="*" />
+          <End Type="ConcertModel.Band" Role="Band" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ConcertModelStoreContainer" CdmEntityContainer="ConcertEntities">
+    <EntitySetMapping Name="Album">
+      <EntityTypeMapping TypeName="IsTypeOf(ConcertModel.Album)">
+        <MappingFragment StoreEntitySet="Album">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Artist">
+      <EntityTypeMapping TypeName="IsTypeOf(ConcertModel.Artist)">
+        <MappingFragment StoreEntitySet="Artist">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Band">
+      <EntityTypeMapping TypeName="IsTypeOf(ConcertModel.Band)">
+        <MappingFragment StoreEntitySet="Band">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Concert">
+      <EntityTypeMapping TypeName="IsTypeOf(ConcertModel.Concert)">
+        <MappingFragment StoreEntitySet="Concert">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="TicketPrice" ColumnName="TicketPrice" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Country">
+      <EntityTypeMapping TypeName="IsTypeOf(ConcertModel.Country)">
+        <MappingFragment StoreEntitySet="Country">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Location">
+      <EntityTypeMapping TypeName="IsTypeOf(ConcertModel.Location)">
+        <MappingFragment StoreEntitySet="Location">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="SeatCount" ColumnName="SeatCount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Track">
+      <EntityTypeMapping TypeName="IsTypeOf(ConcertModel.Track)">
+        <MappingFragment StoreEntitySet="Track">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Length" ColumnName="Length" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Instrument">
+      <EntityTypeMapping TypeName="IsTypeOf(ConcertModel.Instrument)">
+        <MappingFragment StoreEntitySet="Instrument">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="InstrumentArtist" TypeName="ConcertModel.InstrumentArtist" StoreEntitySet="InstrumentArtist">
+      <EndProperty Name="Instrument">
+        <ScalarProperty Name="Id" ColumnName="Instrument_Id" />
+      </EndProperty>
+      <EndProperty Name="Artist">
+        <ScalarProperty Name="Id" ColumnName="Artist_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="BandAlbum" TypeName="ConcertModel.BandAlbum" StoreEntitySet="Album">
+      <EndProperty Name="Band">
+        <ScalarProperty Name="Id" ColumnName="Band_Id" />
+      </EndProperty>
+      <EndProperty Name="Album">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="AlbumTrack" TypeName="ConcertModel.AlbumTrack" StoreEntitySet="Track">
+      <EndProperty Name="Album">
+        <ScalarProperty Name="Id" ColumnName="Album_Id" />
+      </EndProperty>
+      <EndProperty Name="Track">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ArtistBand" TypeName="ConcertModel.ArtistBand" StoreEntitySet="ArtistBand">
+      <EndProperty Name="Artist">
+        <ScalarProperty Name="Id" ColumnName="Artist_Id" />
+      </EndProperty>
+      <EndProperty Name="Band">
+        <ScalarProperty Name="Id" ColumnName="Band_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CountryLocation" TypeName="ConcertModel.CountryLocation" StoreEntitySet="Location">
+      <EndProperty Name="Country">
+        <ScalarProperty Name="Id" ColumnName="Country_Id" />
+      </EndProperty>
+      <EndProperty Name="Location">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="LocationConcert" TypeName="ConcertModel.LocationConcert" StoreEntitySet="Concert">
+      <EndProperty Name="Location">
+        <ScalarProperty Name="Id" ColumnName="Location_Id" />
+      </EndProperty>
+      <EndProperty Name="Concert">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ConcertBand" TypeName="ConcertModel.ConcertBand" StoreEntitySet="ConcertBand">
+      <EndProperty Name="Concert">
+        <ScalarProperty Name="Id" ColumnName="Concert_Id" />
+      </EndProperty>
+      <EndProperty Name="Band">
+        <ScalarProperty Name="Id" ColumnName="Band_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Model1" ZoomLevel="71">
+        <EntityTypeShape EntityType="ConcertModel.Album" Width="1.5" PointX="12.625" PointY="5" Height="1.7879850260416657" IsExpanded="true" />
+        <EntityTypeShape EntityType="ConcertModel.Artist" Width="1.5" PointX="16.625" PointY="4.25" Height="1.9802864583333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="ConcertModel.Band" Width="1.5" PointX="12.625" PointY="2.25" Height="1.9802864583333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="ConcertModel.Concert" Width="1.5" PointX="8.375" PointY="4.625" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="ConcertModel.Country" Width="1.5" PointX="10.625" PointY="7.875" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="ConcertModel.Location" Width="1.5" PointX="8.5" PointY="7.625" Height="1.9802864583333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="ConcertModel.Track" Width="1.5" PointX="12.625" PointY="7.625" Height="1.7879850260416657" IsExpanded="true" />
+        <EntityTypeShape EntityType="ConcertModel.Instrument" Width="1.5" PointX="16.625" PointY="7.125" Height="1.4033821614583335" />
+        <AssociationConnector Association="ConcertModel.InstrumentArtist">
+          <ConnectorPoint PointX="17.375" PointY="7.125" />
+          <ConnectorPoint PointX="17.375" PointY="6.422587890625" />
+        </AssociationConnector>
+        <AssociationConnector Association="ConcertModel.BandAlbum">
+          <ConnectorPoint PointX="13.375" PointY="4.2302864583333326" />
+          <ConnectorPoint PointX="13.375" PointY="5" />
+        </AssociationConnector>
+        <AssociationConnector Association="ConcertModel.AlbumTrack">
+          <ConnectorPoint PointX="13.375" PointY="6.7879850260416656" />
+          <ConnectorPoint PointX="13.375" PointY="7.625" />
+        </AssociationConnector>
+        <AssociationConnector Association="ConcertModel.ArtistBand">
+          <ConnectorPoint PointX="17.375" PointY="4.25" />
+          <ConnectorPoint PointX="17.375" PointY="3.2401432291666663" />
+          <ConnectorPoint PointX="14.125" PointY="3.2401432291666663" />
+        </AssociationConnector>
+        <AssociationConnector Association="ConcertModel.CountryLocation">
+          <ConnectorPoint PointX="10.625" PointY="8.672841796875" />
+          <ConnectorPoint PointX="10" PointY="8.672841796875" />
+        </AssociationConnector>
+        <AssociationConnector Association="ConcertModel.LocationConcert">
+          <ConnectorPoint PointX="9.1875" PointY="7.625" />
+          <ConnectorPoint PointX="9.1875" PointY="6.797587890625" />
+        </AssociationConnector>
+        <AssociationConnector Association="ConcertModel.ConcertBand">
+          <ConnectorPoint PointX="9.125" PointY="4.625" />
+          <ConnectorPoint PointX="9.125" PointY="3.2401432291666663" />
+          <ConnectorPoint PointX="12.625" PointY="3.2401432291666663" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
