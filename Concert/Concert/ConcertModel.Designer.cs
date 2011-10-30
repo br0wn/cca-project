@@ -1347,12 +1347,16 @@ namespace Concert
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="name">Initial value of the Name property.</param>
         /// <param name="length">Initial value of the Length property.</param>
-        public static Track CreateTrack(global::System.Int32 id, global::System.String name, global::System.Int32 length)
+        /// <param name="uploaded">Initial value of the Uploaded property.</param>
+        /// <param name="path">Initial value of the Path property.</param>
+        public static Track CreateTrack(global::System.Int32 id, global::System.String name, global::System.Int32 length, global::System.Boolean uploaded, global::System.String path)
         {
             Track track = new Track();
             track.Id = id;
             track.Name = name;
             track.Length = length;
+            track.Uploaded = uploaded;
+            track.Path = path;
             return track;
         }
 
@@ -1433,6 +1437,54 @@ namespace Concert
         private global::System.Int32 _Length;
         partial void OnLengthChanging(global::System.Int32 value);
         partial void OnLengthChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean Uploaded
+        {
+            get
+            {
+                return _Uploaded;
+            }
+            set
+            {
+                OnUploadedChanging(value);
+                ReportPropertyChanging("Uploaded");
+                _Uploaded = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Uploaded");
+                OnUploadedChanged();
+            }
+        }
+        private global::System.Boolean _Uploaded;
+        partial void OnUploadedChanging(global::System.Boolean value);
+        partial void OnUploadedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Path
+        {
+            get
+            {
+                return _Path;
+            }
+            set
+            {
+                OnPathChanging(value);
+                ReportPropertyChanging("Path");
+                _Path = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Path");
+                OnPathChanged();
+            }
+        }
+        private global::System.String _Path;
+        partial void OnPathChanging(global::System.String value);
+        partial void OnPathChanged();
 
         #endregion
     

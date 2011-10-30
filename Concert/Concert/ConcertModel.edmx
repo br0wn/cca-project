@@ -115,6 +115,8 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Length" Type="int" Nullable="false" />
+    <Property Name="Uploaded" Type="bit" Nullable="false" />
+    <Property Name="Path" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Album_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Instrument">
@@ -377,6 +379,8 @@
           <Property Name="Name" Type="String" Nullable="false" />
           <Property Name="Length" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Album" Relationship="ConcertModel.AlbumTrack" FromRole="Track" ToRole="Album" />
+          <Property Type="Boolean" Name="Uploaded" Nullable="false" />
+          <Property Type="String" Name="Path" Nullable="false" />
         </EntityType>
         <EntityType Name="Instrument">
           <Key>
@@ -479,6 +483,8 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Length" ColumnName="Length" />
+          <ScalarProperty Name="Uploaded" ColumnName="Uploaded" />
+          <ScalarProperty Name="Path" ColumnName="Path" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -538,14 +544,14 @@
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
-          <AssociationSetMapping Name="ConcertBand" TypeName="ConcertModel.ConcertBand" StoreEntitySet="ConcertBand" >
-            <EndProperty Name="Band">
-              <ScalarProperty Name="Id" ColumnName="Band_Id" />
-            </EndProperty>
-            <EndProperty Name="Concert">
-              <ScalarProperty Name="Id" ColumnName="Concert_Id" />
-            </EndProperty>
-          </AssociationSetMapping>
+    <AssociationSetMapping Name="ConcertBand" TypeName="ConcertModel.ConcertBand" StoreEntitySet="ConcertBand">
+      <EndProperty Name="Concert">
+        <ScalarProperty Name="Id" ColumnName="Concert_Id" />
+      </EndProperty>
+      <EndProperty Name="Band">
+        <ScalarProperty Name="Id" ColumnName="Band_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
@@ -572,7 +578,7 @@
         <EntityTypeShape EntityType="ConcertModel.Concert" Width="1.5" PointX="8.375" PointY="4.625" Height="2.1725878906249996" IsExpanded="true" />
         <EntityTypeShape EntityType="ConcertModel.Country" Width="1.5" PointX="10.625" PointY="7.875" Height="1.5956835937499996" IsExpanded="true" />
         <EntityTypeShape EntityType="ConcertModel.Location" Width="1.5" PointX="8.5" PointY="7.625" Height="1.9802864583333335" IsExpanded="true" />
-        <EntityTypeShape EntityType="ConcertModel.Track" Width="1.5" PointX="12.625" PointY="7.625" Height="1.7879850260416657" IsExpanded="true" />
+        <EntityTypeShape EntityType="ConcertModel.Track" Width="1.5" PointX="12.625" PointY="7.625" Height="2.1725878906249996" IsExpanded="true" />
         <EntityTypeShape EntityType="ConcertModel.Instrument" Width="1.5" PointX="16.625" PointY="7.125" Height="1.4033821614583335" />
         <AssociationConnector Association="ConcertModel.InstrumentArtist">
           <ConnectorPoint PointX="17.375" PointY="7.125" />

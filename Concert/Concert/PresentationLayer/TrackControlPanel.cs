@@ -8,7 +8,6 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Concert.DataAccessLayer;
-using Concert.DBObjectDefinition;
 using System.IO;
 
 namespace Concert.PresentationLayer
@@ -24,7 +23,7 @@ namespace Concert.PresentationLayer
             dataGridViewTracks.Select();
         }
 
-        public TrackControlPanel(Song song)
+        public TrackControlPanel(Track song)
         {
             InitializeComponent();
             LoadTrackData();
@@ -33,7 +32,7 @@ namespace Concert.PresentationLayer
         private void LoadTrackData()
         {
             dataGridViewTracks.Rows.Clear();
-            foreach (Song item in DBObjectController.GetAllTracks())
+            foreach (Track item in DBObjectController.GetAllTracks())
             {
                 DataGridViewRow row = new DataGridViewRow();
                 row.CreateCells(dataGridViewTracks, new object[] { item.Name, item.Length });
@@ -50,7 +49,7 @@ namespace Concert.PresentationLayer
                 string name = textBoxTrackName.Text;
                 int length = int.Parse(textBoxTrackLength.Text);
                 bool trackUploaded = !string.IsNullOrEmpty(textBoxPath.Text);
-                DBObjectController.StoreObject(new Song(name, length, trackUploaded, textBoxPath.Text));
+                DBObjectController.StoreObject(new Track(name, length, trackUploaded, textBoxPath.Text));
                 MessageBox.Show("You have successfully added new track", "Success confirmation");
                 ClearForm();
                 LoadTrackData();
