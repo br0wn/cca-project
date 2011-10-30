@@ -28,7 +28,7 @@ namespace Concert.PresentationLayer
             DBObjectController.GetAllAlbums();
             DBObjectController.GetAllTracks();
             dataGridViewConcerts.Rows.Clear();
-            foreach (DBObjectDefinition.Concert item in DBObjectController.GetAllConcerts())
+            foreach (Concert item in DBObjectController.GetAllConcerts())
             {
                 DataGridViewRow row = new DataGridViewRow();
                 row.CreateCells(dataGridViewConcerts, new object[] { item.Name, item.TicketPrice.ToString(), item.Date.ToString("dd.MM.yyyy.") });

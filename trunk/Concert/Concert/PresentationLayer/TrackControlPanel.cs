@@ -49,7 +49,7 @@ namespace Concert.PresentationLayer
                 string name = textBoxTrackName.Text;
                 int length = int.Parse(textBoxTrackLength.Text);
                 bool trackUploaded = !string.IsNullOrEmpty(textBoxPath.Text);
-                DBObjectController.StoreObject(new Track(name, length, trackUploaded, textBoxPath.Text));
+                DBObjectController.AddTrack(name, length, trackUploaded, textBoxPath.Text);
                 MessageBox.Show("You have successfully added new track", "Success confirmation");
                 ClearForm();
                 LoadTrackData();
@@ -121,10 +121,12 @@ namespace Concert.PresentationLayer
                 ValidateCurrentSelection();
                 if (NoErrorProviderMsg())
                 {
-                    Song song = (Song)dataGridViewTracks.CurrentRow.Tag;
+                    Track song = (Track)dataGridViewTracks.CurrentRow.Tag;
                     song.Name = textBoxTrackNameCurrent.Text;
                     song.Length = int.Parse(textBoxTrackLengthCurrent.Text);
-                    DBObjectController.StoreObject(song);
+                    /*
+                     * DBObjectControler.SaveChanges();
+                     */
                     LoadTrackData();
                 }
             }
