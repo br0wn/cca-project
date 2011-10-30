@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 10/29/2011 12:00:01
+-- Date Created: 10/30/2011 11:34:44
 -- Generated from EDMX file: C:\Users\vrabac\Downloads\Dropbox\Projects\NMBP\Concert\Concert\ConcertModel.edmx
 -- --------------------------------------------------
 
@@ -17,43 +17,73 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[test].[FK_AlbumTrack]', 'F') IS NOT NULL
-    ALTER TABLE [test].[trackset] DROP CONSTRAINT [FK_AlbumTrack];
+IF OBJECT_ID(N'[dbo].[FK_InstrumentArtist_Instrument]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[InstrumentArtist] DROP CONSTRAINT [FK_InstrumentArtist_Instrument];
 GO
-IF OBJECT_ID(N'[test].[FK_BandAlbum]', 'F') IS NOT NULL
-    ALTER TABLE [test].[albumset] DROP CONSTRAINT [FK_BandAlbum];
+IF OBJECT_ID(N'[dbo].[FK_InstrumentArtist_Artist]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[InstrumentArtist] DROP CONSTRAINT [FK_InstrumentArtist_Artist];
 GO
-IF OBJECT_ID(N'[test].[FK_CountryLocation]', 'F') IS NOT NULL
-    ALTER TABLE [test].[locationset] DROP CONSTRAINT [FK_CountryLocation];
+IF OBJECT_ID(N'[dbo].[FK_BandAlbum]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Album] DROP CONSTRAINT [FK_BandAlbum];
 GO
-IF OBJECT_ID(N'[test].[FK_LocationConcert]', 'F') IS NOT NULL
-    ALTER TABLE [test].[concertset] DROP CONSTRAINT [FK_LocationConcert];
+IF OBJECT_ID(N'[dbo].[FK_AlbumTrack]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Track] DROP CONSTRAINT [FK_AlbumTrack];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ArtistBand_Artist]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ArtistBand] DROP CONSTRAINT [FK_ArtistBand_Artist];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ArtistBand_Band]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ArtistBand] DROP CONSTRAINT [FK_ArtistBand_Band];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CountryLocation]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Location] DROP CONSTRAINT [FK_CountryLocation];
+GO
+IF OBJECT_ID(N'[dbo].[FK_LocationConcert]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Concert] DROP CONSTRAINT [FK_LocationConcert];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ConcertBand_Concert]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ConcertBand] DROP CONSTRAINT [FK_ConcertBand_Concert];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ConcertBand_Band]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ConcertBand] DROP CONSTRAINT [FK_ConcertBand_Band];
 GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[test].[albumset]', 'U') IS NOT NULL
-    DROP TABLE [test].[albumset];
+IF OBJECT_ID(N'[dbo].[Album]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Album];
 GO
-IF OBJECT_ID(N'[test].[artistset]', 'U') IS NOT NULL
-    DROP TABLE [test].[artistset];
+IF OBJECT_ID(N'[dbo].[Artist]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Artist];
 GO
-IF OBJECT_ID(N'[test].[bandset]', 'U') IS NOT NULL
-    DROP TABLE [test].[bandset];
+IF OBJECT_ID(N'[dbo].[Band]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Band];
 GO
-IF OBJECT_ID(N'[test].[concertset]', 'U') IS NOT NULL
-    DROP TABLE [test].[concertset];
+IF OBJECT_ID(N'[dbo].[Concert]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Concert];
 GO
-IF OBJECT_ID(N'[test].[countryset]', 'U') IS NOT NULL
-    DROP TABLE [test].[countryset];
+IF OBJECT_ID(N'[dbo].[Country]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Country];
 GO
-IF OBJECT_ID(N'[test].[locationset]', 'U') IS NOT NULL
-    DROP TABLE [test].[locationset];
+IF OBJECT_ID(N'[dbo].[Location]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Location];
 GO
-IF OBJECT_ID(N'[test].[trackset]', 'U') IS NOT NULL
-    DROP TABLE [test].[trackset];
+IF OBJECT_ID(N'[dbo].[Track]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Track];
+GO
+IF OBJECT_ID(N'[dbo].[Instrument]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Instrument];
+GO
+IF OBJECT_ID(N'[dbo].[InstrumentArtist]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[InstrumentArtist];
+GO
+IF OBJECT_ID(N'[dbo].[ArtistBand]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ArtistBand];
+GO
+IF OBJECT_ID(N'[dbo].[ConcertBand]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ConcertBand];
 GO
 
 -- --------------------------------------------------
@@ -115,6 +145,8 @@ CREATE TABLE [dbo].[Track] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
     [Length] int  NOT NULL,
+    [Uploaded] bit  NOT NULL,
+    [Path] nvarchar(max)  NOT NULL,
     [Album_Id] int  NOT NULL
 );
 GO
