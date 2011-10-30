@@ -58,10 +58,10 @@
     <Compile Include="DBObjectDefinition\Concert.cs" />
     <Compile Include="DBObjectDefinition\Location.cs" />
     <Compile Include="DBObjectDefinition\Song.cs" />
-    <Compile Include="Model1.Designer.cs">
+    <Compile Include="ConcertModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.edmx</DependentUpon>
+      <DependentUpon>ConcertModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="PresentationLayer\ConcertAddBand.cs">
       <SubType>Form</SubType>
@@ -192,11 +192,11 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="App.Config" />
-    <EntityDeploy Include="Model1.edmx">
+    <EntityDeploy Include="ConcertModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+      <LastGenOutput>ConcertModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="App.Config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -211,6 +211,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ConcertModel.edmx.sql" />
     <Content Include="Resources\play.png" />
     <None Include="Resources\speaker-music-blue11.jpg" />
     <None Include="Resources\pikachu.ico" />
