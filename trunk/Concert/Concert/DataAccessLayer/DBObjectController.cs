@@ -4,11 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Concert.DBObjectDefinition;
+using System.Data.Objects;
 
 namespace Concert.DataAccessLayer
 {
     class DBObjectController
     {
+        public static ObjectContext context;
+
         public static void StoreObject(object obj)
         {
             db.Store(obj);
