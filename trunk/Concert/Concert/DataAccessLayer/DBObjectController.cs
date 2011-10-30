@@ -3,52 +3,44 @@ using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Concert.DBObjectDefinition;
 using System.Data.Objects;
 
 namespace Concert.DataAccessLayer
 {
     class DBObjectController
     {
-        public static ObjectContext context;
+        public static ConcertEntities context;
 
-        public static void StoreObject(object obj)
+        public static void SaveChanges()
         {
-            db.Store(obj);
-			db.Commit();
+            context.SaveChanges();
         }
 
-        public static void DeleteObject(object obj)
+        public static IEnumerable<Concert> GetAllConcerts()
         {
-            db.Delete(obj);
-            db.Commit();
+            return context.Concert;
         }
 
-        public static IEnumerable<DBObjectDefinition.Concert> GetAllConcerts()
+        public static IEnumerable<Concert> GetCustomConcerts(string name, int fromPrice, int toPrice, DateTime fromDate, DateTime toDate)
         {
-            return db.Query<DBObjectDefinition.Concert>(c => true);
-        }
-
-        public static IEnumerable<DBObjectDefinition.Concert> GetCustomConcerts(string name, int fromPrice, int toPrice, DateTime fromDate, DateTime toDate)
-        {
-            List<DBObjectDefinition.Concert> concerts = new List<DBObjectDefinition.Concert>();
+            List<Concert> concerts = new List<Concert>();
             if (!string.IsNullOrEmpty(name))
             {
-                foreach (DBObjectDefinition.Concert concert in db.Query<DBObjectDefinition.Concert>(c => c.Name.ToLower().Contains(name.ToLower()) &&
-                                                                                                         c.TicketPrice >= fromPrice                &&
-                                                                                                         c.TicketPrice <= toPrice                  &&
-                                                                                                         c.Date >= fromDate                        &&
-                                                                                                         c.Date <= toDate ))
+                foreach (Concert concert in context.Concert.Where(c => c.Name.ToLower().Contains(name.ToLower()) &&
+                                                                       c.TicketPrice >= fromPrice                &&
+                                                                       c.TicketPrice <= toPrice                  &&
+                                                                       c.Date >= fromDate                        &&
+                                                                       c.Date <= toDate ))
                 {
                     concerts.Add(concert);
                 }
             }
             else
             {
-                foreach (DBObjectDefinition.Concert concert in db.Query<DBObjectDefinition.Concert>(c => c.TicketPrice >= fromPrice &&
-                                                                                                         c.TicketPrice <= toPrice &&
-                                                                                                         c.Date >= fromDate &&
-                                                                                                         c.Date <= toDate))
+                foreach (Concert concert in context.Concert.Where(c => c.TicketPrice >= fromPrice &&
+                                                                                          c.TicketPrice <= toPrice &&
+                                                                                          c.Date >= fromDate &&
+                                                                                          c.Date <= toDate))
                 {
                     concerts.Add(concert);
                 }
@@ -58,24 +50,24 @@ namespace Concert.DataAccessLayer
 
         public static IEnumerable<Location> GetAllLocations()
         {
-            return db.Query<Location>(l => true);
+            return context.Location;
         }
 
-        public static IEnumerable<Song> GetAllTracks()
+        public static IEnumerable<Track> GetAllTracks()
         {
-            return db.Query<Song>(s => true);
+            return context.Track;
         }
 
-        public static IEnumerable<Song> GetAvailableTracks()
+        public static IEnumerable<Track> GetAvailableTracks()
         {
-            List<Song> availableSongs = new List<Song>();
+            List<Track> availableSongs = new List<Track>();
             IEnumerable<Album> albums = GetAllAlbums();
-            foreach (Song song in GetAllTracks())
+            foreach (Track track in GetAllTracks())
             {
                 bool available = true;
                 foreach (Album album in albums)
                 {
-                    if (album.Songs.Contains(song))
+                    if (album.Track.Contains(track))
                     {
                         available = false;
                         break;
@@ -83,7 +75,7 @@ namespace Concert.DataAccessLayer
                 }
                 if (available)
                 {
-                    availableSongs.Add(song);
+                    availableSongs.Add(track);
                 }
             }
             return availableSongs;
@@ -91,37 +83,37 @@ namespace Concert.DataAccessLayer
 
 		public static IEnumerable<Artist> GetAllArtists()
 		{
-			return db.Query<Artist>( a => true );
+			return context.Artist;
 		}
 
 		public static IEnumerable<Album> GetAllAlbums( )
 		{
-			return db.Query<Album>( a => true );
+			return context.Album;
 		}
 
         public static IEnumerable<Band> GetBandsByAlbum(Album album)
         {
-            return db.Query<Band>(a => a.Albums.Contains(album));
+            return context.Band.Where(b => b.Album.Contains(album));
         }
 
-        public static IEnumerable<Album> GetAlbumsByTrack(Song track)
+        public static IEnumerable<Album> GetAlbumsByTrack(Track track)
         {
-            return db.Query<Album>(a => a.Songs.Contains(track)); 
+            return context.Album.Where(a => a.Track.Contains(track)); 
         }
 
-		public static IEnumerable<Concert.DBObjectDefinition.Concert> GetConcertsByBand( Band band )
+		public static IEnumerable<Concert> GetConcertsByBand( Band band )
 		{
-			return db.Query<Concert.DBObjectDefinition.Concert>( c => c.Bands.Contains( band ) );
+			return context.Concert.Where( c => c.Band.Contains( band ) );
 		}
 
 		public static IEnumerable<Band> GetAllBands( )
 		{
-			return db.Query<Band>( b => true );
+            return context.Band;
 		}
 
         public static IEnumerable<Band> GetBandsByArtist(Artist artist)
         {
-            return db.Query<Band>(b => b.Artist.Contains(artist));
+            return context.Band.Where(b => b.Artist.Contains(artist));
         }
 
         public static IEnumerable<Band> GetAdjectiveBands(IEnumerable<Band> bands)
