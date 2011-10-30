@@ -16,6 +16,16 @@ namespace Concert.DataAccessLayer
             context.SaveChanges();
         }
 
+        public static void DeleteConcert(Concert concert)
+        {
+            context.Concert.DeleteObject(concert);
+            SaveChanges();
+        }
+
+        public static void AddConcert()
+        { 
+        }
+
         public static IEnumerable<Concert> GetAllConcerts()
         {
             return context.Concert;
@@ -38,9 +48,9 @@ namespace Concert.DataAccessLayer
             else
             {
                 foreach (Concert concert in context.Concert.Where(c => c.TicketPrice >= fromPrice &&
-                                                                                          c.TicketPrice <= toPrice &&
-                                                                                          c.Date >= fromDate &&
-                                                                                          c.Date <= toDate))
+                                                                       c.TicketPrice <= toPrice   &&
+                                                                       c.Date >= fromDate         &&
+                                                                       c.Date <= toDate))
                 {
                     concerts.Add(concert);
                 }
@@ -48,9 +58,31 @@ namespace Concert.DataAccessLayer
             return concerts;
         }
 
+        public static void DeleteLocation(Location location)
+        {
+            context.Location.DeleteObject(location);
+            SaveChanges();
+        }
+        
         public static IEnumerable<Location> GetAllLocations()
         {
             return context.Location;
+        }
+
+        public static void DeleteTrack(Track track)
+        {
+            context.Track.DeleteObject(track);
+            SaveChanges();
+        }
+        
+        public static void AddTrack(string name, int lenght, bool uplodaed, string path)
+        {
+            
+            context.Track.AddObject(new Track() {   Name = name,
+                                                    Length = lenght,
+                                                    Uploaded = uplodaed,
+                                                    Path = path 
+                                                });
         }
 
         public static IEnumerable<Track> GetAllTracks()
@@ -81,10 +113,22 @@ namespace Concert.DataAccessLayer
             return availableSongs;
         }
 
+        public static void DeleteArtist(Artist artist)
+        {
+            context.Artist.DeleteObject(artist);
+            SaveChanges();
+        }
+
 		public static IEnumerable<Artist> GetAllArtists()
 		{
 			return context.Artist;
 		}
+
+        public static void DeleteAlbum(Album album)
+        {
+            context.Album.DeleteObject(album);
+            SaveChanges();
+        }
 
 		public static IEnumerable<Album> GetAllAlbums( )
 		{
@@ -105,6 +149,12 @@ namespace Concert.DataAccessLayer
 		{
 			return context.Concert.Where( c => c.Band.Contains( band ) );
 		}
+        
+        public static void DeleteBand(Band band)
+        {
+            context.Band.DeleteObject(band);
+            SaveChanges();
+        }
 
 		public static IEnumerable<Band> GetAllBands( )
 		{
@@ -125,6 +175,22 @@ namespace Concert.DataAccessLayer
                 adjectiveBands.Remove(band);
             }
             return adjectiveBands;
+        }
+
+        public static void DeleteInstrument(Instrument instrument)
+        {
+            context.Instrument.DeleteObject(instrument);
+            SaveChanges();
+        }
+
+        public static void AddInstrument(string name)
+        {
+            context.Instrument.AddObject(new Instrument() { Name = name });
+        }
+
+        public static IEnumerable<Instrument> GetAllInstruments()
+        {
+            return context.Instrument;
         }
     }
 }
