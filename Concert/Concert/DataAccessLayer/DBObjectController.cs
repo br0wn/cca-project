@@ -22,8 +22,10 @@ namespace Concert.DataAccessLayer
             SaveChanges();
         }
 
-        public static void AddConcert()
-        { 
+        public static void AddConcert(Concert concert)
+        {
+            context.Concert.AddObject(concert);
+            SaveChanges();
         }
 
         public static IEnumerable<Concert> GetAllConcerts()
@@ -63,6 +65,12 @@ namespace Concert.DataAccessLayer
             context.Location.DeleteObject(location);
             SaveChanges();
         }
+
+        public static void AddLocation(Location location)
+        {
+            context.Location.AddObject(location);
+            SaveChanges();
+        }
         
         public static IEnumerable<Location> GetAllLocations()
         {
@@ -74,15 +82,11 @@ namespace Concert.DataAccessLayer
             context.Track.DeleteObject(track);
             SaveChanges();
         }
-        
-        public static void AddTrack(string name, int lenght, bool uplodaed, string path)
+
+        public static void AddTrack(Track track)
         {
-            
-            context.Track.AddObject(new Track() {   Name = name,
-                                                    Length = lenght,
-                                                    Uploaded = uplodaed,
-                                                    Path = path 
-                                                });
+            context.Track.AddObject(track);
+            SaveChanges();
         }
 
         public static IEnumerable<Track> GetAllTracks()
@@ -119,6 +123,12 @@ namespace Concert.DataAccessLayer
             SaveChanges();
         }
 
+        public static void AddArtist(Artist artist)
+        {
+            context.Artist.AddObject(artist);
+            SaveChanges();
+        }
+
 		public static IEnumerable<Artist> GetAllArtists()
 		{
 			return context.Artist;
@@ -127,6 +137,12 @@ namespace Concert.DataAccessLayer
         public static void DeleteAlbum(Album album)
         {
             context.Album.DeleteObject(album);
+            SaveChanges();
+        }
+
+        public static void AddAlbum(Album album)
+        {
+            context.Album.AddObject(album);
             SaveChanges();
         }
 
@@ -153,6 +169,12 @@ namespace Concert.DataAccessLayer
         public static void DeleteBand(Band band)
         {
             context.Band.DeleteObject(band);
+            SaveChanges();
+        }
+
+        public static void AddBand(Band band)
+        {
+            context.Band.AddObject(band);
             SaveChanges();
         }
 
@@ -183,14 +205,32 @@ namespace Concert.DataAccessLayer
             SaveChanges();
         }
 
-        public static void AddInstrument(string name)
+        public static void AddInstrument(Instrument instrument)
         {
-            context.Instrument.AddObject(new Instrument() { Name = name });
+            context.Instrument.AddObject(instrument);
+            SaveChanges();
         }
 
         public static IEnumerable<Instrument> GetAllInstruments()
         {
             return context.Instrument;
+        }
+
+        public static void DeleteCountry(Country country)
+        {
+            context.Country.DeleteObject(country);
+            SaveChanges();
+        }
+
+        public static void AddCountry(Country country)
+        {
+            context.Country.AddObject(country);
+            SaveChanges();
+        }
+
+        public static IEnumerable<Country> GetAllCountries()
+        {
+            return context.Country;
         }
     }
 }
