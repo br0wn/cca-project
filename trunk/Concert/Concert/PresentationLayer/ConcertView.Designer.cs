@@ -52,7 +52,7 @@
             this.groupBoxFindConcert = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.dateTimePickerConcertDateTo = new System.Windows.Forms.DateTimePicker();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelFindConcertTicketPriceTo = new System.Windows.Forms.Label();
             this.textBoxFindConcertTicketPriceTo = new System.Windows.Forms.TextBox();
             this.labelFindConcertDate = new System.Windows.Forms.Label();
             this.dateTimePickerConcertDateFrom = new System.Windows.Forms.DateTimePicker();
@@ -69,6 +69,7 @@
             this.textBoxCurrentName = new System.Windows.Forms.TextBox();
             this.errorProviderConcert = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBoxBands = new System.Windows.Forms.GroupBox();
+            this.buttonAddBands = new System.Windows.Forms.Button();
             this.tabControlArtistAlbum = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBoxAlbum = new System.Windows.Forms.GroupBox();
@@ -78,7 +79,6 @@
             this.TrackLength = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.errorProviderFindInput = new System.Windows.Forms.ErrorProvider(this.components);
-            this.buttonAddBands = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewArtist)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBand)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewConcerts)).BeginInit();
@@ -298,7 +298,7 @@
             // 
             this.groupBoxFindConcert.Controls.Add(this.label2);
             this.groupBoxFindConcert.Controls.Add(this.dateTimePickerConcertDateTo);
-            this.groupBoxFindConcert.Controls.Add(this.label1);
+            this.groupBoxFindConcert.Controls.Add(this.labelFindConcertTicketPriceTo);
             this.groupBoxFindConcert.Controls.Add(this.textBoxFindConcertTicketPriceTo);
             this.groupBoxFindConcert.Controls.Add(this.labelFindConcertDate);
             this.groupBoxFindConcert.Controls.Add(this.dateTimePickerConcertDateFrom);
@@ -331,14 +331,14 @@
             this.dateTimePickerConcertDateTo.Value = new System.DateTime(2011, 10, 23, 0, 0, 0, 0);
             this.dateTimePickerConcertDateTo.ValueChanged += new System.EventHandler(this.textBoxFind_TextChanged);
             // 
-            // label1
+            // labelFindConcertTicketPriceTo
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(205, 50);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(78, 13);
-            this.label1.TabIndex = 31;
-            this.label1.Text = "Ticket price <=";
+            this.labelFindConcertTicketPriceTo.AutoSize = true;
+            this.labelFindConcertTicketPriceTo.Location = new System.Drawing.Point(205, 50);
+            this.labelFindConcertTicketPriceTo.Name = "labelFindConcertTicketPriceTo";
+            this.labelFindConcertTicketPriceTo.Size = new System.Drawing.Size(78, 13);
+            this.labelFindConcertTicketPriceTo.TabIndex = 31;
+            this.labelFindConcertTicketPriceTo.Text = "Ticket price <=";
             // 
             // textBoxFindConcertTicketPriceTo
             // 
@@ -480,6 +480,17 @@
             this.groupBoxBands.TabStop = false;
             this.groupBoxBands.Text = "Band Control Panel";
             // 
+            // buttonAddBands
+            // 
+            this.buttonAddBands.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonAddBands.Location = new System.Drawing.Point(13, 24);
+            this.buttonAddBands.Name = "buttonAddBands";
+            this.buttonAddBands.Size = new System.Drawing.Size(25, 25);
+            this.buttonAddBands.TabIndex = 20;
+            this.buttonAddBands.Text = "+";
+            this.buttonAddBands.UseVisualStyleBackColor = true;
+            this.buttonAddBands.Click += new System.EventHandler(this.buttonAddBands_Click);
+            // 
             // tabControlArtistAlbum
             // 
             this.tabControlArtistAlbum.Controls.Add(this.tabPage1);
@@ -565,17 +576,6 @@
             this.errorProviderFindInput.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errorProviderFindInput.ContainerControl = this;
             // 
-            // buttonAddBands
-            // 
-            this.buttonAddBands.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonAddBands.Location = new System.Drawing.Point(13, 24);
-            this.buttonAddBands.Name = "buttonAddBands";
-            this.buttonAddBands.Size = new System.Drawing.Size(25, 25);
-            this.buttonAddBands.TabIndex = 20;
-            this.buttonAddBands.Text = "+";
-            this.buttonAddBands.UseVisualStyleBackColor = true;
-            this.buttonAddBands.Click += new System.EventHandler(this.buttonAddBands_Click);
-            // 
             // ConcertView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -657,7 +657,7 @@
         private System.Windows.Forms.TextBox textBoxFindConcertTicketPriceFrom;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DateTimePicker dateTimePickerConcertDateTo;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelFindConcertTicketPriceTo;
         private System.Windows.Forms.TextBox textBoxFindConcertTicketPriceTo;
         private System.Windows.Forms.ErrorProvider errorProviderFindInput;
         private System.Windows.Forms.Button buttonAddBands;

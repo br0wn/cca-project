@@ -139,7 +139,7 @@ namespace Concert.PresentationLayer
 			}
 
 			this.albums = new List<Album>( );
-			foreach( Album album in this.bands[ selectedIndex ].Albums)
+			foreach( Album album in this.bands[ selectedIndex ].Album)
 			{
 				this.albums.Add( album );
 			}

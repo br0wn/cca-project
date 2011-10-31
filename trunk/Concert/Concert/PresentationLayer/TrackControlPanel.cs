@@ -230,10 +230,10 @@ namespace Concert.PresentationLayer
         private void dataGridViewTracks_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
         {
             Track track = (Track)e.Row.Tag;
-            foreach (Album album in DBObjectController.GetAlbumsByTrack((Song)e.Row.Tag))
+            foreach (Album album in DBObjectController.GetAlbumsByTrack((Track)e.Row.Tag))
             {
-                album.Songs.Remove(s);
-                DBObjectController.StoreObject(album);
+                album.Track.Remove(track);
+                //DBObjectController.StoreObject(album);
             }
             if ( !string.IsNullOrEmpty(track.Path))
             {

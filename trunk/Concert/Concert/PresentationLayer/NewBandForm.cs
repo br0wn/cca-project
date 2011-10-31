@@ -105,7 +105,7 @@ namespace Concert.PresentationLayer
 				return;
 			}
 
-			Band band = new Band( bandName );
+            //Band band = new Band( bandName );
 			foreach(Artist artist in addedArtists )
 			{
                 //band.AddArtist(artist);
