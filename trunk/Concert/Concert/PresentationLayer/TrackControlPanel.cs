@@ -54,8 +54,7 @@ namespace Concert.PresentationLayer
                 DBObjectController.AddObject( new Track() { Name     = name,
                                                             Length   = length, 
                                                             Uploaded = trackUploaded, 
-                                                            Path     = path 
-                                                          });
+                                                            Path     = path });
                 
                 MessageBox.Show("You have successfully added new track", "Success confirmation");
                 
