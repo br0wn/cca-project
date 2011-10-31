@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Concert.DBObjectDefinition;
+//using Concert.DBObjectDefinition;
 using Concert.DataAccessLayer;
 
 namespace Concert.PresentationLayer {
@@ -14,9 +14,9 @@ namespace Concert.PresentationLayer {
     {
         private bool editMode;
         private List<Album> albums = new List<Album>();
-        private List<Song> avaliableSongsFull = new List<Song>();
-        private List<Song> avaliableSongs = new List<Song>();
-        private List<Song> addedSongs = new List<Song>();
+        //private List<Song> avaliableSongsFull = new List<Song>();
+        //private List<Song> avaliableSongs = new List<Song>();
+        //private List<Song> addedSongs = new List<Song>();
         private bool albumSaved;
 
         public EditAlbumForm() {
@@ -54,22 +54,22 @@ namespace Concert.PresentationLayer {
                 MessageBox.Show("Album name cannot be empty");
                 return;
             }
-            List<Song> songs = DBObjectController.GetAvailableTracks().ToList();
+            //List<Song> songs = DBObjectController.GetAvailableTracks().ToList();
             int albumIndex = this.listBoxAvaliableAlbums.SelectedIndex;
             Album album = this.albums[albumIndex];
 
-            album.Name = albumName;
-            foreach (Song song in this.addedSongs)
-            {
-                if (!album.Songs.Contains(song))
-                {
-                    album.AddTrack(song);
-                }
-            }
-            try
-            {
-                DBObjectController.StoreObject(album);
-            }
+            //album.Name = albumName;
+            //foreach (Song song in this.addedSongs)
+            //{
+            //    if (!album.Songs.Contains(song))
+            //    {
+            //        album.AddTrack(song);
+            //    }
+            //}
+            //try
+            //{
+            //    DBObjectController.StoreObject(album);
+            //}
             catch
             {
 
@@ -141,12 +141,12 @@ namespace Concert.PresentationLayer {
             Album album = this.albums[albumIndex];
             foreach (Band band in DBObjectController.GetBandsByAlbum(album))
             {
-                band.Albums.Remove(album);
-                DBObjectController.StoreObject(band);
+                //band.Albums.Remove(album);
+                //DBObjectController.StoreObject(band);
             }
             try
             {
-                DBObjectController.DeleteObject(album);
+                //DBObjectController.DeleteObject(album);
             }
             catch (Exception)
             {
@@ -176,25 +176,25 @@ namespace Concert.PresentationLayer {
                // this.buttonSave.Enabled = false;
                 return;
             }
-            this.addedSongs = null;
-            this.avaliableSongs = new List<Song>();
+            //this.addedSongs = null;
+            //this.avaliableSongs = new List<Song>();
 
-            Album album = this.albums[selectedIndex];
-            this.textBoxAlbumName.Text = album.Name;
-            this.addedSongs = album.Songs;
-            this.avaliableSongsFull.Clear();
-            this.avaliableSongsFull = DBObjectController.GetAvailableTracks().ToList();
-            foreach (Song song in this.avaliableSongsFull)
-            {
-                if (!this.addedSongs.Contains(song))
-                {
-                    this.avaliableSongs.Add(song);
-                }
-            }
+            //Album album = this.albums[selectedIndex];
+            //this.textBoxAlbumName.Text = album.Name;
+            //this.addedSongs = album.Songs;
+            //this.avaliableSongsFull.Clear();
+            //this.avaliableSongsFull = DBObjectController.GetAvailableTracks().ToList();
+            //foreach (Song song in this.avaliableSongsFull)
+            //{
+            //    if (!this.addedSongs.Contains(song))
+            //    {
+            //        this.avaliableSongs.Add(song);
+            //    }
+            //}
             this.listBoxAddedSgons.DataSource = null;
             this.listBoxAvaliableSongs.DataSource = null;
-            this.listBoxAddedSgons.DataSource = this.addedSongs;
-            this.listBoxAvaliableSongs.DataSource = this.avaliableSongs;
+            //this.listBoxAddedSgons.DataSource = this.addedSongs;
+            //this.listBoxAvaliableSongs.DataSource = this.avaliableSongs;
             this.SetDisplayMember();
         }
 
@@ -208,14 +208,14 @@ namespace Concert.PresentationLayer {
             if (this.listBoxAddedSgons.SelectedIndex < 0) return;
 
             int songIndex = this.listBoxAddedSgons.SelectedIndex;
-            Song song = this.addedSongs[songIndex];
-            this.addedSongs.RemoveAt(songIndex);
-            this.avaliableSongs.Add(song);
+            //Song song = this.addedSongs[songIndex];
+            //this.addedSongs.RemoveAt(songIndex);
+            //this.avaliableSongs.Add(song);
 
             this.listBoxAvaliableSongs.DataSource = null;
             this.listBoxAddedSgons.DataSource = null;
-            this.listBoxAvaliableSongs.DataSource = this.avaliableSongs;
-            this.listBoxAddedSgons.DataSource = this.addedSongs;
+            //this.listBoxAvaliableSongs.DataSource = this.avaliableSongs;
+            //this.listBoxAddedSgons.DataSource = this.addedSongs;
             this.SetDisplayMember();
 
         }
@@ -225,13 +225,13 @@ namespace Concert.PresentationLayer {
             if (this.listBoxAvaliableSongs.SelectedIndex < 0) return;
 
             int songIndex = this.listBoxAvaliableSongs.SelectedIndex;
-            Song song = this.avaliableSongs[songIndex];
-            this.avaliableSongs.RemoveAt(songIndex);
-            this.addedSongs.Add(song);
+            //Song song = this.avaliableSongs[songIndex];
+            //this.avaliableSongs.RemoveAt(songIndex);
+            //this.addedSongs.Add(song);
 
             this.listBoxAvaliableSongs.DataSource = this.listBoxAddedSgons.DataSource = null;
-            this.listBoxAvaliableSongs.DataSource = this.avaliableSongs;
-            this.listBoxAddedSgons.DataSource = this.addedSongs;
+            //this.listBoxAvaliableSongs.DataSource = this.avaliableSongs;
+            //this.listBoxAddedSgons.DataSource = this.addedSongs;
             this.SetDisplayMember();
         }
 
@@ -240,14 +240,14 @@ namespace Concert.PresentationLayer {
             if (this.listBoxAddedSgons.SelectedIndex < 0) return;
 
             int songIndex = this.listBoxAddedSgons.SelectedIndex;
-            Song song = this.addedSongs[songIndex];
-            this.addedSongs.RemoveAt(songIndex);
-            this.avaliableSongs.Add(song);
+            //Song song = this.addedSongs[songIndex];
+            //this.addedSongs.RemoveAt(songIndex);
+            //this.avaliableSongs.Add(song);
 
             this.listBoxAvaliableSongs.DataSource = null;
             this.listBoxAddedSgons.DataSource = null;
-            this.listBoxAvaliableSongs.DataSource = this.avaliableSongs;
-            this.listBoxAddedSgons.DataSource = this.addedSongs;
+            //this.listBoxAvaliableSongs.DataSource = this.avaliableSongs;
+            //this.listBoxAddedSgons.DataSource = this.addedSongs;
             this.SetDisplayMember();
         }
 

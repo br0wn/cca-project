@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Concert.DBObjectDefinition;
+//using Concert.DBObjectDefinition;
 using Concert.DataAccessLayer;
 
 namespace Concert.PresentationLayer
@@ -108,11 +108,11 @@ namespace Concert.PresentationLayer
 			Band band = new Band( bandName );
 			foreach(Artist artist in addedArtists )
 			{
-				band.AddArtist(artist);
+                //band.AddArtist(artist);
 			}
 
 			try{
-				DBObjectController.StoreObject(band);
+                //DBObjectController.StoreObject(band);
 			}
 			catch(Exception ex){
 				MessageBox.Show( "Error while updating record: \n\n"+ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error );
