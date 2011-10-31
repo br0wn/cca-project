@@ -19,11 +19,11 @@ using System.Runtime.Serialization;
 #region EDM Relationship Metadata
 
 [assembly: EdmRelationshipAttribute("ConcertModel", "InstrumentArtist", "Instrument", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Concert.Instrument), "Artist", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Concert.Artist))]
-[assembly: EdmRelationshipAttribute("ConcertModel", "BandAlbum", "Band", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Concert.Band), "Album", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Concert.Album))]
-[assembly: EdmRelationshipAttribute("ConcertModel", "AlbumTrack", "Album", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Concert.Album), "Track", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Concert.Track))]
+[assembly: EdmRelationshipAttribute("ConcertModel", "BandAlbum", "Band", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Concert.Band), "Album", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Concert.Album))]
+[assembly: EdmRelationshipAttribute("ConcertModel", "AlbumTrack", "Album", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Concert.Album), "Track", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Concert.Track))]
 [assembly: EdmRelationshipAttribute("ConcertModel", "ArtistBand", "Artist", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Concert.Artist), "Band", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Concert.Band))]
-[assembly: EdmRelationshipAttribute("ConcertModel", "CountryLocation", "Country", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Concert.Country), "Location", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Concert.Location))]
-[assembly: EdmRelationshipAttribute("ConcertModel", "LocationConcert", "Location", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Concert.Location), "Concert", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Concert.Concert))]
+[assembly: EdmRelationshipAttribute("ConcertModel", "CountryLocation", "Country", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Concert.Country), "Location", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Concert.Location))]
+[assembly: EdmRelationshipAttribute("ConcertModel", "LocationConcert", "Location", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Concert.Location), "Concert", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Concert.Concert))]
 [assembly: EdmRelationshipAttribute("ConcertModel", "ConcertBand", "Concert", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Concert.Concert), "Band", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Concert.Band))]
 
 #endregion

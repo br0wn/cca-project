@@ -48,14 +48,14 @@ namespace Concert.PresentationLayer
             {
                 string name = textBoxTrackName.Text;
                 string path = textBoxPath.Text;
-                int length = int.Parse(textBoxTrackLength.Text);
+                int length  = int.Parse(textBoxTrackLength.Text);
                 bool trackUploaded = !string.IsNullOrEmpty(textBoxPath.Text);
                 
-                DBObjectController.AddTrack( new Track() { Name     = name,
-                                                           Length   = length, 
-                                                           Uploaded = trackUploaded, 
-                                                           Path     = path 
-                                                         });
+                DBObjectController.AddObject( new Track() { Name     = name,
+                                                            Length   = length, 
+                                                            Uploaded = trackUploaded, 
+                                                            Path     = path 
+                                                          });
                 
                 MessageBox.Show("You have successfully added new track", "Success confirmation");
                 
@@ -224,7 +224,6 @@ namespace Concert.PresentationLayer
             {
                 MdiParent.MainMenuStrip.Enabled = true;
             }
-            
         }
 
         private void dataGridViewTracks_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
@@ -233,7 +232,6 @@ namespace Concert.PresentationLayer
             foreach (Album album in DBObjectController.GetAlbumsByTrack((Track)e.Row.Tag))
             {
                 album.Track.Remove(track);
-                //DBObjectController.StoreObject(album);
             }
             if ( !string.IsNullOrEmpty(track.Path))
             {
@@ -243,7 +241,7 @@ namespace Concert.PresentationLayer
                     File.Delete(url);
                 }
             }
-            DBObjectController.DeleteTrack((Track)e.Row.Tag);
+            DBObjectController.DeleteObject((Track)e.Row.Tag);
         }
 
         private void buttonUpload_Click(object sender, EventArgs e)

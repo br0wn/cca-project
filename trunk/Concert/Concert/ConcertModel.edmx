@@ -64,7 +64,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Band_Id" Type="int" Nullable="false" />
+    <Property Name="Band_Id" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="Artist">
     <Key>
@@ -90,7 +90,7 @@
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="TicketPrice" Type="int" Nullable="false" />
     <Property Name="Date" Type="datetime" Nullable="false" />
-    <Property Name="Location_Id" Type="int" Nullable="false" />
+    <Property Name="Location_Id" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="Country">
     <Key>
@@ -107,7 +107,7 @@
     <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
     <Property Name="SeatCount" Type="int" Nullable="false" />
     <Property Name="PostalCode" Type="int" Nullable="false" />
-    <Property Name="Country_Id" Type="int" Nullable="false" />
+    <Property Name="Country_Id" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="Track">
     <Key>
@@ -118,7 +118,7 @@
     <Property Name="Length" Type="int" Nullable="false" />
     <Property Name="Uploaded" Type="bit" Nullable="false" />
     <Property Name="Path" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Album_Id" Type="int" Nullable="false" />
+    <Property Name="Album_Id" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="Instrument">
     <Key>
@@ -152,7 +152,7 @@
     <Property Name="Band_Id" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="BandAlbum">
-    <End Role="Band" Type="ConcertModel.Store.Band" Multiplicity="1" />
+    <End Role="Band" Type="ConcertModel.Store.Band" Multiplicity="0..1" />
     <End Role="Album" Type="ConcertModel.Store.Album" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Band">
@@ -164,7 +164,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="AlbumTrack">
-    <End Role="Album" Type="ConcertModel.Store.Album" Multiplicity="1" />
+    <End Role="Album" Type="ConcertModel.Store.Album" Multiplicity="0..1" />
     <End Role="Track" Type="ConcertModel.Store.Track" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Album">
@@ -176,7 +176,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="CountryLocation">
-    <End Role="Country" Type="ConcertModel.Store.Country" Multiplicity="1" />
+    <End Role="Country" Type="ConcertModel.Store.Country" Multiplicity="0..1" />
     <End Role="Location" Type="ConcertModel.Store.Location" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Country">
@@ -188,7 +188,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="LocationConcert">
-    <End Role="Location" Type="ConcertModel.Store.Location" Multiplicity="1" />
+    <End Role="Location" Type="ConcertModel.Store.Location" Multiplicity="0..1" />
     <End Role="Concert" Type="ConcertModel.Store.Concert" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Location">
@@ -377,7 +377,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Int32" annotation:StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="String" Nullable="false" />
           <Property Name="Length" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Album" Relationship="ConcertModel.AlbumTrack" FromRole="Track" ToRole="Album" />
@@ -397,11 +397,11 @@
           <End Type="ConcertModel.Artist" Role="Artist" Multiplicity="*" />
         </Association>
         <Association Name="BandAlbum">
-          <End Type="ConcertModel.Band" Role="Band" Multiplicity="1" />
+          <End Type="ConcertModel.Band" Role="Band" Multiplicity="0..1" />
           <End Type="ConcertModel.Album" Role="Album" Multiplicity="*" />
         </Association>
         <Association Name="AlbumTrack">
-          <End Type="ConcertModel.Album" Role="Album" Multiplicity="1" />
+          <End Type="ConcertModel.Album" Role="Album" Multiplicity="0..1" />
           <End Type="ConcertModel.Track" Role="Track" Multiplicity="*" />
         </Association>
         <Association Name="ArtistBand">
@@ -409,11 +409,11 @@
           <End Type="ConcertModel.Band" Role="Band" Multiplicity="*" />
         </Association>
         <Association Name="CountryLocation">
-          <End Type="ConcertModel.Country" Role="Country" Multiplicity="1" />
+          <End Type="ConcertModel.Country" Role="Country" Multiplicity="0..1" />
           <End Type="ConcertModel.Location" Role="Location" Multiplicity="*" />
         </Association>
         <Association Name="LocationConcert">
-          <End Type="ConcertModel.Location" Role="Location" Multiplicity="1" />
+          <End Type="ConcertModel.Location" Role="Location" Multiplicity="0..1" />
           <End Type="ConcertModel.Concert" Role="Concert" Multiplicity="*" />
         </Association>
         <Association Name="ConcertBand">
@@ -514,6 +514,7 @@
       <EndProperty Name="Album">
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
+      <Condition ColumnName="Band_Id" IsNull="false" />
     </AssociationSetMapping>
     <AssociationSetMapping Name="AlbumTrack" TypeName="ConcertModel.AlbumTrack" StoreEntitySet="Track">
       <EndProperty Name="Album">
@@ -522,6 +523,7 @@
       <EndProperty Name="Track">
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
+      <Condition ColumnName="Album_Id" IsNull="false" />
     </AssociationSetMapping>
     <AssociationSetMapping Name="ArtistBand" TypeName="ConcertModel.ArtistBand" StoreEntitySet="ArtistBand">
       <EndProperty Name="Artist">
@@ -538,6 +540,7 @@
       <EndProperty Name="Location">
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
+      <Condition ColumnName="Country_Id" IsNull="false" />
     </AssociationSetMapping>
     <AssociationSetMapping Name="LocationConcert" TypeName="ConcertModel.LocationConcert" StoreEntitySet="Concert">
       <EndProperty Name="Location">
@@ -546,6 +549,7 @@
       <EndProperty Name="Concert">
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
+      <Condition ColumnName="Location_Id" IsNull="false" />
     </AssociationSetMapping>
     <AssociationSetMapping Name="ConcertBand" TypeName="ConcertModel.ConcertBand" StoreEntitySet="ConcertBand">
       <EndProperty Name="Concert">
