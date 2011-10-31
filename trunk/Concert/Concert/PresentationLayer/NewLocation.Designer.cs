@@ -35,7 +35,6 @@
             this.labelPostalCode = new System.Windows.Forms.Label();
             this.textBoxSeatCount = new System.Windows.Forms.TextBox();
             this.labelSeatCount = new System.Windows.Forms.Label();
-            this.textBoxCountry = new System.Windows.Forms.TextBox();
             this.labelCountry = new System.Windows.Forms.Label();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.errorProviderLocation = new System.Windows.Forms.ErrorProvider(this.components);
@@ -45,6 +44,7 @@
             this.LocationPostalCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LocationSeatCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBoxLocation = new System.Windows.Forms.GroupBox();
+            this.comboBoxCountry = new System.Windows.Forms.ComboBox();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.groupBoxLocationPanel = new System.Windows.Forms.GroupBox();
             this.labelSeatCountCurrent = new System.Windows.Forms.Label();
@@ -68,7 +68,7 @@
             this.textBoxAddress.Name = "textBoxAddress";
             this.textBoxAddress.Size = new System.Drawing.Size(162, 20);
             this.textBoxAddress.TabIndex = 3;
-            this.textBoxAddress.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxAddress_Validating);
+            this.textBoxAddress.Validating += new System.ComponentModel.CancelEventHandler(this.SimpleTextValidation);
             // 
             // labelAddress
             // 
@@ -85,7 +85,7 @@
             this.textBoxPostalCode.Name = "textBoxPostalCode";
             this.textBoxPostalCode.Size = new System.Drawing.Size(67, 20);
             this.textBoxPostalCode.TabIndex = 5;
-            this.textBoxPostalCode.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxPostalCode_Validating);
+            this.textBoxPostalCode.Validating += new System.ComponentModel.CancelEventHandler(this.SimpleNumericValidation);
             // 
             // labelPostalCode
             // 
@@ -102,7 +102,7 @@
             this.textBoxSeatCount.Name = "textBoxSeatCount";
             this.textBoxSeatCount.Size = new System.Drawing.Size(67, 20);
             this.textBoxSeatCount.TabIndex = 7;
-            this.textBoxSeatCount.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxSeatCount_Validating);
+            this.textBoxSeatCount.Validating += new System.ComponentModel.CancelEventHandler(this.SimpleNumericValidation);
             // 
             // labelSeatCount
             // 
@@ -112,14 +112,6 @@
             this.labelSeatCount.Size = new System.Drawing.Size(65, 13);
             this.labelSeatCount.TabIndex = 6;
             this.labelSeatCount.Text = "Seat count :";
-            // 
-            // textBoxCountry
-            // 
-            this.textBoxCountry.Location = new System.Drawing.Point(93, 23);
-            this.textBoxCountry.Name = "textBoxCountry";
-            this.textBoxCountry.Size = new System.Drawing.Size(100, 20);
-            this.textBoxCountry.TabIndex = 9;
-            this.textBoxCountry.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxCountry_Validating);
             // 
             // labelCountry
             // 
@@ -132,7 +124,7 @@
             // 
             // buttonAdd
             // 
-            this.buttonAdd.Location = new System.Drawing.Point(180, 95);
+            this.buttonAdd.Location = new System.Drawing.Point(180, 122);
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.Size = new System.Drawing.Size(75, 23);
             this.buttonAdd.TabIndex = 10;
@@ -189,8 +181,8 @@
             // 
             // groupBoxLocation
             // 
+            this.groupBoxLocation.Controls.Add(this.comboBoxCountry);
             this.groupBoxLocation.Controls.Add(this.buttonCancel);
-            this.groupBoxLocation.Controls.Add(this.textBoxCountry);
             this.groupBoxLocation.Controls.Add(this.labelAddress);
             this.groupBoxLocation.Controls.Add(this.buttonAdd);
             this.groupBoxLocation.Controls.Add(this.textBoxAddress);
@@ -201,14 +193,23 @@
             this.groupBoxLocation.Controls.Add(this.labelSeatCount);
             this.groupBoxLocation.Location = new System.Drawing.Point(6, 288);
             this.groupBoxLocation.Name = "groupBoxLocation";
-            this.groupBoxLocation.Size = new System.Drawing.Size(476, 132);
+            this.groupBoxLocation.Size = new System.Drawing.Size(476, 162);
             this.groupBoxLocation.TabIndex = 16;
             this.groupBoxLocation.TabStop = false;
             this.groupBoxLocation.Text = "New location";
             // 
+            // comboBoxCountry
+            // 
+            this.comboBoxCountry.FormattingEnabled = true;
+            this.comboBoxCountry.Location = new System.Drawing.Point(93, 22);
+            this.comboBoxCountry.Name = "comboBoxCountry";
+            this.comboBoxCountry.Size = new System.Drawing.Size(162, 21);
+            this.comboBoxCountry.TabIndex = 19;
+            this.comboBoxCountry.Validating += new System.ComponentModel.CancelEventHandler(this.comboBoxCountry_Validating);
+            // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(268, 95);
+            this.buttonCancel.Location = new System.Drawing.Point(268, 122);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(75, 23);
             this.buttonCancel.TabIndex = 18;
@@ -313,7 +314,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(496, 448);
+            this.ClientSize = new System.Drawing.Size(496, 462);
             this.Controls.Add(this.groupBoxLocationPanel);
             this.Controls.Add(this.groupBoxLocation);
             this.Name = "NewLocation";
@@ -338,7 +339,6 @@
         private System.Windows.Forms.Label labelPostalCode;
         private System.Windows.Forms.TextBox textBoxSeatCount;
         private System.Windows.Forms.Label labelSeatCount;
-        private System.Windows.Forms.TextBox textBoxCountry;
         private System.Windows.Forms.Label labelCountry;
         private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.ErrorProvider errorProviderLocation;
@@ -359,6 +359,7 @@
         private System.Windows.Forms.TextBox textBoxPostalCodeCurrent;
         private System.Windows.Forms.TextBox textBoxSeatCountCurrent;
         private System.Windows.Forms.Button buttonCancel;
+        private System.Windows.Forms.ComboBox comboBoxCountry;
 
     }
 }

@@ -8,7 +8,6 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Concert.DataAccessLayer;
-using Concert.DBObjectDefinition;
 
 namespace Concert.PresentationLayer
 {
@@ -20,35 +19,43 @@ namespace Concert.PresentationLayer
         {
             InitializeComponent();
             LoadLocationData();
+            LoadCountryData();
             dataGridViewLocation.Select();
         }
 
         private void LoadLocationData()
         {
             dataGridViewLocation.Rows.Clear();
-            foreach (DBObjectDefinition.Location item in DBObjectController.GetAllLocations())
+            foreach (Location location in DBObjectController.GetAllLocations())
             {
                 DataGridViewRow row = new DataGridViewRow();
-                row.CreateCells(dataGridViewLocation, new object[] {
-                                                                        item.Country,
-                                                                        item.Address,
-                                                                        item.PostalCode,
-                                                                        item.SeatCount });
-                row.Tag = item;
+                row.CreateCells(dataGridViewLocation, new object[] { location.Address, location.SeatCount });
+                row.Tag = location;
                 dataGridViewLocation.Rows.Add(row);
             }
+        }
+
+        private void LoadCountryData()
+        {
+            comboBoxCountry.DataSource = DBObjectController.GetAllCountries();
+            comboBoxCountry.DisplayMember = "Name";
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
             if (ValidateChildren() && NoErrorProviderMsg())
             {
-                string country = textBoxCountry.Text;
                 string address = textBoxAddress.Text;
                 int postalCode = int.Parse(textBoxPostalCode.Text);
                 int seatCount = int.Parse(textBoxSeatCount.Text);
-                DBObjectController.StoreObject(new Concert.DBObjectDefinition.Location(country, address, postalCode, seatCount));
+                Country country = (Country)comboBoxCountry.SelectedItem; 
+
+                DBObjectController.AddLocation(new Location() { Address   = address, 
+                                                                SeatCount = seatCount, 
+                                                                Country   = country });
+
                 MessageBox.Show("Successfully added new location");
+                
                 ClearForm();
                 LoadLocationData();
             }
@@ -56,29 +63,42 @@ namespace Concert.PresentationLayer
 
         private bool NoErrorProviderMsg()
         {
-            return ( errorProviderLocation.GetError(textBoxCountry) == string.Empty     &&
-                     errorProviderLocation.GetError(textBoxAddress) == string.Empty     &&
+            return ( errorProviderLocation.GetError(comboBoxCountry)   == string.Empty  &&
+                     errorProviderLocation.GetError(textBoxAddress)    == string.Empty  &&
                      errorProviderLocation.GetError(textBoxPostalCode) == string.Empty  &&
-                     errorProviderLocation.GetError(textBoxSeatCount) == string.Empty);
+                     errorProviderLocation.GetError(textBoxSeatCount)  == string.Empty);
         }
 
         private bool NoCurrentErrorProviderMsg()
         {
-            return (errorProviderLocation.GetError(textBoxCountryCurrent) == string.Empty &&
-                     errorProviderLocation.GetError(textBoxAddressCurrent) == string.Empty &&
+            return ( errorProviderLocation.GetError(textBoxCountryCurrent)    == string.Empty &&
+                     errorProviderLocation.GetError(textBoxAddressCurrent)    == string.Empty &&
                      errorProviderLocation.GetError(textBoxPostalCodeCurrent) == string.Empty &&
-                     errorProviderLocation.GetError(textBoxSeatCountCurrent) == string.Empty);
+                     errorProviderLocation.GetError(textBoxSeatCountCurrent)  == string.Empty);
         }
 
         private void ClearForm()
         {
-            textBoxCountry.Clear();
+            comboBoxCountry.SelectedIndex = 0;
             textBoxAddress.Clear();
             textBoxPostalCode.Clear();
             textBoxSeatCount.Clear();
         }
 
-        private void textBoxCountry_Validating(object sender, CancelEventArgs e)
+
+        private void comboBoxCountry_Validating(object sender, CancelEventArgs e)
+        {
+            if (comboBoxCountry.SelectedItem == null)
+            {
+                errorProviderLocation.SetError((ComboBox)sender, "Choose valid country");
+            }
+            else
+            {
+                errorProviderLocation.SetError((ComboBox)sender, String.Empty); 
+            }
+        }
+
+        private void SimpleTextValidation(object sender, CancelEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(((TextBox)sender).Text) || ((TextBox)sender).Text == string.Empty)
             {
@@ -90,19 +110,7 @@ namespace Concert.PresentationLayer
             }
         }
 
-        private void textBoxAddress_Validating(object sender, CancelEventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(((TextBox)sender).Text) || ((TextBox)sender).Text == string.Empty)
-            {
-                errorProviderLocation.SetError((TextBox)sender, "Empty fields are not allowed");
-            }
-            else
-            {
-                errorProviderLocation.SetError((TextBox)sender, string.Empty);
-            }
-        }
-
-        private void textBoxPostalCode_Validating(object sender, CancelEventArgs e)
+        private void SimpleNumericValidation(object sender, CancelEventArgs e)
         {
             string text = ((TextBox)sender).Text;
             if (string.IsNullOrWhiteSpace(text) || text == string.Empty)
@@ -124,32 +132,6 @@ namespace Concert.PresentationLayer
             return digits.IsMatch(text);
         }
 
-        private void textBoxSeatCount_Validating(object sender, CancelEventArgs e)
-        {
-            string text = ((TextBox)sender).Text;
-            if (string.IsNullOrWhiteSpace(text) || text == string.Empty)
-            {
-                errorProviderLocation.SetError((TextBox)sender, "Empty fields are not allowed");
-            }
-            else if (!IsNumeric(text))
-            {
-                errorProviderLocation.SetError((TextBox)sender, "Only numeric value is allowed");
-            }
-            else
-            {
-                errorProviderLocation.SetError((TextBox)sender, string.Empty);
-            }
-        }
-
-        private void dataGridViewLocation_RowEnter(object sender, DataGridViewCellEventArgs e)
-        {
-            ClearCurrentErrorProvider();
-            textBoxCountryCurrent.Text = ((DataGridView)sender).Rows[e.RowIndex].Cells[0].Value.ToString();
-            textBoxAddressCurrent.Text = ((DataGridView)sender).Rows[e.RowIndex].Cells[1].Value.ToString();
-            textBoxPostalCodeCurrent.Text = ((DataGridView)sender).Rows[e.RowIndex].Cells[2].Value.ToString();
-            textBoxSeatCountCurrent.Text = ((DataGridView)sender).Rows[e.RowIndex].Cells[3].Value.ToString();
-        }
-
         private void ClearCurrentErrorProvider()
         {
             errorProviderLocation.SetError(textBoxCountryCurrent, string.Empty);
@@ -166,7 +148,7 @@ namespace Concert.PresentationLayer
 
         private void ResetErrorProvider()
         {
-            errorProviderLocation.SetError(textBoxCountry, string.Empty);
+            errorProviderLocation.SetError(comboBoxCountry, string.Empty);
             errorProviderLocation.SetError(textBoxAddress, string.Empty);
             errorProviderLocation.SetError(textBoxPostalCode, string.Empty);
             errorProviderLocation.SetError(textBoxSeatCount, string.Empty);
@@ -179,12 +161,11 @@ namespace Concert.PresentationLayer
                 ValidateCurrentSelection();
                 if (NoCurrentErrorProviderMsg())
                 {
-                    DBObjectDefinition.Location location = (DBObjectDefinition.Location)dataGridViewLocation.CurrentRow.Tag;
-                    location.Country = textBoxCountryCurrent.Text;
-                    location.Address = textBoxAddressCurrent.Text;
-                    location.PostalCode = int.Parse(textBoxPostalCodeCurrent.Text);
-                    location.SeatCount = int.Parse(textBoxSeatCountCurrent.Text);
-                    DBObjectController.StoreObject(location);
+                    Location location = (Location)dataGridViewLocation.CurrentRow.Tag;
+
+                    location.Address    = textBoxAddressCurrent.Text;
+                    location.SeatCount  = int.Parse(textBoxSeatCountCurrent.Text);
+
                     LoadLocationData();
                 }
             }

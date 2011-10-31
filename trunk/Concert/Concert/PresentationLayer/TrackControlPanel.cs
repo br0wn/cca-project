@@ -32,11 +32,11 @@ namespace Concert.PresentationLayer
         private void LoadTrackData()
         {
             dataGridViewTracks.Rows.Clear();
-            foreach (Track item in DBObjectController.GetAllTracks())
+            foreach (Track track in DBObjectController.GetAllTracks())
             {
                 DataGridViewRow row = new DataGridViewRow();
-                row.CreateCells(dataGridViewTracks, new object[] { item.Name, item.Length });
-                row.Tag = item;
+                row.CreateCells(dataGridViewTracks, new object[] { track.Name, track.Length });
+                row.Tag = track;
                 dataGridViewTracks.Rows.Add(row);
             }
         }
@@ -47,10 +47,18 @@ namespace Concert.PresentationLayer
             if (ErrorProviderSet())
             {
                 string name = textBoxTrackName.Text;
+                string path = textBoxPath.Text;
                 int length = int.Parse(textBoxTrackLength.Text);
                 bool trackUploaded = !string.IsNullOrEmpty(textBoxPath.Text);
-                DBObjectController.AddTrack(name, length, trackUploaded, textBoxPath.Text);
+                
+                DBObjectController.AddTrack( new Track() { Name     = name,
+                                                           Length   = length, 
+                                                           Uploaded = trackUploaded, 
+                                                           Path     = path 
+                                                         });
+                
                 MessageBox.Show("You have successfully added new track", "Success confirmation");
+                
                 ClearForm();
                 LoadTrackData();
             }
@@ -124,9 +132,7 @@ namespace Concert.PresentationLayer
                     Track song = (Track)dataGridViewTracks.CurrentRow.Tag;
                     song.Name = textBoxTrackNameCurrent.Text;
                     song.Length = int.Parse(textBoxTrackLengthCurrent.Text);
-                    /*
-                     * DBObjectControler.SaveChanges();
-                     */
+                    DBObjectController.SaveChanges();
                     LoadTrackData();
                 }
             }
@@ -223,21 +229,21 @@ namespace Concert.PresentationLayer
 
         private void dataGridViewTracks_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
         {
-            Song s = (Song)e.Row.Tag;
+            Track track = (Track)e.Row.Tag;
             foreach (Album album in DBObjectController.GetAlbumsByTrack((Song)e.Row.Tag))
             {
                 album.Songs.Remove(s);
                 DBObjectController.StoreObject(album);
             }
-            if ( !string.IsNullOrEmpty(s.TrackPath))
+            if ( !string.IsNullOrEmpty(track.Path))
             {
-                string url = @"..\..\" + s.TrackPath;
+                string url = @"..\..\" + track.Path;
                 if (File.Exists(url))
                 {
                     File.Delete(url);
                 }
             }
-            DBObjectController.DeleteObject(e.Row.Tag);
+            DBObjectController.DeleteTrack((Track)e.Row.Tag);
         }
 
         private void buttonUpload_Click(object sender, EventArgs e)
@@ -264,8 +270,8 @@ namespace Concert.PresentationLayer
 
         private void dataGridViewTracks_DoubleClick(object sender, EventArgs e)
         {
-            Song track = (Song)dataGridViewTracks.CurrentRow.Tag;
-            if (!string.IsNullOrEmpty(track.TrackPath))
+            Track track = (Track)dataGridViewTracks.CurrentRow.Tag;
+            if (!string.IsNullOrEmpty(track.Path))
             {
                 string[] subPath = Application.ExecutablePath.Split('\\');
                 string url = "";
@@ -273,7 +279,7 @@ namespace Concert.PresentationLayer
                 {
                     url += subPath[i] + "\\";
                 }
-                url += track.TrackPath;
+                url += track.Path;
                 if ( File.Exists(url))
                 {
                     axWindowsMediaPlayer.URL = url;
