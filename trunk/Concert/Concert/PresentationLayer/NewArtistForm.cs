@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Concert.DBObjectDefinition;
+//using Concert.DBObjectDefinition;
 using Concert.DataAccessLayer;
 
 namespace Concert.PresentationLayer
@@ -42,11 +42,11 @@ namespace Concert.PresentationLayer
             birthdate = birthdate.Date;
             List<string> instruments= new List<string>();
             defineInstruments(instruments);
-            Artist artist = new Artist(firstName, lastName, birthdate);
+            //Artist artist = new Artist(firstName, lastName, birthdate);
 
             foreach (string instrument in instruments)
             {
-                artist.AddInst(instrument);
+                //artist.AddInst(instrument);
             }
 
             if (firstName == string.Empty)
@@ -62,7 +62,7 @@ namespace Concert.PresentationLayer
 
             try
             {
-                DBObjectController.StoreObject(artist);
+                //DBObjectController.StoreObject(artist);
             }
             catch (Exception ex)
             {

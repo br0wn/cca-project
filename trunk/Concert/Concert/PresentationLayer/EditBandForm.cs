@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Concert.DBObjectDefinition;
+//using Concert.DBObjectDefinition;
 using Concert.DataAccessLayer;
 
 namespace Concert.PresentationLayer
@@ -127,7 +127,7 @@ namespace Concert.PresentationLayer
 
 			Band band = this.bands[ selectedIndex ];
 			this.textBoxBandName.Text = band.Name;
-			this.addedArtists = band.Artist;
+            //this.addedArtists = band.Artist;
 			
 			refreshArtistsFullList();
 			foreach(Artist artist in this.availableArtistsFullList)
@@ -233,18 +233,18 @@ namespace Concert.PresentationLayer
 			foreach ( Artist artist in this.addedArtists )
 			{
 				if ( band.Artist.Contains( artist ) ) continue;
-				band.AddArtist( artist );
+                //band.AddArtist( artist );
 			}
 
-			foreach ( Album album in band.Albums )
-			{
-				if ( this.albums.Contains( album ) ) continue;
-				band.Albums.Remove( album );
-			}
+            //foreach ( Album album in band.Albums )
+            //{
+            //    if ( this.albums.Contains( album ) ) continue;
+            //    band.Albums.Remove( album );
+            //}
 
 			try
 			{
-				DBObjectController.StoreObject( band );
+                //DBObjectController.StoreObject( band );
 			}
 			catch ( Exception ex )
 			{
@@ -279,18 +279,18 @@ namespace Concert.PresentationLayer
 
 			try
 			{
-				List<Concert.DBObjectDefinition.Concert> concerts = DBObjectController.GetConcertsByBand( band ).ToList( );
-				foreach ( Concert.DBObjectDefinition.Concert concert in concerts )
-				{
-					concert.Bands.Remove( band );
-					DBObjectController.StoreObject( concert );
-				}
+                //List<Concert.DBObjectDefinition.Concert> concerts = DBObjectController.GetConcertsByBand( band ).ToList( );
+                //foreach ( Concert.DBObjectDefinition.Concert concert in concerts )
+                //{
+                //    concert.Bands.Remove( band );
+                //    DBObjectController.StoreObject( concert );
+                //}
 
-				foreach ( Album album in band.Albums )
-				{
-					if( album != null ) DBObjectController.DeleteObject( album );
-				}
-				DBObjectController.DeleteObject( band );
+                //foreach ( Album album in band.Albums )
+                //{
+                //    if( album != null ) DBObjectController.DeleteObject( album );
+                //}
+                //DBObjectController.DeleteObject( band );
 			}
 			catch ( Exception ex )
 			{
