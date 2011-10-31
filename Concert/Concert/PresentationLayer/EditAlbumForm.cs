@@ -70,12 +70,12 @@ namespace Concert.PresentationLayer {
             //{
             //    DBObjectController.StoreObject(album);
             //}
-            catch
-            {
+            //catch
+            //{
 
-                MessageBox.Show("Error while updating record");
-                return;
-            }
+            //    MessageBox.Show("Error while updating record");
+            //    return;
+            //}
             MessageBox.Show("Album updated");
             this.setEdit(false);
             this.albumSaved = true;

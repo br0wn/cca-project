@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 10/30/2011 11:34:44
+-- Date Created: 10/31/2011 12:18:13
 -- Generated from EDMX file: C:\Users\vrabac\Downloads\Dropbox\Projects\NMBP\Concert\Concert\ConcertModel.edmx
 -- --------------------------------------------------
 
@@ -136,6 +136,7 @@ CREATE TABLE [dbo].[Location] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Address] nvarchar(max)  NOT NULL,
     [SeatCount] int  NOT NULL,
+    [PostalCode] int  NOT NULL,
     [Country_Id] int  NOT NULL
 );
 GO

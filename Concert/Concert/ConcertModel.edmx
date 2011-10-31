@@ -106,6 +106,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
     <Property Name="SeatCount" Type="int" Nullable="false" />
+    <Property Name="PostalCode" Type="int" Nullable="false" />
     <Property Name="Country_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Track">
@@ -370,6 +371,7 @@
           <Property Name="SeatCount" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Country" Relationship="ConcertModel.CountryLocation" FromRole="Location" ToRole="Country" />
           <NavigationProperty Name="Concert" Relationship="ConcertModel.LocationConcert" FromRole="Location" ToRole="Concert" />
+          <Property Type="Int32" Name="PostalCode" Nullable="false" />
         </EntityType>
         <EntityType Name="Track">
           <Key>
@@ -474,6 +476,7 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Address" ColumnName="Address" />
           <ScalarProperty Name="SeatCount" ColumnName="SeatCount" />
+          <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -577,7 +580,7 @@
         <EntityTypeShape EntityType="ConcertModel.Band" Width="1.5" PointX="12.625" PointY="2.25" Height="1.9802864583333335" IsExpanded="true" />
         <EntityTypeShape EntityType="ConcertModel.Concert" Width="1.5" PointX="8.375" PointY="4.625" Height="2.1725878906249996" IsExpanded="true" />
         <EntityTypeShape EntityType="ConcertModel.Country" Width="1.5" PointX="10.625" PointY="7.875" Height="1.5956835937499996" IsExpanded="true" />
-        <EntityTypeShape EntityType="ConcertModel.Location" Width="1.5" PointX="8.5" PointY="7.625" Height="1.9802864583333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="ConcertModel.Location" Width="1.5" PointX="8.5" PointY="7.625" Height="2.1725878906249996" IsExpanded="true" />
         <EntityTypeShape EntityType="ConcertModel.Track" Width="1.5" PointX="12.625" PointY="7.625" Height="2.1725878906249996" IsExpanded="true" />
         <EntityTypeShape EntityType="ConcertModel.Instrument" Width="1.5" PointX="16.625" PointY="7.125" Height="1.4033821614583335" />
         <AssociationConnector Association="ConcertModel.InstrumentArtist">

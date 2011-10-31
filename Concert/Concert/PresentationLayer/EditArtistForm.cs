@@ -156,16 +156,16 @@ namespace Concert.PresentationLayer
         private void button1_Click(object sender, EventArgs e)
         {
             //DBObjectDefinition.Artist artist = (DBObjectDefinition.Artist) ArtistsListBox1.SelectedItem;
-            artist.Firstname = textBox1.Text.Trim();
-            artist.Lastname = textBox2.Text.Trim();
-            artist.BirthDate = dateTimePickerConcert.Value;
+            //artist.Firstname = textBox1.Text.Trim();
+            //artist.Lastname = textBox2.Text.Trim();
+            //artist.BirthDate = dateTimePickerConcert.Value;
             List<string> instruments = new List<string>();
             defineInstruments(instruments);
-            artist.ResetInst();
+            //artist.ResetInst();
 
             foreach (string instrument in instruments)
             {
-                artist.AddInst(instrument);
+                //artist.AddInst(instrument);
             }
 
             if (textBox1.Text == string.Empty)
@@ -209,11 +209,11 @@ namespace Concert.PresentationLayer
                             MessageBoxIcon.Question))
             {
                 case DialogResult.Yes:
-                    foreach (Band band in DBObjectController.GetBandsByArtist(artist))
-                    {
-                        band.Artist.Remove(artist);
-                        DBObjectController.StoreObject(band);
-                    }
+                    //foreach (Band band in DBObjectController.GetBandsByArtist(artist))
+                    //{
+                    //    band.Artist.Remove(artist);
+                    //    DBObjectController.StoreObject(band);
+                    //}
                     //DBObjectController.DeleteObject(artist);
                     break;
 

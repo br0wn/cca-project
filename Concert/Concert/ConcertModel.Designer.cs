@@ -1177,12 +1177,14 @@ namespace Concert
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="address">Initial value of the Address property.</param>
         /// <param name="seatCount">Initial value of the SeatCount property.</param>
-        public static Location CreateLocation(global::System.Int32 id, global::System.String address, global::System.Int32 seatCount)
+        /// <param name="postalCode">Initial value of the PostalCode property.</param>
+        public static Location CreateLocation(global::System.Int32 id, global::System.String address, global::System.Int32 seatCount, global::System.Int32 postalCode)
         {
             Location location = new Location();
             location.Id = id;
             location.Address = address;
             location.SeatCount = seatCount;
+            location.PostalCode = postalCode;
             return location;
         }
 
@@ -1263,6 +1265,30 @@ namespace Concert
         private global::System.Int32 _SeatCount;
         partial void OnSeatCountChanging(global::System.Int32 value);
         partial void OnSeatCountChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 PostalCode
+        {
+            get
+            {
+                return _PostalCode;
+            }
+            set
+            {
+                OnPostalCodeChanging(value);
+                ReportPropertyChanging("PostalCode");
+                _PostalCode = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PostalCode");
+                OnPostalCodeChanged();
+            }
+        }
+        private global::System.Int32 _PostalCode;
+        partial void OnPostalCodeChanging(global::System.Int32 value);
+        partial void OnPostalCodeChanged();
 
         #endregion
     

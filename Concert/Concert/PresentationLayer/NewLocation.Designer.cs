@@ -52,10 +52,10 @@
             this.labelAddressCurrent = new System.Windows.Forms.Label();
             this.labelCountryCurrent = new System.Windows.Forms.Label();
             this.buttonSave = new System.Windows.Forms.Button();
-            this.textBoxCountryCurrent = new System.Windows.Forms.TextBox();
             this.textBoxAddressCurrent = new System.Windows.Forms.TextBox();
             this.textBoxPostalCodeCurrent = new System.Windows.Forms.TextBox();
             this.textBoxSeatCountCurrent = new System.Windows.Forms.TextBox();
+            this.comboBoxCountryCurrent = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderLocation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewLocation)).BeginInit();
             this.groupBoxLocation.SuspendLayout();
@@ -151,7 +151,6 @@
             this.dataGridViewLocation.ReadOnly = true;
             this.dataGridViewLocation.Size = new System.Drawing.Size(452, 183);
             this.dataGridViewLocation.TabIndex = 15;
-            this.dataGridViewLocation.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewLocation_RowEnter);
             this.dataGridViewLocation.SelectionChanged += new System.EventHandler(this.dataGridViewLocation_SelectionChanged);
             this.dataGridViewLocation.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.dataGridViewLocation_UserDeletingRow);
             // 
@@ -219,12 +218,12 @@
             // 
             // groupBoxLocationPanel
             // 
+            this.groupBoxLocationPanel.Controls.Add(this.comboBoxCountryCurrent);
             this.groupBoxLocationPanel.Controls.Add(this.labelSeatCountCurrent);
             this.groupBoxLocationPanel.Controls.Add(this.labelPostalCodeCurrent);
             this.groupBoxLocationPanel.Controls.Add(this.labelAddressCurrent);
             this.groupBoxLocationPanel.Controls.Add(this.labelCountryCurrent);
             this.groupBoxLocationPanel.Controls.Add(this.buttonSave);
-            this.groupBoxLocationPanel.Controls.Add(this.textBoxCountryCurrent);
             this.groupBoxLocationPanel.Controls.Add(this.dataGridViewLocation);
             this.groupBoxLocationPanel.Controls.Add(this.textBoxAddressCurrent);
             this.groupBoxLocationPanel.Controls.Add(this.textBoxPostalCodeCurrent);
@@ -282,13 +281,6 @@
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
-            // textBoxCountryCurrent
-            // 
-            this.textBoxCountryCurrent.Location = new System.Drawing.Point(58, 239);
-            this.textBoxCountryCurrent.Name = "textBoxCountryCurrent";
-            this.textBoxCountryCurrent.Size = new System.Drawing.Size(76, 20);
-            this.textBoxCountryCurrent.TabIndex = 9;
-            // 
             // textBoxAddressCurrent
             // 
             this.textBoxAddressCurrent.Location = new System.Drawing.Point(158, 239);
@@ -309,6 +301,14 @@
             this.textBoxSeatCountCurrent.Name = "textBoxSeatCountCurrent";
             this.textBoxSeatCountCurrent.Size = new System.Drawing.Size(48, 20);
             this.textBoxSeatCountCurrent.TabIndex = 7;
+            // 
+            // comboBoxCountryCurrent
+            // 
+            this.comboBoxCountryCurrent.FormattingEnabled = true;
+            this.comboBoxCountryCurrent.Location = new System.Drawing.Point(63, 239);
+            this.comboBoxCountryCurrent.Name = "comboBoxCountryCurrent";
+            this.comboBoxCountryCurrent.Size = new System.Drawing.Size(81, 21);
+            this.comboBoxCountryCurrent.TabIndex = 21;
             // 
             // NewLocation
             // 
@@ -354,12 +354,12 @@
         private System.Windows.Forms.Label labelAddressCurrent;
         private System.Windows.Forms.Label labelCountryCurrent;
         private System.Windows.Forms.Button buttonSave;
-        private System.Windows.Forms.TextBox textBoxCountryCurrent;
         private System.Windows.Forms.TextBox textBoxAddressCurrent;
         private System.Windows.Forms.TextBox textBoxPostalCodeCurrent;
         private System.Windows.Forms.TextBox textBoxSeatCountCurrent;
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.ComboBox comboBoxCountry;
+        private System.Windows.Forms.ComboBox comboBoxCountryCurrent;
 
     }
 }

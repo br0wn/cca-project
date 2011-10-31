@@ -45,9 +45,9 @@ namespace Concert.PresentationLayer
         {
             if (ValidateChildren() && NoErrorProviderMsg())
             {
-                string address = textBoxAddress.Text;
-                int postalCode = int.Parse(textBoxPostalCode.Text);
-                int seatCount = int.Parse(textBoxSeatCount.Text);
+                string address  = textBoxAddress.Text;
+                int postalCode  = int.Parse(textBoxPostalCode.Text);
+                int seatCount   = int.Parse(textBoxSeatCount.Text);
                 Country country = (Country)comboBoxCountry.SelectedItem; 
 
                 DBObjectController.AddLocation(new Location() { Address   = address, 
@@ -71,7 +71,7 @@ namespace Concert.PresentationLayer
 
         private bool NoCurrentErrorProviderMsg()
         {
-            return ( errorProviderLocation.GetError(textBoxCountryCurrent)    == string.Empty &&
+            return ( errorProviderLocation.GetError(comboBoxCountryCurrent)   == string.Empty &&
                      errorProviderLocation.GetError(textBoxAddressCurrent)    == string.Empty &&
                      errorProviderLocation.GetError(textBoxPostalCodeCurrent) == string.Empty &&
                      errorProviderLocation.GetError(textBoxSeatCountCurrent)  == string.Empty);
@@ -88,7 +88,7 @@ namespace Concert.PresentationLayer
 
         private void comboBoxCountry_Validating(object sender, CancelEventArgs e)
         {
-            if (comboBoxCountry.SelectedItem == null)
+            if (((ComboBox)sender).SelectedItem == null)
             {
                 errorProviderLocation.SetError((ComboBox)sender, "Choose valid country");
             }
@@ -134,7 +134,7 @@ namespace Concert.PresentationLayer
 
         private void ClearCurrentErrorProvider()
         {
-            errorProviderLocation.SetError(textBoxCountryCurrent, string.Empty);
+            errorProviderLocation.SetError(comboBoxCountryCurrent, string.Empty);
             errorProviderLocation.SetError(textBoxAddressCurrent, string.Empty);
             errorProviderLocation.SetError(textBoxPostalCodeCurrent, string.Empty);
             errorProviderLocation.SetError(textBoxSeatCountCurrent, string.Empty);
@@ -177,23 +177,9 @@ namespace Concert.PresentationLayer
 
         private void ValidateCurrentSelection()
         {
-            ValidateCurrentCountry();
             ValidateCurrentAddress();
             ValidateCurrentPostalCode();
             ValidateCurrentSeatCount();
-        }
-
-        private void ValidateCurrentCountry()
-        {
-            string text = textBoxCountryCurrent.Text;
-            if (string.IsNullOrWhiteSpace(text) || text == string.Empty)
-            {
-                errorProviderLocation.SetError(textBoxCountryCurrent, "Empty fields are not allowed");
-            }
-            else
-            {
-                errorProviderLocation.SetError(textBoxCountryCurrent, string.Empty);
-            }
         }
 
         private void ValidateCurrentAddress()
@@ -248,7 +234,7 @@ namespace Concert.PresentationLayer
             ClearCurrentErrorProvider();
             if (((DataGridView)sender).CurrentRow != null)
             {
-                textBoxCountryCurrent.Text = ((DataGridView)sender).CurrentRow.Cells[0].Value.ToString();
+                SelectCurrentCountry(((Location)((DataGridView)sender).CurrentRow.Tag).Country);
                 textBoxAddressCurrent.Text = ((DataGridView)sender).CurrentRow.Cells[1].Value.ToString();
                 textBoxPostalCodeCurrent.Text = ((DataGridView)sender).CurrentRow.Cells[2].Value.ToString();
                 textBoxSeatCountCurrent.Text = ((DataGridView)sender).CurrentRow.Cells[3].Value.ToString();
@@ -259,9 +245,13 @@ namespace Concert.PresentationLayer
             }
         }
 
+        private void SelectCurrentCountry(Country country)
+        {
+            comboBoxCountryCurrent.SelectedItem = country;
+        }
+
         private void ClearCurrentSelection()
         {
-            textBoxCountryCurrent.Clear();
             textBoxAddressCurrent.Clear();
             textBoxPostalCodeCurrent.Clear();
             textBoxSeatCountCurrent.Clear();
@@ -285,7 +275,7 @@ namespace Concert.PresentationLayer
 
         private void dataGridViewLocation_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
         {
-            DBObjectController.DeleteObject(e.Row.Tag);
+            DBObjectController.DeleteLocation((Location)e.Row.Tag);
         }
     }
 }
