@@ -87,7 +87,7 @@ namespace Concert.PresentationLayer
 
         private void dataGridViewConcerts_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
         {
-            DBObjectController.DeleteConcert((Concert)dataGridViewConcerts.CurrentRow.Tag);
+            DBObjectController.DeleteObject((Concert)dataGridViewConcerts.CurrentRow.Tag);
         }
 
         private void buttonAssignLocation_Click(object sender, EventArgs e)

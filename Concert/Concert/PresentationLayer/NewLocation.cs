@@ -50,7 +50,7 @@ namespace Concert.PresentationLayer
                 int seatCount   = int.Parse(textBoxSeatCount.Text);
                 Country country = (Country)comboBoxCountry.SelectedItem; 
 
-                DBObjectController.AddLocation(new Location() { Address   = address, 
+                DBObjectController.AddObject(new Location() { Address   = address, 
                                                                 SeatCount = seatCount, 
                                                                 Country   = country });
 
@@ -275,7 +275,7 @@ namespace Concert.PresentationLayer
 
         private void dataGridViewLocation_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
         {
-            DBObjectController.DeleteLocation((Location)e.Row.Tag);
+            DBObjectController.DeleteObject((Location)e.Row.Tag);
         }
     }
 }

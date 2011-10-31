@@ -16,13 +16,13 @@ namespace Concert.DataAccessLayer
             context.SaveChanges();
         }
 
-        public static void DeleteConcert(Concert concert)
+        public static void DeleteObject(Concert concert)
         {
             context.Concert.DeleteObject(concert);
             SaveChanges();
         }
 
-        public static void AddConcert(Concert concert)
+        public static void AddObject(Concert concert)
         {
             context.Concert.AddObject(concert);
             SaveChanges();
@@ -60,13 +60,13 @@ namespace Concert.DataAccessLayer
             return concerts;
         }
 
-        public static void DeleteLocation(Location location)
+        public static void DeleteObject(Location location)
         {
             context.Location.DeleteObject(location);
             SaveChanges();
         }
 
-        public static void AddLocation(Location location)
+        public static void AddObject(Location location)
         {
             context.Location.AddObject(location);
             SaveChanges();
@@ -77,13 +77,13 @@ namespace Concert.DataAccessLayer
             return context.Location;
         }
 
-        public static void DeleteTrack(Track track)
+        public static void DeleteObject(Track track)
         {
             context.Track.DeleteObject(track);
             SaveChanges();
         }
 
-        public static void AddTrack(Track track)
+        public static void AddObject(Track track)
         {
             context.Track.AddObject(track);
             SaveChanges();
@@ -117,13 +117,13 @@ namespace Concert.DataAccessLayer
             return availableSongs;
         }
 
-        public static void DeleteArtist(Artist artist)
+        public static void DeleteObject(Artist artist)
         {
             context.Artist.DeleteObject(artist);
             SaveChanges();
         }
 
-        public static void AddArtist(Artist artist)
+        public static void AddObject(Artist artist)
         {
             context.Artist.AddObject(artist);
             SaveChanges();
@@ -134,13 +134,13 @@ namespace Concert.DataAccessLayer
 			return context.Artist;
 		}
 
-        public static void DeleteAlbum(Album album)
+        public static void DeleteObject(Album album)
         {
             context.Album.DeleteObject(album);
             SaveChanges();
         }
 
-        public static void AddAlbum(Album album)
+        public static void AddObject(Album album)
         {
             context.Album.AddObject(album);
             SaveChanges();
@@ -166,13 +166,13 @@ namespace Concert.DataAccessLayer
 			return context.Concert.Where( c => c.Band.Contains( band ) );
 		}
         
-        public static void DeleteBand(Band band)
+        public static void DeleteObject(Band band)
         {
             context.Band.DeleteObject(band);
             SaveChanges();
         }
 
-        public static void AddBand(Band band)
+        public static void AddObject(Band band)
         {
             context.Band.AddObject(band);
             SaveChanges();
@@ -199,13 +199,13 @@ namespace Concert.DataAccessLayer
             return adjectiveBands;
         }
 
-        public static void DeleteInstrument(Instrument instrument)
+        public static void DeleteObject(Instrument instrument)
         {
             context.Instrument.DeleteObject(instrument);
             SaveChanges();
         }
 
-        public static void AddInstrument(Instrument instrument)
+        public static void AddObject(Instrument instrument)
         {
             context.Instrument.AddObject(instrument);
             SaveChanges();
@@ -216,13 +216,13 @@ namespace Concert.DataAccessLayer
             return context.Instrument;
         }
 
-        public static void DeleteCountry(Country country)
+        public static void DeleteObject(Country country)
         {
             context.Country.DeleteObject(country);
             SaveChanges();
         }
 
-        public static void AddCountry(Country country)
+        public static void AddObject(Country country)
         {
             context.Country.AddObject(country);
             SaveChanges();
