@@ -49,9 +49,10 @@
             this.dataGridViewCountry.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CountryName});
             this.dataGridViewCountry.Location = new System.Drawing.Point(12, 12);
+            this.dataGridViewCountry.MultiSelect = false;
             this.dataGridViewCountry.Name = "dataGridViewCountry";
             this.dataGridViewCountry.ReadOnly = true;
-            this.dataGridViewCountry.Size = new System.Drawing.Size(208, 208);
+            this.dataGridViewCountry.Size = new System.Drawing.Size(218, 208);
             this.dataGridViewCountry.TabIndex = 0;
             this.dataGridViewCountry.SelectionChanged += new System.EventHandler(this.dataGridViewCountry_SelectionChanged);
             this.dataGridViewCountry.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.dataGridViewCountry_UserDeletingRow);
@@ -77,7 +78,7 @@
             // 
             this.textBoxCurrentCountryName.Location = new System.Drawing.Point(80, 241);
             this.textBoxCurrentCountryName.Name = "textBoxCurrentCountryName";
-            this.textBoxCurrentCountryName.Size = new System.Drawing.Size(122, 20);
+            this.textBoxCurrentCountryName.Size = new System.Drawing.Size(140, 20);
             this.textBoxCurrentCountryName.TabIndex = 3;
             // 
             // groupBoxNewCountry
@@ -86,7 +87,7 @@
             this.groupBoxNewCountry.Controls.Add(this.buttonAdd);
             this.groupBoxNewCountry.Location = new System.Drawing.Point(12, 269);
             this.groupBoxNewCountry.Name = "groupBoxNewCountry";
-            this.groupBoxNewCountry.Size = new System.Drawing.Size(208, 54);
+            this.groupBoxNewCountry.Size = new System.Drawing.Size(218, 54);
             this.groupBoxNewCountry.TabIndex = 4;
             this.groupBoxNewCountry.TabStop = false;
             this.groupBoxNewCountry.Text = "Add new Country";
@@ -95,7 +96,7 @@
             // 
             this.textBoxCountryName.Location = new System.Drawing.Point(68, 21);
             this.textBoxCountryName.Name = "textBoxCountryName";
-            this.textBoxCountryName.Size = new System.Drawing.Size(122, 20);
+            this.textBoxCountryName.Size = new System.Drawing.Size(140, 20);
             this.textBoxCountryName.TabIndex = 4;
             this.textBoxCountryName.Validating += new System.ComponentModel.CancelEventHandler(this.SimpleTextValidation);
             // 
@@ -107,6 +108,7 @@
             this.buttonAdd.TabIndex = 0;
             this.buttonAdd.Text = "Add";
             this.buttonAdd.UseVisualStyleBackColor = true;
+            this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
             // 
             // errorProviderCountry
             // 
@@ -117,13 +119,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(234, 335);
+            this.ClientSize = new System.Drawing.Size(242, 335);
             this.Controls.Add(this.groupBoxNewCountry);
             this.Controls.Add(this.textBoxCurrentCountryName);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.dataGridViewCountry);
             this.Name = "CountryControlPanel";
             this.Text = "CountryControlPanel";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CountryControlPanel_FormClosing);
+            this.Load += new System.EventHandler(this.CountryControlPanel_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCountry)).EndInit();
             this.groupBoxNewCountry.ResumeLayout(false);
             this.groupBoxNewCountry.PerformLayout();

@@ -46,9 +46,16 @@ namespace Concert.PresentationLayer
         {
             if (dataGridViewCountry.CurrentRow != null)
             {
-                if ( ValidateChildren() && NoErrorProviderMsg())
-                ((Country)dataGridViewCountry.CurrentRow.Tag).Name = textBoxCurrentCountryName.Text;
-                DBObjectController.SaveChanges();
+                SimpleTextValidation(textBoxCurrentCountryName, new CancelEventArgs());
+                if (NoErrorProviderMsg())
+                {
+                    string newName = textBoxCurrentCountryName.Text;
+
+                    dataGridViewCountry.CurrentRow.Cells[0].Value      = newName;
+                    ((Country)dataGridViewCountry.CurrentRow.Tag).Name = newName;
+                    
+                    DBObjectController.SaveChanges();
+                }
             }
             else
             {
@@ -64,7 +71,6 @@ namespace Concert.PresentationLayer
         private void dataGridViewCountry_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
         {
             DBObjectController.DeleteObject((Country)dataGridViewCountry.CurrentRow.Tag);
-            LoadCountries();
         }
 
         private void SimpleTextValidation(object sender, CancelEventArgs e)
@@ -76,6 +82,36 @@ namespace Concert.PresentationLayer
             else
             {
                 errorProviderCountry.SetError((TextBox)sender, string.Empty);
+            }
+        }
+
+        private void buttonAdd_Click(object sender, EventArgs e)
+        {
+            if (ValidateChildren() && string.IsNullOrEmpty(errorProviderCountry.GetError(textBoxCountryName)))
+            {
+                string name = textBoxCountryName.Text;
+                
+                DBObjectController.AddObject(new Country() { Name = name });
+                
+                textBoxCountryName.Clear();
+
+                LoadCountries();
+            }
+        }
+
+        private void CountryControlPanel_Load(object sender, EventArgs e)
+        {
+            if (MdiParent != null)
+            {
+                MdiParent.MainMenuStrip.Enabled = false;
+            }
+        }
+
+        private void CountryControlPanel_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (MdiParent != null)
+            {
+                MdiParent.MainMenuStrip.Enabled = true;
             }
         }
     }
