@@ -230,7 +230,7 @@ namespace Concert.DataAccessLayer
 
         public static IEnumerable<Country> GetAllCountries()
         {
-            return context.Country;
+            return context.Country.OrderBy(c => c.Name);
         }
     }
 }

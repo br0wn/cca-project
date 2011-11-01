@@ -88,5 +88,12 @@ namespace Concert.PresentationLayer
             editAlbumForm.Show();
         }
 
+        private void countryControlPanelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CountryControlPanel ccp = new CountryControlPanel();
+            ccp.MdiParent = this;
+            ccp.Show();
+        }
+
 	}
 }
