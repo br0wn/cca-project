@@ -38,6 +38,8 @@
             this.addNewConcertToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.locationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.locationControlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.countryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.countryControlPanelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newBandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editBandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -49,8 +51,6 @@
             this.newAlbumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.trackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.trackControlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.countryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.countryControlPanelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -125,6 +125,21 @@
             this.locationControlToolStripMenuItem.Text = "Location Control";
             this.locationControlToolStripMenuItem.Click += new System.EventHandler(this.locationControlToolStripMenuItem_Click);
             // 
+            // countryToolStripMenuItem
+            // 
+            this.countryToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.countryControlPanelToolStripMenuItem});
+            this.countryToolStripMenuItem.Name = "countryToolStripMenuItem";
+            this.countryToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
+            this.countryToolStripMenuItem.Text = "Country";
+            // 
+            // countryControlPanelToolStripMenuItem
+            // 
+            this.countryControlPanelToolStripMenuItem.Name = "countryControlPanelToolStripMenuItem";
+            this.countryControlPanelToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.countryControlPanelToolStripMenuItem.Text = "Country Control";
+            this.countryControlPanelToolStripMenuItem.Click += new System.EventHandler(this.countryControlPanelToolStripMenuItem_Click);
+            // 
             // bandToolStripMenuItem
             // 
             this.bandToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -137,14 +152,14 @@
             // newBandToolStripMenuItem
             // 
             this.newBandToolStripMenuItem.Name = "newBandToolStripMenuItem";
-            this.newBandToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.newBandToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.newBandToolStripMenuItem.Text = "New Band";
             this.newBandToolStripMenuItem.Click += new System.EventHandler(this.newBandToolStripMenuItem_Click);
             // 
             // editBandToolStripMenuItem
             // 
             this.editBandToolStripMenuItem.Name = "editBandToolStripMenuItem";
-            this.editBandToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.editBandToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.editBandToolStripMenuItem.Text = "Edit Band";
             this.editBandToolStripMenuItem.Click += new System.EventHandler(this.editBandToolStripMenuItem_Click);
             // 
@@ -160,14 +175,14 @@
             // newArtistToolStripMenuItem
             // 
             this.newArtistToolStripMenuItem.Name = "newArtistToolStripMenuItem";
-            this.newArtistToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.newArtistToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.newArtistToolStripMenuItem.Text = "New Artist";
             this.newArtistToolStripMenuItem.Click += new System.EventHandler(this.newArtistToolStripMenuItem_Click);
             // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.editToolStripMenuItem.Text = "Edit Artist";
             this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
@@ -183,14 +198,14 @@
             // addNewAlbumToolStripMenuItem
             // 
             this.addNewAlbumToolStripMenuItem.Name = "addNewAlbumToolStripMenuItem";
-            this.addNewAlbumToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.addNewAlbumToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.addNewAlbumToolStripMenuItem.Text = "New Album";
             this.addNewAlbumToolStripMenuItem.Click += new System.EventHandler(this.addNewAlbumToolStripMenuItem_Click);
             // 
             // newAlbumToolStripMenuItem
             // 
             this.newAlbumToolStripMenuItem.Name = "newAlbumToolStripMenuItem";
-            this.newAlbumToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.newAlbumToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.newAlbumToolStripMenuItem.Text = "Edit Album";
             this.newAlbumToolStripMenuItem.Click += new System.EventHandler(this.newAlbumToolStripMenuItem_Click);
             // 
@@ -205,24 +220,9 @@
             // trackControlToolStripMenuItem
             // 
             this.trackControlToolStripMenuItem.Name = "trackControlToolStripMenuItem";
-            this.trackControlToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.trackControlToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.trackControlToolStripMenuItem.Text = "Track Control";
             this.trackControlToolStripMenuItem.Click += new System.EventHandler(this.trackControlToolStripMenuItem_Click);
-            // 
-            // countryToolStripMenuItem
-            // 
-            this.countryToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.countryControlPanelToolStripMenuItem});
-            this.countryToolStripMenuItem.Name = "countryToolStripMenuItem";
-            this.countryToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
-            this.countryToolStripMenuItem.Text = "Country";
-            // 
-            // countryControlPanelToolStripMenuItem
-            // 
-            this.countryControlPanelToolStripMenuItem.Name = "countryControlPanelToolStripMenuItem";
-            this.countryControlPanelToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
-            this.countryControlPanelToolStripMenuItem.Text = "CountryControlPanel";
-            this.countryControlPanelToolStripMenuItem.Click += new System.EventHandler(this.countryControlPanelToolStripMenuItem_Click);
             // 
             // MainControlPanel
             // 

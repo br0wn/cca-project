@@ -158,7 +158,8 @@ namespace Concert.DataAccessLayer
 
         public static IEnumerable<Album> GetAlbumsByTrack(Track track)
         {
-            return context.Album.Where(a => a.Track.Contains(track)); 
+            IEnumerable<Album> al = context.Album.Where(a => a.Track.Contains(track));
+            return al;
         }
 
 		public static IEnumerable<Concert> GetConcertsByBand( Band band )
