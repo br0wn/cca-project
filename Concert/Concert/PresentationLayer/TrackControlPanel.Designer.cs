@@ -41,6 +41,7 @@
             this.buttonSave = new System.Windows.Forms.Button();
             this.groupBoxNewTrack = new System.Windows.Forms.GroupBox();
             this.groupBoxUploadTrack = new System.Windows.Forms.GroupBox();
+            this.buttonPlay = new System.Windows.Forms.Button();
             this.buttonUpload = new System.Windows.Forms.Button();
             this.labelPath = new System.Windows.Forms.Label();
             this.textBoxPath = new System.Windows.Forms.TextBox();
@@ -53,7 +54,6 @@
             this.errorProviderTrack = new System.Windows.Forms.ErrorProvider(this.components);
             this.axWindowsMediaPlayer = new AxWMPLib.AxWindowsMediaPlayer();
             this.panelWMPlayer = new System.Windows.Forms.Panel();
-            this.buttonPlay = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTracks)).BeginInit();
             this.groupBoxTrack.SuspendLayout();
             this.groupBoxNewTrack.SuspendLayout();
@@ -178,6 +178,17 @@
             this.groupBoxUploadTrack.TabStop = false;
             this.groupBoxUploadTrack.Text = "Upload Track";
             // 
+            // buttonPlay
+            // 
+            this.buttonPlay.BackgroundImage = global::Concert.Properties.Resources.play;
+            this.buttonPlay.Location = new System.Drawing.Point(208, 44);
+            this.buttonPlay.Name = "buttonPlay";
+            this.buttonPlay.Size = new System.Drawing.Size(24, 24);
+            this.buttonPlay.TabIndex = 9;
+            this.buttonPlay.UseVisualStyleBackColor = true;
+            this.buttonPlay.Visible = false;
+            this.buttonPlay.Click += new System.EventHandler(this.buttonPlay_Click);
+            // 
             // buttonUpload
             // 
             this.buttonUpload.Location = new System.Drawing.Point(127, 45);
@@ -281,17 +292,6 @@
             this.panelWMPlayer.Name = "panelWMPlayer";
             this.panelWMPlayer.Size = new System.Drawing.Size(225, 209);
             this.panelWMPlayer.TabIndex = 4;
-            // 
-            // buttonPlay
-            // 
-            this.buttonPlay.BackgroundImage = global::Concert.Properties.Resources.play;
-            this.buttonPlay.Location = new System.Drawing.Point(208, 44);
-            this.buttonPlay.Name = "buttonPlay";
-            this.buttonPlay.Size = new System.Drawing.Size(24, 24);
-            this.buttonPlay.TabIndex = 9;
-            this.buttonPlay.UseVisualStyleBackColor = true;
-            this.buttonPlay.Visible = false;
-            this.buttonPlay.Click += new System.EventHandler(this.buttonPlay_Click);
             // 
             // TrackControlPanel
             // 

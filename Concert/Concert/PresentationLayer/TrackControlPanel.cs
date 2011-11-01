@@ -46,15 +46,24 @@ namespace Concert.PresentationLayer
             ValidateChildren();
             if (ErrorProviderSet())
             {
-                string name = textBoxTrackName.Text;
-                string path = textBoxPath.Text;
-                int length  = int.Parse(textBoxTrackLength.Text);
+                string name        = textBoxTrackName.Text;
+                string path        = textBoxPath.Text;
+                int length         = int.Parse(textBoxTrackLength.Text);
                 bool trackUploaded = !string.IsNullOrEmpty(textBoxPath.Text);
-                
+
+
+                string trackPath = "";
+                if (trackUploaded && File.Exists(path))
+                {
+                    string audioName = path.Split('\\').Last();
+                    trackPath = @"Resources\Audio\" + audioName;
+                    File.Copy(path, @"..\..\" + trackPath);
+                }
+
                 DBObjectController.AddObject( new Track() { Name     = name,
                                                             Length   = length, 
                                                             Uploaded = trackUploaded, 
-                                                            Path     = path });
+                                                            Path     = trackPath });
                 
                 MessageBox.Show("You have successfully added new track", "Success confirmation");
                 
@@ -228,11 +237,11 @@ namespace Concert.PresentationLayer
         private void dataGridViewTracks_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
         {
             Track track = (Track)e.Row.Tag;
-            foreach (Album album in DBObjectController.GetAlbumsByTrack((Track)e.Row.Tag))
-            {
-                album.Track.Remove(track);
-            }
-            if ( !string.IsNullOrEmpty(track.Path))
+            //foreach (Album album in DBObjectController.GetAlbumsByTrack(track))
+            //{
+            //    album.Track.Remove(track);
+            //}
+            if ( track.Uploaded )
             {
                 string url = @"..\..\" + track.Path;
                 if (File.Exists(url))
