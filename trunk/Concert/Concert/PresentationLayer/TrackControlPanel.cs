@@ -60,7 +60,7 @@ namespace Concert.PresentationLayer
                     File.Copy(path, @"..\..\" + trackPath);
                 }
 
-                DBObjectController.AddObject( new Track() { Name     = name,
+                DBObjectController.StoreObject( new Track() { Name     = name,
                                                             Length   = length, 
                                                             Uploaded = trackUploaded, 
                                                             Path     = trackPath });

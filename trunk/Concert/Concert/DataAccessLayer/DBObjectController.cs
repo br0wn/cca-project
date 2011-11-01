@@ -22,7 +22,7 @@ namespace Concert.DataAccessLayer
             SaveChanges();
         }
 
-        public static void AddObject(Concert concert)
+        public static void StoreObject(Concert concert)
         {
             context.Concert.AddObject(concert);
             SaveChanges();
@@ -66,7 +66,7 @@ namespace Concert.DataAccessLayer
             SaveChanges();
         }
 
-        public static void AddObject(Location location)
+        public static void StoreObject(Location location)
         {
             context.Location.AddObject(location);
             SaveChanges();
@@ -83,7 +83,7 @@ namespace Concert.DataAccessLayer
             SaveChanges();
         }
 
-        public static void AddObject(Track track)
+        public static void StoreObject(Track track)
         {
             context.Track.AddObject(track);
             SaveChanges();
@@ -123,7 +123,7 @@ namespace Concert.DataAccessLayer
             SaveChanges();
         }
 
-        public static void AddObject(Artist artist)
+        public static void StoreObject(Artist artist)
         {
             context.Artist.AddObject(artist);
             SaveChanges();
@@ -140,7 +140,7 @@ namespace Concert.DataAccessLayer
             SaveChanges();
         }
 
-        public static void AddObject(Album album)
+        public static void StoreObject(Album album)
         {
             context.Album.AddObject(album);
             SaveChanges();
@@ -158,8 +158,7 @@ namespace Concert.DataAccessLayer
 
         public static IEnumerable<Album> GetAlbumsByTrack(Track track)
         {
-            IEnumerable<Album> al = context.Album.Where(a => a.Track.Contains(track));
-            return al;
+            return context.Album.Where(a => a.Track.Contains(track));
         }
 
 		public static IEnumerable<Concert> GetConcertsByBand( Band band )
@@ -173,7 +172,7 @@ namespace Concert.DataAccessLayer
             SaveChanges();
         }
 
-        public static void AddObject(Band band)
+        public static void StoreObject(Band band)
         {
             context.Band.AddObject(band);
             SaveChanges();
@@ -206,7 +205,7 @@ namespace Concert.DataAccessLayer
             SaveChanges();
         }
 
-        public static void AddObject(Instrument instrument)
+        public static void StoreObject(Instrument instrument)
         {
             context.Instrument.AddObject(instrument);
             SaveChanges();
@@ -223,7 +222,7 @@ namespace Concert.DataAccessLayer
             SaveChanges();
         }
 
-        public static void AddObject(Country country)
+        public static void StoreObject(Country country)
         {
             context.Country.AddObject(country);
             SaveChanges();

@@ -56,7 +56,7 @@ namespace Concert.PresentationLayer
                 int seatCount   = int.Parse(textBoxSeatCount.Text);
                 Country country = (Country)comboBoxCountry.SelectedItem; 
 
-                DBObjectController.AddObject(new Location() {   Address    = address, 
+                DBObjectController.StoreObject(new Location() {   Address    = address, 
                                                                 SeatCount  = seatCount,
                                                                 PostalCode = postalCode,
                                                                 Country    = country });
