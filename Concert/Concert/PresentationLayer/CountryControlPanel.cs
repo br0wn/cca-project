@@ -91,7 +91,7 @@ namespace Concert.PresentationLayer
             {
                 string name = textBoxCountryName.Text;
                 
-                DBObjectController.AddObject(new Country() { Name = name });
+                DBObjectController.StoreObject(new Country() { Name = name });
                 
                 textBoxCountryName.Clear();
 

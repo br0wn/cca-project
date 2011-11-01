@@ -69,7 +69,7 @@ namespace Concert.PresentationLayer
 
                     AddHiredBands(concert);
 
-                    DBObjectController.AddObject( concert );
+                    DBObjectController.StoreObject( concert );
 
                     MessageBox.Show("You have successfully added new concert.", "Success confirmation");
                     ClearForm();
