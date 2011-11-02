@@ -86,10 +86,10 @@ namespace Concert.PresentationLayer
         {
             if (ValidateChildren() && string.IsNullOrEmpty(errorProviderInstrument.GetError(textBoxInstrument)))
             {
-                string name = textBoxInstrument.Name;
+                string name = textBoxInstrument.Text;
 
-                DBObjectController.StoreObject(new Country() { Name = name });
-
+                DBObjectController.StoreObject(new Instrument() { Name = name });
+                 
                 textBoxInstrument.Clear();
 
                 LoadInstruments();

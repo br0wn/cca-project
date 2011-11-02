@@ -46,7 +46,7 @@
             // 
             this.textBoxInstrument.Location = new System.Drawing.Point(68, 21);
             this.textBoxInstrument.Name = "textBoxInstrument";
-            this.textBoxInstrument.Size = new System.Drawing.Size(140, 20);
+            this.textBoxInstrument.Size = new System.Drawing.Size(109, 20);
             this.textBoxInstrument.TabIndex = 4;
             this.textBoxInstrument.Validating += new System.ComponentModel.CancelEventHandler(this.SimpleTextValidation);
             // 
@@ -66,7 +66,7 @@
             this.groupBoxNewInstrument.Controls.Add(this.buttonAdd);
             this.groupBoxNewInstrument.Location = new System.Drawing.Point(12, 269);
             this.groupBoxNewInstrument.Name = "groupBoxNewInstrument";
-            this.groupBoxNewInstrument.Size = new System.Drawing.Size(218, 54);
+            this.groupBoxNewInstrument.Size = new System.Drawing.Size(208, 54);
             this.groupBoxNewInstrument.TabIndex = 8;
             this.groupBoxNewInstrument.TabStop = false;
             this.groupBoxNewInstrument.Text = "Add new Instrument";
@@ -75,7 +75,7 @@
             // 
             this.textBoxCurrentInstrumentName.Location = new System.Drawing.Point(80, 241);
             this.textBoxCurrentInstrumentName.Name = "textBoxCurrentInstrumentName";
-            this.textBoxCurrentInstrumentName.Size = new System.Drawing.Size(140, 20);
+            this.textBoxCurrentInstrumentName.Size = new System.Drawing.Size(109, 20);
             this.textBoxCurrentInstrumentName.TabIndex = 7;
             // 
             // errorProviderInstrument
@@ -103,7 +103,7 @@
             this.dataGridViewInstrument.MultiSelect = false;
             this.dataGridViewInstrument.Name = "dataGridViewInstrument";
             this.dataGridViewInstrument.ReadOnly = true;
-            this.dataGridViewInstrument.Size = new System.Drawing.Size(218, 208);
+            this.dataGridViewInstrument.Size = new System.Drawing.Size(208, 208);
             this.dataGridViewInstrument.TabIndex = 5;
             this.dataGridViewInstrument.SelectionChanged += new System.EventHandler(this.dataGridViewInstrument_SelectionChanged);
             this.dataGridViewInstrument.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.dataGridViewInstrument_UserDeletingRow);
@@ -119,7 +119,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(250, 330);
+            this.ClientSize = new System.Drawing.Size(239, 330);
             this.Controls.Add(this.groupBoxNewInstrument);
             this.Controls.Add(this.textBoxCurrentInstrumentName);
             this.Controls.Add(this.buttonSave);
