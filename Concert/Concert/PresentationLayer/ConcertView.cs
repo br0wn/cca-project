@@ -116,7 +116,14 @@ namespace Concert.PresentationLayer
                 
                 if (((Concert)((DataGridView)sender).CurrentRow.Tag).Location != null)
                 {
-                    textBoxCountry.Text = ((Concert)((DataGridView)sender).CurrentRow.Tag).Location.Country.Name;
+                    if ( ((Concert)((DataGridView)sender).CurrentRow.Tag).Location.Country != null)
+                    {
+                        textBoxCountry.Text = ((Concert)((DataGridView)sender).CurrentRow.Tag).Location.Country.Name;
+                    }
+                    else
+                    {
+                        textBoxCountry.Text = "N/A";
+                    }
                     textBoxAddress.Text = ((Concert)((DataGridView)sender).CurrentRow.Tag).Location.Address;
                     textBoxPostalCode.Text = ((Concert)((DataGridView)sender).CurrentRow.Tag).Location.PostalCode.ToString();
                     textBoxSeatCount.Text = ((Concert)((DataGridView)sender).CurrentRow.Tag).Location.SeatCount.ToString();
