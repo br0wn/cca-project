@@ -90,9 +90,16 @@ namespace Concert.PresentationLayer
 
         private void countryControlPanelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CountryControlPanel ccp = new CountryControlPanel();
-            ccp.MdiParent = this;
-            ccp.Show();
+            CountryControlPanel countryControlPanel = new CountryControlPanel();
+            countryControlPanel.MdiParent = this;
+            countryControlPanel.Show();
+        }
+
+        private void instrumentControlToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            InstrumentControl instrumentControl = new InstrumentControl();
+            instrumentControl.MdiParent = this;
+            instrumentControl.Show();
         }
 
 	}
