@@ -179,7 +179,7 @@ namespace Concert.PresentationLayer
 
                     location.Country = (Country)comboBoxCountryCurrent.SelectedItem;
 
-                    dataGridViewLocation.CurrentRow.Cells[0].Value = location.Country.Name;
+                    dataGridViewLocation.CurrentRow.Cells[0].Value = location.Country != null ? location.Country.Name : "N/A";
                     dataGridViewLocation.CurrentRow.Cells[1].Value = location.Address;
                     dataGridViewLocation.CurrentRow.Cells[2].Value = location.PostalCode;
                     dataGridViewLocation.CurrentRow.Cells[3].Value = location.SeatCount;
@@ -258,7 +258,7 @@ namespace Concert.PresentationLayer
                 }
                 else
                 {
-                    comboBoxCountry.SelectedIndex = -1;
+                    comboBoxCountryCurrent.SelectedIndex = -1;
                 }
                 textBoxAddressCurrent.Text = ((DataGridView)sender).CurrentRow.Cells[1].Value.ToString();
                 textBoxPostalCodeCurrent.Text = ((DataGridView)sender).CurrentRow.Cells[2].Value.ToString();
