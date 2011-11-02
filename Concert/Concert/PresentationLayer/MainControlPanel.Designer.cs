@@ -51,6 +51,8 @@
             this.newAlbumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.trackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.trackControlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.instrumentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.instrumentControlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -80,7 +82,8 @@
             this.bandToolStripMenuItem,
             this.artistToolStripMenuItem,
             this.albumToolStripMenuItem,
-            this.trackToolStripMenuItem});
+            this.trackToolStripMenuItem,
+            this.instrumentToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Size = new System.Drawing.Size(722, 24);
@@ -152,14 +155,14 @@
             // newBandToolStripMenuItem
             // 
             this.newBandToolStripMenuItem.Name = "newBandToolStripMenuItem";
-            this.newBandToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newBandToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.newBandToolStripMenuItem.Text = "New Band";
             this.newBandToolStripMenuItem.Click += new System.EventHandler(this.newBandToolStripMenuItem_Click);
             // 
             // editBandToolStripMenuItem
             // 
             this.editBandToolStripMenuItem.Name = "editBandToolStripMenuItem";
-            this.editBandToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.editBandToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.editBandToolStripMenuItem.Text = "Edit Band";
             this.editBandToolStripMenuItem.Click += new System.EventHandler(this.editBandToolStripMenuItem_Click);
             // 
@@ -175,14 +178,14 @@
             // newArtistToolStripMenuItem
             // 
             this.newArtistToolStripMenuItem.Name = "newArtistToolStripMenuItem";
-            this.newArtistToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newArtistToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.newArtistToolStripMenuItem.Text = "New Artist";
             this.newArtistToolStripMenuItem.Click += new System.EventHandler(this.newArtistToolStripMenuItem_Click);
             // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.editToolStripMenuItem.Text = "Edit Artist";
             this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
@@ -198,14 +201,14 @@
             // addNewAlbumToolStripMenuItem
             // 
             this.addNewAlbumToolStripMenuItem.Name = "addNewAlbumToolStripMenuItem";
-            this.addNewAlbumToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.addNewAlbumToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.addNewAlbumToolStripMenuItem.Text = "New Album";
             this.addNewAlbumToolStripMenuItem.Click += new System.EventHandler(this.addNewAlbumToolStripMenuItem_Click);
             // 
             // newAlbumToolStripMenuItem
             // 
             this.newAlbumToolStripMenuItem.Name = "newAlbumToolStripMenuItem";
-            this.newAlbumToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newAlbumToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.newAlbumToolStripMenuItem.Text = "Edit Album";
             this.newAlbumToolStripMenuItem.Click += new System.EventHandler(this.newAlbumToolStripMenuItem_Click);
             // 
@@ -220,9 +223,24 @@
             // trackControlToolStripMenuItem
             // 
             this.trackControlToolStripMenuItem.Name = "trackControlToolStripMenuItem";
-            this.trackControlToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.trackControlToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.trackControlToolStripMenuItem.Text = "Track Control";
             this.trackControlToolStripMenuItem.Click += new System.EventHandler(this.trackControlToolStripMenuItem_Click);
+            // 
+            // instrumentToolStripMenuItem
+            // 
+            this.instrumentToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.instrumentControlToolStripMenuItem});
+            this.instrumentToolStripMenuItem.Name = "instrumentToolStripMenuItem";
+            this.instrumentToolStripMenuItem.Size = new System.Drawing.Size(77, 20);
+            this.instrumentToolStripMenuItem.Text = "Instrument";
+            // 
+            // instrumentControlToolStripMenuItem
+            // 
+            this.instrumentControlToolStripMenuItem.Name = "instrumentControlToolStripMenuItem";
+            this.instrumentControlToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.instrumentControlToolStripMenuItem.Text = "Instrument Control";
+            this.instrumentControlToolStripMenuItem.Click += new System.EventHandler(this.instrumentControlToolStripMenuItem_Click);
             // 
             // MainControlPanel
             // 
@@ -270,6 +288,8 @@
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem countryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem countryControlPanelToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem instrumentToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem instrumentControlToolStripMenuItem;
     }
 }
 

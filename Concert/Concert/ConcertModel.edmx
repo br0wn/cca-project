@@ -578,7 +578,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="Model1" ZoomLevel="71">
+      <Diagram Name="Model1" ZoomLevel="62">
         <EntityTypeShape EntityType="ConcertModel.Album" Width="1.5" PointX="12.625" PointY="5" Height="1.7879850260416657" IsExpanded="true" />
         <EntityTypeShape EntityType="ConcertModel.Artist" Width="1.5" PointX="16.625" PointY="4.25" Height="1.9802864583333335" IsExpanded="true" />
         <EntityTypeShape EntityType="ConcertModel.Band" Width="1.5" PointX="12.625" PointY="2.25" Height="1.9802864583333335" IsExpanded="true" />
