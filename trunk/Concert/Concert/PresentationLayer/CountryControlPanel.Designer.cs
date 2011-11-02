@@ -45,7 +45,6 @@
             // dataGridViewCountry
             // 
             this.dataGridViewCountry.AllowUserToAddRows = false;
-            this.dataGridViewCountry.AllowUserToDeleteRows = false;
             this.dataGridViewCountry.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewCountry.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CountryName});

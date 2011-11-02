@@ -29,7 +29,10 @@ namespace Concert.PresentationLayer
             foreach (Location location in DBObjectController.GetAllLocations())
             {
                 DataGridViewRow row = new DataGridViewRow();
-                row.CreateCells(dataGridViewLocation, new object[] { location.Country.Name,
+
+                string country = location.Country != null ? location.Country.Name : "N/A";
+
+                row.CreateCells(dataGridViewLocation, new object[] { country,
                                                                      location.Address, 
                                                                      location.PostalCode,
                                                                      location.SeatCount });
@@ -56,7 +59,7 @@ namespace Concert.PresentationLayer
                 int seatCount   = int.Parse(textBoxSeatCount.Text);
                 Country country = (Country)comboBoxCountry.SelectedItem; 
 
-                DBObjectController.StoreObject(new Location() {   Address    = address, 
+                DBObjectController.StoreObject(new Location() { Address    = address, 
                                                                 SeatCount  = seatCount,
                                                                 PostalCode = postalCode,
                                                                 Country    = country });
@@ -249,7 +252,14 @@ namespace Concert.PresentationLayer
             ClearCurrentErrorProvider();
             if (((DataGridView)sender).CurrentRow != null)
             {
-                SelectCurrentCountry(((Location)((DataGridView)sender).CurrentRow.Tag).Country);
+                if (((Location)((DataGridView)sender).CurrentRow.Tag).Country != null)
+                {
+                    SelectCurrentCountry(((Location)((DataGridView)sender).CurrentRow.Tag).Country);
+                }
+                else
+                {
+                    comboBoxCountry.SelectedIndex = -1;
+                }
                 textBoxAddressCurrent.Text = ((DataGridView)sender).CurrentRow.Cells[1].Value.ToString();
                 textBoxPostalCodeCurrent.Text = ((DataGridView)sender).CurrentRow.Cells[2].Value.ToString();
                 textBoxSeatCountCurrent.Text = ((DataGridView)sender).CurrentRow.Cells[3].Value.ToString();

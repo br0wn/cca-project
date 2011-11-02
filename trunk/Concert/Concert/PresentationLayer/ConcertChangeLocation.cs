@@ -26,11 +26,13 @@ namespace Concert.PresentationLayer
             foreach (Location item in DBObjectController.GetAllLocations())
             {
                 DataGridViewRow row = new DataGridViewRow();
-                row.CreateCells(dataGridViewLocation, new object[] {
-                                                                        item.Country.Name,
-                                                                        item.Address,
-                                                                        item.PostalCode,
-                                                                        item.SeatCount });
+
+                string country = item.Country != null ? item.Country.Name : "N/A"; 
+
+                row.CreateCells(dataGridViewLocation, new object[] { country,
+                                                                     item.Address,
+                                                                     item.PostalCode,
+                                                                     item.SeatCount });
                 row.Tag = item;
                 dataGridViewLocation.Rows.Add(row);
             }
