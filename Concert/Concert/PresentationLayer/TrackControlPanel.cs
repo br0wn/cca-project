@@ -237,10 +237,6 @@ namespace Concert.PresentationLayer
         private void dataGridViewTracks_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
         {
             Track track = (Track)e.Row.Tag;
-            //foreach (Album album in DBObjectController.GetAlbumsByTrack(track))
-            //{
-            //    album.Track.Remove(track);
-            //}
             if ( track.Uploaded )
             {
                 string url = @"..\..\" + track.Path;
