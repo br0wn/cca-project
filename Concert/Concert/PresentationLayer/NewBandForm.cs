@@ -105,14 +105,15 @@ namespace Concert.PresentationLayer
 				return;
 			}
 
-            //Band band = new Band( bandName );
+            Band band = new Band();
+			band.Name = bandName;
 			foreach(Artist artist in addedArtists )
 			{
-                //band.AddArtist(artist);
+				band.Artist.Add( artist );
 			}
 
 			try{
-                //DBObjectController.StoreObject(band);
+                DBObjectController.StoreObject(band);
 			}
 			catch(Exception ex){
 				MessageBox.Show( "Error while updating record: \n\n"+ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error );
