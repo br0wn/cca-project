@@ -13,19 +13,22 @@ namespace Concert.PresentationLayer
 {
     public partial class NewArtistForm : Form
     {
+        List<Instrument> instruments;
+
         public NewArtistForm()
         {
             InitializeComponent();
+            LoadInstruments();
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
+        private void LoadInstruments()
         {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
+            instruments = new List<Instrument>();
+            instruments.AddRange(DBObjectController.GetAllInstruments());
+            foreach (Instrument instrument in DBObjectController.GetAllInstruments())
+            {
+                checkedListBoxInstruments.Items.Add(instrument.Name);
+            }
         }
 
         private void Cancel_Click(object sender, EventArgs e)
@@ -36,17 +39,17 @@ namespace Concert.PresentationLayer
         private void Add_Click(object sender, EventArgs e)
         {
             
-            string firstName = textBox1.Text.Trim();
-            string lastName = textBox2.Text.Trim();
-            DateTime birthdate = dateTimePickerConcert.Value;
-            birthdate = birthdate.Date;
-            List<string> instruments= new List<string>();
-            defineInstruments(instruments);
-            //Artist artist = new Artist(firstName, lastName, birthdate);
+            string firstName   = textBox1.Text.Trim();
+            string lastName    = textBox2.Text.Trim();
+            DateTime birthdate = DateTime.Parse(dateTimePickerConcert.Value.ToString("dd.MM.yyyy"));
 
-            foreach (string instrument in instruments)
+            Artist artist = new Artist() { FirstName = firstName,
+                                           LastName  = lastName,
+                                           BirthDate = birthdate };
+
+            foreach (int index in checkedListBoxInstruments.CheckedIndices)
             {
-                //artist.AddInst(instrument);
+                artist.Instrument.Add(instruments[index]);
             }
 
             if (firstName == string.Empty)
@@ -62,7 +65,7 @@ namespace Concert.PresentationLayer
 
             try
             {
-                //DBObjectController.StoreObject(artist);
+                DBObjectController.StoreObject(artist);
             }
             catch (Exception ex)
             {
@@ -72,30 +75,12 @@ namespace Concert.PresentationLayer
             MessageBox.Show("Artist added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             clearMethod();
         }
-        private void defineInstruments(List<string> lista) {
-            if (checkBox1.Checked) lista.Add("Piano");
-            if (checkBox2.Checked) lista.Add("Bass guitar");
-            if (checkBox3.Checked) lista.Add("Drums");
-            if (checkBox4.Checked) lista.Add("Guitar");
-            if (checkBox5.Checked) lista.Add("Sax");
-            if (checkBox6.Checked) lista.Add("Vocal");
-        }
 
         private void clearMethod()
         {
             this.textBox1.Clear();
             this.textBox2.Clear();
-            checkBox1.Checked = false;
-            checkBox2.Checked = false;
-            checkBox3.Checked = false;
-            checkBox4.Checked = false;
-            checkBox5.Checked = false;
-            checkBox6.Checked = false;
-            dateTimePickerConcert.Value = DateTime.Today;
-        }
-        private void groupBox2_Enter(object sender, EventArgs e)
-        {
-        
+            checkedListBoxInstruments.ClearSelected();
         }
 
         private void NewArtistForm_Load(object sender, EventArgs e)
@@ -105,7 +90,7 @@ namespace Concert.PresentationLayer
 
         private void NewArtistForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-           
+            MdiParent.MainMenuStrip.Enabled = true;
         }
 
         private void NewArtistForm_FormClosed(object sender, FormClosedEventArgs e)
