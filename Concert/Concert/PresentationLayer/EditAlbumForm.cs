@@ -23,8 +23,8 @@ namespace Concert.PresentationLayer {
             InitializeComponent();
             this.albumSaved = false;
             this.editMode = false;
-            this.setEdit(false);
-            this.loadExternalData();
+            this.SetEdit(false);
+            this.LoadExternalData();
             this.SetDisplayMember();
         }
         //- u track control se kod dodavanja i spremnanja ne provjerava length...
@@ -38,7 +38,7 @@ namespace Concert.PresentationLayer {
             }
             this.SetDisplayMember();
         }
-        private void loadExternalData()
+        private void LoadExternalData()
         {
             this.albums = null;
             this.albums = DBObjectController.GetAllAlbums().ToList();
@@ -59,10 +59,9 @@ namespace Concert.PresentationLayer {
             Album album = this.albums[albumIndex];
 
             album.Name = albumName;
-            foreach (Track song in this.addedSongs) {
-                if (!album.Track.Contains(song)) {
-                    album.Track.Add(song);
-                }
+            foreach (Track song in this.addedSongs.Where(song => !album.Track.Contains(song)))
+            {
+                album.Track.Add(song);
             }
             try {
                 DBObjectController.StoreObject(album);
@@ -73,18 +72,18 @@ namespace Concert.PresentationLayer {
                 return;
             }
             MessageBox.Show("Album updated");
-            this.setEdit(false);
+            this.SetEdit(false);
             this.albumSaved = true;
-            loadAlbumData(albumIndex);
-            this.loadExternalData();
+            LoadAlbumData(albumIndex);
+            this.LoadExternalData();
 
         }
 
         private void buttonEdit_Click(object sender, EventArgs e) {
-            this.setEdit(true);
+            this.SetEdit(true);
         }
 
-        private void setEdit(bool editMode)
+        private void SetEdit(bool editMode)
         {
             if (editMode == true) {
                 listBoxAvaliableAlbums.Enabled = false;
@@ -109,13 +108,13 @@ namespace Concert.PresentationLayer {
         }
 
         private void buttoncancel_Click(object sender, EventArgs e) {
-            this.setEdit(false);
+            this.SetEdit(false);
         }
 
         private void listBoxAvaliableAlbums_Click(object sender, EventArgs e) {
             
         }
-        private void clearForm()
+        private void ClearForm()
         {
             this.listBoxAddedSgons.DataSource = null;
             this.listBoxAvaliableSongs.DataSource = null;
@@ -131,7 +130,7 @@ namespace Concert.PresentationLayer {
             int albumIndex = this.listBoxAvaliableAlbums.SelectedIndex;
             if (albumIndex < 0)
             {
-                this.clearForm();
+                this.ClearForm();
                 return;
             }
             Album album = this.albums[albumIndex];
@@ -150,7 +149,7 @@ namespace Concert.PresentationLayer {
                 throw;
             }
             this.ClearAlbumData();
-            this.loadExternalData();
+            this.LoadExternalData();
             this.buttonEdit.Enabled = true;
         }
         private void ClearAlbumData()
@@ -159,7 +158,7 @@ namespace Concert.PresentationLayer {
             this.listBoxAvaliableSongs.DataSource = null;
             this.textBoxAlbumName.Clear();
         }
-        private void loadAlbumData(int selectedIndex)
+        private void LoadAlbumData(int selectedIndex)
         {
             if (selectedIndex < 0 && this.albumSaved)
             {
@@ -180,20 +179,19 @@ namespace Concert.PresentationLayer {
             this.addedSongs = album.Track.ToList();
             this.avaliableSongsFull.Clear();
             this.avaliableSongsFull = DBObjectController.GetAvailableTracks().ToList();
-            foreach (Track song in this.avaliableSongsFull) {
-                if (!this.addedSongs.Contains(song)) {
-                    this.avaliableSongs.Add(song);
-                }
+            foreach (Track song in this.avaliableSongsFull.Where(song => !this.addedSongs.Contains(song)))
+            {
+                this.avaliableSongs.Add(song);
             }
             this.listBoxAddedSgons.DataSource = null;
             this.listBoxAvaliableSongs.DataSource = null;
-            //this.listBoxAddedSgons.DataSource = this.addedSongs;
-            //this.listBoxAvaliableSongs.DataSource = this.avaliableSongs;
+            this.listBoxAddedSgons.DataSource = this.addedSongs;
+            this.listBoxAvaliableSongs.DataSource = this.avaliableSongs;
             this.SetDisplayMember();
         }
 
         private void listBoxAvaliableAlbums_SelectedIndexChanged(object sender, EventArgs e) {
-            this.loadAlbumData(((ListBox)sender).SelectedIndex);
+            this.LoadAlbumData(((ListBox)sender).SelectedIndex);
         }
 
         private void buttonRemoveSong_Click(object sender, EventArgs e) {
