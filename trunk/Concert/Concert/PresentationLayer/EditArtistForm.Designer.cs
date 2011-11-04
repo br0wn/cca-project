@@ -55,7 +55,6 @@
             this.ArtistsListBox1.Name = "ArtistsListBox1";
             this.ArtistsListBox1.Size = new System.Drawing.Size(245, 95);
             this.ArtistsListBox1.TabIndex = 0;
-            this.ArtistsListBox1.Click += new System.EventHandler(this.ArtistsListBox1_Click);
             this.ArtistsListBox1.SelectedIndexChanged += new System.EventHandler(this.ArtistsListBox1_SelectedIndexChanged);
             // 
             // label1
