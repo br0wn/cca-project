@@ -17,8 +17,8 @@ namespace Concert.PresentationLayer
         public EditArtistForm()
         {
             InitializeComponent();
-            LoadArtists();
             LoadInstruments();
+            LoadArtists();
             SelectArtist();
         }
 
@@ -43,7 +43,6 @@ namespace Concert.PresentationLayer
 
         private void LoadArtists() 
         {
-            ArtistsListBox1.DisplayMember = "FirstName";
             this.ArtistsListBox1.DataSource = null;
             this.ArtistsListBox1.DataSource = DBObjectController.GetAllArtists();
 
@@ -121,8 +120,9 @@ namespace Concert.PresentationLayer
         private void button1_Click(object sender, EventArgs e)
         {
             Artist artist = (Artist) ArtistsListBox1.SelectedItem;
-            artist.FirstName = textBox1.Text.Trim();
-            artist.LastName  = textBox2.Text.Trim();
+            
+            artist.FirstName = textBox1.Text;
+            artist.LastName  = textBox2.Text;
             artist.BirthDate = dateTimePickerConcert.Value;
 
 
