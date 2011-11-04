@@ -64,10 +64,10 @@ namespace Concert.PresentationLayer {
                 album.Track.Add(song);
             }
             try {
+
                 DBObjectController.StoreObject(album);
             }
             catch {
-
                 MessageBox.Show("Error while updating record");
                 return;
             }
