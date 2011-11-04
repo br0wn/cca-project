@@ -6,7 +6,6 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-//using Concert.DBObjectDefinition;
 using Concert.DataAccessLayer;
 
 namespace Concert.PresentationLayer {
@@ -27,8 +26,6 @@ namespace Concert.PresentationLayer {
             this.LoadExternalData();
             this.SetDisplayMember();
         }
-        //- u track control se kod dodavanja i spremnanja ne provjerava length...
-        //- u edit album kad se sehva nesto, vise ne prikazuje album songs
         private void EditAlbumForm_Load(object sender, EventArgs e)
         {
             MdiParent.MainMenuStrip.Enabled = false;
@@ -46,32 +43,29 @@ namespace Concert.PresentationLayer {
             this.listBoxAvaliableAlbums.DataSource = this.albums;
             this.SetDisplayMember();
         }
+
         private void buttonSave_Click(object sender, EventArgs e)
         {
             string albumName = this.textBoxAlbumName.Text.Trim();
+            
             if (albumName == string.Empty)
             {
                 MessageBox.Show("Album name cannot be empty");
                 return;
             }
-            //List<Track> songs = DBObjectController.GetAvailableTracks().ToList();
             int albumIndex = this.listBoxAvaliableAlbums.SelectedIndex;
-            Album album = this.albums[albumIndex];
+            Album album    = this.albums[albumIndex];
 
-            album.Name = albumName;
-            //dodano
+            album.Name     = albumName;
+            
             album.Track.Clear();
             foreach (Track addedSong in this.addedSongs)
             {
                 album.Track.Add(addedSong);
             }
-            //foreach (Track song in this.addedSongs.Where(song => !album.Track.Contains(song)))
-            //{
-            //    album.Track.Add(song);
-            //}
             try {
 
-                DBObjectController.StoreObject(album);
+                DBObjectController.SaveChanges();
             }
             catch {
                 MessageBox.Show("Error while updating record");
@@ -140,11 +134,6 @@ namespace Concert.PresentationLayer {
                 return;
             }
             Album album = this.albums[albumIndex];
-            //foreach (Band band in DBObjectController.GetBandsByAlbum(album))
-            //{
-            //    //band.Albums.Remove(album);
-            //    //DBObjectController.StoreObject(band);
-            //}
             try
             {
                 DBObjectController.DeleteObject(album);
@@ -174,7 +163,6 @@ namespace Concert.PresentationLayer {
             else if (selectedIndex < 0 && albumSaved == false)
             {
                 this.buttonEdit.Enabled = false;
-               // this.buttonSave.Enabled = false;
                 return;
             }
             this.addedSongs = null;
