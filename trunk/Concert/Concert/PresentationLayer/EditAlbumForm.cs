@@ -97,7 +97,7 @@ namespace Concert.PresentationLayer {
                 buttonDelete.Enabled = true;
             }
             textBoxAlbumName.Enabled = editMode;
-            listBoxAddedSgons.Enabled = editMode;
+            listBoxAddedSongs.Enabled = editMode;
             listBoxAvaliableSongs.Enabled = editMode;
             buttonSave.Enabled = editMode;
             buttoncancel.Enabled = editMode;
@@ -116,13 +116,13 @@ namespace Concert.PresentationLayer {
         }
         private void ClearForm()
         {
-            this.listBoxAddedSgons.DataSource = null;
+            this.listBoxAddedSongs.DataSource = null;
             this.listBoxAvaliableSongs.DataSource = null;
             this.textBoxAlbumName.Clear();
         }
         private void SetListsDisplayMember()
         {
-            this.listBoxAddedSgons.DisplayMember = "Name";
+            this.listBoxAddedSongs.DisplayMember = "Name";
             
         }
         private void buttonDelete_Click(object sender, EventArgs e)
@@ -154,7 +154,7 @@ namespace Concert.PresentationLayer {
         }
         private void ClearAlbumData()
         {
-            this.listBoxAddedSgons.DataSource = null;
+            this.listBoxAddedSongs.DataSource = null;
             this.listBoxAvaliableSongs.DataSource = null;
             this.textBoxAlbumName.Clear();
         }
@@ -183,9 +183,9 @@ namespace Concert.PresentationLayer {
             {
                 this.avaliableSongs.Add(song);
             }
-            this.listBoxAddedSgons.DataSource = null;
+            this.listBoxAddedSongs.DataSource = null;
             this.listBoxAvaliableSongs.DataSource = null;
-            this.listBoxAddedSgons.DataSource = this.addedSongs;
+            this.listBoxAddedSongs.DataSource = this.addedSongs;
             this.listBoxAvaliableSongs.DataSource = this.avaliableSongs;
             this.SetDisplayMember();
         }
@@ -196,18 +196,18 @@ namespace Concert.PresentationLayer {
 
         private void buttonRemoveSong_Click(object sender, EventArgs e) {
             MessageBox.Show("Test");
-            if (this.listBoxAddedSgons.Items.Count == 0) return;
-            if (this.listBoxAddedSgons.SelectedIndex < 0) return;
+            if (this.listBoxAddedSongs.Items.Count == 0) return;
+            if (this.listBoxAddedSongs.SelectedIndex < 0) return;
 
-            int songIndex = this.listBoxAddedSgons.SelectedIndex;
+            int songIndex = this.listBoxAddedSongs.SelectedIndex;
             Track song = this.addedSongs[songIndex];
             this.addedSongs.RemoveAt(songIndex);
             this.avaliableSongs.Add(song);
 
             this.listBoxAvaliableSongs.DataSource = null;
-            this.listBoxAddedSgons.DataSource = null;
+            this.listBoxAddedSongs.DataSource = null;
             this.listBoxAvaliableSongs.DataSource = this.avaliableSongs;
-            this.listBoxAddedSgons.DataSource = this.addedSongs;
+            this.listBoxAddedSongs.DataSource = this.addedSongs;
             this.SetDisplayMember();
 
         }
@@ -221,25 +221,25 @@ namespace Concert.PresentationLayer {
             this.avaliableSongs.RemoveAt(songIndex);
             this.addedSongs.Add(song);
 
-            this.listBoxAvaliableSongs.DataSource = this.listBoxAddedSgons.DataSource = null;
+            this.listBoxAvaliableSongs.DataSource = this.listBoxAddedSongs.DataSource = null;
             this.listBoxAvaliableSongs.DataSource = this.avaliableSongs;
-            this.listBoxAddedSgons.DataSource = this.addedSongs;
+            this.listBoxAddedSongs.DataSource = this.addedSongs;
             this.SetDisplayMember();
         }
 
         private void buttonRemoveSong_Click_1(object sender, EventArgs e) {           
-            if (this.listBoxAddedSgons.Items.Count == 0) return;
-            if (this.listBoxAddedSgons.SelectedIndex < 0) return;
+            if (this.listBoxAddedSongs.Items.Count == 0) return;
+            if (this.listBoxAddedSongs.SelectedIndex < 0) return;
 
-            int songIndex = this.listBoxAddedSgons.SelectedIndex;
+            int songIndex = this.listBoxAddedSongs.SelectedIndex;
             Track song = this.addedSongs[songIndex];
             this.addedSongs.RemoveAt(songIndex);
             this.avaliableSongs.Add(song);
 
             this.listBoxAvaliableSongs.DataSource = null;
-            this.listBoxAddedSgons.DataSource = null;
+            this.listBoxAddedSongs.DataSource = null;
             this.listBoxAvaliableSongs.DataSource = this.avaliableSongs;
-            this.listBoxAddedSgons.DataSource = this.addedSongs;
+            this.listBoxAddedSongs.DataSource = this.addedSongs;
             this.SetDisplayMember();
         }
 
@@ -249,7 +249,7 @@ namespace Concert.PresentationLayer {
 
         private void SetDisplayMember()
         {
-            this.listBoxAddedSgons.DisplayMember = "Name";
+            this.listBoxAddedSongs.DisplayMember = "Name";
             this.listBoxAvaliableAlbums.DisplayMember = "Name";
             this.listBoxAvaliableSongs.DisplayMember = "Name";
         }
