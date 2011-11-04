@@ -27,7 +27,7 @@
             this.listBoxAvaliableAlbums = new System.Windows.Forms.ListBox();
             this.labelAlbumName = new System.Windows.Forms.Label();
             this.textBoxAlbumName = new System.Windows.Forms.TextBox();
-            this.listBoxAddedSgons = new System.Windows.Forms.ListBox();
+            this.listBoxAddedSongs = new System.Windows.Forms.ListBox();
             this.buttonRemoveSong = new System.Windows.Forms.Button();
             this.listBoxAvaliableSongs = new System.Windows.Forms.ListBox();
             this.buttonAddSong = new System.Windows.Forms.Button();
@@ -74,13 +74,13 @@
             this.textBoxAlbumName.Size = new System.Drawing.Size(202, 20);
             this.textBoxAlbumName.TabIndex = 3;
             // 
-            // listBoxAddedSgons
+            // listBoxAddedSongs
             // 
-            this.listBoxAddedSgons.FormattingEnabled = true;
-            this.listBoxAddedSgons.Location = new System.Drawing.Point(22, 249);
-            this.listBoxAddedSgons.Name = "listBoxAddedSgons";
-            this.listBoxAddedSgons.Size = new System.Drawing.Size(114, 121);
-            this.listBoxAddedSgons.TabIndex = 4;
+            this.listBoxAddedSongs.FormattingEnabled = true;
+            this.listBoxAddedSongs.Location = new System.Drawing.Point(22, 249);
+            this.listBoxAddedSongs.Name = "listBoxAddedSongs";
+            this.listBoxAddedSongs.Size = new System.Drawing.Size(114, 121);
+            this.listBoxAddedSongs.TabIndex = 4;
             // 
             // buttonRemoveSong
             // 
@@ -182,7 +182,7 @@
             this.Controls.Add(this.buttonAddSong);
             this.Controls.Add(this.listBoxAvaliableSongs);
             this.Controls.Add(this.buttonRemoveSong);
-            this.Controls.Add(this.listBoxAddedSgons);
+            this.Controls.Add(this.listBoxAddedSongs);
             this.Controls.Add(this.textBoxAlbumName);
             this.Controls.Add(this.labelAlbumName);
             this.Controls.Add(this.listBoxAvaliableAlbums);
@@ -202,7 +202,7 @@
         private System.Windows.Forms.ListBox listBoxAvaliableAlbums;
         private System.Windows.Forms.Label labelAlbumName;
         private System.Windows.Forms.TextBox textBoxAlbumName;
-        private System.Windows.Forms.ListBox listBoxAddedSgons;
+        private System.Windows.Forms.ListBox listBoxAddedSongs;
         private System.Windows.Forms.Button buttonRemoveSong;
         private System.Windows.Forms.ListBox listBoxAvaliableSongs;
         private System.Windows.Forms.Button buttonAddSong;

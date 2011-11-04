@@ -89,13 +89,10 @@ namespace Concert.PresentationLayer {
                 }
                 int bandIndex = this.listBoxAvaliableBands.SelectedIndex;
                 Band band = this.availableBands[bandIndex];
-                //band.Albums.Add(album);
-                band.Album.Add(album);
-
+                album.Band = band;
                 try
                 {
                     DBObjectController.StoreObject(album);
-                    DBObjectController.StoreObject(band);
                 }
                 catch (Exception ex)
                 {
