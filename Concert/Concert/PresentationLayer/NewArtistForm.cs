@@ -19,6 +19,7 @@ namespace Concert.PresentationLayer
         {
             InitializeComponent();
             LoadInstruments();
+            checkedListBoxInstruments.CheckOnClick = true;
         }
 
         private void LoadInstruments()
@@ -80,7 +81,10 @@ namespace Concert.PresentationLayer
         {
             this.textBox1.Clear();
             this.textBox2.Clear();
-            checkedListBoxInstruments.ClearSelected();
+            foreach (int index in checkedListBoxInstruments.CheckedIndices)
+            {
+                checkedListBoxInstruments.SetItemChecked(index, false);
+            }
         }
 
         private void NewArtistForm_Load(object sender, EventArgs e)

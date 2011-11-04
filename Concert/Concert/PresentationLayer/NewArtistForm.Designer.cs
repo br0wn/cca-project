@@ -62,7 +62,6 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Artist";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // Cancel
             // 
@@ -97,7 +96,6 @@
             this.groupBox2.TabIndex = 15;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Instruments";
-            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
             // dateTimePickerConcert
             // 
@@ -151,7 +149,6 @@
             this.label1.Size = new System.Drawing.Size(58, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "First name:";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // checkedListBoxInstruments
             // 
