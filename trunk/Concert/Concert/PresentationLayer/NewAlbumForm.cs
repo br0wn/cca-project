@@ -17,16 +17,16 @@ namespace Concert.PresentationLayer {
             this.LoadExternalData();
             this.SetDisplayMember();
         }
-        //private List<Song> availableSongs = new List<Song>();
-        //private List<Song> addedSongs = new List<Song>();
-        //private List<Band> availableBands = new List<Band>();
+        private List<Track> availableSongs = new List<Track>();
+        private readonly List<Track> addedSongs = new List<Track>();
+        private List<Band> availableBands = new List<Band>();
 
         private void LoadExternalData()
         {
-            //this.availableSongs = DBObjectController.GetAvailableTracks().ToList();
-            //this.listBoxAvaliableSongs.DataSource = this.availableSongs;
-            //this.availableBands = DBObjectController.GetAllBands().ToList();
-            //this.listBoxAvaliableBands.DataSource = this.availableBands;
+            this.availableSongs = DBObjectController.GetAvailableTracks().ToList();
+            this.listBoxAvaliableSongs.DataSource = this.availableSongs;
+            this.availableBands = DBObjectController.GetAllBands().ToList();
+            this.listBoxAvaliableBands.DataSource = this.availableBands;
             this.SetDisplayMember();
         }
 
@@ -41,14 +41,14 @@ namespace Concert.PresentationLayer {
             }
 
             int songIndex = this.listBoxSongs.SelectedIndex;
-            //Song song = this.addedSongs[songIndex];
-            //this.addedSongs.RemoveAt(songIndex);
-            //this.availableSongs.Add(song);
+            Track song = this.addedSongs[songIndex];
+            this.addedSongs.RemoveAt(songIndex);
+            this.availableSongs.Add(song);
 
             this.listBoxAvaliableSongs.DataSource = null;
             this.listBoxSongs.DataSource = null;
-            //this.listBoxAvaliableSongs.DataSource = this.availableSongs;
-            //this.listBoxSongs.DataSource = this.addedSongs;
+            this.listBoxAvaliableSongs.DataSource = this.availableSongs;
+            this.listBoxSongs.DataSource = this.addedSongs;
             this.SetDisplayMember();
 
         }
@@ -60,14 +60,14 @@ namespace Concert.PresentationLayer {
             }
 
             int songIndex = this.listBoxAvaliableSongs.SelectedIndex;
-            //Song song = this.availableSongs[songIndex];
-            //this.availableSongs.RemoveAt(songIndex);
-            //this.addedSongs.Add(song);
+            Track song = this.availableSongs[songIndex];
+            this.availableSongs.RemoveAt(songIndex);
+            this.addedSongs.Add(song);
 
             this.listBoxSongs.DataSource = null;
             this.listBoxAvaliableSongs.DataSource = null;
-            //this.listBoxAvaliableSongs.DataSource = this.availableSongs;
-            //this.listBoxSongs.DataSource = this.addedSongs;
+            this.listBoxAvaliableSongs.DataSource = this.availableSongs;
+            this.listBoxSongs.DataSource = this.addedSongs;
             this.SetDisplayMember();
 
         }
@@ -82,20 +82,20 @@ namespace Concert.PresentationLayer {
                     MessageBox.Show("Album name cannot be empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                //Album album = new Album(albumName);
-                ////foreach (Song song in this.addedSongs)
-                //{
-                //    album.AddTrack(song);
-                //}
-                //int bandIndex = this.listBoxAvaliableBands.SelectedIndex;
-                //Band band = this.availableBands[bandIndex];
-                ////band.Albums.Add(album);
-                //band.AddAlbum(album);
+                Album album = new Album {Name = albumName};
+                foreach (Track song in this.addedSongs)
+                {
+                    album.Track.Add(song);
+                }
+                int bandIndex = this.listBoxAvaliableBands.SelectedIndex;
+                Band band = this.availableBands[bandIndex];
+                //band.Albums.Add(album);
+                band.Album.Add(album);
 
                 try
                 {
-                    //DBObjectController.StoreObject(album);
-                    //DBObjectController.StoreObject(band);
+                    DBObjectController.StoreObject(album);
+                    DBObjectController.StoreObject(band);
                 }
                 catch (Exception ex)
                 {
@@ -116,8 +116,8 @@ namespace Concert.PresentationLayer {
             this.textBoxAlbumName.Clear();
             this.listBoxSongs.DataSource = null;
             this.listBoxAvaliableSongs.DataSource = null;
-            //this.availableSongs.Clear();
-            //this.addedSongs.Clear();
+            this.availableSongs.Clear();
+            this.addedSongs.Clear();
             this.LoadExternalData();
         }
 
