@@ -524,6 +524,9 @@ namespace Concert
                 OnLastNameChanged();
             }
         }
+        public override string ToString() {
+            return FirstName + " " + LastName;
+        }
         private global::System.String _LastName;
         partial void OnLastNameChanging(global::System.String value);
         partial void OnLastNameChanged();
