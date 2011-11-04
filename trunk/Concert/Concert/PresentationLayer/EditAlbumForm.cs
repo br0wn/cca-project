@@ -54,15 +54,21 @@ namespace Concert.PresentationLayer {
                 MessageBox.Show("Album name cannot be empty");
                 return;
             }
-            List<Track> songs = DBObjectController.GetAvailableTracks().ToList();
+            //List<Track> songs = DBObjectController.GetAvailableTracks().ToList();
             int albumIndex = this.listBoxAvaliableAlbums.SelectedIndex;
             Album album = this.albums[albumIndex];
 
             album.Name = albumName;
-            foreach (Track song in this.addedSongs.Where(song => !album.Track.Contains(song)))
+            //dodano
+            album.Track.Clear();
+            foreach (Track addedSong in this.addedSongs)
             {
-                album.Track.Add(song);
+                album.Track.Add(addedSong);
             }
+            //foreach (Track song in this.addedSongs.Where(song => !album.Track.Contains(song)))
+            //{
+            //    album.Track.Add(song);
+            //}
             try {
 
                 DBObjectController.StoreObject(album);
