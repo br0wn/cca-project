@@ -24,17 +24,18 @@ namespace Concert.PresentationLayer
 
         public EditArtistForm(Artist artist)
         {
-          /*  InitializeComponent();
+            /*
+            InitializeComponent();
             LoadArtists();
             LoadInstruments();
-            int index = .FindIndex(i => i.Id == instrument.Id);
-        */
+             */
         }
 
         private void LoadInstruments()
         {
             instruments = new List<Instrument>();
             instruments.AddRange(DBObjectController.GetAllInstruments());
+            
             foreach (Instrument instrument in DBObjectController.GetAllInstruments())
             {
                 checkedListBoxInstruments.Items.Add(instrument.Name);
@@ -43,27 +44,36 @@ namespace Concert.PresentationLayer
 
         private void LoadArtists() 
         {
-            this.ArtistsListBox1.DataSource = null;
-            this.ArtistsListBox1.DataSource = DBObjectController.GetAllArtists();
+            this.listBoxArtist.DataSource = null;
+            this.listBoxArtist.DataSource = DBObjectController.GetAllArtists();
 
-            int artistIndex = this.ArtistsListBox1.SelectedIndex;
             
-            if (artistIndex < 0)
+            if (listBoxArtist.SelectedIndex < 0)
             {
-                this.ArtistsListBox1.DataSource = null;
-                button1.Enabled = false;
-                button3.Enabled = false;
+                this.listBoxArtist.DataSource = null;
+                
+                buttonSave.Enabled   = false;
+                buttonDelete.Enabled = false;
+
+                ClearSelectedInstruments();
+
                 return;
             }
-            else button1.Enabled = true;
+            else buttonSave.Enabled = true;
         }
 
-        private void SelectInstruments(Artist art)
+        private void ClearSelectedInstruments()
         {
             foreach (int index in checkedListBoxInstruments.CheckedIndices)
             {
                 checkedListBoxInstruments.SetItemChecked(index, false);
             }
+        }
+
+        private void SelectInstruments(Artist art)
+        {
+            ClearSelectedInstruments();
+
             foreach (Instrument instrument in art.Instrument)
             {
                 int index = instruments.FindIndex(i => i.Id == instrument.Id);
@@ -73,58 +83,56 @@ namespace Concert.PresentationLayer
 
         private void SelectArtist() 
         {
-            if (this.ArtistsListBox1.SelectedIndex<0)
+            if (listBoxArtist.SelectedIndex < 0)
             {
-                textBox1.Clear();
-                textBox2.Clear();
-                dateTimePickerConcert.Value = DateTime.Today;
+                textBoxFirstName.Clear();
+                textBoxLastName.Clear();
+
+                dateTimePickerBirthDate.Value = DateTime.Today;
+                
+                ClearSelectedInstruments();
             }
             else
             {
-                Artist artist = (Artist)ArtistsListBox1.SelectedItem;
-                textBox1.Text = artist.FirstName;
-                textBox2.Text = artist.LastName;
-                dateTimePickerConcert.Value = artist.BirthDate;
+                Artist artist = (Artist)listBoxArtist.SelectedItem;
+                
+                textBoxFirstName.Text    = artist.FirstName;
+                textBoxLastName.Text     = artist.LastName;
+                dateTimePickerBirthDate.Value = artist.BirthDate;
 
                 SelectInstruments(artist);
             }
                      
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void listBoxArtist_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.Close();
-        }
-
-        private void ArtistsListBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (ArtistsListBox1.SelectedIndex >= 0)
+            if (listBoxArtist.SelectedIndex >= 0)
             {
-                Artist artist = (Artist)ArtistsListBox1.SelectedItem;
+                Artist artist = (Artist)listBoxArtist.SelectedItem;
 
-                textBox1.Text = artist.FirstName;
-                textBox2.Text = artist.LastName;
-
-                dateTimePickerConcert.Value = artist.BirthDate;
+                textBoxFirstName.Text         = artist.FirstName;
+                textBoxLastName.Text          = artist.LastName.ToString();
+                dateTimePickerBirthDate.Value = DateTime.Parse(artist.BirthDate.ToString("dd.MM.yyyy"));
 
                 SelectInstruments(artist);
             }
             else
             {
-                textBox1.Clear();
-                textBox2.Clear();
-                dateTimePickerConcert.Value = DateTime.Now;
+                textBoxFirstName.Clear();
+                textBoxLastName.Clear();
+                dateTimePickerBirthDate.Value = DateTime.Now;
+                ClearSelectedInstruments();
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonSave_Click(object sender, EventArgs e)
         {
-            Artist artist = (Artist) ArtistsListBox1.SelectedItem;
+            Artist artist = (Artist) listBoxArtist.SelectedItem;
             
-            artist.FirstName = textBox1.Text;
-            artist.LastName  = textBox2.Text;
-            artist.BirthDate = dateTimePickerConcert.Value;
-
+            artist.FirstName = textBoxFirstName.Text;
+            artist.LastName  = textBoxLastName.Text;
+            artist.BirthDate = DateTime.Parse(dateTimePickerBirthDate.Value.ToString("dd.MM.yyyy"));
 
             artist.Instrument.Clear();
             foreach (int index  in checkedListBoxInstruments.SelectedIndices)
@@ -132,12 +140,12 @@ namespace Concert.PresentationLayer
                 artist.Instrument.Add(instruments[index]);
             }
 
-            if (textBox1.Text == string.Empty)
+            if (textBoxFirstName.Text == string.Empty)
             {
                 MessageBox.Show("Artist name cannot be empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (textBox2.Text == string.Empty)
+            if (textBoxLastName.Text == string.Empty)
             {
                 MessageBox.Show("Artist last name cannot be empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -153,18 +161,17 @@ namespace Concert.PresentationLayer
             }
             MessageBox.Show("Artist edited successfully!", "Success",MessageBoxButtons.OK, MessageBoxIcon.Information);
             LoadArtists();
-            Select();
+            SelectArtist();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void buttonDelete_Click(object sender, EventArgs e)
         {
-            Artist artist = (Artist)ArtistsListBox1.SelectedItem;
+            Artist artist = (Artist)listBoxArtist.SelectedItem;
 
             DBObjectController.DeleteObject(artist);
 
             LoadArtists();
-            Select();
-            
+            SelectArtist();
         }
 
         private void EditArtistForm_Load(object sender, EventArgs e)

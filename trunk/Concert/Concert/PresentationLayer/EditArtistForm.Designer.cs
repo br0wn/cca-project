@@ -28,34 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ArtistsListBox1 = new System.Windows.Forms.ListBox();
+            this.listBoxArtist = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.dateTimePickerConcert = new System.Windows.Forms.DateTimePicker();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBoxFirstName = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.checkedListBoxInstruments = new System.Windows.Forms.CheckedListBox();
+            this.buttonSave = new System.Windows.Forms.Button();
+            this.buttonCancel = new System.Windows.Forms.Button();
             this.Edit = new System.Windows.Forms.GroupBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.checkedListBoxInstruments = new System.Windows.Forms.CheckedListBox();
+            this.buttonDelete = new System.Windows.Forms.Button();
+            this.dateTimePickerBirthDate = new System.Windows.Forms.DateTimePicker();
+            this.textBoxLastName = new System.Windows.Forms.TextBox();
             this.groupBox2.SuspendLayout();
             this.Edit.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // ArtistsListBox1
+            // listBoxArtist
             // 
-            this.ArtistsListBox1.FormattingEnabled = true;
-            this.ArtistsListBox1.Location = new System.Drawing.Point(11, 11);
-            this.ArtistsListBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.ArtistsListBox1.Name = "ArtistsListBox1";
-            this.ArtistsListBox1.Size = new System.Drawing.Size(245, 95);
-            this.ArtistsListBox1.TabIndex = 0;
-            this.ArtistsListBox1.SelectedIndexChanged += new System.EventHandler(this.ArtistsListBox1_SelectedIndexChanged);
+            this.listBoxArtist.FormattingEnabled = true;
+            this.listBoxArtist.Location = new System.Drawing.Point(11, 11);
+            this.listBoxArtist.Margin = new System.Windows.Forms.Padding(2);
+            this.listBoxArtist.Name = "listBoxArtist";
+            this.listBoxArtist.Size = new System.Drawing.Size(245, 95);
+            this.listBoxArtist.TabIndex = 0;
+            this.listBoxArtist.SelectedIndexChanged += new System.EventHandler(this.listBoxArtist_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -87,106 +87,25 @@
             this.label3.TabIndex = 3;
             this.label3.Text = "Last name:";
             // 
-            // dateTimePickerConcert
+            // textBoxFirstName
             // 
-            this.dateTimePickerConcert.Location = new System.Drawing.Point(84, 69);
-            this.dateTimePickerConcert.Name = "dateTimePickerConcert";
-            this.dateTimePickerConcert.Size = new System.Drawing.Size(148, 20);
-            this.dateTimePickerConcert.TabIndex = 15;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(84, 23);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(148, 20);
-            this.textBox1.TabIndex = 16;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(84, 44);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(148, 20);
-            this.textBox2.TabIndex = 17;
+            this.textBoxFirstName.Location = new System.Drawing.Point(84, 23);
+            this.textBoxFirstName.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxFirstName.Name = "textBoxFirstName";
+            this.textBoxFirstName.Size = new System.Drawing.Size(148, 20);
+            this.textBoxFirstName.TabIndex = 16;
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.checkedListBoxInstruments);
             this.groupBox2.Location = new System.Drawing.Point(16, 106);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox2.Size = new System.Drawing.Size(215, 126);
             this.groupBox2.TabIndex = 18;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Instruments";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(16, 246);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(82, 29);
-            this.button1.TabIndex = 19;
-            this.button1.Text = "Save changes";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(149, 246);
-            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(82, 29);
-            this.button2.TabIndex = 20;
-            this.button2.Text = "Cancel";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // Edit
-            // 
-            this.Edit.Controls.Add(this.button2);
-            this.Edit.Controls.Add(this.button1);
-            this.Edit.Controls.Add(this.groupBox2);
-            this.Edit.Controls.Add(this.textBox2);
-            this.Edit.Controls.Add(this.textBox1);
-            this.Edit.Controls.Add(this.dateTimePickerConcert);
-            this.Edit.Controls.Add(this.label3);
-            this.Edit.Controls.Add(this.label2);
-            this.Edit.Controls.Add(this.label1);
-            this.Edit.Location = new System.Drawing.Point(9, 193);
-            this.Edit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.Edit.Name = "Edit";
-            this.Edit.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.Edit.Size = new System.Drawing.Size(246, 288);
-            this.Edit.TabIndex = 21;
-            this.Edit.TabStop = false;
-            this.Edit.Text = "Edit";
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.button3);
-            this.groupBox1.Location = new System.Drawing.Point(9, 110);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.groupBox1.Size = new System.Drawing.Size(245, 64);
-            this.groupBox1.TabIndex = 22;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Delete";
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(35, 25);
-            this.button3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(178, 24);
-            this.button3.TabIndex = 0;
-            this.button3.Text = "Delete selected artist";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // checkedListBoxInstruments
             // 
@@ -196,6 +115,86 @@
             this.checkedListBoxInstruments.Size = new System.Drawing.Size(171, 94);
             this.checkedListBoxInstruments.TabIndex = 1;
             // 
+            // buttonSave
+            // 
+            this.buttonSave.Location = new System.Drawing.Point(16, 246);
+            this.buttonSave.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(82, 29);
+            this.buttonSave.TabIndex = 19;
+            this.buttonSave.Text = "Save changes";
+            this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
+            // 
+            // buttonCancel
+            // 
+            this.buttonCancel.Location = new System.Drawing.Point(149, 246);
+            this.buttonCancel.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonCancel.Name = "buttonCancel";
+            this.buttonCancel.Size = new System.Drawing.Size(82, 29);
+            this.buttonCancel.TabIndex = 20;
+            this.buttonCancel.Text = "Cancel";
+            this.buttonCancel.UseVisualStyleBackColor = true;
+            // 
+            // Edit
+            // 
+            this.Edit.Controls.Add(this.textBoxLastName);
+            this.Edit.Controls.Add(this.dateTimePickerBirthDate);
+            this.Edit.Controls.Add(this.buttonCancel);
+            this.Edit.Controls.Add(this.buttonSave);
+            this.Edit.Controls.Add(this.groupBox2);
+            this.Edit.Controls.Add(this.textBoxFirstName);
+            this.Edit.Controls.Add(this.label3);
+            this.Edit.Controls.Add(this.label2);
+            this.Edit.Controls.Add(this.label1);
+            this.Edit.Location = new System.Drawing.Point(9, 193);
+            this.Edit.Margin = new System.Windows.Forms.Padding(2);
+            this.Edit.Name = "Edit";
+            this.Edit.Padding = new System.Windows.Forms.Padding(2);
+            this.Edit.Size = new System.Drawing.Size(246, 288);
+            this.Edit.TabIndex = 21;
+            this.Edit.TabStop = false;
+            this.Edit.Text = "Edit";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.buttonDelete);
+            this.groupBox1.Location = new System.Drawing.Point(9, 110);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.groupBox1.Size = new System.Drawing.Size(245, 64);
+            this.groupBox1.TabIndex = 22;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Delete";
+            // 
+            // buttonDelete
+            // 
+            this.buttonDelete.Location = new System.Drawing.Point(35, 25);
+            this.buttonDelete.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonDelete.Name = "buttonDelete";
+            this.buttonDelete.Size = new System.Drawing.Size(178, 24);
+            this.buttonDelete.TabIndex = 0;
+            this.buttonDelete.Text = "Delete selected artist";
+            this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
+            // 
+            // dateTimePickerBirthDate
+            // 
+            this.dateTimePickerBirthDate.Location = new System.Drawing.Point(84, 69);
+            this.dateTimePickerBirthDate.Name = "dateTimePickerBirthDate";
+            this.dateTimePickerBirthDate.Size = new System.Drawing.Size(147, 20);
+            this.dateTimePickerBirthDate.TabIndex = 21;
+            // 
+            // textBoxLastName
+            // 
+            this.textBoxLastName.Location = new System.Drawing.Point(84, 46);
+            this.textBoxLastName.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxLastName.Name = "textBoxLastName";
+            this.textBoxLastName.Size = new System.Drawing.Size(148, 20);
+            this.textBoxLastName.TabIndex = 22;
+            // 
             // EditArtistForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -203,8 +202,8 @@
             this.ClientSize = new System.Drawing.Size(266, 492);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.Edit);
-            this.Controls.Add(this.ArtistsListBox1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Controls.Add(this.listBoxArtist);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "EditArtistForm";
             this.Text = "EditArtistForm";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.EditArtistForm_FormClosed);
@@ -219,19 +218,19 @@
 
         #endregion
 
-        private System.Windows.Forms.ListBox ArtistsListBox1;
+        private System.Windows.Forms.ListBox listBoxArtist;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DateTimePicker dateTimePickerConcert;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBoxFirstName;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button buttonSave;
+        private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.GroupBox Edit;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button buttonDelete;
         private System.Windows.Forms.CheckedListBox checkedListBoxInstruments;
+        private System.Windows.Forms.TextBox textBoxLastName;
+        private System.Windows.Forms.DateTimePicker dateTimePickerBirthDate;
     }
 }
