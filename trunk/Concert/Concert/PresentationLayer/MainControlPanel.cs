@@ -70,7 +70,7 @@ namespace Concert.PresentationLayer
 
 		private void editToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			EditArtistForm editArtistForm = new EditArtistForm();
+			EditArtist editArtistForm = new EditArtist();
 			editArtistForm.MdiParent = this;
 			editArtistForm.Show();
 		}

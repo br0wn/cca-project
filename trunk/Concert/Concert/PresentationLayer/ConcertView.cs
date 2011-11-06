@@ -187,7 +187,7 @@ namespace Concert.PresentationLayer
 
         private void dataGridViewArtist_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            PresentationLayer.EditArtistForm editArtistForm = new PresentationLayer.EditArtistForm((Artist)dataGridViewArtist.CurrentRow.Tag);
+            PresentationLayer.EditArtist editArtistForm = new PresentationLayer.EditArtist((Artist)dataGridViewArtist.CurrentRow.Tag);
             editArtistForm.ShowDialog();
             RefreshArtistData();
         }
