@@ -328,7 +328,7 @@
             this.dateTimePickerConcertDateTo.Name = "dateTimePickerConcertDateTo";
             this.dateTimePickerConcertDateTo.Size = new System.Drawing.Size(127, 20);
             this.dateTimePickerConcertDateTo.TabIndex = 32;
-            this.dateTimePickerConcertDateTo.Value = new System.DateTime(2011, 10, 23, 0, 0, 0, 0);
+            this.dateTimePickerConcertDateTo.Value = new System.DateTime(2011, 11, 7, 0, 0, 0, 0);
             this.dateTimePickerConcertDateTo.ValueChanged += new System.EventHandler(this.textBoxFind_TextChanged);
             // 
             // labelFindConcertTicketPriceTo

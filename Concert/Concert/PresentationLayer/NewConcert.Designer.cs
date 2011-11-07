@@ -133,7 +133,7 @@
             this.dataGridViewLocation.ReadOnly = true;
             this.dataGridViewLocation.Size = new System.Drawing.Size(469, 164);
             this.dataGridViewLocation.TabIndex = 14;
-            this.dataGridViewLocation.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewLocation_CellDoubleClick);
+            this.dataGridViewLocation.SelectionChanged += new System.EventHandler(this.dataGridViewLocation_SelectionChanged);
             // 
             // LocationCountry
             // 

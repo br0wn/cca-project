@@ -90,6 +90,15 @@ namespace Concert.PresentationLayer
             {
                 concert.Band.Add(bands[index]);
             }
+            ClearHiredBands();
+        }
+
+        private void ClearHiredBands()
+        {
+            foreach (int index in checkedListBoxBands.CheckedIndices)
+            {
+                checkedListBoxBands.SetItemChecked(index, false);
+            }
         }
 
         private void textBoxConcertName_Validating(object sender, CancelEventArgs e)
@@ -185,9 +194,12 @@ namespace Concert.PresentationLayer
             LoadLocations();
         }
 
-        private void dataGridViewLocation_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridViewLocation_SelectionChanged(object sender, EventArgs e)
         {
-            location = (Location)((DataGridView)sender).CurrentRow.Tag;
+            if (dataGridViewLocation.CurrentRow != null)
+            {
+                location = (Location)((DataGridView)sender).CurrentRow.Tag;
+            }
         }
     }
 }
