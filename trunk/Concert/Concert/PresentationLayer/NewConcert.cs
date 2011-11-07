@@ -33,7 +33,10 @@ namespace Concert.PresentationLayer
             foreach (Location location in DBObjectController.GetAllLocations())
             {
                 DataGridViewRow row = new DataGridViewRow();
-                row.CreateCells(dataGridViewLocation, new object[] { location.Country.Name, 
+
+                string country = location.Country != null ? location.Country.Name : "N/A";
+
+                row.CreateCells(dataGridViewLocation, new object[] { country, 
                                                                      location.Address, 
                                                                      location.PostalCode,
                                                                      location.SeatCount });

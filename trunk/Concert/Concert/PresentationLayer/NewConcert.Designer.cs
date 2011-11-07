@@ -56,7 +56,7 @@
             // 
             this.dateTimePickerConcert.Location = new System.Drawing.Point(82, 93);
             this.dateTimePickerConcert.Name = "dateTimePickerConcert";
-            this.dateTimePickerConcert.Size = new System.Drawing.Size(148, 20);
+            this.dateTimePickerConcert.Size = new System.Drawing.Size(131, 20);
             this.dateTimePickerConcert.TabIndex = 13;
             this.dateTimePickerConcert.Validating += new System.ComponentModel.CancelEventHandler(this.dateTimePickerConcert_Validating);
             // 
@@ -88,7 +88,7 @@
             // 
             this.textBoxTicketPrice.Location = new System.Drawing.Point(82, 53);
             this.textBoxTicketPrice.Name = "textBoxTicketPrice";
-            this.textBoxTicketPrice.Size = new System.Drawing.Size(100, 20);
+            this.textBoxTicketPrice.Size = new System.Drawing.Size(131, 20);
             this.textBoxTicketPrice.TabIndex = 10;
             this.textBoxTicketPrice.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxTicketPrice_Validating);
             // 
@@ -105,7 +105,7 @@
             // 
             this.textBoxConcertName.Location = new System.Drawing.Point(82, 12);
             this.textBoxConcertName.Name = "textBoxConcertName";
-            this.textBoxConcertName.Size = new System.Drawing.Size(100, 20);
+            this.textBoxConcertName.Size = new System.Drawing.Size(131, 20);
             this.textBoxConcertName.TabIndex = 8;
             this.textBoxConcertName.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxConcertName_Validating);
             // 
@@ -203,7 +203,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(520, 432);
+            this.ClientSize = new System.Drawing.Size(520, 428);
             this.Controls.Add(this.groupBoxBands);
             this.Controls.Add(this.groupBoxLocation);
             this.Controls.Add(this.dateTimePickerConcert);
