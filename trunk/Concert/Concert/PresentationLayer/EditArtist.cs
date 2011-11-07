@@ -119,42 +119,56 @@ namespace Concert.PresentationLayer
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            if (textBoxFirstName.Text == string.Empty)
+            if (listBoxArtist.SelectedIndex >= 0)
             {
-                MessageBox.Show("Artist name cannot be empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                if (textBoxFirstName.Text == string.Empty)
+                {
+                    MessageBox.Show("Artist name cannot be empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (textBoxLastName.Text == string.Empty)
+                {
+                    MessageBox.Show("Artist last name cannot be empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                Artist artist = artists[listBoxArtist.SelectedIndex];
+
+                artist.FirstName = textBoxFirstName.Text;
+                artist.LastName = textBoxLastName.Text;
+                artist.BirthDate = DateTime.Parse(dateTimePickerBirthDate.Value.ToString("dd.MM.yyyy"));
+
+                artist.Instrument.Clear();
+                foreach (int index in checkedListBoxInstrument.CheckedIndices)
+                {
+                    artist.Instrument.Add(instruments[index]);
+                }
+
+                DBObjectController.SaveChanges();
+                MessageBox.Show("Artist edited successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                LoadArtists();
             }
-            if (textBoxLastName.Text == string.Empty)
+            else
             {
-                MessageBox.Show("Artist last name cannot be empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                ClearForm();
             }
-
-            Artist artist = artists[listBoxArtist.SelectedIndex];
-
-            artist.FirstName = textBoxFirstName.Text;
-            artist.LastName  = textBoxLastName.Text;
-            artist.BirthDate = DateTime.Parse(dateTimePickerBirthDate.Value.ToString("dd.MM.yyyy"));
-
-            artist.Instrument.Clear();
-            foreach (int index in checkedListBoxInstrument.CheckedIndices)
-            {
-                artist.Instrument.Add(instruments[index]);
-            }
-
-            DBObjectController.SaveChanges();
-            MessageBox.Show("Artist edited successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            
-            LoadArtists();
         }
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            Artist artist = artists[listBoxArtist.SelectedIndex];
+            if (listBoxArtist.SelectedIndex >= 0)
+            {
+                Artist artist = artists[listBoxArtist.SelectedIndex];
 
-            DBObjectController.DeleteObject(artist);
+                DBObjectController.DeleteObject(artist);
 
-            LoadArtists();
+                LoadArtists();
+            }
+            else
+            {
+                ClearForm();
+            }
         }
 
         private void EditArtist_FormClosing(object sender, FormClosingEventArgs e)

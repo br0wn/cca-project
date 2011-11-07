@@ -160,7 +160,19 @@ namespace Concert.DataAccessLayer
 
         public static void DeleteObject(Album album)
         {
+            List<int> tracks = new List<int>();
+            foreach (Track track in album.Track)
+            {
+                tracks.Add(track.Id);
+            }
+
             context.Album.DeleteObject(album);
+            SaveChanges();
+
+            foreach (Track track in context.Track.Where(t => tracks.Contains(t.Id)))
+            {
+                DeleteObject(track);
+            }
             SaveChanges();
         }
 
@@ -208,7 +220,20 @@ namespace Concert.DataAccessLayer
                 }
             }
 
+            List<int> albums = new List<int>();
+
+            foreach (Album album in band.Album)
+            {
+                albums.Add(album.Id);
+            }
+
             context.Band.DeleteObject(band);
+            SaveChanges();
+
+            foreach (Album album in context.Album.Where(a => albums.Contains(a.Id)))
+            {
+                DeleteObject(album);
+            }
             SaveChanges();
         }
 
@@ -261,7 +286,20 @@ namespace Concert.DataAccessLayer
 
         public static void DeleteObject(Country country)
         {
+            List<int> locations = new List<int>();
+
+            foreach (Location location in country.Location)
+            {
+                locations.Add(location.Id);
+            }
+
             context.Country.DeleteObject(country);
+            SaveChanges();
+
+            foreach (Location location in context.Location.Where(l => locations.Contains(l.Id)))
+            {
+                DeleteObject(location);
+            }
             SaveChanges();
         }
 

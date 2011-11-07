@@ -551,7 +551,10 @@ namespace Concert
         private global::System.DateTime _BirthDate;
         partial void OnBirthDateChanging(global::System.DateTime value);
         partial void OnBirthDateChanged();
-
+        public override string ToString()
+        {
+            return FirstName + " " + LastName;
+        }
         #endregion
     
         #region Navigation Properties
