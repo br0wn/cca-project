@@ -682,7 +682,10 @@ namespace Concert
         private global::System.String _Name;
         partial void OnNameChanging(global::System.String value);
         partial void OnNameChanged();
-
+        public override string ToString()
+        {
+            return Name;
+        }
         #endregion
     
         #region Navigation Properties
