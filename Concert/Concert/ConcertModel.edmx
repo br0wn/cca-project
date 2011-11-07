@@ -152,7 +152,9 @@
     <Property Name="Band_Id" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="BandAlbum">
-    <End Role="Band" Type="ConcertModel.Store.Band" Multiplicity="0..1" />
+    <End Role="Band" Type="ConcertModel.Store.Band" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Album" Type="ConcertModel.Store.Album" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Band">
@@ -164,7 +166,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="AlbumTrack">
-    <End Role="Album" Type="ConcertModel.Store.Album" Multiplicity="0..1" />
+    <End Role="Album" Type="ConcertModel.Store.Album" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Track" Type="ConcertModel.Store.Track" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Album">
@@ -176,7 +180,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="CountryLocation">
-    <End Role="Country" Type="ConcertModel.Store.Country" Multiplicity="0..1" />
+    <End Role="Country" Type="ConcertModel.Store.Country" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Location" Type="ConcertModel.Store.Location" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Country">
@@ -398,20 +404,29 @@
           </End>
         </Association>
         <Association Name="BandAlbum">
-          <End Type="ConcertModel.Band" Role="Band" Multiplicity="0..1" />
-          <End Type="ConcertModel.Album" Role="Album" Multiplicity="*" />
+          <End Type="ConcertModel.Band" Role="Band" Multiplicity="0..1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ConcertModel.Album" Role="Album" Multiplicity="*" >
+          </End>
         </Association>
         <Association Name="AlbumTrack">
-          <End Type="ConcertModel.Album" Role="Album" Multiplicity="0..1" />
-          <End Type="ConcertModel.Track" Role="Track" Multiplicity="*" />
+          <End Type="ConcertModel.Album" Role="Album" Multiplicity="0..1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ConcertModel.Track" Role="Track" Multiplicity="*" >
+          </End>
         </Association>
         <Association Name="ArtistBand">
           <End Type="ConcertModel.Artist" Role="Artist" Multiplicity="*" />
           <End Type="ConcertModel.Band" Role="Band" Multiplicity="*" />
         </Association>
         <Association Name="CountryLocation">
-          <End Type="ConcertModel.Country" Role="Country" Multiplicity="0..1" />
-          <End Type="ConcertModel.Location" Role="Location" Multiplicity="*" />
+          <End Type="ConcertModel.Country" Role="Country" Multiplicity="0..1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ConcertModel.Location" Role="Location" Multiplicity="*" >
+          </End>
         </Association>
         <Association Name="LocationConcert">
           <End Type="ConcertModel.Location" Role="Location" Multiplicity="0..1" />

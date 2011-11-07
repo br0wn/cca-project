@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 10/31/2011 15:23:29
+-- Date Created: 11/07/2011 18:11:54
 -- Generated from EDMX file: C:\Users\vrabac\Downloads\Dropbox\Projects\NMBP\Concert\Concert\ConcertModel.edmx
 -- --------------------------------------------------
 
@@ -17,6 +17,15 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_InstrumentArtist_Instrument]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[InstrumentArtist] DROP CONSTRAINT [FK_InstrumentArtist_Instrument];
+GO
+IF OBJECT_ID(N'[dbo].[FK_InstrumentArtist_Artist]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[InstrumentArtist] DROP CONSTRAINT [FK_InstrumentArtist_Artist];
+GO
+IF OBJECT_ID(N'[dbo].[FK_BandAlbum]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Album] DROP CONSTRAINT [FK_BandAlbum];
+GO
 IF OBJECT_ID(N'[dbo].[FK_AlbumTrack]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Track] DROP CONSTRAINT [FK_AlbumTrack];
 GO
@@ -26,26 +35,17 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_ArtistBand_Band]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[ArtistBand] DROP CONSTRAINT [FK_ArtistBand_Band];
 GO
-IF OBJECT_ID(N'[dbo].[FK_BandAlbum]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Album] DROP CONSTRAINT [FK_BandAlbum];
+IF OBJECT_ID(N'[dbo].[FK_CountryLocation]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Location] DROP CONSTRAINT [FK_CountryLocation];
 GO
-IF OBJECT_ID(N'[dbo].[FK_ConcertBand_Band]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[ConcertBand] DROP CONSTRAINT [FK_ConcertBand_Band];
+IF OBJECT_ID(N'[dbo].[FK_LocationConcert]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Concert] DROP CONSTRAINT [FK_LocationConcert];
 GO
 IF OBJECT_ID(N'[dbo].[FK_ConcertBand_Concert]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[ConcertBand] DROP CONSTRAINT [FK_ConcertBand_Concert];
 GO
-IF OBJECT_ID(N'[dbo].[FK_CountryLocation]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Location] DROP CONSTRAINT [FK_CountryLocation];
-GO
-IF OBJECT_ID(N'[dbo].[FK_InstrumentArtist_Artist]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[InstrumentArtist] DROP CONSTRAINT [FK_InstrumentArtist_Artist];
-GO
-IF OBJECT_ID(N'[dbo].[FK_InstrumentArtist_Instrument]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[InstrumentArtist] DROP CONSTRAINT [FK_InstrumentArtist_Instrument];
-GO
-IF OBJECT_ID(N'[dbo].[FK_LocationConcert]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Concert] DROP CONSTRAINT [FK_LocationConcert];
+IF OBJECT_ID(N'[dbo].[FK_ConcertBand_Band]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ConcertBand] DROP CONSTRAINT [FK_ConcertBand_Band];
 GO
 
 -- --------------------------------------------------
@@ -58,20 +58,20 @@ GO
 IF OBJECT_ID(N'[dbo].[Artist]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Artist];
 GO
-IF OBJECT_ID(N'[dbo].[ArtistBand]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[ArtistBand];
-GO
 IF OBJECT_ID(N'[dbo].[Band]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Band];
 GO
 IF OBJECT_ID(N'[dbo].[Concert]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Concert];
 GO
-IF OBJECT_ID(N'[dbo].[ConcertBand]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[ConcertBand];
-GO
 IF OBJECT_ID(N'[dbo].[Country]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Country];
+GO
+IF OBJECT_ID(N'[dbo].[Location]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Location];
+GO
+IF OBJECT_ID(N'[dbo].[Track]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Track];
 GO
 IF OBJECT_ID(N'[dbo].[Instrument]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Instrument];
@@ -79,11 +79,11 @@ GO
 IF OBJECT_ID(N'[dbo].[InstrumentArtist]', 'U') IS NOT NULL
     DROP TABLE [dbo].[InstrumentArtist];
 GO
-IF OBJECT_ID(N'[dbo].[Location]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Location];
+IF OBJECT_ID(N'[dbo].[ArtistBand]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ArtistBand];
 GO
-IF OBJECT_ID(N'[dbo].[Track]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Track];
+IF OBJECT_ID(N'[dbo].[ConcertBand]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ConcertBand];
 GO
 
 -- --------------------------------------------------
@@ -283,7 +283,7 @@ ADD CONSTRAINT [FK_BandAlbum]
     FOREIGN KEY ([Band_Id])
     REFERENCES [dbo].[Band]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_BandAlbum'
 CREATE INDEX [IX_FK_BandAlbum]
@@ -297,7 +297,7 @@ ADD CONSTRAINT [FK_AlbumTrack]
     FOREIGN KEY ([Album_Id])
     REFERENCES [dbo].[Album]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_AlbumTrack'
 CREATE INDEX [IX_FK_AlbumTrack]
@@ -334,7 +334,7 @@ ADD CONSTRAINT [FK_CountryLocation]
     FOREIGN KEY ([Country_Id])
     REFERENCES [dbo].[Country]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_CountryLocation'
 CREATE INDEX [IX_FK_CountryLocation]
