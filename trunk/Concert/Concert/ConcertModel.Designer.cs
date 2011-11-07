@@ -355,7 +355,10 @@ namespace Concert
         private global::System.String _Name;
         partial void OnNameChanging(global::System.String value);
         partial void OnNameChanged();
-
+        public override string ToString()
+        {
+            return Name;
+        }
         #endregion
     
         #region Navigation Properties
@@ -524,9 +527,6 @@ namespace Concert
                 OnLastNameChanged();
             }
         }
-        public override string ToString() {
-            return FirstName + " " + LastName;
-        }
         private global::System.String _LastName;
         partial void OnLastNameChanging(global::System.String value);
         partial void OnLastNameChanged();
@@ -554,7 +554,10 @@ namespace Concert
         private global::System.DateTime _BirthDate;
         partial void OnBirthDateChanging(global::System.DateTime value);
         partial void OnBirthDateChanged();
-
+        public override string ToString()
+        {
+            return FirstName + " " + LastName;
+        }
         #endregion
     
         #region Navigation Properties
@@ -682,10 +685,7 @@ namespace Concert
         private global::System.String _Name;
         partial void OnNameChanging(global::System.String value);
         partial void OnNameChanged();
-        public override string ToString()
-        {
-            return Name;
-        }
+
         #endregion
     
         #region Navigation Properties
