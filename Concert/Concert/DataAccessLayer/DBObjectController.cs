@@ -18,6 +18,14 @@ namespace Concert.DataAccessLayer
 
         public static void DeleteObject(Concert concert)
         {
+            foreach (Band band in context.Band)
+            {
+                if (band.Concert.Contains(concert))
+                {
+                    band.Concert.Remove(concert);
+                }
+            }
+
             context.Concert.DeleteObject(concert);
             SaveChanges();
         }
@@ -119,6 +127,22 @@ namespace Concert.DataAccessLayer
 
         public static void DeleteObject(Artist artist)
         {
+            foreach (Instrument instrument in context.Instrument)
+            {
+                if (instrument.Artist.Contains(artist))
+                {
+                    instrument.Artist.Remove(artist);
+                }
+            }
+
+            foreach (Band band in context.Band)
+            {
+                if (band.Artist.Contains(artist))
+                {
+                    band.Artist.Remove(artist);
+                }
+            }
+
             context.Artist.DeleteObject(artist);
             SaveChanges();
         }
@@ -168,6 +192,22 @@ namespace Concert.DataAccessLayer
         
         public static void DeleteObject(Band band)
         {
+            foreach (Artist artist in context.Artist)
+            {
+                if (artist.Band.Contains(band))
+                {
+                    artist.Band.Remove(band);
+                }
+            }
+
+            foreach (Concert concert in context.Concert)
+            {
+                if (concert.Band.Contains(band))
+                {
+                    concert.Band.Remove(band);
+                }
+            }
+
             context.Band.DeleteObject(band);
             SaveChanges();
         }
@@ -183,11 +223,6 @@ namespace Concert.DataAccessLayer
             return context.Band;
 		}
 
-        public static IEnumerable<Band> GetBandsByArtist(Artist artist)
-        {
-            return context.Band.Where(b => b.Artist.Contains(artist));
-        }
-
         public static IEnumerable<Band> GetAdjectiveBands(IEnumerable<Band> bands)
         {
             List<Band> adjectiveBands = new List<Band>();
@@ -201,6 +236,14 @@ namespace Concert.DataAccessLayer
 
         public static void DeleteObject(Instrument instrument)
         {
+            foreach (Artist artist in context.Artist)
+            {
+                if (artist.Instrument.Contains(instrument))
+                {
+                    artist.Instrument.Remove(instrument);
+                }
+            }
+
             context.Instrument.DeleteObject(instrument);
             SaveChanges();
         }

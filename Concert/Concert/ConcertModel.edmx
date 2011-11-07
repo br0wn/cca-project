@@ -394,7 +394,8 @@
         </EntityType>
         <Association Name="InstrumentArtist">
           <End Type="ConcertModel.Instrument" Role="Instrument" Multiplicity="*" />
-          <End Type="ConcertModel.Artist" Role="Artist" Multiplicity="*" />
+          <End Type="ConcertModel.Artist" Role="Artist" Multiplicity="*" >
+          </End>
         </Association>
         <Association Name="BandAlbum">
           <End Type="ConcertModel.Band" Role="Band" Multiplicity="0..1" />
