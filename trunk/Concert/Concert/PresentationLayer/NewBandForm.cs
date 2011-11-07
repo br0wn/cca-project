@@ -6,7 +6,6 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-//using Concert.DBObjectDefinition;
 using Concert.DataAccessLayer;
 
 namespace Concert.PresentationLayer
@@ -49,7 +48,7 @@ namespace Concert.PresentationLayer
 
         private void buttonRemoveArtist_Click(object sender, EventArgs e)
         {
-			if( this.listBoxAddedArtists.Items.Count == 0 ) return;
+            if (this.listBoxAddedArtists.Items.Count == 0 || listBoxAddedArtists.SelectedIndex < 0) return;
 
 			int artistIndex = this.listBoxAddedArtists.SelectedIndex;
 			Artist artist = this.addedArtists[ artistIndex ];
@@ -63,7 +62,7 @@ namespace Concert.PresentationLayer
 
         private void buttonAddArtist_Click(object sender, EventArgs e)
         {
-			if ( this.listBoxAvailableArtists.Items.Count == 0 ) return;
+			if ( this.listBoxAvailableArtists.Items.Count == 0 || listBoxAvailableArtists.SelectedIndex < 0) return;
 
 			int artistIndex =this.listBoxAvailableArtists.SelectedIndex;
 			Artist artist = this.availableArtists[ artistIndex ];

@@ -19,6 +19,7 @@ namespace Concert.PresentationLayer
         public ConcertView()
         {
             InitializeComponent();
+            dateTimePickerConcertDateTo.Value = DateTime.Today;
             LoadConcertData();
         }
 
@@ -130,10 +131,7 @@ namespace Concert.PresentationLayer
                 }
                 else
                 {
-                    textBoxCountry.Text = string.Empty;
-                    textBoxAddress.Text = string.Empty;
-                    textBoxPostalCode.Text = string.Empty;
-                    textBoxSeatCount.Text = string.Empty;
+                    ClearCurrentLocation();
                 }
                 RefreshBandData();
             }
@@ -153,9 +151,23 @@ namespace Concert.PresentationLayer
 
         private void ClearCurrentForm()
         {
+            ClearCurrentSelection();
+            ClearCurrentLocation();
+        }
+
+        private void ClearCurrentSelection()
+        {
             textBoxCurrentName.Clear();
             textBoxCurrentTicketPrice.Clear();
             textBoxCurrentDate.Clear();
+        }
+
+        private void ClearCurrentLocation()
+        {
+            textBoxCountry.Clear();
+            textBoxAddress.Clear();
+            textBoxPostalCode.Clear();
+            textBoxSeatCount.Clear();
         }
 
         private void dataGridViewBand_SelectionChanged(object sender, EventArgs e)
