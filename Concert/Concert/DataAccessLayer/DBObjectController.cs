@@ -187,21 +187,6 @@ namespace Concert.DataAccessLayer
 			return context.Album;
 		}
 
-        public static IEnumerable<Band> GetBandsByAlbum(Album album)
-        {
-            return context.Band.Where(b => b.Album.Contains(album));
-        }
-
-        public static IEnumerable<Album> GetAlbumsByTrack(Track track)
-        {
-            return context.Album.Where(a => a.Track.Contains(track));
-        }
-
-		public static IEnumerable<Concert> GetConcertsByBand( Band band )
-		{
-			return context.Concert.Where( c => c.Band.Contains( band ) );
-		}
-        
         public static void DeleteObject(Band band)
         {
             foreach (Artist artist in context.Artist)
