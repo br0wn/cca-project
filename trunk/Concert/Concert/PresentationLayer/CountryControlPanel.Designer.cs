@@ -78,7 +78,7 @@
             // 
             this.textBoxCurrentCountryName.Location = new System.Drawing.Point(80, 241);
             this.textBoxCurrentCountryName.Name = "textBoxCurrentCountryName";
-            this.textBoxCurrentCountryName.Size = new System.Drawing.Size(140, 20);
+            this.textBoxCurrentCountryName.Size = new System.Drawing.Size(123, 20);
             this.textBoxCurrentCountryName.TabIndex = 3;
             // 
             // groupBoxNewCountry
@@ -96,7 +96,7 @@
             // 
             this.textBoxCountryName.Location = new System.Drawing.Point(68, 21);
             this.textBoxCountryName.Name = "textBoxCountryName";
-            this.textBoxCountryName.Size = new System.Drawing.Size(140, 20);
+            this.textBoxCountryName.Size = new System.Drawing.Size(123, 20);
             this.textBoxCountryName.TabIndex = 4;
             this.textBoxCountryName.Validating += new System.ComponentModel.CancelEventHandler(this.SimpleTextValidation);
             // 
