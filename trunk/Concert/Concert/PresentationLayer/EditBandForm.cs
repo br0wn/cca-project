@@ -278,19 +278,8 @@ namespace Concert.PresentationLayer
 			Band band = this.bands[ selectedIndex ];
 
 			try
-			{
-				//List<Concert> concerts = DBObjectController.GetConcertsByBand( band ).ToList( );
-				//foreach ( Concert concert in concerts )
-				//{
-				//    concert.Band.Remove( band );
-				//    DBObjectController.StoreObject( concert );
-				//}
-
-				//foreach ( Album album in band.Album )
-				//{
-				//    if ( album != null ) DBObjectController.DeleteObject( album );
-				//}
-				DBObjectController.DeleteObject( band );
+            {
+                DBObjectController.DeleteObject( band );
 			}
 			catch ( Exception ex )
 			{
