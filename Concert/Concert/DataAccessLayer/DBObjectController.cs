@@ -1,18 +1,32 @@
 ﻿using System;
 using System.IO;
+using System.Xml;
+using System.Xml.Schema;
+using System.Xml.Linq;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Data.Objects;
 
 namespace Concert.DataAccessLayer
 {
     class DBObjectController
     {
+        private static const string XML_PATH    = "../../db.xml";
+        private static const string SCHEMA_PATH = "../../schema.xsd";
+
+        private static XDocument db;
+        private static XmlSchemaSet schema;
+
+        public static void InitializeDataBase()
+        {
+            db = XDocument.Load(XML_PATH);
+            schema = new XmlSchemaSet();
+            schema.Add("", XmlReader.Create(new StreamReader(SCHEMA_PATH)));
+        }
 
         public static void SaveChanges()
         {
-            context.SaveChanges();
+            db.Save("../../db.xml");
         }
 
         public static void DeleteObject(Concert concert)
