@@ -51,6 +51,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessLayer\Album.cs" />
+    <Compile Include="BusinessLayer\Concert.cs" />
+    <Compile Include="BusinessLayer\Country.cs" />
+    <Compile Include="BusinessLayer\Location.cs" />
+    <Compile Include="BusinessLayer\Track.cs" />
     <Compile Include="DataAccessLayer\DBObjectController.cs" />
     <Compile Include="PresentationLayer\ConcertAddBand.cs">
       <SubType>Form</SubType>
