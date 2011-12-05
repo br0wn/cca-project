@@ -9,7 +9,6 @@ namespace Concert.DataAccessLayer
 {
     class DBObjectController
     {
-        public static ConcertEntities context;
 
         public static void SaveChanges()
         {
