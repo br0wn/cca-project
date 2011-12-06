@@ -33,7 +33,7 @@ namespace Concert.DataAccessLayer
 
         private static void AddElement(XElement e)
         {
-            
+            XElement x;
         }
 
         private static bool ValidateDatabase(XElement element)
