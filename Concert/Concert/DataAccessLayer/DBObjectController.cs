@@ -6,13 +6,14 @@ using System.Xml.Linq;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Concert.DBObjectDefinition;
 
 namespace Concert.DataAccessLayer
 {
     class DBObjectController
     {
-        private static const string XML_PATH    = "../../db.xml";
-        private static const string SCHEMA_PATH = "../../schema.xsd";
+        private static const string XML_PATH    = "../../Resources/XML/db.xml";
+        private static const string SCHEMA_PATH = "../../Resources/XML/schema.xsd";
 
         private static XDocument db;
         private static XmlSchemaSet schema;
@@ -24,9 +25,22 @@ namespace Concert.DataAccessLayer
             schema.Add("", XmlReader.Create(new StreamReader(SCHEMA_PATH)));
         }
 
+        private static bool ValidateDatabase(out string errorMessage)
+        {
+            string error = "";
+            bool errors = false;
+            db.Validate(schema, (o, e) =>
+            {
+                error += e.Message; 
+                errors = true;
+            });
+            errorMessage = error;
+            return !errors;
+        }
+
         public static void SaveChanges()
         {
-            db.Save("../../db.xml");
+            db.Save(XML_PATH);
         }
 
         public static void DeleteObject(Concert concert)
@@ -301,15 +315,33 @@ namespace Concert.DataAccessLayer
             SaveChanges();
         }
 
-        public static void StoreObject(Country country)
+        public static void AddObject(XElement country)
         {
-            context.Country.AddObject(country);
-            SaveChanges();
+            var query = from c in db.Descendants("Country")
+                        select int.Parse(c.Element("ID").Value);
+            int ID = query.Max() + 1;
+
+            country.Element("ID").Value = ID.ToString();
+
+            db.Add(country);
+
+            if (
+        }
+
+        public static void StoreCountry(XElement country)
+        {
+       
         }
 
         public static IEnumerable<Country> GetAllCountries()
         {
-            return context.Country.OrderBy(c => c.Name);
+            IEnumerable<Country> countries = from c in db.Descendants("Country")
+                                             select new Country()
+                                             {
+                                                 ID = int.Parse(c.Element("ID").Value),
+                                                 Name = c.Element("Name").Value
+                                             };
+            return countries;
         }
     }
 }

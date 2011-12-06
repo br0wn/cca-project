@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessLogicLayer\BLL.cs" />
     <Compile Include="DataAccessLayer\DBObjectController.cs" />
     <Compile Include="DBObjectDefinition\Album.cs" />
     <Compile Include="DBObjectDefinition\Concert.cs" />
@@ -213,12 +214,16 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\XML\ConcertSchema.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\play.png" />
+    <Content Include="Resources\XML\Concert.xml" />
     <None Include="Resources\speaker-music-blue11.jpg" />
     <None Include="Resources\pikachu.ico" />
   </ItemGroup>
