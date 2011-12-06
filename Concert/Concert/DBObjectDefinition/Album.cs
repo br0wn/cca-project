@@ -21,9 +21,9 @@ namespace Concert.DBObjectDefinition
         public XElement toXML()
         {
             XElement album = new XElement("Album",
-                                            new XElement("ID", ID),
-                                            new XElement("BandID", bandID),
-                                            new XElement("Name", Name));
+                                                    new XElement("ID", ID),
+                                                    new XElement("BandID", bandID),
+                                                    new XElement("Name", Name));
             
             foreach (Track track in tracks)
 	        {

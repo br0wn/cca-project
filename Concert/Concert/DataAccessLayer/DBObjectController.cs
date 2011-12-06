@@ -26,6 +26,16 @@ namespace Concert.DataAccessLayer
             schema.Add("", XmlReader.Create(new StreamReader(SCHEMA_PATH)));
         }
 
+        private static void UpdateElement(XElement e)
+        {
+            
+        }
+
+        private static void AddElement(XElement e)
+        {
+            
+        }
+
         private static bool ValidateDatabase(XElement element)
         {
             string errorMessage = "";
@@ -36,14 +46,21 @@ namespace Concert.DataAccessLayer
                 errors = true;
             });
             
-            System.Windows.Forms.mesa
-
             if (errors)
             {
+                MessageBox.Show("Invalid XML document\r\n{0}" + errorMessage );
                 element.Remove();
             }
 
             return !errors;
+        }
+
+        private static string GetElementID(string elementName)
+        {
+            var query = from c in db.Descendants(elementName)
+                        select int.Parse(c.Element("ID").Value);
+
+            return (query.Max() + 1).ToString();
         }
 
         public static void SaveChanges()
@@ -323,22 +340,18 @@ namespace Concert.DataAccessLayer
             SaveChanges();
         }
 
-        public static void StoreCountry(XElement country)
+        public static void StoreObject(Country country)
         {
-            if ( int.Parse(country.Element("ID").Value) == 0 ) 
-            country.Element("ID").Value = GetElementID("Country");
+            XElement countryXML = country.toXML();
 
-            db.Add(country);
+            if (int.Parse(countryXML.Element("ID").Value) == 0)
+            {
+                countryXML.Element("ID").Value = GetElementID("Country");
+                db.Add(country);
+            }
 
-            ValidateDatabase(country);           
-        }
 
-        private static string GetElementID(string elementName)
-        {
-            var query = from c in db.Descendants(elementName)
-                        select int.Parse(c.Element("ID").Value);
-
-            return (query.Max() + 1).ToString();
+            ValidateDatabase(countryXML);           
         }
 
         public static void UpdateCountry(XElement country)
