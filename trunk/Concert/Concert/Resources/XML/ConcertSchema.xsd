@@ -1,0 +1,445 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:element name="Album">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Id">
+          <xs:simpleType>
+            <xs:restriction base="xs:int">
+              <xs:minInclusive value="-2147483648"/>
+              <xs:maxInclusive value="2147483647"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="Name">
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:maxLength value="2147483647"/>
+              <xs:minLength value="1"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="Band_Id" nillable="true" minOccurs="0">
+          <xs:simpleType>
+            <xs:restriction base="xs:int">
+              <xs:minInclusive value="-2147483648"/>
+              <xs:maxInclusive value="2147483647"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element ref="Track" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+    <xs:key name="Album_PrimaryKey_1">
+      <xs:selector xpath="."/>
+      <xs:field xpath="Id"/>
+    </xs:key>
+    <xs:keyref name="Track_ForeignKey_1" refer="Album_PrimaryKey_1">
+      <xs:selector xpath="Track"/>
+      <xs:field xpath="Album_Id"/>
+    </xs:keyref>
+  </xs:element>
+  <xs:element name="Artist">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Id">
+          <xs:simpleType>
+            <xs:restriction base="xs:int">
+              <xs:minInclusive value="-2147483648"/>
+              <xs:maxInclusive value="2147483647"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="FirstName">
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:maxLength value="2147483647"/>
+              <xs:minLength value="1"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="LastName">
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:maxLength value="2147483647"/>
+              <xs:minLength value="1"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="BirthDate">
+          <xs:simpleType>
+            <xs:restriction base="xs:dateTime">
+              <xs:minInclusive value="-2147483648-01-01T00:00:00.0"/>
+              <xs:maxInclusive value="2147483647-12-31T23:59:59.2147483647"/>
+              <xs:pattern value="\p{Nd}{4}-\p{Nd}{2}-\p{Nd}{2}T\p{Nd}{2}:\p{Nd}{2}:\p{Nd}{2}"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element ref="ArtistBand" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="InstrumentArtist" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+    <xs:key name="Artist_PrimaryKey_1">
+      <xs:selector xpath="."/>
+      <xs:field xpath="Id"/>
+    </xs:key>
+    <xs:keyref name="ArtistBand_ForeignKey_1" refer="Artist_PrimaryKey_1">
+      <xs:selector xpath="ArtistBand"/>
+      <xs:field xpath="Artist_Id"/>
+    </xs:keyref>
+    <xs:keyref name="InstrumentArtist_ForeignKey_1" refer="Artist_PrimaryKey_1">
+      <xs:selector xpath="InstrumentArtist"/>
+      <xs:field xpath="Artist_Id"/>
+    </xs:keyref>
+  </xs:element>
+  <xs:element name="ArtistBand">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Artist_Id">
+          <xs:simpleType>
+            <xs:restriction base="xs:int">
+              <xs:minInclusive value="-2147483648"/>
+              <xs:maxInclusive value="2147483647"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="Band_Id">
+          <xs:simpleType>
+            <xs:restriction base="xs:int">
+              <xs:minInclusive value="-2147483648"/>
+              <xs:maxInclusive value="2147483647"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+    <xs:key name="ArtistBand_PrimaryKey_1">
+      <xs:selector xpath="."/>
+      <xs:field xpath="Artist_Id"/>
+      <xs:field xpath="Band_Id"/>
+    </xs:key>
+  </xs:element>
+  <xs:element name="Band">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Id">
+          <xs:simpleType>
+            <xs:restriction base="xs:int">
+              <xs:minInclusive value="-2147483648"/>
+              <xs:maxInclusive value="2147483647"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="Name">
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:maxLength value="2147483647"/>
+              <xs:minLength value="1"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element ref="Album" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="ArtistBand" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="ConcertBand" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+    <xs:key name="Band_PrimaryKey_1">
+      <xs:selector xpath="."/>
+      <xs:field xpath="Id"/>
+    </xs:key>
+    <xs:keyref name="Album_ForeignKey_1" refer="Band_PrimaryKey_1">
+      <xs:selector xpath="Album"/>
+      <xs:field xpath="Band_Id"/>
+    </xs:keyref>
+    <xs:keyref name="ArtistBand_ForeignKey_2" refer="Band_PrimaryKey_1">
+      <xs:selector xpath="ArtistBand"/>
+      <xs:field xpath="Band_Id"/>
+    </xs:keyref>
+    <xs:keyref name="ConcertBand_ForeignKey_1" refer="Band_PrimaryKey_1">
+      <xs:selector xpath="ConcertBand"/>
+      <xs:field xpath="Band_Id"/>
+    </xs:keyref>
+  </xs:element>
+  <xs:element name="Concert">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Id">
+          <xs:simpleType>
+            <xs:restriction base="xs:int">
+              <xs:minInclusive value="-2147483648"/>
+              <xs:maxInclusive value="2147483647"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="Name">
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:maxLength value="2147483647"/>
+              <xs:minLength value="1"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="TicketPrice">
+          <xs:simpleType>
+            <xs:restriction base="xs:int">
+              <xs:minInclusive value="-2147483648"/>
+              <xs:maxInclusive value="2147483647"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="Date">
+          <xs:simpleType>
+            <xs:restriction base="xs:dateTime">
+              <xs:minInclusive value="-2147483648-01-01T00:00:00.0"/>
+              <xs:maxInclusive value="2147483647-12-31T23:59:59.2147483647"/>
+              <xs:pattern value="\p{Nd}{4}-\p{Nd}{2}-\p{Nd}{2}T\p{Nd}{2}:\p{Nd}{2}:\p{Nd}{2}"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="Location_Id" nillable="true" minOccurs="0">
+          <xs:simpleType>
+            <xs:restriction base="xs:int">
+              <xs:minInclusive value="-2147483648"/>
+              <xs:maxInclusive value="2147483647"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element ref="ConcertBand" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+    <xs:key name="Concert_PrimaryKey_1">
+      <xs:selector xpath="."/>
+      <xs:field xpath="Id"/>
+    </xs:key>
+    <xs:keyref name="ConcertBand_ForeignKey_2" refer="Concert_PrimaryKey_1">
+      <xs:selector xpath="ConcertBand"/>
+      <xs:field xpath="Concert_Id"/>
+    </xs:keyref>
+  </xs:element>
+  <xs:element name="ConcertBand">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Concert_Id">
+          <xs:simpleType>
+            <xs:restriction base="xs:int">
+              <xs:minInclusive value="-2147483648"/>
+              <xs:maxInclusive value="2147483647"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="Band_Id">
+          <xs:simpleType>
+            <xs:restriction base="xs:int">
+              <xs:minInclusive value="-2147483648"/>
+              <xs:maxInclusive value="2147483647"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+    <xs:key name="ConcertBand_PrimaryKey_1">
+      <xs:selector xpath="."/>
+      <xs:field xpath="Concert_Id"/>
+      <xs:field xpath="Band_Id"/>
+    </xs:key>
+  </xs:element>
+  <xs:element name="Country">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Id">
+          <xs:simpleType>
+            <xs:restriction base="xs:int">
+              <xs:minInclusive value="-2147483648"/>
+              <xs:maxInclusive value="2147483647"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="Name">
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:maxLength value="2147483647"/>
+              <xs:minLength value="1"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element ref="Location" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+    <xs:key name="Country_PrimaryKey_1">
+      <xs:selector xpath="."/>
+      <xs:field xpath="Id"/>
+    </xs:key>
+    <xs:keyref name="Location_ForeignKey_1" refer="Country_PrimaryKey_1">
+      <xs:selector xpath="Location"/>
+      <xs:field xpath="Country_Id"/>
+    </xs:keyref>
+  </xs:element>
+  <xs:element name="Instrument">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Id">
+          <xs:simpleType>
+            <xs:restriction base="xs:int">
+              <xs:minInclusive value="-2147483648"/>
+              <xs:maxInclusive value="2147483647"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="Name">
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:maxLength value="2147483647"/>
+              <xs:minLength value="1"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element ref="InstrumentArtist" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+    <xs:key name="Instrument_PrimaryKey_1">
+      <xs:selector xpath="."/>
+      <xs:field xpath="Id"/>
+    </xs:key>
+    <xs:keyref name="InstrumentArtist_ForeignKey_2" refer="Instrument_PrimaryKey_1">
+      <xs:selector xpath="InstrumentArtist"/>
+      <xs:field xpath="Instrument_Id"/>
+    </xs:keyref>
+  </xs:element>
+  <xs:element name="InstrumentArtist">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Instrument_Id">
+          <xs:simpleType>
+            <xs:restriction base="xs:int">
+              <xs:minInclusive value="-2147483648"/>
+              <xs:maxInclusive value="2147483647"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="Artist_Id">
+          <xs:simpleType>
+            <xs:restriction base="xs:int">
+              <xs:minInclusive value="-2147483648"/>
+              <xs:maxInclusive value="2147483647"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+    <xs:key name="InstrumentArtist_PrimaryKey_1">
+      <xs:selector xpath="."/>
+      <xs:field xpath="Instrument_Id"/>
+      <xs:field xpath="Artist_Id"/>
+    </xs:key>
+  </xs:element>
+  <xs:element name="Location">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Id">
+          <xs:simpleType>
+            <xs:restriction base="xs:int">
+              <xs:minInclusive value="-2147483648"/>
+              <xs:maxInclusive value="2147483647"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="Address">
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:maxLength value="2147483647"/>
+              <xs:minLength value="1"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="SeatCount">
+          <xs:simpleType>
+            <xs:restriction base="xs:int">
+              <xs:minInclusive value="-2147483648"/>
+              <xs:maxInclusive value="2147483647"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="PostalCode">
+          <xs:simpleType>
+            <xs:restriction base="xs:int">
+              <xs:minInclusive value="-2147483648"/>
+              <xs:maxInclusive value="2147483647"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="Country_Id" nillable="true" minOccurs="0">
+          <xs:simpleType>
+            <xs:restriction base="xs:int">
+              <xs:minInclusive value="-2147483648"/>
+              <xs:maxInclusive value="2147483647"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element ref="Concert" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+    <xs:key name="Location_PrimaryKey_1">
+      <xs:selector xpath="."/>
+      <xs:field xpath="Id"/>
+    </xs:key>
+    <xs:keyref name="Concert_ForeignKey_1" refer="Location_PrimaryKey_1">
+      <xs:selector xpath="Concert"/>
+      <xs:field xpath="Location_Id"/>
+    </xs:keyref>
+  </xs:element>
+  <xs:element name="Track">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Id">
+          <xs:simpleType>
+            <xs:restriction base="xs:int">
+              <xs:minInclusive value="-2147483648"/>
+              <xs:maxInclusive value="2147483647"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="Name">
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:maxLength value="2147483647"/>
+              <xs:minLength value="1"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="Length">
+          <xs:simpleType>
+            <xs:restriction base="xs:int">
+              <xs:minInclusive value="-2147483648"/>
+              <xs:maxInclusive value="2147483647"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="Uploaded">
+          <xs:simpleType>
+            <xs:restriction base="xs:boolean"/>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="Path">
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:maxLength value="2147483647"/>
+              <xs:minLength value="1"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="Album_Id" nillable="true" minOccurs="0">
+          <xs:simpleType>
+            <xs:restriction base="xs:int">
+              <xs:minInclusive value="-2147483648"/>
+              <xs:maxInclusive value="2147483647"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+    <xs:key name="Track_PrimaryKey_1">
+      <xs:selector xpath="."/>
+      <xs:field xpath="Id"/>
+    </xs:key>
+  </xs:element>
+</xs:schema>
