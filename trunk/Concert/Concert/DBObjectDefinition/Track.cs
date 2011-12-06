@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Xml.Linq;
 
 namespace Concert.DBObjectDefinition
 {
@@ -20,5 +21,16 @@ namespace Concert.DBObjectDefinition
         public bool Uploaded { get { return uploaded; } set { uploaded = value; } }
         public string Name   { get { return name;     } set { name = value;     } }
         public string Path   { get { return path;     } set { path = value;     } }
+
+        public XElement toXML()
+        {
+            return new XElement("Track",
+                                            new XElement("ID", ID),
+                                            new XElement("Length", Length),
+                                            new XElement("AlbumID", AlbumID),
+                                            new XElement("Uploaded", Uploaded),
+                                            new XElement("Name", Name),
+                                            new XElement("Path", path));
+        }
     }
 }

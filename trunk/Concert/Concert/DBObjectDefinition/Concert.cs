@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Xml.Linq;
 
 namespace Concert.DBObjectDefinition
 {
@@ -16,5 +17,14 @@ namespace Concert.DBObjectDefinition
         public int TicketPrice { get { return ticketPrice; } set { ticketPrice = value; } }
         public string Name     { get { return name;        } set { name = value;        } }
         public DateTime Date   { get { return date;        } set { date = value;        } }
+
+        public XElement toXML()
+        {
+            return new XElement("Concert",
+                                            new XElement("ID", ID),
+                                            new XElement("TicketPrice", TicketPrice),
+                                            new XElement("Name", Name),
+                                            new XElement("Date", date));
+        }
     }
 }

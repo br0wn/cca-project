@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 using System.IO;
 using System.Xml;
 using System.Xml.Schema;
@@ -25,16 +26,23 @@ namespace Concert.DataAccessLayer
             schema.Add("", XmlReader.Create(new StreamReader(SCHEMA_PATH)));
         }
 
-        private static bool ValidateDatabase(out string errorMessage)
+        private static bool ValidateDatabase(XElement element)
         {
-            string error = "";
+            string errorMessage = "";
             bool errors = false;
             db.Validate(schema, (o, e) =>
             {
-                error += e.Message; 
+                errorMessage += e.Message; 
                 errors = true;
             });
-            errorMessage = error;
+            
+            System.Windows.Forms.mesa
+
+            if (errors)
+            {
+                element.Remove();
+            }
+
             return !errors;
         }
 
@@ -315,22 +323,27 @@ namespace Concert.DataAccessLayer
             SaveChanges();
         }
 
-        public static void AddObject(XElement country)
+        public static void StoreCountry(XElement country)
         {
-            var query = from c in db.Descendants("Country")
-                        select int.Parse(c.Element("ID").Value);
-            int ID = query.Max() + 1;
-
-            country.Element("ID").Value = ID.ToString();
+            if ( int.Parse(country.Element("ID").Value) == 0 ) 
+            country.Element("ID").Value = GetElementID("Country");
 
             db.Add(country);
 
-            if (
+            ValidateDatabase(country);           
         }
 
-        public static void StoreCountry(XElement country)
+        private static string GetElementID(string elementName)
         {
-       
+            var query = from c in db.Descendants(elementName)
+                        select int.Parse(c.Element("ID").Value);
+
+            return (query.Max() + 1).ToString();
+        }
+
+        public static void UpdateCountry(XElement country)
+        {
+            
         }
 
         public static IEnumerable<Country> GetAllCountries()
