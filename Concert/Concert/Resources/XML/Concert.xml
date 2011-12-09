@@ -1,150 +1,18 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:element name="Concert">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="Bands" />
-        <xs:element ref="Artists" />
-        <xs:element ref="Instruments" />
-        <xs:element ref="Albums" />
-        <xs:element ref="Tracks" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="Bands">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="Band" maxOccurs="unbounded" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="Band">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element name="Name" type="xs:string" nillable="false" />
-        <xs:element name="ArtistID" type="xs:integer" minOccurs="0" maxOccurs="unbounded" >
-          <xs:keyref name="BandArtistFKConstraint" refer="ArtistPKConstraint">
-            <xs:selector xpath=".//Band" />
-            <xs:field xpath="ArtistID" />
-          </xs:keyref>
-        </xs:element>
-      </xs:sequence>
-      <xs:attribute name="ID" type="xs:integer" use="required" />
-    </xs:complexType>
-    <xs:key name="BandPKConstraint">
-      <xs:selector xpath=".//Band" />
-      <xs:field xpath="@ID" />
-    </xs:key>
-  </xs:element>
-  <xs:element name="Artists">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="Artist" maxOccurs="unbounded" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="Artist">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element name="FirstName" type="xs:string" nillable="false" />
-        <xs:element name="LastName" type="xs:string" nillable="false" />
-        <xs:element name="BirthDate" type="xs:date" nillable="false" />
-        <xs:element name="BandID" type="xs:integer" minOccurs="0" maxOccurs="unbounded">
-          <xs:keyref name="ArtistBandFKConstraint" refer="BandPKConstraint">
-            <xs:selector xpath=".//Artist" />
-            <xs:field xpath="BandID" />
-          </xs:keyref>
-        </xs:element>
-        <xs:element name="InstrumentID" type="xs:integer" maxOccurs="unbounded">
-          <xs:keyref name="AtristInstrumentFKConsttraint" refer="InstrumentPKConstraint">
-            <xs:selector xpath=".//Instrument" />
-            <xs:field xpath="InstrumentID" />
-          </xs:keyref>
-        </xs:element>
-      </xs:sequence>
-      <xs:attribute name="ID" type="xs:integer" use="required" />
-    </xs:complexType>
-    <xs:key name="ArtistPKConstraint">
-      <xs:selector xpath="./Artists/Arstist" />
-      <xs:field xpath="@ID" />
-    </xs:key>
-  </xs:element>
-  <xs:element name="Instruments">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="Instrument" maxOccurs="unbounded" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="Instrument">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element name="Name" type="xs:string" nillable="false" />
-        <xs:element name="ArtistID" type="xs:integer">
-          <xs:keyref name="InstrumentArtistFKConstraint" refer="ArtistPKConstraint">
-            <xs:selector xpath=".//Instrument" />
-            <xs:field xpath="ArtistID" />
-          </xs:keyref>
-        </xs:element>
-      </xs:sequence>
-      <xs:attribute name="ID" type="xs:integer" use="required" />
-    </xs:complexType>
-    <xs:key name="InstrumentPKConstraint">
-      <xs:selector xpath=".//Instrument" />
-      <xs:field xpath="@ID" />
-    </xs:key>
-  </xs:element>
-  <xs:element name="Albums">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="Album" maxOccurs="unbounded" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="Album">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element name="Name" type="xs:string" nillable="false" />
-        <xs:element name="BandID" type="xs:integer" maxOccurs="unbounded">
-          <xs:keyref name="AlbumBandFKConstraint" refer="BandPKConstraint">
-            <xs:selector xpath=".//Album" />
-            <xs:field xpath="BandID" />
-          </xs:keyref>
-        </xs:element>
-      </xs:sequence>
-      <xs:attribute name="ID" type="xs:integer" use="required" />
-    </xs:complexType>
-    <xs:key name="AlbumPKConstraint">
-      <xs:selector xpath=".//Album" />
-      <xs:field xpath="@ID" />
-    </xs:key>
-  </xs:element>
-  <xs:element name="Tracks">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="Track" maxOccurs="unbounded" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="Track">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element name="Name" type="xs:string" nillable="false" />
-        <xs:element name="Length" type="xs:integer" nillable="false" />
-        <xs:element name="Uploaded" type="xs:boolean" nillable="false" />
-        <xs:element name="Path" type="xs:string" nillable="false" />
-        <xs:element name="AlbumID" type="xs:integer">
-          <xs:keyref name="TrackAlbumFKConstraint" refer="AlbumPKConstraint">
-            <xs:selector xpath=".//Track" />
-            <xs:field xpath="@ID" />
-          </xs:keyref>
-        </xs:element>
-      </xs:sequence>
-      <xs:attribute name="ID" type="xs:string" use="required" />
-    </xs:complexType>
-    <xs:key name="TrackPKCOnstraint">
-      <xs:selector xpath=".//Track" />
-      <xs:field xpath="@ID" />
-    </xs:key>
-  </xs:element>
-</xs:schema>
+﻿<Database>
+  <Countries>
+  </Countries>
+  <Concerts>
+  </Concerts>
+  <Bands>
+  </Bands>
+  <Artists>
+  </Artists>
+  <Instruments>
+  </Instruments>
+  <ConcertsBands>
+  </ConcertsBands>
+  <BandsArtists>
+  </BandsArtists>
+  <ArtistsInstruments>
+  </ArtistsInstruments>
+</Database>
