@@ -33,7 +33,9 @@ namespace Concert.DataAccessLayer
                                               "Check paths:\r\n\t" + 
                                               ".xml: {0}\r\n\t" + 
                                               ".xsd: {1}\r\n" + 
-                                              "Error message : {2}", XML_PATH, SCHEMA_PATH, e.Message));
+                                              "Error message :\r\n" + 
+                                              "###############\r\n" +
+                                              "{2}", XML_PATH, SCHEMA_PATH, e.Message));
             }
             ValidateDatabase(db.Element("Database"));
         }
@@ -60,16 +62,6 @@ namespace Concert.DataAccessLayer
                 return query.Max() + 1;
         }
 
-        private static void UpdateElement(XElement e)
-        {
-            
-        }
-
-        private static void AddElement(XElement e)
-        {
-            XElement x;
-        }
-
         private static bool ValidateDatabase(XElement element)
         {
             string errorMessage = "";
@@ -82,7 +74,7 @@ namespace Concert.DataAccessLayer
             
             if (errors)
             {
-                MessageBox.Show("Invalid XML document\r\n{0}" + errorMessage );
+                MessageBox.Show("Invalid XML document\r\n" + errorMessage );
                 element.Remove();
             }
 
@@ -101,7 +93,7 @@ namespace Concert.DataAccessLayer
 
             if (errors)
             {
-                MessageBox.Show("Invalid XML document\r\n{0}" + errorMessage);
+                MessageBox.Show("Invalid XML document\r\n" + errorMessage);
             }
 
             return !errors;
@@ -390,28 +382,21 @@ namespace Concert.DataAccessLayer
         public static void StoreObject(Instrument instrument)
         {
             if (instrument.ID != 0)
-                UpdateObject(instrument);
+            {
+                XElement xInstrument = GetElement(instrument.ID, "Instrument");
+
+                xInstrument.Remove();
+            }
             else
             {
                 instrument.ID = GetElementID("Instrument");
-                
-                XElement xInstrument = instrument.toXML();
-
-                XElement instruments = db.Descendants("Instruments").First();
-
-                instruments.Add(xInstrument);
-
-                ValidateDatabase(xInstrument);
             }
 
+            XElement xinstruments = db.Descendants("Instruments").First();
+
+            xinstruments.Add(instrument.toXML());
 
             SaveChanges();
-        }
-
-        private static void UpdateObject(Instrument instrument)
-        {
-            XElement xInstrument = GetElement(instrument.ID, "Instrument");
-            ValidateDatabase();
         }
 
         public static IEnumerable<Instrument> GetAllInstruments()
@@ -424,53 +409,47 @@ namespace Concert.DataAccessLayer
                    };
         }
 
-    //    public static void DeleteObject(Country country)
-    //    {
-    //        List<int> locations = new List<int>();
+        public static void DeleteObject(Country country)
+        {
+            foreach (XElement item in db.Descendants("Location").Where(l => int.Parse(l.Element("CountryID").Value) == country.ID))
+            {
+                item.Remove();
+            }
 
-    //        foreach (Location location in country.Location)
-    //        {
-    //            locations.Add(location.Id);
-    //        }
+            DeleteElement(GetElement(country.ID, "Country"));
 
-    //        context.Country.DeleteObject(country);
-    //        SaveChanges();
+            ValidateDatabase();
+        }
 
-    //        foreach (Location location in context.Location.Where(l => locations.Contains(l.Id)))
-    //        {
-    //            DeleteObject(location);
-    //        }
-    //        SaveChanges();
-    //    }
+        public static void StoreObject(Country country)
+        {
+            if (country.ID != 0)
+            {
+                XElement xCountry = GetElement(country.ID, "Country");
 
-    //    public static void StoreObject(Country country)
-    //    {
-    //        XElement countryXML = country.toXML();
+                xCountry.Remove();
+            }
+            else
+            {
+                country.ID = GetElementID("Country");
+            }
 
-    //        if (int.Parse(countryXML.Element("ID").Value) == 0)
-    //        {
-    //            countryXML.Element("ID").Value = GetElementID("Country");
-    //            db.Add(country);
-    //        }
+            XElement xCountries = db.Descendants("Countries").First();
 
+            xCountries.Add(country.toXML());
 
-    //        ValidateDatabase(countryXML);           
-    //    }
+            SaveChanges();
+        }
 
-    //    public static void UpdateCountry(XElement country)
-    //    {
-            
-    //    }
-
-    //    public static IEnumerable<Country> GetAllCountries()
-    //    {
-    //        IEnumerable<Country> countries = from c in db.Descendants("Country")
-    //                                         select new Country()
-    //                                         {
-    //                                             ID = int.Parse(c.Element("ID").Value),
-    //                                             Name = c.Element("Name").Value
-    //                                         };
-    //        return countries;
-    //    }
+        public static IEnumerable<Country> GetAllCountries()
+        {
+            IEnumerable<Country> countries = from c in db.Descendants("Country")
+                                             select new Country()
+                                             {
+                                                 ID = int.Parse(c.Element("ID").Value),
+                                                 Name = c.Element("Name").Value
+                                             };
+            return countries;
+        }
     }
 }

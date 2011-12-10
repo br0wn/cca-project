@@ -56,7 +56,7 @@ namespace Concert.PresentationLayer
                     dataGridViewInstrument.CurrentRow.Cells[0].Value         = name;
                     ((Instrument)dataGridViewInstrument.CurrentRow.Tag).Name = name;
 
-                    DBObjectController.SaveChanges();
+                    DBObjectController.StoreObject((Instrument)dataGridViewInstrument.CurrentRow.Tag);
                 }
             }
         }
@@ -92,15 +92,14 @@ namespace Concert.PresentationLayer
                 Instrument instrument = new Instrument() { Name = name };
 
                 DBObjectController.StoreObject(instrument);
-                 
 
                 DataGridViewRow row = new DataGridViewRow();
 
-                row.CreateCells(dataGridViewInstrument, new object[] { name = instrument.Name });
+                row.CreateCells(dataGridViewInstrument, new object[] { Name = instrument.Name });
 
                 row.Tag = instrument;
 
-                dataGridViewInstrument.Rows.Add(instrument);
+                dataGridViewInstrument.Rows.Add(row);
 
                 textBoxInstrument.Clear();
             }

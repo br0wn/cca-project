@@ -22,13 +22,13 @@ namespace Concert.PresentationLayer
         public void LoadCountries()
         {
             dataGridViewCountry.Rows.Clear();
-            //foreach (Country country in DBObjectController.GetAllCountries())
-            //{
-            //    DataGridViewRow row = new DataGridViewRow();
-            //    row.CreateCells(dataGridViewCountry, new object[] { country.Name });
-            //    row.Tag = country;
-            //    dataGridViewCountry.Rows.Add(row);
-            //}
+            foreach (Country country in DBObjectController.GetAllCountries())
+            {
+                DataGridViewRow row = new DataGridViewRow();
+                row.CreateCells(dataGridViewCountry, new object[] { country.Name });
+                row.Tag = country;
+                dataGridViewCountry.Rows.Add(row);
+            }
         }
 
         private void dataGridViewCountry_SelectionChanged(object sender, EventArgs e)
@@ -55,7 +55,7 @@ namespace Concert.PresentationLayer
                     dataGridViewCountry.CurrentRow.Cells[0].Value      = newName;
                     ((Country)dataGridViewCountry.CurrentRow.Tag).Name = newName;
                     
-                    DBObjectController.SaveChanges();
+                    DBObjectController.StoreObject((Country)dataGridViewCountry.CurrentRow.Tag);
                 }
             }
             else
@@ -71,7 +71,7 @@ namespace Concert.PresentationLayer
 
         private void dataGridViewCountry_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
         {
-            //DBObjectController.DeleteObject((Country)dataGridViewCountry.CurrentRow.Tag);
+            DBObjectController.DeleteObject((Country)dataGridViewCountry.CurrentRow.Tag);
         }
 
         private void SimpleTextValidation(object sender, CancelEventArgs e)
@@ -91,12 +91,20 @@ namespace Concert.PresentationLayer
             if (ValidateChildren() && string.IsNullOrEmpty(errorProviderCountry.GetError(textBoxCountryName)))
             {
                 string name = textBoxCountryName.Text;
+
+                Country country = new Country() { Name = name };
                 
-                //DBObjectController.StoreObject(new Country() { Name = name });
+                DBObjectController.StoreObject(country);
                 
                 textBoxCountryName.Clear();
 
-                LoadCountries();
+                DataGridViewRow row = new DataGridViewRow();
+
+                row.CreateCells(dataGridViewCountry, new object [] { Name = name });
+
+                row.Tag = country;
+
+                dataGridViewCountry.Rows.Add(row);
             }
         }
 
