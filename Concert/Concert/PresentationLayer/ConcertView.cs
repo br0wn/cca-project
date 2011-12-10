@@ -8,6 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Concert.DataAccessLayer;
+using Concert.DBObjectDefinition;
 
 namespace Concert.PresentationLayer
 {
@@ -25,16 +26,16 @@ namespace Concert.PresentationLayer
 
         private void LoadConcertData()
         {
-            DBObjectController.GetAllAlbums();
-            DBObjectController.GetAllTracks();
-            dataGridViewConcerts.Rows.Clear();
-            foreach (Concert item in DBObjectController.GetAllConcerts())
-            {
-                DataGridViewRow row = new DataGridViewRow();
-                row.CreateCells(dataGridViewConcerts, new object[] { item.Name, item.TicketPrice.ToString(), item.Date.ToString("dd.MM.yyyy.") });
-                row.Tag = item;
-                dataGridViewConcerts.Rows.Add(row);
-            }
+            //DBObjectController.GetAllAlbums();
+            //DBObjectController.GetAllTracks();
+            //dataGridViewConcerts.Rows.Clear();
+            //foreach (Concert item in DBObjectController.GetAllConcerts())
+            //{
+            //    DataGridViewRow row = new DataGridViewRow();
+            //    row.CreateCells(dataGridViewConcerts, new object[] { item.Name, item.TicketPrice.ToString(), item.Date.ToString("dd.MM.yyyy.") });
+            //    row.Tag = item;
+            //    dataGridViewConcerts.Rows.Add(row);
+            //}
         }
 
         private void RefreshBandData()
@@ -44,11 +45,11 @@ namespace Concert.PresentationLayer
             comboBoxAlbums.DataSource = null;
             if (dataGridViewConcerts.CurrentRow != null)
             {
-                Concert c = (Concert)dataGridViewConcerts.CurrentRow.Tag;
-                foreach (Band band in ((Concert)dataGridViewConcerts.CurrentRow.Tag).Band)
+                DBObjectDefinition.Concert c = (DBObjectDefinition.Concert)dataGridViewConcerts.CurrentRow.Tag;
+                foreach (Band band in ((DBObjectDefinition.Concert)dataGridViewConcerts.CurrentRow.Tag).Bands)
                 {
                     DataGridViewRow row = new DataGridViewRow();
-                    row.CreateCells(dataGridViewBand, new object[] { band.Name });
+                    //row.CreateCells(dataGridViewBand, new object[] { band.Name });
                     row.Tag = band;
                     dataGridViewBand.Rows.Add(row);
                 }
@@ -60,15 +61,15 @@ namespace Concert.PresentationLayer
             if (dataGridViewBand.CurrentRow != null)
             {
                 dataGridViewArtist.Rows.Clear();
-                foreach (Artist artist in ((Band)dataGridViewBand.CurrentRow.Tag).Artist)
-                {
-                    DataGridViewRow row = new DataGridViewRow();
-                    string date = artist.BirthDate.ToString("dd.MM.yyyy");
-                    row.CreateCells(dataGridViewArtist, new object[] { artist.FirstName + " " + artist.LastName,
-                                                                       artist.BirthDate.ToString("dd.MM.yyyy")});
-                    row.Tag = artist;
-                    dataGridViewArtist.Rows.Add(row);
-                }
+                //foreach (Artist artist in ((Band)dataGridViewBand.CurrentRow.Tag).Artists)
+                //{
+                //    DataGridViewRow row = new DataGridViewRow();
+                //    string date = artist.BirthDate.ToString("dd.MM.yyyy");
+                //    row.CreateCells(dataGridViewArtist, new object[] { artist.FirstName + " " + artist.LastName,
+                //                                                       artist.BirthDate.ToString("dd.MM.yyyy")});
+                //    row.Tag = artist;
+                //    dataGridViewArtist.Rows.Add(row);
+                //}
             }
         }
 
@@ -76,7 +77,7 @@ namespace Concert.PresentationLayer
         {
             dataGridViewTracks.Rows.Clear();
             Album a = (Album)comboBoxAlbums.SelectedItem;
-            foreach (Track track in ((Album)comboBoxAlbums.SelectedItem).Track)
+            foreach (Track track in ((Album)comboBoxAlbums.SelectedItem).Tracks)
             {
                 DataGridViewRow row = new DataGridViewRow();
 
@@ -88,7 +89,7 @@ namespace Concert.PresentationLayer
 
         private void dataGridViewConcerts_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
         {
-            DBObjectController.DeleteObject((Concert)dataGridViewConcerts.CurrentRow.Tag);
+            //DBObjectController.DeleteObject((DBObjectDefinition.Concert)dataGridViewConcerts.CurrentRow.Tag);
         }
 
         private void buttonAssignLocation_Click(object sender, EventArgs e)
@@ -99,7 +100,7 @@ namespace Concert.PresentationLayer
                 changeLocation.ShowDialog();
                 if (changeLocation.geoLocation != null)
                 {
-                    ((Concert)dataGridViewConcerts.CurrentRow.Tag).Location = changeLocation.geoLocation;
+                    ((DBObjectDefinition.Concert)dataGridViewConcerts.CurrentRow.Tag).Location = changeLocation.geoLocation;
                     DBObjectController.SaveChanges();
                     LoadConcertData();
                 }

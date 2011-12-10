@@ -6,12 +6,12 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-//using Concert.DBObjectDefinition;
+using Concert.DBObjectDefinition;
 using Concert.DataAccessLayer;
 
 namespace Concert.PresentationLayer {
     public partial class NewAlbumForm : Form {
-
+        /*
         public NewAlbumForm() {
             InitializeComponent();
             this.LoadExternalData();
@@ -133,5 +133,6 @@ namespace Concert.PresentationLayer {
             this.listBoxSongs.DisplayMember = "Name";
             this.listBoxAvaliableBands.DisplayMember = "Name";
         }
+         * */
     }
 }

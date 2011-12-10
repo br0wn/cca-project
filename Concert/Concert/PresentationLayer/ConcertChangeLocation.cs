@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Concert.DataAccessLayer;
+using Concert.DBObjectDefinition;
 
 namespace Concert.PresentationLayer
 {
@@ -23,19 +24,19 @@ namespace Concert.PresentationLayer
         private void LoadLocationData()
         {
             dataGridViewLocation.Rows.Clear();
-            foreach (Location item in DBObjectController.GetAllLocations())
-            {
-                DataGridViewRow row = new DataGridViewRow();
+            //foreach (Location item in DBObjectController.GetAllLocations())
+            //{
+            //    DataGridViewRow row = new DataGridViewRow();
 
-                string country = item.Country != null ? item.Country.Name : "N/A"; 
+            //    string country = item.Country != null ? item.Country.Name : "N/A"; 
 
-                row.CreateCells(dataGridViewLocation, new object[] { country,
-                                                                     item.Address,
-                                                                     item.PostalCode,
-                                                                     item.SeatCount });
-                row.Tag = item;
-                dataGridViewLocation.Rows.Add(row);
-            }
+            //    row.CreateCells(dataGridViewLocation, new object[] { country,
+            //                                                         item.Address,
+            //                                                         item.PostalCode,
+            //                                                         item.SeatCount });
+            //    row.Tag = item;
+            //    dataGridViewLocation.Rows.Add(row);
+            //}
         }
 
         private void dataGridViewLocation_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)

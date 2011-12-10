@@ -13,7 +13,7 @@ namespace Concert.PresentationLayer
 {
     public partial class NewConcert : Form
     {
-        private Regex digits = new Regex(@"^\d+$");
+ /*       private Regex digits = new Regex(@"^\d+$");
 
         private Location location;
 
@@ -201,5 +201,6 @@ namespace Concert.PresentationLayer
                 location = (Location)((DataGridView)sender).CurrentRow.Tag;
             }
         }
+        */
     }
 }

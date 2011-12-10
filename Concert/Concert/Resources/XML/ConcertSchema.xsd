@@ -8,87 +8,91 @@
         <xs:element ref="Bands"/>
         <xs:element ref="Artists"/>
         <xs:element ref="Instruments"/>
-        <xs:element ref="ConcertsBands" />
-        <xs:element ref="BandsArtists" />
-        <xs:element ref="ArtistsInstruments" />
+        <xs:element ref="ConcertsBands"/>
+        <xs:element ref="BandsArtists"/>
+        <xs:element ref="ArtistsInstruments"/>
       </xs:sequence>
     </xs:complexType>
+    <xs:keyref name="ConcertLocationFK" refer="LocationPK">
+      <xs:selector xpath=".//Concert" />
+      <xs:field xpath="LocationID" />
+    </xs:keyref>
     <xs:keyref name="BandArtistFK" refer="ArtistPK">
-      <xs:selector xpath=".//Band/Artists" />
-      <xs:field xpath="ArtistID" />
+      <xs:selector xpath=".//Band/Artists"/>
+      <xs:field xpath="ArtistID"/>
     </xs:keyref>
     <xs:keyref name="ArtistBandFK" refer="BandPK">
-      <xs:selector xpath=".//Artist/Bands" />
-      <xs:field xpath="BandID" />
+      <xs:selector xpath=".//Artist/Bands"/>
+      <xs:field xpath="BandID"/>
     </xs:keyref>
     <xs:keyref name="ArtistInstrumentFK" refer="InstrumentPK">
-      <xs:selector xpath=".//Artist/Instruments" />
-      <xs:field xpath="InstrumentID" />
+      <xs:selector xpath=".//Artist/Instruments"/>
+      <xs:field xpath="InstrumentID"/>
     </xs:keyref>
     <xs:keyref name="InstrumentArtistFK" refer="InstrumentPK">
-      <xs:selector xpath=".//Instrument/Artists" />
-      <xs:field xpath="ArtistID" />
+      <xs:selector xpath=".//Instrument/Artists"/>
+      <xs:field xpath="ArtistID"/>
     </xs:keyref>
     <xs:keyref name="ConcertBandFK" refer="ConcertPK">
-      <xs:selector xpath=".//ConcertBand" />
-      <xs:field xpath="ConcertID" />
+      <xs:selector xpath=".//ConcertBand"/>
+      <xs:field xpath="ConcertID"/>
     </xs:keyref>
     <xs:keyref name="BandConcertFK" refer="BandPK">
-      <xs:selector xpath=".//ConcertBand" />
-      <xs:field xpath="BandID" />
+      <xs:selector xpath=".//ConcertBand"/>
+      <xs:field xpath="BandID"/>
     </xs:keyref>
     <xs:key name="CountryPK">
       <xs:selector xpath=".//Country"/>
       <xs:field xpath="ID"/>
     </xs:key>
     <xs:key name="LocationPK">
-      <xs:selector xpath=".//Location" />
-      <xs:field xpath="ID" />
+      <xs:selector xpath=".//Location"/>
+      <xs:field xpath="ID"/>
     </xs:key>
     <xs:key name="ConcertPK">
-      <xs:selector xpath=".//Concert" />
-      <xs:field xpath="ID" />
+      <xs:selector xpath=".//Concert"/>
+      <xs:field xpath="ID"/>
     </xs:key>
     <xs:key name="BandPK">
-      <xs:selector xpath=".//Band" />
-      <xs:field xpath="ID" />
+      <xs:selector xpath=".//Band"/>
+      <xs:field xpath="ID"/>
     </xs:key>
     <xs:key name="AlbumPK">
-      <xs:selector xpath=".//Album" />
-      <xs:field xpath="ID" />
+      <xs:selector xpath=".//Album"/>
+      <xs:field xpath="ID"/>
     </xs:key>
     <xs:key name="TrackPK">
-      <xs:selector xpath=".//Track" />
-      <xs:field xpath="ID" />
+      <xs:selector xpath=".//Track"/>
+      <xs:field xpath="ID"/>
     </xs:key>
     <xs:key name="ArtistPK">
-      <xs:selector xpath=".//Artist" />
-      <xs:field xpath="ID" />
+      <xs:selector xpath=".//Artist"/>
+      <xs:field xpath="ID"/>
     </xs:key>
     <xs:key name="InstrumentPK">
       <xs:selector xpath=".//Instrument"/>
       <xs:field xpath="ID"/>
     </xs:key>
     <xs:key name="ConcertBandPK">
-      <xs:selector xpath=".//ConcertBand" />
-      <xs:field xpath="ConcertID" />
-      <xs:field xpath="BandID" />
+      <xs:selector xpath=".//ConcertBand"/>
+      <xs:field xpath="ConcertID"/>
+      <xs:field xpath="BandID"/>
     </xs:key>
     <xs:key name="BandArtistPK">
-      <xs:selector xpath=".//BandArtist" />
-      <xs:field xpath="BandID" />
-      <xs:field xpath="ArtistID" />
+      <xs:selector xpath=".//BandArtist"/>
+      <xs:field xpath="BandID"/>
+      <xs:field xpath="ArtistID"/>
     </xs:key>
     <xs:key name="ArtistInstrumentPK">
-      <xs:selector xpath=".//ArtistInstrument" />
-      <xs:field xpath="ArtistID" />
-      <xs:field xpath="InstrumentID" />
+      <xs:selector xpath=".//ArtistInstrument"/>
+      <xs:field xpath="ArtistID"/>
+      <xs:field xpath="InstrumentID"/>
     </xs:key>
   </xs:element>
   <xs:element name="Countries">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="Country" minOccurs="0" maxOccurs="unbounded" />
+        <xs:element ref="Country" minOccurs="0" maxOccurs="unbounded"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -100,7 +104,7 @@
         <xs:element name="Locations">
           <xs:complexType>
             <xs:sequence>
-              <xs:element ref="Location" minOccurs="0" maxOccurs="unbounded" />
+              <xs:element ref="Location" minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -118,7 +122,7 @@
   <xs:element name="Concerts">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="Concert" minOccurs="0" maxOccurs="unbounded" />
+        <xs:element ref="Concert" minOccurs="0" maxOccurs="unbounded"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -129,13 +133,14 @@
         <xs:element name="TicketPrice" type="xs:int" nillable="false"/>
         <xs:element name="Name" type="xs:string" nillable="false"/>
         <xs:element name="Date" type="xs:date" nillable="false"/>
+        <xs:element name="LocationID" type="xs:int" nillable="false" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="Bands">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="Band" minOccurs="0" maxOccurs="unbounded" />
+        <xs:element ref="Band" minOccurs="0" maxOccurs="unbounded"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -147,14 +152,14 @@
         <xs:element name="Albums">
           <xs:complexType>
             <xs:sequence>
-              <xs:element ref="Album" minOccurs="0" maxOccurs="unbounded" />
+              <xs:element ref="Album" minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="Album" >
+  <xs:element name="Album">
     <xs:complexType>
       <xs:sequence>
         <xs:element name="ID" type="xs:int" nillable="false"/>
@@ -162,14 +167,14 @@
         <xs:element name="Tracks">
           <xs:complexType>
             <xs:sequence>
-              <xs:element ref="Track" minOccurs="0" maxOccurs="unbounded" />
+              <xs:element ref="Track" minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="Track" >
+  <xs:element name="Track">
     <xs:complexType>
       <xs:sequence>
         <xs:element name="ID" type="xs:int" nillable="false"/>
@@ -183,7 +188,7 @@
   <xs:element name="Artists">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="Artist" minOccurs="0" maxOccurs="unbounded" />
+        <xs:element ref="Artist" minOccurs="0" maxOccurs="unbounded"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -200,7 +205,7 @@
   <xs:element name="Instruments">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="Instrument" minOccurs="0" maxOccurs="unbounded" />
+        <xs:element ref="Instrument" minOccurs="0" maxOccurs="unbounded"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -222,14 +227,14 @@
   <xs:element name="ConcertsBands">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="ConcertBand" minOccurs="0" maxOccurs="unbounded" />
+        <xs:element ref="ConcertBand" minOccurs="0" maxOccurs="unbounded"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ConcertBand">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="ConcertID" type="xs:int" nillable="false" />
+        <xs:element name="ConcertID" type="xs:int" nillable="false"/>
         <xs:element name="BandID" type="xs:int" nillable="false"/>
       </xs:sequence>
     </xs:complexType>
@@ -237,14 +242,14 @@
   <xs:element name="BandsArtists">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="BandArtist" minOccurs="0" maxOccurs="unbounded" />
+        <xs:element ref="BandArtist" minOccurs="0" maxOccurs="unbounded"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="BandArtist">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="BandID" type="xs:int" nillable="false" />
+        <xs:element name="BandID" type="xs:int" nillable="false"/>
         <xs:element name="ArtistID" type="xs:int" nillable="false"/>
       </xs:sequence>
     </xs:complexType>
@@ -252,14 +257,14 @@
   <xs:element name="ArtistsInstruments">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="ArtistInstrument" minOccurs="0" maxOccurs="unbounded" />
+        <xs:element ref="ArtistInstrument" minOccurs="0" maxOccurs="unbounded"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ArtistInstrument">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="ArtistID" type="xs:int" nillable="false" />
+        <xs:element name="ArtistID" type="xs:int" nillable="false"/>
         <xs:element name="InstrumentID" type="xs:int" nillable="false"/>
       </xs:sequence>
     </xs:complexType>
