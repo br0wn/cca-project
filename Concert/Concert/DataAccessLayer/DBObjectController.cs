@@ -43,7 +43,10 @@ namespace Concert.DataAccessLayer
             IEnumerable<XElement> objects = from o in db.Descendants(Xname)
                                             where int.Parse(o.Element("ID").Value) == ID
                                             select o;
-            return objects.First();
+            if (objects.Count() == 0)
+                return null;
+            else
+                return objects.First();
         }
 
         private static int GetElementID(string elementName)
@@ -51,7 +54,10 @@ namespace Concert.DataAccessLayer
             var query = from c in db.Descendants(elementName)
                         select int.Parse(c.Element("ID").Value);
 
-            return query.Max() + 1;
+            if (query.Count() == 0)
+                return 1;
+            else
+                return query.Max() + 1;
         }
 
         private static void UpdateElement(XElement e)
@@ -368,30 +374,55 @@ namespace Concert.DataAccessLayer
     //        return adjectiveBands;
     //    }
 
-    //    public static void DeleteObject(Instrument instrument)
-    //    {
-    //        foreach (Artist artist in context.Artist)
-    //        {
-    //            if (artist.Instrument.Contains(instrument))
-    //            {
-    //                artist.Instrument.Remove(instrument);
-    //            }
-    //        }
+        public static void DeleteObject(Instrument instrument)
+        {
+            foreach (XElement item in db.Descendants("ArtistInstrument").Where(ai => int.Parse(ai.Element("InstrumentID").Value) == instrument.ID))
+            {
+                item.Remove();
+            }
 
-    //        context.Instrument.DeleteObject(instrument);
-    //        SaveChanges();
-    //    }
+            DeleteElement(GetElement(instrument.ID, "Instrument"));
 
-    //    public static void StoreObject(Instrument instrument)
-    //    {
-    //        context.Instrument.AddObject(instrument);
-    //        SaveChanges();
-    //    }
+            ValidateDatabase();
+            //SaveChanges();
+        }
 
-    //    public static IEnumerable<Instrument> GetAllInstruments()
-    //    {
-    //        return context.Instrument;
-    //    }
+        public static void StoreObject(Instrument instrument)
+        {
+            if (instrument.ID != 0)
+                UpdateObject(instrument);
+            else
+            {
+                instrument.ID = GetElementID("Instrument");
+                
+                XElement xInstrument = instrument.toXML();
+
+                XElement instruments = db.Descendants("Instruments").First();
+
+                instruments.Add(xInstrument);
+
+                ValidateDatabase(xInstrument);
+            }
+
+
+            SaveChanges();
+        }
+
+        private static void UpdateObject(Instrument instrument)
+        {
+            XElement xInstrument = GetElement(instrument.ID, "Instrument");
+            ValidateDatabase();
+        }
+
+        public static IEnumerable<Instrument> GetAllInstruments()
+        {
+            return from i in db.Descendants("Instrument")
+                   select new Instrument()
+                   {
+                       ID = int.Parse(i.Element("ID").Value),
+                       Name = i.Element("Name").Value
+                   };
+        }
 
     //    public static void DeleteObject(Country country)
     //    {
