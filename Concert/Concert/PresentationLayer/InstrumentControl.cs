@@ -22,13 +22,13 @@ namespace Concert.PresentationLayer
         public void LoadInstruments()
         {
             dataGridViewInstrument.Rows.Clear();
-            foreach (Instrument instrument in DBObjectController.GetAllInstruments())
-            {
-                DataGridViewRow row = new DataGridViewRow();
-                row.CreateCells(dataGridViewInstrument, new object[] { Name = instrument.Name });
-                row.Tag = instrument;
-                dataGridViewInstrument.Rows.Add(row);
-            }
+            //foreach (Instrument instrument in DBObjectController.GetAllInstruments())
+            //{
+            //    DataGridViewRow row = new DataGridViewRow();
+            //    row.CreateCells(dataGridViewInstrument, new object[] { Name = instrument.Name });
+            //    row.Tag = instrument;
+            //    dataGridViewInstrument.Rows.Add(row);
+            //}
         }
 
         private void dataGridViewInstrument_SelectionChanged(object sender, EventArgs e)
@@ -80,7 +80,7 @@ namespace Concert.PresentationLayer
 
         private void dataGridViewInstrument_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
         {
-            DBObjectController.DeleteObject((Instrument)dataGridViewInstrument.CurrentRow.Tag);
+            //DBObjectController.DeleteObject((Instrument)dataGridViewInstrument.CurrentRow.Tag);
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)
@@ -89,7 +89,7 @@ namespace Concert.PresentationLayer
             {
                 string name = textBoxInstrument.Text;
 
-                DBObjectController.StoreObject(new Instrument() { Name = name });
+                //DBObjectController.StoreObject(new Instrument() { Name = name });
                  
                 textBoxInstrument.Clear();
 

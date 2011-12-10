@@ -11,7 +11,7 @@ using Concert.DataAccessLayer;
 
 namespace Concert.PresentationLayer {
     public partial class NewAlbumForm : Form {
-        /*
+
         public NewAlbumForm() {
             InitializeComponent();
             this.LoadExternalData();
@@ -23,9 +23,9 @@ namespace Concert.PresentationLayer {
 
         private void LoadExternalData()
         {
-            this.availableSongs = DBObjectController.GetAvailableTracks().ToList();
+            //this.availableSongs = DBObjectController.GetAvailableTracks().ToList();
             this.listBoxAvaliableSongs.DataSource = this.availableSongs;
-            this.availableBands = DBObjectController.GetAllBands().ToList();
+            //this.availableBands = DBObjectController.GetAllBands().ToList();
             this.listBoxAvaliableBands.DataSource = this.availableBands;
             this.SetDisplayMember();
         }
@@ -85,14 +85,14 @@ namespace Concert.PresentationLayer {
                 Album album = new Album {Name = albumName};
                 foreach (Track song in this.addedSongs)
                 {
-                    album.Track.Add(song);
+                    //album.Track.Add(song);
                 }
                 int bandIndex = this.listBoxAvaliableBands.SelectedIndex;
                 Band band = this.availableBands[bandIndex];
-                album.Band = band;
+                //album.Band = band;
                 try
                 {
-                    DBObjectController.StoreObject(album);
+                    //DBObjectController.StoreObject(album);
                 }
                 catch (Exception ex)
                 {
@@ -133,6 +133,5 @@ namespace Concert.PresentationLayer {
             this.listBoxSongs.DisplayMember = "Name";
             this.listBoxAvaliableBands.DisplayMember = "Name";
         }
-         * */
     }
 }

@@ -17,7 +17,7 @@ namespace Concert
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            DBObjectController.context = new ConcertEntities();
+            DBObjectController.InitializeDataBase();
             Application.Run(new MainControlPanel());
         }
     }

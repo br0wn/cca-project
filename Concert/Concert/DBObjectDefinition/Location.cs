@@ -6,7 +6,7 @@ using System.Xml.Linq;
 
 namespace Concert.DBObjectDefinition
 {
-    class Location
+    public class Location
     {
         private int    id;
         private int    seatCount;
@@ -26,7 +26,8 @@ namespace Concert.DBObjectDefinition
                                             new XElement("ID", ID),
                                             new XElement("SeatCount", SeatCount),
                                             new XElement("PostalCode", PostalCode),
-                                            new XElement("Address", Address));
+                                            new XElement("Address", Address),
+                                            new XElement("CountryID", country.ID));
         }
     }
 }

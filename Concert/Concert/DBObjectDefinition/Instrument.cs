@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Concert.DBObjectDefinition
 {
-    class Instrument
+    public class Instrument
     {
         private int    id;
         private string name;

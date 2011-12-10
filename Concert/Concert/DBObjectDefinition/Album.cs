@@ -6,7 +6,7 @@ using System.Xml.Linq;
 
 namespace Concert.DBObjectDefinition
 {
-    class Album
+    public class Album
     {
         private int         id;
         private int         bandID;

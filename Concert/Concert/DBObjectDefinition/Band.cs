@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Concert.DBObjectDefinition
 {
-    class Band
+    public class Band
     {
     }
 }

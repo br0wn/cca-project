@@ -13,8 +13,8 @@ namespace Concert.DataAccessLayer
 {
     class DBObjectController
     {
-        private static const string XML_PATH    = "../../Resources/XML/db.xml";
-        private static const string SCHEMA_PATH = "../../Resources/XML/schema.xsd";
+        const string XML_PATH    = "../../Resources/XML/db.xml";
+        const string SCHEMA_PATH = "../../Resources/XML/schema.xsd";
 
         private static XDocument db;
         private static XmlSchemaSet schema;
@@ -25,6 +25,22 @@ namespace Concert.DataAccessLayer
             schema = new XmlSchemaSet();
             schema.Add("", XmlReader.Create(new StreamReader(SCHEMA_PATH)));
             ValidateDatabase(db.Element("Database"));
+        }
+
+        private static XElement GetElement(int ID, string Xname)
+        {
+            IEnumerable<XElement> objects = from o in db.Descendants(Xname)
+                                            where int.Parse(o.Element("ID").Value) == ID
+                                            select o;
+            return objects.First();
+        }
+
+        private static int GetElementID(string elementName)
+        {
+            var query = from c in db.Descendants(elementName)
+                        select int.Parse(c.Element("ID").Value);
+
+            return query.Max() + 1;
         }
 
         private static void UpdateElement(XElement e)
@@ -56,17 +72,32 @@ namespace Concert.DataAccessLayer
             return !errors;
         }
 
-        private static string GetElementID(string elementName)
+        private static bool ValidateDatabase()
         {
-            var query = from c in db.Descendants(elementName)
-                        select int.Parse(c.Element("ID").Value);
+            string errorMessage = "";
+            bool errors = false;
+            db.Validate(schema, (o, e) =>
+            {
+                errorMessage += e.Message;
+                errors = true;
+            });
 
-            return (query.Max() + 1).ToString();
+            if (errors)
+            {
+                MessageBox.Show("Invalid XML document\r\n{0}" + errorMessage);
+            }
+
+            return !errors;
         }
 
         public static void SaveChanges()
         {
             db.Save(XML_PATH);
+        }
+
+        public static void DeleteElement(XElement element)
+        {
+            element.Remove();
         }
 
     //    public static void DeleteObject(Concert concert)
@@ -121,22 +152,51 @@ namespace Concert.DataAccessLayer
     //        return concerts;
     //    }
 
-    //    public static void DeleteObject(Location location)
-    //    {
-    //        context.Location.DeleteObject(location);
-    //        SaveChanges();
-    //    }
+        public static void DeleteObject(Location location)
+        {
+            IEnumerable<XElement> concerts = from c in db.Descendants("Concert")
+                                             where int.Parse(c.Element("LocationID").Value) == location.ID
+                                             select c;
 
-    //    public static void StoreObject(Location location)
-    //    {
-    //        context.Location.AddObject(location);
-    //        SaveChanges();
-    //    }
-        
-    //    public static IEnumerable<Location> GetAllLocations()
-    //    {
-    //        return context.Location;
-    //    }
+            foreach (XElement concert in concerts)
+            {
+                concert.Element("LocationID").Value = string.Empty;
+            }
+
+            DeleteElement(GetElement(location.ID, "Location"));
+
+            ValidateDatabase();
+
+            //SaveChanges;
+        }
+
+        public static void StoreObject(Location location)
+        {
+            location.ID = location.ID == 0 ? GetElementID("Location") : location.ID;
+
+            XElement xLocation = GetElement(location.ID, "Location");
+
+            xLocation = location.toXML();
+
+            //SaveChanges();
+        }
+
+        public static IEnumerable<Location> GetAllLocations()
+        {
+            return from l in db.Descendants("Location")
+                    select new Location()
+                    {
+                        ID         = int.Parse(l.Element("ID").Value),
+                        SeatCount  = int.Parse(l.Element("SeatCount").Value),
+                        PostalCode = int.Parse(l.Element("PostalCode").Value),
+                        Address    = l.Element("Address").Value,
+                        Country    = new Country()
+                        {
+                            ID   = int.Parse(db.Descendants("Country").First( c => c.Element("ID") == l.Element("CountryID")).Element("ID").Value),
+                            Name = db.Descendants("Country").First( c => c.Element("ID") == l.Element("CountryID")).Element("Name").Value
+                        }
+                    };
+        }
 
     //    public static void DeleteObject(Track track)
     //    {

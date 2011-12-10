@@ -8,12 +8,13 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Concert.DataAccessLayer;
+using Concert.DBObjectDefinition;
 
 namespace Concert.PresentationLayer
 {
     public partial class NewConcert : Form
     {
- /*       private Regex digits = new Regex(@"^\d+$");
+        private Regex digits = new Regex(@"^\d+$");
 
         private Location location;
 
@@ -47,11 +48,11 @@ namespace Concert.PresentationLayer
 
         private void LoadBands()
         {
-            foreach (Band band in DBObjectController.GetAllBands())
-            {
-                bands.Add(band);
-                checkedListBoxBands.Items.Add(band.Name);
-            }
+            //foreach (Band band in DBObjectController.GetAllBands())
+            //{
+            //    bands.Add(band);
+            //    checkedListBoxBands.Items.Add(band.Name);
+            //}
             checkedListBoxBands.CheckOnClick = true;
         }
 
@@ -64,15 +65,18 @@ namespace Concert.PresentationLayer
                     string name     = textBoxConcertName.Text;
                     DateTime date   = dateTimePickerConcert.Value;
                     int ticketPrice = int.Parse(textBoxTicketPrice.Text);
-                    
-                    Concert concert = new Concert() { Name = name,
-                                                      Date = date,
-                                                      TicketPrice = ticketPrice,
-                                                      Location = location };
+
+                    DBObjectDefinition.Concert concert = new DBObjectDefinition.Concert()
+                                                         {
+                                                            Name = name,
+                                                            Date = date,
+                                                            TicketPrice = ticketPrice,
+                                                            GeoLocation = location
+                                                         };
 
                     AddHiredBands(concert);
 
-                    DBObjectController.StoreObject( concert );
+                    //DBObjectController.StoreObject( concert );
 
                     MessageBox.Show("You have successfully added new concert.", "Success confirmation");
                     ClearForm();
@@ -84,11 +88,11 @@ namespace Concert.PresentationLayer
             }
         }
 
-        private void AddHiredBands(Concert concert)
+        private void AddHiredBands(DBObjectDefinition.Concert concert)
         {
             foreach (int index in checkedListBoxBands.CheckedIndices)
             {
-                concert.Band.Add(bands[index]);
+                concert.Bands.Add(bands[index]);
             }
             ClearHiredBands();
         }
@@ -201,6 +205,5 @@ namespace Concert.PresentationLayer
                 location = (Location)((DataGridView)sender).CurrentRow.Tag;
             }
         }
-        */
     }
 }
