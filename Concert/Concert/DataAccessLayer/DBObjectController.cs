@@ -13,17 +13,28 @@ namespace Concert.DataAccessLayer
 {
     class DBObjectController
     {
-        const string XML_PATH    = "../../Resources/XML/db.xml";
-        const string SCHEMA_PATH = "../../Resources/XML/schema.xsd";
+        const string XML_PATH    = "../../Resources/XML/Concert.xml";
+        const string SCHEMA_PATH = "../../Resources/XML/ConcertSchema.xsd";
 
         private static XDocument db;
         private static XmlSchemaSet schema;
 
         public static void InitializeDataBase()
         {
-            db = XDocument.Load(XML_PATH);
-            schema = new XmlSchemaSet();
-            schema.Add("", XmlReader.Create(new StreamReader(SCHEMA_PATH)));
+            try
+            {
+                db = XDocument.Load(XML_PATH);
+                schema = new XmlSchemaSet();
+                schema.Add("", XmlReader.Create(new StreamReader(SCHEMA_PATH)));
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(String.Format("Failed to read xml or xsd document.\r\n" + 
+                                              "Check paths:\r\n\t" + 
+                                              ".xml: {0}\r\n\t" + 
+                                              ".xsd: {1}\r\n" + 
+                                              "Error message : {2}", XML_PATH, SCHEMA_PATH, e.Message));
+            }
             ValidateDatabase(db.Element("Database"));
         }
 
