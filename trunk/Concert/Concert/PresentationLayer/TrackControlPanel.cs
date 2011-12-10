@@ -33,13 +33,13 @@ namespace Concert.PresentationLayer
         private void LoadTrackData()
         {
             dataGridViewTracks.Rows.Clear();
-            //foreach (Track track in DBObjectController.GetAllTracks())
-            //{
-            //    DataGridViewRow row = new DataGridViewRow();
-            //    row.CreateCells(dataGridViewTracks, new object[] { track.Name, track.Length });
-            //    row.Tag = track;
-            //    dataGridViewTracks.Rows.Add(row);
-            //}
+            foreach (Track track in DBObjectController.GetAllTracks())
+            {
+                DataGridViewRow row = new DataGridViewRow();
+                row.CreateCells(dataGridViewTracks, new object[] { track.Name, track.Length });
+                row.Tag = track;
+                dataGridViewTracks.Rows.Add(row);
+            }
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)
@@ -61,12 +61,13 @@ namespace Concert.PresentationLayer
                     File.Copy(path, @"..\..\" + trackPath);
                 }
 
-                //DBObjectController.StoreObject( new Track() { Name     = name,
-                //                                            Length   = length, 
-                //                                            Uploaded = trackUploaded, 
-                //                                            Path     = trackPath });
-                
-                MessageBox.Show("You have successfully added new track", "Success confirmation");
+                DBObjectController.StoreObject(new Track()
+                {
+                    Name = name,
+                    Length = length,
+                    Uploaded = trackUploaded,
+                    Path = trackPath
+                });
                 
                 ClearForm();
                 LoadTrackData();
