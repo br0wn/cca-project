@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,13 +9,13 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Concert.DataAccessLayer;
-using System.IO;
+using Concert.DBObjectDefinition;
 
 namespace Concert.PresentationLayer
 {
     public partial class TrackControlPanel : Form
     {
-        private Regex digits = new Regex(@"^\d+$");
+/*        private Regex digits = new Regex(@"^\d+$");
 
         public TrackControlPanel()
         {
@@ -288,5 +289,6 @@ namespace Concert.PresentationLayer
                 }
             }
         }
+ * */
     }
 }

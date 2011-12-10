@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Concert.DataAccessLayer;
+using Concert.DBObjectDefinition;
 
 namespace Concert.PresentationLayer
 {
@@ -14,31 +15,33 @@ namespace Concert.PresentationLayer
     {
         List<Band> bands;
 
-        private Concert concert;
+        private DBObjectDefinition.Concert concert;
 
         public ConcertAddBand()
         {
             InitializeComponent();
         }
 
-        public ConcertAddBand(Concert concert)
+        public ConcertAddBand(DBObjectDefinition.Concert concert)
         {
             this.concert = concert;
             InitializeComponent();
+
             bands = new List<Band>();
+            
             checkedListBoxBands.CheckOnClick = true;
-            foreach (Band band in DBObjectController.GetAdjectiveBands(concert.Band))
-            {
-                bands.Add(band);
-                checkedListBoxBands.Items.Add(band.Name);
-            }
+            //foreach (Band band in DBObjectController.GetAdjectiveBands(concert.Bands))
+            //{
+            //    bands.Add(band);
+            //    checkedListBoxBands.Items.Add(band.Name);
+            //}
         }
 
         private void ConcertAddBand_FormClosing(object sender, FormClosingEventArgs e)
         {
             foreach (int index in checkedListBoxBands.CheckedIndices)
             {
-                concert.Band.Add(bands[index]);
+                concert.Bands.Add(bands[index]);
             }
             DBObjectController.SaveChanges();
         }

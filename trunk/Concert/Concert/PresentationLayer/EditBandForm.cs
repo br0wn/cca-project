@@ -6,14 +6,14 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-//using Concert.DBObjectDefinition;
+using Concert.DBObjectDefinition;
 using Concert.DataAccessLayer;
 
 namespace Concert.PresentationLayer
 {
 	public partial class EditBandForm : Form
 	{
-		private bool editMode;
+/*		private bool editMode;
 		private bool EditMode
 		{
 			set
@@ -325,5 +325,6 @@ namespace Concert.PresentationLayer
                 MdiParent.MainMenuStrip.Enabled = true;
             }
         }
+ * */
 	}
 }

@@ -6,14 +6,14 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-//using Concert.DBObjectDefinition;
+using Concert.DBObjectDefinition;
 using Concert.DataAccessLayer;
 
 namespace Concert.PresentationLayer
 {
     public partial class NewArtistForm : Form
     {
-        List<Instrument> instruments;
+/*        List<Instrument> instruments;
 
         public NewArtistForm()
         {
@@ -101,5 +101,6 @@ namespace Concert.PresentationLayer
         {
             MdiParent.MainMenuStrip.Enabled = true;
         }
+ * */
     }
 }

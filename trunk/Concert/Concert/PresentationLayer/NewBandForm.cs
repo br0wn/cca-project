@@ -12,7 +12,7 @@ namespace Concert.PresentationLayer
 {
     public partial class NewBandForm : Form
     {
-        public NewBandForm()
+  /*      public NewBandForm()
         {
             InitializeComponent();
 			loadExternalData();
@@ -138,5 +138,6 @@ namespace Concert.PresentationLayer
         {
             MdiParent.MainMenuStrip.Enabled = true;
         }
+   * */
     }
 }

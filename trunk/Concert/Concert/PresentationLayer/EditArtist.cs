@@ -12,7 +12,7 @@ namespace Concert.PresentationLayer
 {
     public partial class EditArtist : Form
     {
-        List<Instrument> instruments  = new List<Instrument>();
+ /*       List<Instrument> instruments  = new List<Instrument>();
         List<Artist> artists          = new List<Artist>();
         List<String> artistDataSource = new List<string>();
 
@@ -186,5 +186,6 @@ namespace Concert.PresentationLayer
                 MdiParent.MainMenuStrip.Enabled = false;
             }
         }
+  * */
     }
 }

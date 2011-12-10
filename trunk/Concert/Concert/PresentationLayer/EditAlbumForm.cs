@@ -11,7 +11,7 @@ using Concert.DataAccessLayer;
 namespace Concert.PresentationLayer {
     public partial class EditAlbumForm : Form
     {
-        private bool editMode;
+  /*      private bool editMode;
         private List<Album> albums = new List<Album>();
         private List<Track> avaliableSongsFull = new List<Track>();
         private List<Track> avaliableSongs = new List<Track>();
@@ -247,5 +247,6 @@ namespace Concert.PresentationLayer {
             this.listBoxAvaliableAlbums.DisplayMember = "Name";
             this.listBoxAvaliableSongs.DisplayMember = "Name";
         }
+   * */
     }
 }
