@@ -7,12 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Concert.DataAccessLayer;
+using Concert.DBObjectDefinition;
 
 namespace Concert.PresentationLayer
 {
     public partial class NewBandForm : Form
     {
-  /*      public NewBandForm()
+       public NewBandForm()
         {
             InitializeComponent();
 			loadExternalData();
@@ -25,7 +26,7 @@ namespace Concert.PresentationLayer
 
         private void loadExternalData()
         {
-			this.availableArtists = DBObjectController.GetAllArtists().ToList();
+            //this.availableArtists = DBObjectController.GetAllArtists().ToList();
 
 			this.listBoxAvailableArtists.DataSource = this.availableArtists;
         }
@@ -37,7 +38,7 @@ namespace Concert.PresentationLayer
 			this.listBoxAvailableArtists.DataSource = null;
 
 			this.addedArtists = new List<Artist>( );
-			this.availableArtists = DBObjectController.GetAllArtists( ).ToList( );
+            //this.availableArtists = DBObjectController.GetAllArtists( ).ToList( );
 
 			this.listBoxAvailableArtists.DataSource = this.availableArtists;
 			this.listBoxAddedArtists.DataSource = this.addedArtists;
@@ -84,14 +85,14 @@ namespace Concert.PresentationLayer
 				return;
 			} 
 
-			List<Artist> artists = DBObjectController.GetAllArtists().ToList();
+            //List<Artist> artists = DBObjectController.GetAllArtists().ToList();
 			List<Artist> deletedArtists = new List<Artist>();
 			
-			foreach( Artist artist in this.addedArtists )
-			{
-				if( artists.Contains( artist ) ) continue;
-				deletedArtists.Add( artist );
-			}
+            //foreach( Artist artist in this.addedArtists )
+            //{
+            //    if( artists.Contains( artist ) ) continue;
+            //    deletedArtists.Add( artist );
+            //}
 
 			if( deletedArtists.Count != 0 )
 			{
@@ -105,14 +106,14 @@ namespace Concert.PresentationLayer
 			}
 
             Band band = new Band();
-			band.Name = bandName;
+            //band.Name = bandName;
 			foreach(Artist artist in addedArtists )
 			{
-				band.Artist.Add( artist );
+                //band.Artist.Add( artist );
 			}
 
 			try{
-                DBObjectController.StoreObject(band);
+                //DBObjectController.StoreObject(band);
 			}
 			catch(Exception ex){
 				MessageBox.Show( "Error while updating record: \n\n"+ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error );
@@ -138,6 +139,5 @@ namespace Concert.PresentationLayer
         {
             MdiParent.MainMenuStrip.Enabled = true;
         }
-   * */
     }
 }

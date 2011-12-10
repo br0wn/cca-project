@@ -4,6 +4,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element ref="Countries"/>
+        <xs:element ref="Locations" />
         <xs:element ref="Concerts"/>
         <xs:element ref="Bands"/>
         <xs:element ref="Artists"/>
@@ -13,6 +14,10 @@
         <xs:element ref="ArtistsInstruments"/>
       </xs:sequence>
     </xs:complexType>
+    <xs:keyref name="LocationCountry" refer="CountryPK">
+      <xs:selector xpath=".//Location" />
+      <xs:field xpath="CountryID" />
+    </xs:keyref>
     <xs:keyref name="ConcertLocationFK" refer="LocationPK">
       <xs:selector xpath=".//Concert" />
       <xs:field xpath="LocationID" />
@@ -89,6 +94,20 @@
       <xs:field xpath="InstrumentID"/>
     </xs:key>
   </xs:element>
+  <xs:element name="ID">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="1" />
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Date">
+    <xs:simpleType>
+      <xs:restriction base="xs:date" >
+        <xs:pattern value="\p{Nd}{2}.\p{Nd}{2}.\p{Nd}{4}" />
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
   <xs:element name="Countries">
     <xs:complexType>
       <xs:sequence>
@@ -99,23 +118,26 @@
   <xs:element name="Country">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="ID" type="xs:int"/>
+        <xs:element ref="ID"/>
         <xs:element name="Name" type="xs:string" nillable="false"/>
-        <xs:element name="Locations">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element ref="Location" minOccurs="0" maxOccurs="unbounded"/>
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Locations">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Location" minOccurs="0" maxOccurs="unbounded"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="Location">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="ID" type="xs:int" nillable="false"/>
+        <xs:element ref="ID"/>
         <xs:element name="SeatCount" type="xs:int" nillable="false"/>
+        <xs:element name="Address" type="xs:string" nillable="false" />
+        <xs:element name="PostalCode" type="xs:int" nillable="false" />
+        <xs:element name="CountryID" type="xs:int" nillable="false" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -129,10 +151,10 @@
   <xs:element name="Concert">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="ID" type="xs:int" nillable="false"/>
+        <xs:element ref="ID"/>
         <xs:element name="TicketPrice" type="xs:int" nillable="false"/>
         <xs:element name="Name" type="xs:string" nillable="false"/>
-        <xs:element name="Date" type="xs:date" nillable="false"/>
+        <xs:element ref="Date" />
         <xs:element name="LocationID" type="xs:int" nillable="false" />
       </xs:sequence>
     </xs:complexType>
@@ -147,7 +169,7 @@
   <xs:element name="Band">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="ID" type="xs:int" nillable="false"/>
+        <xs:element ref="ID"/>
         <xs:element name="Name" type="xs:string" nillable="false"/>
         <xs:element name="Albums">
           <xs:complexType>
@@ -162,7 +184,7 @@
   <xs:element name="Album">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="ID" type="xs:int" nillable="false"/>
+        <xs:element ref="ID"/>
         <xs:element name="Name" type="xs:string" nillable="false"/>
         <xs:element name="Tracks">
           <xs:complexType>
@@ -177,7 +199,7 @@
   <xs:element name="Track">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="ID" type="xs:int" nillable="false"/>
+        <xs:element ref="ID"/>
         <xs:element name="Length" type="xs:int" nillable="false"/>
         <xs:element name="Uploaded" type="xs:boolean"/>
         <xs:element name="Name" type="xs:string" nillable="false"/>
@@ -195,7 +217,7 @@
   <xs:element name="Artist">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="ID" type="xs:int" nillable="false"/>
+        <xs:element ref="ID"/>
         <xs:element name="FirstName" type="xs:string" nillable="false"/>
         <xs:element name="LastName" type="xs:string" nillable="false"/>
         <xs:element name="BirthDate" type="xs:date" nillable="false"/>
@@ -212,7 +234,7 @@
   <xs:element name="Instrument">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="ID" type="xs:int" nillable="false"/>
+        <xs:element ref="ID"/>
         <xs:element name="Name" type="xs:string" nillable="false"/>
         <xs:element name="Artists">
           <xs:complexType>

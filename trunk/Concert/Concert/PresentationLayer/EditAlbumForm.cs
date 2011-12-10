@@ -7,11 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Concert.DataAccessLayer;
+using Concert.DBObjectDefinition;
 
 namespace Concert.PresentationLayer {
     public partial class EditAlbumForm : Form
     {
-  /*      private bool editMode;
+        private bool editMode;
         private List<Album> albums = new List<Album>();
         private List<Track> avaliableSongsFull = new List<Track>();
         private List<Track> avaliableSongs = new List<Track>();
@@ -38,7 +39,7 @@ namespace Concert.PresentationLayer {
         private void LoadExternalData()
         {
             this.albums = null;
-            this.albums = DBObjectController.GetAllAlbums().ToList();
+            //this.albums = DBObjectController.GetAllAlbums().ToList();
             this.listBoxAvaliableAlbums.DataSource = null;
             this.listBoxAvaliableAlbums.DataSource = this.albums;
             this.SetDisplayMember();
@@ -58,10 +59,10 @@ namespace Concert.PresentationLayer {
 
             album.Name     = albumName;
             
-            album.Track.Clear();
+            //album.Track.Clear();
             foreach (Track addedSong in this.addedSongs)
             {
-                album.Track.Add(addedSong);
+                //album.Track.Add(addedSong);
             }
             try {
 
@@ -136,7 +137,7 @@ namespace Concert.PresentationLayer {
             Album album = this.albums[albumIndex];
             try
             {
-                DBObjectController.DeleteObject(album);
+                //DBObjectController.DeleteObject(album);
             }
             catch (Exception)
             {
@@ -170,9 +171,9 @@ namespace Concert.PresentationLayer {
 
             Album album = this.albums[selectedIndex];
             this.textBoxAlbumName.Text = album.Name;
-            this.addedSongs = album.Track.ToList();
+            //this.addedSongs = album.Track.ToList();
             this.avaliableSongsFull.Clear();
-            this.avaliableSongsFull = DBObjectController.GetAvailableTracks().ToList();
+            //this.avaliableSongsFull = DBObjectController.GetAvailableTracks().ToList();
             foreach (Track song in this.avaliableSongsFull.Where(song => !this.addedSongs.Contains(song)))
             {
                 this.avaliableSongs.Add(song);
@@ -247,6 +248,5 @@ namespace Concert.PresentationLayer {
             this.listBoxAvaliableAlbums.DisplayMember = "Name";
             this.listBoxAvaliableSongs.DisplayMember = "Name";
         }
-   * */
     }
 }

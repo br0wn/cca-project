@@ -44,8 +44,8 @@ namespace Concert.PresentationLayer
 
         private void LoadCountryData()
         {
-            comboBoxCountry.DataSource        = DBObjectController.GetAllCountries();
-            comboBoxCountryCurrent.DataSource = DBObjectController.GetAllCountries();
+            //comboBoxCountry.DataSource        = DBObjectController.GetAllCountries();
+            //comboBoxCountryCurrent.DataSource = DBObjectController.GetAllCountries();
 
             comboBoxCountry.DisplayMember        = "Name";
             comboBoxCountryCurrent.DisplayMember = "Name";

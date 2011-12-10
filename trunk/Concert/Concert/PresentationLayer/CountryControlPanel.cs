@@ -22,13 +22,13 @@ namespace Concert.PresentationLayer
         public void LoadCountries()
         {
             dataGridViewCountry.Rows.Clear();
-            foreach (Country country in DBObjectController.GetAllCountries())
-            {
-                DataGridViewRow row = new DataGridViewRow();
-                row.CreateCells(dataGridViewCountry, new object[] { country.Name });
-                row.Tag = country;
-                dataGridViewCountry.Rows.Add(row);
-            }
+            //foreach (Country country in DBObjectController.GetAllCountries())
+            //{
+            //    DataGridViewRow row = new DataGridViewRow();
+            //    row.CreateCells(dataGridViewCountry, new object[] { country.Name });
+            //    row.Tag = country;
+            //    dataGridViewCountry.Rows.Add(row);
+            //}
         }
 
         private void dataGridViewCountry_SelectionChanged(object sender, EventArgs e)
@@ -71,7 +71,7 @@ namespace Concert.PresentationLayer
 
         private void dataGridViewCountry_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
         {
-            DBObjectController.DeleteObject((Country)dataGridViewCountry.CurrentRow.Tag);
+            //DBObjectController.DeleteObject((Country)dataGridViewCountry.CurrentRow.Tag);
         }
 
         private void SimpleTextValidation(object sender, CancelEventArgs e)
@@ -92,7 +92,7 @@ namespace Concert.PresentationLayer
             {
                 string name = textBoxCountryName.Text;
                 
-                DBObjectController.StoreObject(new Country() { Name = name });
+                //DBObjectController.StoreObject(new Country() { Name = name });
                 
                 textBoxCountryName.Clear();
 

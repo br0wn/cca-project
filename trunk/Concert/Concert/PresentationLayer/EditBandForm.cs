@@ -13,7 +13,7 @@ namespace Concert.PresentationLayer
 {
 	public partial class EditBandForm : Form
 	{
-/*		private bool editMode;
+		private bool editMode;
 		private bool EditMode
 		{
 			set
@@ -82,7 +82,7 @@ namespace Concert.PresentationLayer
 		private void getBands( )
 		{
 			this.bands = null;
-			this.bands = DBObjectController.GetAllBands().ToList();
+            //this.bands = DBObjectController.GetAllBands().ToList();
 			this.listBoxBands.DataSource = null;
 			this.listBoxBands.DataSource = this.bands;
 		}
@@ -97,7 +97,7 @@ namespace Concert.PresentationLayer
 		private void refreshArtistsFullList()
 		{
 			this.availableArtistsFullList.Clear();
-			this.availableArtistsFullList = DBObjectController.GetAllArtists( ).ToList( );
+            //this.availableArtistsFullList = DBObjectController.GetAllArtists( ).ToList( );
 		}
 
 		private void refreshArtistsLists( )
@@ -126,8 +126,8 @@ namespace Concert.PresentationLayer
 			this.availableArtists = new List<Artist>();
 
 			Band band = this.bands[ selectedIndex ];
-			this.textBoxBandName.Text = band.Name;
-            this.addedArtists = band.Artist.ToList();
+            //this.textBoxBandName.Text = band.Name;
+            //this.addedArtists = band.Artist.ToList();
 			
 			refreshArtistsFullList();
 			foreach(Artist artist in this.availableArtistsFullList)
@@ -139,10 +139,10 @@ namespace Concert.PresentationLayer
 			}
 
 			this.albums = new List<Album>( );
-			foreach( Album album in this.bands[ selectedIndex ].Album)
-			{
-				this.albums.Add( album );
-			}
+            //foreach( Album album in this.bands[ selectedIndex ].Album)
+            //{
+            //    this.albums.Add( album );
+            //}
 
 			refreshArtistsLists( );
 			refreshAlbumsList( );
@@ -206,12 +206,12 @@ namespace Concert.PresentationLayer
 				return;
 			}
 
-			List<Artist> artists = DBObjectController.GetAllArtists( ).ToList( );
+            //List<Artist> artists = DBObjectController.GetAllArtists( ).ToList( );
 			List<Artist> deletedArtists = new List<Artist>( );
 
 			foreach ( Artist artist in this.addedArtists )
 			{
-				if ( artists.Contains( artist ) ) continue;
+                //if ( artists.Contains( artist ) ) continue;
 				deletedArtists.Add( artist );
 			}
 
@@ -229,18 +229,18 @@ namespace Concert.PresentationLayer
 			int bandIndex = this.listBoxBands.SelectedIndex;
 			Band band = this.bands[ bandIndex ];
 
-			band.Name = bandName;
-			foreach ( Artist artist in this.addedArtists )
-			{
-				if ( band.Artist.Contains( artist ) ) continue;
-                band.Artist.Add( artist );
-			}
+            //band.Name = bandName;
+            //foreach ( Artist artist in this.addedArtists )
+            //{
+            //    if ( band.Artist.Contains( artist ) ) continue;
+            //    band.Artist.Add( artist );
+            //}
 
-			foreach ( Album album in band.Album )
-			{
-				if ( this.albums.Contains( album ) ) continue;
-				band.Album.Remove( album );
-			}
+            //foreach ( Album album in band.Album )
+            //{
+            //    if ( this.albums.Contains( album ) ) continue;
+            //    band.Album.Remove( album );
+            //}
 
 			try
 			{
@@ -279,7 +279,7 @@ namespace Concert.PresentationLayer
 
 			try
             {
-                DBObjectController.DeleteObject( band );
+                //DBObjectController.DeleteObject( band );
 			}
 			catch ( Exception ex )
 			{
@@ -325,6 +325,5 @@ namespace Concert.PresentationLayer
                 MdiParent.MainMenuStrip.Enabled = true;
             }
         }
- * */
 	}
 }

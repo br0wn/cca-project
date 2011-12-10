@@ -15,7 +15,7 @@ namespace Concert.PresentationLayer
 {
     public partial class TrackControlPanel : Form
     {
-/*        private Regex digits = new Regex(@"^\d+$");
+        private Regex digits = new Regex(@"^\d+$");
 
         public TrackControlPanel()
         {
@@ -33,13 +33,13 @@ namespace Concert.PresentationLayer
         private void LoadTrackData()
         {
             dataGridViewTracks.Rows.Clear();
-            foreach (Track track in DBObjectController.GetAllTracks())
-            {
-                DataGridViewRow row = new DataGridViewRow();
-                row.CreateCells(dataGridViewTracks, new object[] { track.Name, track.Length });
-                row.Tag = track;
-                dataGridViewTracks.Rows.Add(row);
-            }
+            //foreach (Track track in DBObjectController.GetAllTracks())
+            //{
+            //    DataGridViewRow row = new DataGridViewRow();
+            //    row.CreateCells(dataGridViewTracks, new object[] { track.Name, track.Length });
+            //    row.Tag = track;
+            //    dataGridViewTracks.Rows.Add(row);
+            //}
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)
@@ -61,10 +61,10 @@ namespace Concert.PresentationLayer
                     File.Copy(path, @"..\..\" + trackPath);
                 }
 
-                DBObjectController.StoreObject( new Track() { Name     = name,
-                                                            Length   = length, 
-                                                            Uploaded = trackUploaded, 
-                                                            Path     = trackPath });
+                //DBObjectController.StoreObject( new Track() { Name     = name,
+                //                                            Length   = length, 
+                //                                            Uploaded = trackUploaded, 
+                //                                            Path     = trackPath });
                 
                 MessageBox.Show("You have successfully added new track", "Success confirmation");
                 
@@ -246,7 +246,7 @@ namespace Concert.PresentationLayer
                     File.Delete(url);
                 }
             }
-            DBObjectController.DeleteObject((Track)e.Row.Tag);
+            //DBObjectController.DeleteObject((Track)e.Row.Tag);
         }
 
         private void buttonUpload_Click(object sender, EventArgs e)
@@ -289,6 +289,5 @@ namespace Concert.PresentationLayer
                 }
             }
         }
- * */
     }
 }

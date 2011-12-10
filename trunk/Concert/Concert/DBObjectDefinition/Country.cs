@@ -6,7 +6,7 @@ using System.Xml.Linq;
 
 namespace Concert.DBObjectDefinition
 {
-    class Country
+    public class Country
     {
         private int    id;
         private string name;
