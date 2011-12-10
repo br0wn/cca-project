@@ -1,20 +1,21 @@
-﻿<Database>
-  <Countries>
-  </Countries>
-  <Locations>
-  </Locations>
-  <Concerts>
-  </Concerts>
-  <Bands>
-  </Bands>
-  <Artists>
-  </Artists>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Database>
+  <Countries></Countries>
+  <Locations></Locations>
+  <Concerts></Concerts>
+  <Bands></Bands>
+  <Artists></Artists>
   <Instruments>
+    <Instrument>
+      <ID>1</ID>
+      <Name>nekaj</Name>
+    </Instrument>
+    <Instrument>
+      <ID>2</ID>
+      <Name>Ajmo</Name>
+    </Instrument>
   </Instruments>
-  <ConcertsBands>
-  </ConcertsBands>
-  <BandsArtists>
-  </BandsArtists>
-  <ArtistsInstruments>
-  </ArtistsInstruments>
+  <ConcertsBands></ConcertsBands>
+  <BandsArtists></BandsArtists>
+  <ArtistsInstruments></ArtistsInstruments>
 </Database>
