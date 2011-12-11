@@ -9,12 +9,12 @@ namespace Concert.DBObjectDefinition
     public class Album
     {
         private int         id;
-        private int         bandID;
+        private Band         band;
         private string      name;
         private List<Track> tracks;
 
         public int ID             { get { return id;     } set { id = value;      } }
-        public int BandID         { get { return bandID; } set { bandID = value;  } }
+        public Band Band         { get { return band; } set { band= value;  } }
         public string Name        { get { return name;   } set { name = value;    } }
         public List<Track> Tracks { get { return tracks; } set { tracks = value;  } }
 
@@ -22,7 +22,7 @@ namespace Concert.DBObjectDefinition
         {
             XElement album = new XElement("Album",
                                                     new XElement("ID", ID),
-                                                    new XElement("BandID", bandID),
+                                                    new XElement("BandID", band.ID),                                                    
                                                     new XElement("Name", Name));
             
             foreach (Track track in tracks)

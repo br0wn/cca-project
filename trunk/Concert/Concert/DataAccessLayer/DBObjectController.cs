@@ -189,6 +189,7 @@ namespace Concert.DataAccessLayer
             xLocations.Add(location.toXML());
         }
 
+
         public static IEnumerable<Location> GetAllLocations()
         {
             return from l in db.Descendants("Location")
@@ -453,6 +454,41 @@ namespace Concert.DataAccessLayer
                                                  Name = c.Element("Name").Value
                                              };
             return countries;
+        }
+
+        public static void StoreObject(Album album) {
+            if (album.ID != 0)
+                GetElement(album.ID, "Album").Remove();
+            else
+                album.ID = GetElementID("Album");
+
+            XElement xLocations = db.Descendants("album").First();
+            xLocations.Add(album.toXML());
+            foreach (Track track in album.Tracks)
+            {
+                track.Album = album;
+                StoreObject(track);
+            }
+        }
+
+        public static void DeleteObject(Album album) {
+            foreach (XElement item in db.Descendants("Album").Where(a => int.Parse(a.Element("AlbumID").Value) == album.ID)) {
+                item.Remove();
+            }
+
+            DeleteElement(GetElement(album.ID, "Album"));
+            foreach (Track track in album.Tracks)
+            {
+                 DeleteObject(track);
+            }
+        }
+
+        public static IEnumerable<Album> GetAllAlbums() {
+            return from i in db.Descendants("Album")
+                   select new Album() {
+                       ID = int.Parse(i.Element("ID").Value),
+                       Name = i.Element("Name").Value
+                   };
         }
     }
 }

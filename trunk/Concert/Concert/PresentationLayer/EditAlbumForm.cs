@@ -39,7 +39,7 @@ namespace Concert.PresentationLayer {
         private void LoadExternalData()
         {
             this.albums = null;
-            //this.albums = DBObjectController.GetAllAlbums().ToList();
+            this.albums = DBObjectController.GetAllAlbums().ToList();
             this.listBoxAvaliableAlbums.DataSource = null;
             this.listBoxAvaliableAlbums.DataSource = this.albums;
             this.SetDisplayMember();
@@ -59,14 +59,14 @@ namespace Concert.PresentationLayer {
 
             album.Name     = albumName;
             
-            //album.Track.Clear();
+            album.Tracks.Clear();
             foreach (Track addedSong in this.addedSongs)
             {
-                //album.Track.Add(addedSong);
+                album.Tracks.Add(addedSong);
             }
             try {
 
-                DBObjectController.SaveChanges();
+                DBObjectController.StoreObject(album);
             }
             catch {
                 MessageBox.Show("Error while updating record");
