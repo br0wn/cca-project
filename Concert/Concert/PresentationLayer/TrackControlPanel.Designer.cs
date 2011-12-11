@@ -54,7 +54,7 @@
             this.panelWMPlayer = new System.Windows.Forms.Panel();
             this.buttonPlay = new System.Windows.Forms.Button();
             this.groupBoxUploadTrack = new System.Windows.Forms.GroupBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBoxAlbumName = new System.Windows.Forms.ComboBox();
             this.labelAlbumName = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTracks)).BeginInit();
             this.groupBoxTrack.SuspendLayout();
@@ -154,7 +154,7 @@
             // groupBoxNewTrack
             // 
             this.groupBoxNewTrack.Controls.Add(this.labelAlbumName);
-            this.groupBoxNewTrack.Controls.Add(this.comboBox1);
+            this.groupBoxNewTrack.Controls.Add(this.comboBoxAlbumName);
             this.groupBoxNewTrack.Controls.Add(this.groupBoxUploadTrack);
             this.groupBoxNewTrack.Controls.Add(this.buttonCancel);
             this.groupBoxNewTrack.Controls.Add(this.buttonAdd);
@@ -297,13 +297,14 @@
             this.groupBoxUploadTrack.TabStop = false;
             this.groupBoxUploadTrack.Text = "Upload Track";
             // 
-            // comboBox1
+            // comboBoxAlbumName
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(131, 71);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(141, 21);
-            this.comboBox1.TabIndex = 8;
+            this.comboBoxAlbumName.FormattingEnabled = true;
+            this.comboBoxAlbumName.Location = new System.Drawing.Point(131, 71);
+            this.comboBoxAlbumName.Name = "comboBoxAlbumName";
+            this.comboBoxAlbumName.Size = new System.Drawing.Size(141, 21);
+            this.comboBoxAlbumName.TabIndex = 8;
+            this.comboBoxAlbumName.Validating += new System.ComponentModel.CancelEventHandler(this.comboBoxAlbumName_Validating);
             // 
             // labelAlbumName
             // 
@@ -367,6 +368,6 @@
         private System.Windows.Forms.Button buttonPlay;
         private System.Windows.Forms.GroupBox groupBoxUploadTrack;
         private System.Windows.Forms.Label labelAlbumName;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBoxAlbumName;
     }
 }
