@@ -44,8 +44,8 @@ namespace Concert.PresentationLayer
 
         private void LoadCountryData()
         {
-            //comboBoxCountry.DataSource        = DBObjectController.GetAllCountries();
-            //comboBoxCountryCurrent.DataSource = DBObjectController.GetAllCountries();
+            comboBoxCountry.DataSource        = DBObjectController.GetAllCountries().ToList();
+            comboBoxCountryCurrent.DataSource = DBObjectController.GetAllCountries().ToList();
 
             comboBoxCountry.DisplayMember        = "Name";
             comboBoxCountryCurrent.DisplayMember = "Name";
@@ -58,17 +58,29 @@ namespace Concert.PresentationLayer
                 string address  = textBoxAddress.Text;
                 int postalCode  = int.Parse(textBoxPostalCode.Text);
                 int seatCount   = int.Parse(textBoxSeatCount.Text);
-                Country country = (Country)comboBoxCountry.SelectedItem; 
+                Country country = (Country)comboBoxCountry.SelectedItem;
 
-                DBObjectController.StoreObject(new Location() { Address    = address, 
-                                                                SeatCount  = seatCount,
-                                                                PostalCode = postalCode,
-                                                                Country    = country });
+                Location location = new Location()
+                {
+                    Address    = address,
+                    SeatCount  = seatCount,
+                    PostalCode = postalCode,
+                    Country    = country
+                };
 
-                MessageBox.Show("Successfully added new location");
+                DBObjectController.StoreObject(location);
+
+                DataGridViewRow row = new DataGridViewRow();
+
+                row.CreateCells(dataGridViewLocation, new object[] { country.Name,
+                                                                     location.Address, 
+                                                                     location.PostalCode,
+                                                                     location.SeatCount });
                 
+                row.Tag = location;
+                dataGridViewLocation.Rows.Add(row);
+
                 ClearForm();
-                LoadLocationData();
             }
         }
 
@@ -95,7 +107,6 @@ namespace Concert.PresentationLayer
             textBoxPostalCode.Clear();
             textBoxSeatCount.Clear();
         }
-
 
         private void comboBoxCountry_Validating(object sender, CancelEventArgs e)
         {
@@ -180,12 +191,12 @@ namespace Concert.PresentationLayer
 
                     location.Country = (Country)comboBoxCountryCurrent.SelectedItem;
 
-                    dataGridViewLocation.CurrentRow.Cells[0].Value = location.Country != null ? location.Country.Name : "N/A";
+                    dataGridViewLocation.CurrentRow.Cells[0].Value = location.Country.Name;
                     dataGridViewLocation.CurrentRow.Cells[1].Value = location.Address;
                     dataGridViewLocation.CurrentRow.Cells[2].Value = location.PostalCode;
                     dataGridViewLocation.CurrentRow.Cells[3].Value = location.SeatCount;
 
-                    DBObjectController.SaveChanges();
+                    DBObjectController.StoreObject(location);
                 }
             }
             else

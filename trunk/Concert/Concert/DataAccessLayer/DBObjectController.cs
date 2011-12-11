@@ -179,11 +179,14 @@ namespace Concert.DataAccessLayer
 
         public static void StoreObject(Location location)
         {
-            location.ID = location.ID == 0 ? GetElementID("Location") : location.ID;
+            if (location.ID != 0)
+                GetElement(location.ID, "Location").Remove();
+            else
+                location.ID = GetElementID("Location");
 
-            XElement xLocation = GetElement(location.ID, "Location");
+            XElement xLocations = db.Descendants("Locations").First();
 
-            xLocation = location.toXML();
+            xLocations.Add(location.toXML());
         }
 
         public static IEnumerable<Location> GetAllLocations()
@@ -195,10 +198,10 @@ namespace Concert.DataAccessLayer
                         SeatCount  = int.Parse(l.Element("SeatCount").Value),
                         PostalCode = int.Parse(l.Element("PostalCode").Value),
                         Address    = l.Element("Address").Value,
-                        Country    = new Country()
+                        Country = new Country()
                         {
-                            ID   = int.Parse(db.Descendants("Country").First( c => c.Element("ID") == l.Element("CountryID")).Element("ID").Value),
-                            Name = db.Descendants("Country").First( c => c.Element("ID") == l.Element("CountryID")).Element("Name").Value
+                            ID = int.Parse(db.Descendants("Country").Where(c => c.Element("ID").Value == l.Element("CountryID").Value).First().Element("ID").Value),
+                            Name = db.Descendants("Country").Where(c => c.Element("ID").Value == l.Element("CountryID").Value).First().Element("Name").Value
                         }
                     };
         }

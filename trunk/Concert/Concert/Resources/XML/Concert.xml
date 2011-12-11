@@ -3,10 +3,62 @@
   <Countries>
     <Country>
       <ID>1</ID>
-      <Name>Hrvatsko</Name>
+      <Name>Hrvatska</Name>
+    </Country>
+    <Country>
+      <ID>2</ID>
+      <Name>Slovenija</Name>
+    </Country>
+    <Country>
+      <ID>3</ID>
+      <Name>Mađarska</Name>
+    </Country>
+    <Country>
+      <ID>4</ID>
+      <Name>Italija</Name>
+    </Country>
+    <Country>
+      <ID>5</ID>
+      <Name>Austrija</Name>
+    </Country>
+    <Country>
+      <ID>6</ID>
+      <Name>Grčka</Name>
+    </Country>
+    <Country>
+      <ID>7</ID>
+      <Name>Njemačka</Name>
+    </Country>
+    <Country>
+      <ID>8</ID>
+      <Name>Francuska</Name>
+    </Country>
+    <Country>
+      <ID>9</ID>
+      <Name>Portugal</Name>
+    </Country>
+    <Country>
+      <ID>10</ID>
+      <Name>Španjolska</Name>
+    </Country>
+    <Country>
+      <ID>11</ID>
+      <Name>Velika Britanija</Name>
+    </Country>
+    <Country>
+      <ID>12</ID>
+      <Name>Irska</Name>
     </Country>
   </Countries>
-  <Locations></Locations>
+  <Locations>
+    <Location>
+      <ID>1</ID>
+      <SeatCount>123</SeatCount>
+      <PostalCode>123</PostalCode>
+      <Address>Savski Putic</Address>
+      <CountryID>1</CountryID>
+    </Location>
+  </Locations>
   <Concerts></Concerts>
   <Bands></Bands>
   <Tracks>
