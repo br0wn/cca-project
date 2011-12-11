@@ -9,6 +9,15 @@
   <Locations></Locations>
   <Concerts></Concerts>
   <Bands></Bands>
+  <Tracks>
+    <Track>
+      <ID>1</ID>
+      <Length>12</Length>
+      <Uploaded>false</Uploaded>
+      <Name>nekaja</Name>
+      <Path></Path>
+    </Track>
+  </Tracks>
   <Artists></Artists>
   <Instruments>
     <Instrument>
@@ -34,6 +43,10 @@
     <Instrument>
       <ID>6</ID>
       <Name>slikovnica</Name>
+    </Instrument>
+    <Instrument>
+      <ID>7</ID>
+      <Name>nekaj</Name>
     </Instrument>
   </Instruments>
   <ConcertsBands></ConcertsBands>

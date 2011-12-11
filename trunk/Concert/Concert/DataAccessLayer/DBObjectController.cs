@@ -37,7 +37,7 @@ namespace Concert.DataAccessLayer
                                               "###############\r\n" +
                                               "{2}", XML_PATH, SCHEMA_PATH, e.Message));
             }
-            ValidateDatabase(db.Element("Database"));
+            ValidateDatabase();
         }
 
         private static XElement GetElement(int ID, string Xname)
@@ -81,7 +81,7 @@ namespace Concert.DataAccessLayer
             return !errors;
         }
 
-        private static bool ValidateDatabase()
+        public static bool ValidateDatabase()
         {
             string errorMessage = "";
             bool errors = false;
@@ -107,6 +107,8 @@ namespace Concert.DataAccessLayer
         public static void DeleteElement(XElement element)
         {
             element.Remove();
+
+            ValidateDatabase();
         }
 
     //    public static void DeleteObject(Concert concert)
@@ -173,10 +175,6 @@ namespace Concert.DataAccessLayer
             }
 
             DeleteElement(GetElement(location.ID, "Location"));
-
-            ValidateDatabase();
-
-            //SaveChanges;
         }
 
         public static void StoreObject(Location location)
@@ -186,8 +184,6 @@ namespace Concert.DataAccessLayer
             XElement xLocation = GetElement(location.ID, "Location");
 
             xLocation = location.toXML();
-
-            //SaveChanges();
         }
 
         public static IEnumerable<Location> GetAllLocations()
@@ -207,45 +203,60 @@ namespace Concert.DataAccessLayer
                     };
         }
 
-    //    public static void DeleteObject(Track track)
-    //    {
-    //        context.Track.DeleteObject(track);
-    //        SaveChanges();
-    //    }
+        public static void DeleteObject(Track track)
+        {
+            DeleteElement(GetElement(track.ID, "Track"));
+        }
 
-    //    public static void StoreObject(Track track)
-    //    {
-    //        context.Track.AddObject(track);
-    //        SaveChanges();
-    //    }
+        public static void StoreObject(Track track)
+        {
+            if (track.ID != 0)
+                GetElement(track.ID, "Track").Remove();
+            else
+            {
+                track.ID = GetElementID("Track");
+            }
 
-    //    public static IEnumerable<Track> GetAllTracks()
-    //    {
-    //        return context.Track;
-    //    }
+            XElement xTracks = db.Descendants("Tracks").First();
 
-    //    public static IEnumerable<Track> GetAvailableTracks()
-    //    {
-    //        List<Track> availableSongs = new List<Track>();
-    //        IEnumerable<Album> albums = GetAllAlbums();
-    //        foreach (Track track in GetAllTracks())
-    //        {
-    //            bool available = true;
-    //            foreach (Album album in albums)
-    //            {
-    //                if (album.Track.Contains(track))
-    //                {
-    //                    available = false;
-    //                    break;
-    //                }
-    //            }
-    //            if (available)
-    //            {
-    //                availableSongs.Add(track);
-    //            }
-    //        }
-    //        return availableSongs;
-    //    }
+            xTracks.Add(track.toXML());
+        }
+
+        public static IEnumerable<Track> GetAllTracks()
+        {
+            return from t in db.Descendants("Track")
+                   select new Track() 
+                   {
+                       ID = int.Parse(t.Element("ID").Value),
+                       Length = int.Parse(t.Element("Length").Value),
+                       Name = t.Element("Name").Value,
+                       Path = t.Element("Path").Value,
+                       Uploaded = bool.Parse(t.Element("Uploaded").Value)
+                   };
+        }
+
+        //public static IEnumerable<Track> GetAvailableTracks()
+        //{
+        //    List<Track> availableTracks = new List<Track>();
+        //    IEnumerable<Album> albums = GetAllAlbums();
+        //    foreach (Track track in GetAllTracks())
+        //    {
+        //        bool available = true;
+        //        foreach (Album album in albums)
+        //        {
+        //            if (album.Track.Contains(track))
+        //            {
+        //                available = false;
+        //                break;
+        //            }
+        //        }
+        //        if (available)
+        //        {
+        //            availableSongs.Add(track);
+        //        }
+        //    }
+        //    return availableSongs;
+        //}
 
     //    public static void DeleteObject(Artist artist)
     //    {
@@ -374,18 +385,13 @@ namespace Concert.DataAccessLayer
             }
 
             DeleteElement(GetElement(instrument.ID, "Instrument"));
-
-            ValidateDatabase();
-            //SaveChanges();
         }
 
         public static void StoreObject(Instrument instrument)
         {
             if (instrument.ID != 0)
             {
-                XElement xInstrument = GetElement(instrument.ID, "Instrument");
-
-                xInstrument.Remove();
+                GetElement(instrument.ID, "Instrument").Remove();
             }
             else
             {
@@ -395,8 +401,6 @@ namespace Concert.DataAccessLayer
             XElement xinstruments = db.Descendants("Instruments").First();
 
             xinstruments.Add(instrument.toXML());
-
-            SaveChanges();
         }
 
         public static IEnumerable<Instrument> GetAllInstruments()
@@ -417,8 +421,6 @@ namespace Concert.DataAccessLayer
             }
 
             DeleteElement(GetElement(country.ID, "Country"));
-
-            ValidateDatabase();
         }
 
         public static void StoreObject(Country country)
@@ -437,8 +439,6 @@ namespace Concert.DataAccessLayer
             XElement xCountries = db.Descendants("Countries").First();
 
             xCountries.Add(country.toXML());
-
-            SaveChanges();
         }
 
         public static IEnumerable<Country> GetAllCountries()

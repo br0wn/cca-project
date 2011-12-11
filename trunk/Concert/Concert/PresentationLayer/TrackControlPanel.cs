@@ -61,16 +61,25 @@ namespace Concert.PresentationLayer
                     File.Copy(path, @"..\..\" + trackPath);
                 }
 
-                DBObjectController.StoreObject(new Track()
+                Track track = new Track()
                 {
                     Name = name,
                     Length = length,
                     Uploaded = trackUploaded,
                     Path = trackPath
-                });
-                
+                };
+
+                DBObjectController.StoreObject(track);
+
+                DataGridViewRow row = new DataGridViewRow();
+
+                row.CreateCells(dataGridViewTracks, new object[] { track.Name, track.Length });
+
+                row.Tag = track;
+
+                dataGridViewTracks.Rows.Add(row);
+
                 ClearForm();
-                LoadTrackData();
             }
         }
 
@@ -139,10 +148,12 @@ namespace Concert.PresentationLayer
                 ValidateCurrentSelection();
                 if (NoErrorProviderMsg())
                 {
-                    Track song = (Track)dataGridViewTracks.CurrentRow.Tag;
-                    song.Name = textBoxTrackNameCurrent.Text;
-                    song.Length = int.Parse(textBoxTrackLengthCurrent.Text);
-                    DBObjectController.SaveChanges();
+                    Track track  = (Track)dataGridViewTracks.CurrentRow.Tag;
+                    track.Name   = textBoxTrackNameCurrent.Text;
+                    track.Length = int.Parse(textBoxTrackLengthCurrent.Text);
+
+                    DBObjectController.StoreObject(track);
+
                     LoadTrackData();
                 }
             }
@@ -205,7 +216,7 @@ namespace Concert.PresentationLayer
             if (((DataGridView)sender).CurrentRow != null)
             {
                 ClearCurrentErrorProvider();
-                textBoxTrackNameCurrent.Text = ((DataGridView)sender).CurrentRow.Cells[0].Value.ToString();
+                textBoxTrackNameCurrent.Text   = ((DataGridView)sender).CurrentRow.Cells[0].Value.ToString();
                 textBoxTrackLengthCurrent.Text = ((DataGridView)sender).CurrentRow.Cells[1].Value.ToString();
             }
             else
@@ -247,7 +258,7 @@ namespace Concert.PresentationLayer
                     File.Delete(url);
                 }
             }
-            //DBObjectController.DeleteObject((Track)e.Row.Tag);
+            DBObjectController.DeleteObject((Track)e.Row.Tag);
         }
 
         private void buttonUpload_Click(object sender, EventArgs e)
