@@ -17,8 +17,15 @@ namespace Concert
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            
             DBObjectController.InitializeDataBase();
+
             Application.Run(new MainControlPanel());
+            
+            if (DBObjectController.ValidateDatabase())
+            {
+                DBObjectController.SaveChanges();
+            }
         }
     }
 }

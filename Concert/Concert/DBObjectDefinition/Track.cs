@@ -10,27 +10,39 @@ namespace Concert.DBObjectDefinition
     {
         private int    id;
         private int    length;
-        //private int albumID;
         private bool   uploaded;
         private string name;
         private string path;
+        private Album  album;
 
         public int ID        { get { return id;       } set { id = value;       } }
         public int Length    { get { return length;   } set { length = value;   } }
-        //public int AlbumID   { get { return albumID;  } set { albumID = value;  } }
         public bool Uploaded { get { return uploaded; } set { uploaded = value; } }
         public string Name   { get { return name;     } set { name = value;     } }
         public string Path   { get { return path;     } set { path = value;     } }
+        public Album Album   { get { return album;    } set { album = value;    } }
 
         public XElement toXML()
         {
-            return new XElement("Track",
-                                            new XElement("ID", ID),
-                                            new XElement("Length", Length),
-                                            //new XElement("AlbumID", AlbumID),
-                                            new XElement("Uploaded", Uploaded),
-                                            new XElement("Name", Name),
-                                            new XElement("Path", path));
+            if (album == null)
+            {
+                return new XElement("Track",
+                                                new XElement("ID", ID),
+                                                new XElement("Length", Length),
+                                                new XElement("Uploaded", Uploaded),
+                                                new XElement("Name", Name),
+                                                new XElement("Path", path));
+            }
+            else
+            {
+                 return new XElement("Track",
+                                                new XElement("ID", ID),
+                                                new XElement("Length", Length),
+                                                new XElement("Uploaded", Uploaded),
+                                                new XElement("Name", Name),
+                                                new XElement("Path", path),
+                                                new XElement("AlbumID", Album.ID));
+            }
         }
     }
 }

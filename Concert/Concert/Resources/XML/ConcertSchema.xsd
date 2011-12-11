@@ -7,6 +7,7 @@
         <xs:element ref="Locations" />
         <xs:element ref="Concerts"/>
         <xs:element ref="Bands"/>
+        <xs:element ref="Tracks"/>
         <xs:element ref="Artists"/>
         <xs:element ref="Instruments"/>
         <xs:element ref="ConcertsBands"/>
@@ -25,6 +26,10 @@
     <xs:keyref name="BandArtistFK" refer="ArtistPK">
       <xs:selector xpath=".//Band/Artists"/>
       <xs:field xpath="ArtistID"/>
+    </xs:keyref>
+    <xs:keyref name ="TrackAlbum" refer="AlbumPK">
+      <xs:selector xpath=".//Track"/>
+      <xs:field xpath="AlbumID" />
     </xs:keyref>
     <xs:keyref name="ArtistBandFK" refer="BandPK">
       <xs:selector xpath=".//Artist/Bands"/>
@@ -186,13 +191,13 @@
       <xs:sequence>
         <xs:element ref="ID"/>
         <xs:element name="Name" type="xs:string" nillable="false"/>
-        <xs:element name="Tracks">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element ref="Track" minOccurs="0" maxOccurs="unbounded"/>
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Tracks">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Track" minOccurs="0" maxOccurs="unbounded"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -204,6 +209,7 @@
         <xs:element name="Uploaded" type="xs:boolean"/>
         <xs:element name="Name" type="xs:string" nillable="false"/>
         <xs:element name="Path" type="xs:string" nillable="false"/>
+        <xs:element name="AlbumID" type="xs:int" minOccurs="0" maxOccurs="1"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
