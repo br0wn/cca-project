@@ -31,9 +31,7 @@ namespace Concert.PresentationLayer
             {
                 DataGridViewRow row = new DataGridViewRow();
 
-                string country = location.Country != null ? location.Country.Name : "N/A";
-
-                row.CreateCells(dataGridViewLocation, new object[] { country,
+                row.CreateCells(dataGridViewLocation, new object[] { location.Country.Name,
                                                                      location.Address, 
                                                                      location.PostalCode,
                                                                      location.SeatCount });
