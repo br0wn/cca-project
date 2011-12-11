@@ -53,10 +53,24 @@
   <Locations>
     <Location>
       <ID>1</ID>
-      <SeatCount>123</SeatCount>
-      <PostalCode>123</PostalCode>
-      <Address>Savski Putic</Address>
+      <SeatCount>1233</SeatCount>
+      <PostalCode>1000</PostalCode>
+      <Address>Savski putic</Address>
       <CountryID>1</CountryID>
+    </Location>
+    <Location>
+      <ID>2</ID>
+      <SeatCount>1850</SeatCount>
+      <PostalCode>1000</PostalCode>
+      <Address>Ilica 11</Address>
+      <CountryID>1</CountryID>
+    </Location>
+    <Location>
+      <ID>3</ID>
+      <SeatCount>2344</SeatCount>
+      <PostalCode>12001</PostalCode>
+      <Address>Strasse 23</Address>
+      <CountryID>5</CountryID>
     </Location>
   </Locations>
   <Concerts></Concerts>
