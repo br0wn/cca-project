@@ -534,13 +534,13 @@ namespace Concert.DataAccessLayer
 
             foreach (Instrument i in artist.Instrument)
             {
-                ArtistInstrument ai = new ArtistInstrument();
-                ai.ArtistID = artist.ID;
-                ai.InstrumentID = i.ID;
-
                 XElement xArtistsInstruments = db.Descendants("ArtistsInstruments").First();
 
-                xArtistsInstruments.Add(ai.toXML());
+                XElement artistInstrument = new XElement("ArtistInstrument",
+                                                    new XElement("ArtistID", artist.ID),
+                                                    new XElement("InstrumentID", i.ID));
+
+                xArtistsInstruments.Add(artistInstrument);
             }
         }
 
