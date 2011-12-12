@@ -34,23 +34,23 @@ namespace Concert.PresentationLayer
 
         private void LoadInstruments()
         {
-            //instruments.AddRange(DBObjectController.GetAllInstruments());
+            instruments.AddRange(DBObjectController.GetAllInstruments());
 
-            //foreach (Instrument instrument in instruments)
-            //{
-            //    checkedListBoxInstrument.Items.Add(instrument.Name);
-            //}
+            foreach (Instrument instrument in instruments)
+            {
+                checkedListBoxInstrument.Items.Add(instrument.Name);
+            }
         }
 
         private void LoadArtists()
         {
             artists.Clear();
-            //artists.AddRange(DBObjectController.GetAllArtists());
+            artists.AddRange(DBObjectController.GetAllArtists());
 
             artistDataSource.Clear();
             foreach (Artist artist in artists)
             {
-                //artistDataSource.Add(artist.FirstName + " " + artist.LastName);
+                artistDataSource.Add(artist.FirstName + " " + artist.LastName);
             }
 
             listBoxArtist.DataSource = null;
@@ -76,11 +76,11 @@ namespace Concert.PresentationLayer
         {
             ClearSelectedInstruments();
 
-        //    foreach (Instrument instrument in art.Instrument)
-        //    {
-        //        int index = instruments.FindIndex(i => i.Id == instrument.Id);
-        //        checkedListBoxInstrument.SetItemChecked(index, true);
-        //    }
+            //foreach (Instrument instrument in art.Instrument)
+            //{
+            //    int index = instruments.FindIndex(i => i.Id == instrument.Id);
+            //    checkedListBoxInstrument.SetItemChecked(index, true);
+            //}
         }
 
         private void SelectArtist(Artist artis)
