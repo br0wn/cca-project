@@ -513,5 +513,53 @@ namespace Concert.DataAccessLayer
                 Name = a.Element("Name").Value
             });
         }
+
+        //artist
+
+        public static void StoreObject(Artist artist)
+        {
+            if (artist.ID != 0)
+            {
+                XElement xArtist = GetElement(artist.ID, "Artist");
+
+                xArtist.Remove();
+            }
+            else
+            {
+                artist.ID = GetElementID("Artist");
+            }
+
+            XElement xArtists = db.Descendants("Artists").First();
+
+            xArtists.Add(artist.toXML());
+        }
+
+        public static IEnumerable<Artist> GetAllArtists()
+        {
+            IEnumerable<Artist> artists = from c in db.Descendants("Artist")
+                                            select new Artist()
+                                             {
+                                                 ID = int.Parse(c.Element("ID").Value),
+                                                 FirstName = c.Element("FirstName").Value,
+                                                 LastName = c.Element("LastName").Value,
+                                                 BirthDate= Convert.ToDateTime(c.Element("BirthDate").Value)
+                                             };
+            return artists;
+        }
+
+        public static void DeleteObject(Artist artist)
+        {
+            foreach (XElement item in db.Descendants("ArtistInstrument").Where(ai => int.Parse(ai.Element("ArtistID").Value) == artist.ID))
+            {
+                item.Remove();
+            }
+
+            foreach (XElement item in db.Descendants("BandArtist").Where(ba => int.Parse(ba.Element("ArtistID").Value) == artist.ID))
+            {
+                item.Remove();
+            }
+
+            DeleteElement(GetElement(artist.ID, "Artist"));
+        }
     }
 }
