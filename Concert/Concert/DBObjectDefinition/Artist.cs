@@ -29,7 +29,7 @@ namespace Concert.DBObjectDefinition
                                                     new XElement("ID", ID),
                                                     new XElement("FirstName", FirstName),
                                                     new XElement("LastName", LastName),
-                                                    new XElement("BirthDate", BirthDate));
+                                                    new XElement("BirthDate", BirthDate.ToString("yyyy-MM-dd")));
             return album;
         }
 
