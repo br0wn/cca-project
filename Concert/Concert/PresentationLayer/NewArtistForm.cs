@@ -25,11 +25,11 @@ namespace Concert.PresentationLayer
         private void LoadInstruments()
         {
             instruments = new List<Instrument>();
-            //instruments.AddRange(DBObjectController.GetAllInstruments());
-            //foreach (Instrument instrument in DBObjectController.GetAllInstruments())
-            //{
-            //    checkedListBoxInstruments.Items.Add(instrument.Name);
-            //}
+            instruments.AddRange(DBObjectController.GetAllInstruments());
+            foreach (Instrument instrument in DBObjectController.GetAllInstruments())
+            {
+                checkedListBoxInstruments.Items.Add(instrument.Name);
+            }
         }
 
         private void Cancel_Click(object sender, EventArgs e)
@@ -44,9 +44,9 @@ namespace Concert.PresentationLayer
             string lastName    = textBox2.Text.Trim();
             DateTime birthdate = DateTime.Parse(dateTimePickerConcert.Value.ToString("dd.MM.yyyy"));
 
-            //Artist artist = new Artist() { FirstName = firstName,
-            //                               LastName  = lastName,
-            //                               BirthDate = birthdate };
+            Artist artist = new Artist() { FirstName = firstName,
+                                           LastName  = lastName,
+                                           BirthDate = birthdate };
 
             foreach (int index in checkedListBoxInstruments.CheckedIndices)
             {
@@ -66,7 +66,7 @@ namespace Concert.PresentationLayer
 
             try
             {
-                //DBObjectController.StoreObject(artist);
+                DBObjectController.StoreObject(artist);
             }
             catch (Exception ex)
             {
