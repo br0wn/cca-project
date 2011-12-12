@@ -462,13 +462,9 @@ namespace Concert.DataAccessLayer
             else
                 album.ID = GetElementID("Album");
 
-            XElement xLocations = db.Descendants("album").First();
-            xLocations.Add(album.toXML());
-            foreach (Track track in album.Tracks)
-            {
-                track.Album = album;
-                StoreObject(track);
-            }
+            XElement XAlbums = db.Descendants("album").First();
+            XAlbums.Add(album.toXML());
+       
         }
 
         public static void DeleteObject(Album album) {
@@ -483,12 +479,21 @@ namespace Concert.DataAccessLayer
             }
         }
 
-        public static IEnumerable<Album> GetAllAlbums() {
-            return from i in db.Descendants("Album")
-                   select new Album() {
-                       ID = int.Parse(i.Element("ID").Value),
-                       Name = i.Element("Name").Value
-                   };
+        public static IEnumerable<Album> GetAllAlbums()
+        {
+            return db.Descendants("Album").Select(a => new Album() {
+                ID = int.Parse(a.Element("ID").Value),
+                Name = a.Element("Name").Value,
+                Band = new Band()
+                           {
+                               ID = int.Parse(db.Descendants("Bands").Where(b => b.Element("ID").Value == a.Element("BandID").Value).First().Element("ID").Value),
+                               Name = db.Descendants("Bands").Where(b => b.Element("ID").Value == a.Element("BandID").Value).First().Element("Name").Value
+                           },
+                Tracks = new List<Track>()
+                             {
+                                 (Track) db.Descendants("Tracks").Where(b=> int.Parse(b.Element("AlbumID").Value) == int.Parse(a.Element("AlbumID").Value))
+                             }
+            });
         }
     }
 }
