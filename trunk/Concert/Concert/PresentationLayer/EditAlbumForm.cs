@@ -55,9 +55,9 @@ namespace Concert.PresentationLayer {
                 return;
             }
             int albumIndex = this.listBoxAvaliableAlbums.SelectedIndex;
-            Album album    = this.albums[albumIndex];
+            Album album = this.albums[albumIndex];
 
-            album.Name     = albumName;
+            album.Name = albumName;
             
             //album.Tracks.Clear();
             foreach (Track addedSong in this.addedSongs)
@@ -137,13 +137,8 @@ namespace Concert.PresentationLayer {
             Album album = this.albums[albumIndex];
             try
             {
-                //DBObjectController.DeleteObject(album);
-            }
-            catch (Exception)
-            {
-                    
-                throw;
-            }
+                DBObjectController.DeleteObject(album);
+            } 
             this.ClearAlbumData();
             this.LoadExternalData();
             this.buttonEdit.Enabled = true;
@@ -171,9 +166,9 @@ namespace Concert.PresentationLayer {
 
             Album album = this.albums[selectedIndex];
             this.textBoxAlbumName.Text = album.Name;
-            //this.addedSongs = album.Track.ToList();
+            this.addedSongs = DBObjectController.GetTracksByAlbum(album).ToList();
             this.avaliableSongsFull.Clear();
-            //this.avaliableSongsFull = DBObjectController.GetAvailableTracks().ToList();
+            this.avaliableSongsFull = DBObjectController.GetAvailableTracks().ToList();
             foreach (Track song in this.avaliableSongsFull.Where(song => !this.addedSongs.Contains(song)))
             {
                 this.avaliableSongs.Add(song);
