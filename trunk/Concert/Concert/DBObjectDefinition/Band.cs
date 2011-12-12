@@ -11,8 +11,6 @@ namespace Concert.DBObjectDefinition
     {
         private int id;
         private string name;
-        private List<Album> albums;
-
 
         public int ID
         {
@@ -26,22 +24,12 @@ namespace Concert.DBObjectDefinition
             set { name = value; }
         }
 
-        public List<Album> Albums
-        {
-            get { return albums; }
-            set { albums = value; }
-        }
-
         public XElement toXml()
         {
             XElement band = new XElement("Album",
                 new XElement("ID",ID),
                 new XElement("Name", Name)                
-                );
-            foreach (Album album in Albums)
-            {
-                band.Add(album.toXML());
-            }
+                );      
             return band;
         }
     }

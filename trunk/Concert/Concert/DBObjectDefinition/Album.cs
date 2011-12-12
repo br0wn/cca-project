@@ -11,12 +11,10 @@ namespace Concert.DBObjectDefinition
         private int         id;
         private Band         band;
         private string      name;
-        private List<Track> tracks;
 
         public int ID             { get { return id;     } set { id = value;      } }
-        public Band Band         { get { return band; } set { band= value;  } }
+        public Band Band { get { return band; } set { band = value; } }
         public string Name        { get { return name;   } set { name = value;    } }
-        public List<Track> Tracks { get { return tracks; } set { tracks = value;  } }
 
         public XElement toXML()
         {
