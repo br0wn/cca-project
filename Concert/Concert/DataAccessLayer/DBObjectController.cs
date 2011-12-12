@@ -491,6 +491,12 @@ namespace Concert.DataAccessLayer
             });
         }
 
+        public static IEnumerable<Track> GetAvailableTracks()
+        {
+            //kad se dohvacaju teackovi ne postavlja se albumID
+            return GetAllTracks();
+        }
+
         public static void StoreObject(Band band) {
             if (band.ID != 0)
                 GetElement(band.ID, "Band").Remove();
