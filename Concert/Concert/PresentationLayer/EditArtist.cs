@@ -106,9 +106,9 @@ namespace Concert.PresentationLayer
             {
                 Artist artist = artists[listBoxArtist.SelectedIndex];
 
-                //textBoxFirstName.Text         = artist.FirstName;
-                //textBoxLastName.Text          = artist.LastName;
-                //dateTimePickerBirthDate.Value = DateTime.Parse(artist.BirthDate.ToString("dd.MM.yyyy"));
+                textBoxFirstName.Text         = artist.FirstName;
+                textBoxLastName.Text          = artist.LastName;
+                dateTimePickerBirthDate.Value = DateTime.Parse(artist.BirthDate.ToString("dd.MM.yyyy"));
 
                 SelectInstruments(artist);
             }
@@ -135,9 +135,9 @@ namespace Concert.PresentationLayer
 
                 Artist artist = artists[listBoxArtist.SelectedIndex];
 
-                //artist.FirstName = textBoxFirstName.Text;
-                //artist.LastName = textBoxLastName.Text;
-                //artist.BirthDate = DateTime.Parse(dateTimePickerBirthDate.Value.ToString("dd.MM.yyyy"));
+                artist.FirstName = textBoxFirstName.Text;
+                artist.LastName = textBoxLastName.Text;
+                artist.BirthDate = DateTime.Parse(dateTimePickerBirthDate.Value.ToString("dd.MM.yyyy"));
 
                 //artist.Instrument.Clear();
                 //foreach (int index in checkedListBoxInstrument.CheckedIndices)
@@ -162,7 +162,7 @@ namespace Concert.PresentationLayer
             {
                 Artist artist = artists[listBoxArtist.SelectedIndex];
 
-                //DBObjectController.DeleteObject(artist);
+                DBObjectController.DeleteObject(artist);
 
                 LoadArtists();
             }
