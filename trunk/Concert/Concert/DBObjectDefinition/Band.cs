@@ -24,9 +24,9 @@ namespace Concert.DBObjectDefinition
             set { name = value; }
         }
 
-        public XElement toXml()
+        public XElement toXML()
         {
-            XElement band = new XElement("Album",
+            XElement band = new XElement("Band",
                 new XElement("ID",ID),
                 new XElement("Name", Name)                
                 );      

@@ -25,7 +25,7 @@ namespace Concert.PresentationLayer {
         {
             this._availableSongs = DBObjectController.GetAllTracks().ToList();
             this.listBoxAvaliableSongs.DataSource = this._availableSongs;
-            //this.availableBands = DBObjectController.GetAllBands().ToList();
+            this.availableBands = DBObjectController.GetAllBands().ToList();
             this.listBoxAvaliableBands.DataSource = this.availableBands;
             this.SetDisplayMember();
         }
@@ -74,8 +74,8 @@ namespace Concert.PresentationLayer {
 
         private void buttonAddAlbum_Click(object sender, EventArgs e)
         {
-            //if (listBoxAvaliableBands.SelectedIndex >= 0)
-            //{
+            if (listBoxAvaliableBands.SelectedIndex >= 0)
+            {
                 string albumName = this.textBoxAlbumName.Text.Trim();
                 if (albumName == string.Empty)
                 {
@@ -88,9 +88,9 @@ namespace Concert.PresentationLayer {
                     song.Album = album;
                     DBObjectController.StoreObject(song);
                 }          
-                //int bandIndex = this.listBoxAvaliableBands.SelectedIndex;
-                //Band band = this.availableBands[bandIndex];
-                //album.Band = band;
+                int bandIndex = this.listBoxAvaliableBands.SelectedIndex;
+                Band band = this.availableBands[bandIndex];
+                album.Band = band;
                 try
                 {
                     DBObjectController.StoreObject(album);
@@ -102,11 +102,11 @@ namespace Concert.PresentationLayer {
                 }
                 MessageBox.Show("Album added successfully!");
                 this.ClearForm();
-            //}
-            //else
-            //{
-              //  MessageBox.Show("Please select valid band, or add new band if one does not exist.", "Selected band error");
-            //}
+            }
+            else
+            {
+                MessageBox.Show("Please select valid band, or add new band if one does not exist.", "Selected band error");
+            }
         }
 
         private void ClearForm()

@@ -467,7 +467,7 @@ namespace Concert.DataAccessLayer
         }
 
         public static void DeleteObject(Album album) {
-            foreach (XElement item in db.Descendants("Album").Where(a => int.Parse(a.Element("AlbumID").Value) == album.ID)) {
+            foreach (XElement item in db.Descendants("Track").Where(a => int.Parse(a.Element("AlbumID").Value) == album.ID)) {
                 item.Remove();
             }
             DeleteElement(GetElement(album.ID, "Album"));
@@ -499,6 +499,7 @@ namespace Concert.DataAccessLayer
             XElement XAlbums = db.Descendants("Band").First();
             XAlbums.Add(band.toXML());
         }
+
         public static IEnumerable<Band> GetAllBands() {
             return db.Descendants("Band").Select(a => new Band() {
                 ID = int.Parse(a.Element("ID").Value),
