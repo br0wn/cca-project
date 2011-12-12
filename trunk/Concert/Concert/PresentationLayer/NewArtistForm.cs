@@ -50,7 +50,7 @@ namespace Concert.PresentationLayer
 
             foreach (int index in checkedListBoxInstruments.CheckedIndices)
             {
-                //artist.Instrument.Add(instruments[index]);
+                artist.Instrument.Add(instruments[index]);
             }
 
             if (firstName == string.Empty)
