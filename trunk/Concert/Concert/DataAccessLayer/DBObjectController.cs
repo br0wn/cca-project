@@ -552,8 +552,10 @@ namespace Concert.DataAccessLayer
                                                ID = int.Parse(c.Element("ID").Value),
                                                FirstName = c.Element("FirstName").Value,
                                                LastName = c.Element("LastName").Value,
-                                               BirthDate = Convert.ToDateTime(c.Element("BirthDate").Value) 
+                                               BirthDate = Convert.ToDateTime(c.Element("BirthDate").Value)
+                                               // Instrument = ?
                                            };
+
             return artists;
         }
 
