@@ -472,7 +472,10 @@ namespace Concert.DataAccessLayer
             }
             DeleteElement(GetElement(album.ID, "Album"));
         }
-
+        public static IEnumerable<Track> GetTracksByAlbum(Album album)
+        {
+            return (IEnumerable<Track>) db.Descendants("Track").Where(t => int.Parse(t.Element("AlbumID").Value) == album.ID);
+        }
         public static IEnumerable<Album> GetAllAlbums()
         {
             return db.Descendants("Album").Select(a => new Album() {
@@ -482,11 +485,7 @@ namespace Concert.DataAccessLayer
                            {
                                ID = int.Parse(db.Descendants("Bands").Where(b => b.Element("ID").Value == a.Element("BandID").Value).First().Element("ID").Value),
                                Name = db.Descendants("Bands").Where(b => b.Element("ID").Value == a.Element("BandID").Value).First().Element("Name").Value
-                           },
-                Tracks = new List<Track>()
-                             {
-                                 (Track) db.Descendants("Tracks").Where(b=> int.Parse(b.Element("AlbumID").Value) == int.Parse(a.Element("AlbumID").Value))
-                             }
+                           }
             });
         }
     }
