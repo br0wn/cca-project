@@ -531,6 +531,17 @@ namespace Concert.DataAccessLayer
             XElement xArtists = db.Descendants("Artists").First();
 
             xArtists.Add(artist.toXML());
+
+            foreach (Instrument i in artist.Instrument)
+            {
+                ArtistInstrument ai = new ArtistInstrument();
+                ai.ArtistID = artist.ID;
+                ai.InstrumentID = i.ID;
+
+                XElement xArtistInstruments = db.Descendants("ArtistInstruments").First();
+
+                xArtistInstruments.Add(ai.toXML());
+            }
         }
 
         public static IEnumerable<Artist> GetAllArtists()
@@ -561,5 +572,7 @@ namespace Concert.DataAccessLayer
             DeleteElement(GetElement(artist.ID, "Artist"));
         } 
         #endregion
+
+
     }
 }
