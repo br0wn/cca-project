@@ -77,7 +77,7 @@ namespace Concert.PresentationLayer
         {
             dataGridViewTracks.Rows.Clear();
             Album a = (Album)comboBoxAlbums.SelectedItem;
-            foreach (Track track in ((Album)comboBoxAlbums.SelectedItem).Tracks)
+            foreach (Track track in DBObjectController.GetTracksByAlbum((Album)comboBoxAlbums.SelectedItem))//((Album)comboBoxAlbums.SelectedItem).Tracks)
             {
                 DataGridViewRow row = new DataGridViewRow();
 

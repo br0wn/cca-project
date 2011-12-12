@@ -59,10 +59,10 @@ namespace Concert.PresentationLayer {
 
             album.Name     = albumName;
             
-            album.Tracks.Clear();
+            //album.Tracks.Clear();
             foreach (Track addedSong in this.addedSongs)
             {
-                album.Tracks.Add(addedSong);
+                addedSong.Album = album;                
             }
             try {
 
