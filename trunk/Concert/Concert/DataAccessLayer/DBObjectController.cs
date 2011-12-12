@@ -514,8 +514,7 @@ namespace Concert.DataAccessLayer
             });
         }
 
-        //artist
-
+        #region ArtistFunctions
         public static void StoreObject(Artist artist)
         {
             if (artist.ID != 0)
@@ -537,13 +536,13 @@ namespace Concert.DataAccessLayer
         public static IEnumerable<Artist> GetAllArtists()
         {
             IEnumerable<Artist> artists = from c in db.Descendants("Artist")
-                                            select new Artist()
-                                             {
-                                                 ID = int.Parse(c.Element("ID").Value),
-                                                 FirstName = c.Element("FirstName").Value,
-                                                 LastName = c.Element("LastName").Value,
-                                                 BirthDate= Convert.ToDateTime(c.Element("BirthDate").Value)
-                                             };
+                                          select new Artist()
+                                           {
+                                               ID = int.Parse(c.Element("ID").Value),
+                                               FirstName = c.Element("FirstName").Value,
+                                               LastName = c.Element("LastName").Value,
+                                               BirthDate = Convert.ToDateTime(c.Element("BirthDate").Value) 
+                                           };
             return artists;
         }
 
@@ -560,6 +559,7 @@ namespace Concert.DataAccessLayer
             }
 
             DeleteElement(GetElement(artist.ID, "Artist"));
-        }
+        } 
+        #endregion
     }
 }
