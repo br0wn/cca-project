@@ -538,9 +538,9 @@ namespace Concert.DataAccessLayer
                 ai.ArtistID = artist.ID;
                 ai.InstrumentID = i.ID;
 
-                XElement xArtistInstruments = db.Descendants("ArtistInstruments").First();
+                XElement xArtistsInstruments = db.Descendants("ArtistsInstruments").First();
 
-                xArtistInstruments.Add(ai.toXML());
+                xArtistsInstruments.Add(ai.toXML());
             }
         }
 
