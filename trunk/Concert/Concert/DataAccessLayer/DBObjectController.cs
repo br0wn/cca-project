@@ -490,6 +490,7 @@ namespace Concert.DataAccessLayer
                            }
             });
         }
+
         public static void StoreObject(Band band) {
             if (band.ID != 0)
                 GetElement(band.ID, "Band").Remove();
