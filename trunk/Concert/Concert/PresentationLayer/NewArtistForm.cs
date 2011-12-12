@@ -46,7 +46,8 @@ namespace Concert.PresentationLayer
 
             Artist artist = new Artist() { FirstName = firstName,
                                            LastName  = lastName,
-                                           BirthDate = birthdate };
+                                           BirthDate = birthdate,
+                                           Instrument = new List<Instrument>() };
 
             foreach (int index in checkedListBoxInstruments.CheckedIndices)
             {
