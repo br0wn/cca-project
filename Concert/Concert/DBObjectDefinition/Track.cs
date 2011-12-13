@@ -24,26 +24,13 @@ namespace Concert.DBObjectDefinition
 
         public XElement toXML()
         {
-            if (album == null)
-            {
                 return new XElement("Track",
-                                                new XElement("ID", ID),
-                                                new XElement("Length", Length),
-                                                new XElement("Uploaded", Uploaded),
-                                                new XElement("Name", Name),
-                                                new XElement("Path", path),
-                                                new XElement("AlbumID", null));
+                                    new XElement("ID", ID),
+                                    new XElement("Length", Length),
+                                    new XElement("Uploaded", Uploaded),
+                                    new XElement("Name", Name),
+                                    new XElement("Path", path));
 
-            }
-            else
-            {
-                 return new XElement("Track",
-                                                new XElement("ID", ID),
-                                                new XElement("Length", Length),
-                                                new XElement("Uploaded", Uploaded),
-                                                new XElement("Name", Name),
-                                                new XElement("Path", path),
-                                                new XElement("AlbumID", Album.ID));
             }
         }
     }
