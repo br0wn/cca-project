@@ -463,7 +463,7 @@ namespace Concert.DataAccessLayer
             else
                 album.ID = GetElementID("Album");
 
-            XElement XAlbums = db.Descendants("Album").First();
+            XElement XAlbums = db.Descendants("Albums").First();
             XAlbums.Add(album.toXML());       
         }
 
