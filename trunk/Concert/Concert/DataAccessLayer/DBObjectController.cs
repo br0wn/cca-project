@@ -507,7 +507,7 @@ namespace Concert.DataAccessLayer
                 band.ID = GetElementID("Band");
 
             XElement XAlbums = db.Descendants("Band").First();
-            XAlbums.Add(band.toXML());
+            XAlbums.Add(band.toXML());            
         }
 
         public static IEnumerable<Band> GetAllBands() 
