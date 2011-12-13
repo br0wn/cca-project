@@ -168,7 +168,7 @@ namespace Concert.PresentationLayer {
 
             Album album = this.albums[selectedIndex];
             this.textBoxAlbumName.Text = album.Name;
-            this.addedSongs = DBObjectController.GetTracksByAlbum(album).ToList();
+            this.addedSongs = DBObjectController.GetTracksByAlbum(album.ID).ToList();
             this.avaliableSongsFull.Clear();
             this.avaliableSongsFull = DBObjectController.GetAvailableTracks().ToList();
             foreach (Track song in this.avaliableSongsFull.Where(song => !this.addedSongs.Contains(song)))
