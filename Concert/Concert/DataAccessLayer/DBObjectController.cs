@@ -525,7 +525,18 @@ namespace Concert.DataAccessLayer
         public static IEnumerable<Track> GetAvailableTracks()
         {
             
-            return GetAllTracks();
+            List<Track> allTracks = (List<Track>) GetAllTracks().ToList();
+            List<Track> tracksInAlbums = (List<Track>) (from at in db.Descendants("TrackAlbum")                   
+                                                 select new Track()
+                                                            {
+                                                                ID = int.Parse(at.Element("TrackID").Value),
+                                                                Name =
+                                                                    db.Descendants("Track").Where(
+                                                                        t => t.Element("ID").Value == at.Element("TrackID").Value).First().Element(
+                                                                            "Name").Value
+                                                            }).Distinct().ToList();
+            IEnumerable<Track> available = allTracks.Except(tracksInAlbums, new TrackComparer());
+            return available.ToList();
         }
 
         public static void StoreObject(Band band)
