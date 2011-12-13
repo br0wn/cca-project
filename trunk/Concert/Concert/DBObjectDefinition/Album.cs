@@ -8,9 +8,9 @@ namespace Concert.DBObjectDefinition
 {
     public class Album
     {
-        private int         id;
-        private Band         band;
-        private string      name;
+        private int id;
+        private Band band;
+        private string name;        
 
         public int ID             { get { return id;     } set { id = value;      } }
         public Band Band { get { return band; } set { band = value; } }
