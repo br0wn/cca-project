@@ -144,5 +144,10 @@
   <ConcertsBands></ConcertsBands>
   <BandsArtists></BandsArtists>
   <ArtistsInstruments />
-  <TracksAlbums></TracksAlbums>
+  <TracksAlbums>
+    <TrackAlbum>
+      <AlbumID>1</AlbumID>
+      <TrackID>1</TrackID>
+    </TrackAlbum>
+  </TracksAlbums>
 </Database>
