@@ -24,6 +24,5 @@ namespace Concert.DBObjectDefinition
                                                     new XElement("Name", Name));                 
             return album;            
        }
-
     }
 }
