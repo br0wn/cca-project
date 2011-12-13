@@ -85,8 +85,7 @@ namespace Concert.PresentationLayer {
                 Album album = new Album {Name = albumName};
                 foreach (Track song in this._addedSongs)
                 {
-                    song.Album = album;
-                    DBObjectController.StoreObject(song);
+                    album.Tracks.Add(song);
                 }          
                 int bandIndex = this.listBoxAvaliableBands.SelectedIndex;
                 Band band = this.availableBands[bandIndex];

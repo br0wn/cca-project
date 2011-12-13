@@ -459,7 +459,7 @@ namespace Concert.DataAccessLayer
 
             XElement XAlbums = db.Descendants("Albums").First();
             XAlbums.Add(album.toXML());
-            DeleteRelation(album);
+            db.Descendants("TrackAlbum").Where(a => int.Parse(a.Element("AlbumID").Value) == album.ID).Remove();
             AddRelation(album);
         }
 
@@ -476,7 +476,8 @@ namespace Concert.DataAccessLayer
 
         public static void DeleteRelation(Album album)
         {
-            db.Descendants("TrackAlbum").Where(ta => int.Parse(ta.Element("AlbumID").Value) == album.ID).Remove();
+            db.Descendants("TrackAlbum").Where(a => int.Parse(a.Element("AlbumID").Value) == album.ID).Remove();
+            
         }
 
         public static void DeleteObject(Album album) 
