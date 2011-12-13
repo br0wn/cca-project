@@ -6,7 +6,7 @@ using System.Xml.Linq;
 
 namespace Concert.DBObjectDefinition
 {
-    public class Artist
+    public class Artist:IComparable<Artist>
     {
 
         private int id;
@@ -33,5 +33,9 @@ namespace Concert.DBObjectDefinition
             return album;
         }
 
+        public int CompareTo(Artist a)
+        {
+            return a.ID.CompareTo(this.ID);
+        }
     }
 }
