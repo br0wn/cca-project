@@ -456,7 +456,8 @@ namespace Concert.DataAccessLayer
             return countries;
         }
 
-        public static void StoreObject(Album album) {
+        public static void StoreObject(Album album)
+        {
             if (album.ID != 0)
                 GetElement(album.ID, "Album").Remove();
             else
@@ -466,7 +467,8 @@ namespace Concert.DataAccessLayer
             XAlbums.Add(album.toXML());       
         }
 
-        public static void DeleteObject(Album album) {
+        public static void DeleteObject(Album album) 
+        {
             foreach (XElement item in db.Descendants("Track").Where(a => int.Parse(a.Element("AlbumID").Value) == album.ID)) {
                 item.Remove();
             }
@@ -497,7 +499,8 @@ namespace Concert.DataAccessLayer
             return GetAllTracks();
         }
 
-        public static void StoreObject(Band band) {
+        public static void StoreObject(Band band)
+        {
             if (band.ID != 0)
                 GetElement(band.ID, "Band").Remove();
             else
