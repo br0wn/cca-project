@@ -22,7 +22,8 @@ namespace Concert.DBObjectDefinition
                                                     new XElement("ID", ID),
                                                     new XElement("BandID", band.ID),                                                    
                                                     new XElement("Name", Name));                 
-            return album;
-        }
+            return album;            
+       }
+
     }
 }
