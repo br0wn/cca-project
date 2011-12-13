@@ -9,19 +9,26 @@ namespace Concert.DBObjectDefinition
 {
     public class Band
     {
-        private int id;
-        private string name;
+        private int _id;
+        private string _name;
+        private List<Album> _albums;
 
         public int ID
         {
-            get { return id; }
-            set { id = value; }
+            get { return _id; }
+            set { _id = value; }
         }
 
         public string Name
         {
-            get { return name; }
-            set { name = value; }
+            get { return _name; }
+            set { _name = value; }
+        }
+
+        public List<Album> Albums
+        {
+            get { return _albums; }
+            set { _albums = value; }
         }
 
         public XElement toXML()
