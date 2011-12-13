@@ -17,8 +17,9 @@ namespace Concert.DBObjectDefinition
         {
             XElement album = new XElement("Album",
                                                     new XElement("ID", ID),
-                                                    new XElement("BandID", Band.ID),                                                    
-                                                    new XElement("Name", Name));                 
+                                                    new XElement("Name", Name),
+                                                    new XElement("BandID", Band.ID)                                                    
+                                                    );                 
             return album;            
        }
     }
