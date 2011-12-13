@@ -510,7 +510,8 @@ namespace Concert.DataAccessLayer
             XAlbums.Add(band.toXML());
         }
 
-        public static IEnumerable<Band> GetAllBands() {
+        public static IEnumerable<Band> GetAllBands() 
+        {
             return db.Descendants("Band").Select(a => new Band() {
                 ID = int.Parse(a.Element("ID").Value),
                 Name = a.Element("Name").Value
