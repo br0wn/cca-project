@@ -92,7 +92,21 @@
       <ID>1</ID>
       <Length>12</Length>
       <Uploaded>false</Uploaded>
-      <Name>nekaja</Name>
+      <Name>nekaja1</Name>
+      <Path></Path>
+    </Track>
+    <Track>
+      <ID>2</ID>
+      <Length>12</Length>
+      <Uploaded>false</Uploaded>
+      <Name>nekaja2</Name>
+      <Path></Path>
+    </Track>
+    <Track>
+      <ID>3</ID>
+      <Length>12</Length>
+      <Uploaded>false</Uploaded>
+      <Name>nekaja3</Name>
       <Path></Path>
     </Track>
   </Tracks>
