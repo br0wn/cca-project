@@ -48,6 +48,7 @@ namespace Concert.PresentationLayer
             artists.AddRange(DBObjectController.GetAllArtists());
 
             artistDataSource.Clear();
+            artists.Sort();
             foreach (Artist artist in artists)
             {
                 artistDataSource.Add(artist.FirstName + " " + artist.LastName);
@@ -139,13 +140,13 @@ namespace Concert.PresentationLayer
                 artist.LastName = textBoxLastName.Text;
                 artist.BirthDate = DateTime.Parse(dateTimePickerBirthDate.Value.ToString("dd.MM.yyyy"));
 
-                //artist.Instruments.Clear();
-                //foreach (int index in checkedListBoxInstrument.CheckedIndices)
-                //{
-                //    artist.Instrument.Add(instruments[index]);
-                //}
+                artist.Instruments.Clear();
+                foreach (int index in checkedListBoxInstrument.CheckedIndices)
+                {
+                    artist.Instruments.Add(instruments[index]);
+                }
 
-                DBObjectController.SaveChanges();
+                DBObjectController.StoreObject(artist);
                 MessageBox.Show("Artist edited successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 LoadArtists();
