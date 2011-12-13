@@ -567,9 +567,7 @@ namespace Concert.DataAccessLayer
         {
             if (artist.ID != 0)
             {
-                XElement xArtist = GetElement(artist.ID, "Artist");
-
-                xArtist.Remove();
+                GetElement(artist.ID, "Artist").Remove();
             }
             else
             {
@@ -579,6 +577,8 @@ namespace Concert.DataAccessLayer
             XElement xArtists = db.Descendants("Artists").First();
 
             xArtists.Add(artist.toXML());
+
+            db.Descendants("ArtistInstrument").Where(ai => int.Parse(ai.Element("ArtistID").Value) == artist.ID).Remove();
 
             foreach (Instrument i in artist.Instruments)
             {
