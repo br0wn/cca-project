@@ -85,7 +85,7 @@
       <Path></Path>
     </Track>
   </Tracks>
-  <Artists></Artists>
+  <Artists />
   <Instruments>
     <Instrument>
       <ID>2</ID>
@@ -118,6 +118,6 @@
   </Instruments>
   <ConcertsBands></ConcertsBands>
   <BandsArtists></BandsArtists>
-  <ArtistsInstruments></ArtistsInstruments>
+  <ArtistsInstruments />
   <TracksAlbums></TracksAlbums>
 </Database>

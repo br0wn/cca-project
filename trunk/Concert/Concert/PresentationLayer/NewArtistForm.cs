@@ -47,11 +47,11 @@ namespace Concert.PresentationLayer
             Artist artist = new Artist() { FirstName = firstName,
                                            LastName  = lastName,
                                            BirthDate = birthdate,
-                                           Instrument = new List<Instrument>() };
+                                           Instruments = new List<Instrument>() };
 
             foreach (int index in checkedListBoxInstruments.CheckedIndices)
             {
-                artist.Instrument.Add(instruments[index]);
+                artist.Instruments.Add(instruments[index]);
             }
 
             if (firstName == string.Empty)
