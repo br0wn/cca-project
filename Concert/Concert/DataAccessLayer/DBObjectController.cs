@@ -495,7 +495,7 @@ namespace Concert.DataAccessLayer
 
         public static IEnumerable<Track> GetAvailableTracks()
         {
-            //kad se dohvacaju teackovi ne postavlja se albumID
+            //kad se dohvacaju trackovi ne postavlja se albumID
             return GetAllTracks();
         }
 
