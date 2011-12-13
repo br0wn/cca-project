@@ -80,23 +80,7 @@
       <Name>MEtallica</Name>
     </Band>
   </Bands>
-  <Albums>
-    <Album>
-      <ID>1</ID>
-      <Name>Black</Name>
-      <BandID>1</BandID>
-    </Album>
-    <Album>
-      <ID>2</ID>
-      <Name>Justice</Name>
-      <BandID>1</BandID>
-    </Album>
-    <Album>
-      <ID>3</ID>
-      <Name>Kill em all</Name>
-      <BandID>1</BandID>
-    </Album>
-  </Albums>
+  <Albums />
   <Tracks>
     <Track>
       <ID>1</ID>

@@ -40,6 +40,7 @@ namespace Concert.PresentationLayer {
         {
             this.albums = null;
             this.albums = DBObjectController.GetAllAlbums().ToList();
+            this.albums.Sort();
             this.listBoxAvaliableAlbums.DataSource = null;
             this.listBoxAvaliableAlbums.DataSource = this.albums;
             this.SetDisplayMember();
@@ -58,8 +59,8 @@ namespace Concert.PresentationLayer {
             Album album = this.albums[albumIndex];
 
             album.Name = albumName;
-            
-            //album.Tracks.Clear();
+            DBObjectController.DeleteRelation(album);
+            album.Tracks.Clear();
             foreach (Track addedSong in this.addedSongs)
             {
                 album.Tracks.Add(addedSong);
@@ -139,9 +140,10 @@ namespace Concert.PresentationLayer {
             {
                 DBObjectController.DeleteObject(album);
             }
-            catch (Exception exception)
-            { }
-            //this.ClearAlbumData();
+            catch
+            {
+            }
+            this.ClearAlbumData();
             this.LoadExternalData();
             this.buttonEdit.Enabled = true;
         }
