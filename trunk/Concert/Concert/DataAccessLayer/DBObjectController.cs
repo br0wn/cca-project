@@ -383,10 +383,7 @@ namespace Concert.DataAccessLayer
 
         public static void DeleteObject(Instrument instrument)
         {
-            foreach (XElement item in db.Descendants("ArtistInstrument").Where(ai => int.Parse(ai.Element("InstrumentID").Value) == instrument.ID))
-            {
-                item.Remove();
-            }
+            db.Descendants("ArtistInstrument").Where(ai => int.Parse(ai.Element("InstrumentID").Value) == instrument.ID).Remove();
 
             DeleteElement(GetElement(instrument.ID, "Instrument"));
         }
@@ -419,10 +416,7 @@ namespace Concert.DataAccessLayer
 
         public static void DeleteObject(Country country)
         {
-            foreach (XElement item in db.Descendants("Location").Where(l => int.Parse(l.Element("CountryID").Value) == country.ID))
-            {
-                item.Remove();
-            }
+            db.Descendants("Location").Where(l => int.Parse(l.Element("CountryID").Value) == country.ID).Remove();
 
             DeleteElement(GetElement(country.ID, "Country"));
         }
