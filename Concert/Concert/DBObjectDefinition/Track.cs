@@ -30,7 +30,6 @@ namespace Concert.DBObjectDefinition
                                     new XElement("Uploaded", Uploaded),
                                     new XElement("Name", Name),
                                     new XElement("Path", path));
-
             }
         }
     }
