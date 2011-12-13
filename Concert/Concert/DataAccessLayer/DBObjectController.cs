@@ -481,9 +481,8 @@ namespace Concert.DataAccessLayer
 
         public static void DeleteObject(Album album) 
         {
-            foreach (XElement item in db.Descendants("Track").Where(a => int.Parse(a.Element("AlbumID").Value) == album.ID)) {
-                item.Remove();
-            }
+            db.Descendants("Track").Where(a => int.Parse(a.Element("AlbumID").Value) == album.ID).Remove();
+
             DeleteElement(GetElement(album.ID, "Album"));
         }
 
@@ -583,22 +582,19 @@ namespace Concert.DataAccessLayer
                                                FirstName = c.Element("FirstName").Value,
                                                LastName = c.Element("LastName").Value,
                                                BirthDate = Convert.ToDateTime(c.Element("BirthDate").Value),
-                                               Instruments = GetNEkaj(c.Element("ID").Value)
+                                               Instruments = new List<Instrument>
+                                               (
+                                                                 from ai in db.Descendants("ArtistInstrument")
+                                                                 where ai.Element("ArtistID").Value ==  c.Element("ID").Value                                               
+                                                                 select new Instrument()
+                                                                 {
+                                                                     ID = int.Parse(ai.Element("InstrumentID").Value),
+                                                                     Name = db.Descendants("Instrument").Where( i => i.Element("ID").Value  == ai.Element("InstrumentID").Value).First().Element("Name").Value
+                                                                 }
+                                                )
                                            };
 
             return artists;
-        }
-
-        private static List<Instrument> GetNEkaj(string ID)
-        {
-            IEnumerable<Instrument> intruments = from ai in db.Descendants("ArtistInstrument")
-                                                 where ai.Element("ArtistID").Value == ID                                                 
-                                                 select new Instrument()
-                                                 {
-                                                     ID = int.Parse(ai.Element("InstrumentID").Value),
-                                                     Name = db.Descendants("Instrument").Where( i => i.Element("ID").Value  == ai.Element("InstrumentID").Value).First().Element("Name").Value
-                                                 };
-            return intruments.ToList();
         }
 
         public static void DeleteObject(Artist artist)
