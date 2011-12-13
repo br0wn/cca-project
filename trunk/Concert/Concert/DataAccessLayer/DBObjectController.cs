@@ -480,9 +480,19 @@ namespace Concert.DataAccessLayer
             DeleteElement(GetElement(album.ID, "Album"));
         }
 
-        public static IEnumerable<Track> GetTracksByAlbum(int albumID)
+        public static List<Track> GetTracksByAlbum(int albumID)
         {
-            return (IEnumerable<Track>) db.Descendants("Track").Where(t => (db.Descendants("AlbumTrack").Elements("AlbumID").Contains(new XElement("AlbumID", albumID))));
+            IEnumerable<Track> nekaj = from at in db.Descendants("AlbumTrack")
+                   where int.Parse(at.Element("AlbumID").Value) == albumID
+                   select new Track()
+                              {
+                                  ID = int.Parse(at.Element("TrackID").Value),
+                                  Name =
+                                      db.Descendants("Track").Where(
+                                          t => t.Element("ID").Value == at.Element("TrackID").Value).First().Element(
+                                              "Name").Value
+                              };
+            return nekaj.ToList();
         }
 
         public static IEnumerable<Album> GetAllAlbums()
@@ -495,19 +505,19 @@ namespace Concert.DataAccessLayer
                                                                           {
                                                                               ID =
                                                                                   int.Parse(
-                                                                                      db.Descendants("Bands").Where(
+                                                                                      db.Descendants("Band").Where(
                                                                                           b =>
                                                                                           b.Element("ID").Value ==
                                                                                           a.Element("BandID").Value).
                                                                                           First().Element("ID").Value),
                                                                               Name =
-                                                                                  db.Descendants("Bands").Where(
+                                                                                  db.Descendants("Band").Where(
                                                                                       b =>
                                                                                       b.Element("ID").Value ==
                                                                                       a.Element("BandID").Value).First()
                                                                                   .Element("Name").Value                                                                             
                                                                           },
-                                                                Tracks = (List<Track>) GetTracksByAlbum(int.Parse(a.Element("ID").Value))
+                                                                Tracks = GetTracksByAlbum(int.Parse(a.Element("ID").Value))
 
             });
         }

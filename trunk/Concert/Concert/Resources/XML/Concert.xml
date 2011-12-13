@@ -74,8 +74,19 @@
     </Location>
   </Locations>
   <Concerts></Concerts>
-  <Bands></Bands>
-  <Albums></Albums>
+  <Bands>
+    <Band>
+      <ID>1</ID>
+      <Name>MEtallica</Name>
+    </Band>
+  </Bands>
+  <Albums>
+    <Album>
+      <ID>1</ID>
+      <Name>Black</Name>
+      <BandID>1</BandID>
+    </Album>
+  </Albums>
   <Tracks>
     <Track>
       <ID>1</ID>
