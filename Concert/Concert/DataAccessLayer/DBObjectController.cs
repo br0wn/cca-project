@@ -466,8 +466,8 @@ namespace Concert.DataAccessLayer
         {
             foreach (Track track in album.Tracks)
             {
-                XElement XAlbumsTracks = db.Descendants("AlbumsTracks").First();
-                XAlbumsTracks.Add(new XElement("AlbumTrack",
+                XElement XAlbumsTracks = db.Descendants("TracksAlbums").First();
+                XAlbumsTracks.Add(new XElement("TrackAlbum",
                     new XElement("AlbumID", album.ID),
                     new XElement("TrackID", track.ID)));
             }
@@ -475,14 +475,14 @@ namespace Concert.DataAccessLayer
 
         public static void DeleteObject(Album album) 
         {
-            db.Descendants("Track").Where(a => int.Parse(a.Element("AlbumID").Value) == album.ID).Remove();
+            db.Descendants("AlbumTrack").Where(a => int.Parse(a.Element("AlbumID").Value) == album.ID).Remove();
 
             DeleteElement(GetElement(album.ID, "Album"));
         }
 
         public static List<Track> GetTracksByAlbum(int albumID)
         {
-            IEnumerable<Track> nekaj = from at in db.Descendants("AlbumTrack")
+            IEnumerable<Track> nekaj = from at in db.Descendants("TrackAlbum")
                    where int.Parse(at.Element("AlbumID").Value) == albumID
                    select new Track()
                               {
@@ -524,7 +524,7 @@ namespace Concert.DataAccessLayer
 
         public static IEnumerable<Track> GetAvailableTracks()
         {
-            //kad se dohvacaju trackovi ne postavlja se albumID
+            
             return GetAllTracks();
         }
 
