@@ -138,8 +138,10 @@ namespace Concert.PresentationLayer {
             try
             {
                 DBObjectController.DeleteObject(album);
-            } 
-            this.ClearAlbumData();
+            }
+            catch (Exception exception)
+            { }
+            //this.ClearAlbumData();
             this.LoadExternalData();
             this.buttonEdit.Enabled = true;
         }

@@ -76,11 +76,11 @@ namespace Concert.PresentationLayer
         {
             ClearSelectedInstruments();
 
-            //foreach (Instrument instrument in art.Instrument)
-            //{
-            //    int index = instruments.FindIndex(i => i.Id == instrument.Id);
-            //    checkedListBoxInstrument.SetItemChecked(index, true);
-            //}
+            foreach (Instrument instrument in art.Instruments)
+            {
+                int index = instruments.FindIndex(i => i.ID == instrument.ID);
+                checkedListBoxInstrument.SetItemChecked(index, true);
+            }
         }
 
         private void SelectArtist(Artist artis)
@@ -139,7 +139,7 @@ namespace Concert.PresentationLayer
                 artist.LastName = textBoxLastName.Text;
                 artist.BirthDate = DateTime.Parse(dateTimePickerBirthDate.Value.ToString("dd.MM.yyyy"));
 
-                //artist.Instrument.Clear();
+                //artist.Instruments.Clear();
                 //foreach (int index in checkedListBoxInstrument.CheckedIndices)
                 //{
                 //    artist.Instrument.Add(instruments[index]);

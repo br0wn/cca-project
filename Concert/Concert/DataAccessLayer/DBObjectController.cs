@@ -536,7 +536,7 @@ namespace Concert.DataAccessLayer
 
             xArtists.Add(artist.toXML());
 
-            foreach (Instrument i in artist.Instrument)
+            foreach (Instrument i in artist.Instruments)
             {
                 XElement xArtistsInstruments = db.Descendants("ArtistsInstruments").First();
 
@@ -556,24 +556,30 @@ namespace Concert.DataAccessLayer
                                                ID = int.Parse(c.Element("ID").Value),
                                                FirstName = c.Element("FirstName").Value,
                                                LastName = c.Element("LastName").Value,
-                                               BirthDate = Convert.ToDateTime(c.Element("BirthDate").Value)
-                                               // Instrument = ?
+                                               BirthDate = Convert.ToDateTime(c.Element("BirthDate").Value),
+                                               Instruments = GetNEkaj(c.Element("ID").Value)
                                            };
 
             return artists;
         }
 
+        private static List<Instrument> GetNEkaj(string ID)
+        {
+            IEnumerable<Instrument> intruments = from ai in db.Descendants("ArtistInstrument")
+                                                 where ai.Element("ArtistID").Value == ID                                                 
+                                                 select new Instrument()
+                                                 {
+                                                     ID = int.Parse(ai.Element("InstrumentID").Value),
+                                                     Name = db.Descendants("Instrument").Where( i => i.Element("ID").Value  == ai.Element("InstrumentID").Value).First().Element("Name").Value
+                                                 };
+            return intruments.ToList();
+        }
+
         public static void DeleteObject(Artist artist)
         {
-            foreach (XElement item in db.Descendants("ArtistInstrument").Where(ai => int.Parse(ai.Element("ArtistID").Value) == artist.ID))
-            {
-                item.Remove();
-            }
+            db.Descendants("ArtistInstrument").Where(ai => int.Parse(ai.Element("ArtistID").Value) == artist.ID).Remove();
 
-            foreach (XElement item in db.Descendants("BandArtist").Where(ba => int.Parse(ba.Element("ArtistID").Value) == artist.ID))
-            {
-                item.Remove();
-            }
+            db.Descendants("BandArtist").Where(ba => int.Parse(ba.Element("ArtistID").Value) == artist.ID).Remove();
 
             DeleteElement(GetElement(artist.ID, "Artist"));
         } 
