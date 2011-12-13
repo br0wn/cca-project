@@ -62,7 +62,7 @@ namespace Concert.PresentationLayer {
             //album.Tracks.Clear();
             foreach (Track addedSong in this.addedSongs)
             {
-                addedSong.Album = album;                
+                album.Tracks.Add(addedSong);
             }
             try {
 
