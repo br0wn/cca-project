@@ -12,6 +12,7 @@ namespace Concert.DBObjectDefinition
         private int _id;
         private string _name;
         private List<Album> _albums;
+        private List<Artist> _artists;
 
         public int ID
         {
@@ -29,6 +30,12 @@ namespace Concert.DBObjectDefinition
         {
             get { return _albums; }
             set { _albums = value; }
+        }
+
+        public List<Artist> Artists
+        {
+            get { return _artists; }
+            set { _artists = value; }
         }
 
         public XElement toXML()
