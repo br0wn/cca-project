@@ -488,7 +488,7 @@ namespace Concert.DataAccessLayer
                 Band = new Band()
                            {
                                ID = int.Parse(db.Descendants("Bands").Where(b => b.Element("ID").Value == a.Element("BandID").Value).First().Element("ID").Value),
-                               Name = db.Descendants("Bands").Where(b => b.Element("ID").Value == a.Element("BandID").Value).First().Element("Name").Value
+                               Name = db.Descendants("Bands").Where(b => b.Element("ID").Value == a.Element("BandID").Value).First().Element("Name").Value                               
                            }
             });
         }
