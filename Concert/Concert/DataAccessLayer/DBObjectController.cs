@@ -521,12 +521,27 @@ namespace Concert.DataAccessLayer
         public static void StoreObject(Band band)
         {
             if (band.ID != 0)
+            {
                 GetElement(band.ID, "Band").Remove();
+            }
             else
+            {
                 band.ID = GetElementID("Band");
+            }
 
             XElement XAlbums = db.Descendants("Band").First();
-            XAlbums.Add(band.toXML());            
+            XAlbums.Add(band.toXML());
+
+            foreach (Artist artist in band.Artists)
+            {
+                XElement xBandsArtists = db.Descendants("BandsArtists").First();
+                XElement bandArtist = new XElement("BandInstrument",
+                                    new XElement("BandID", band.ID),
+                                    new XElement("ArtistID", artist.ID));
+
+                xBandsArtists.Add(bandArtist);
+
+            }
         }
 
         public static IEnumerable<Band> GetAllBands() 
