@@ -51,7 +51,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BusinessLogicLayer\BLL.cs" />
     <Compile Include="DataAccessLayer\DBObjectController.cs" />
     <Compile Include="DBObjectDefinition\Album.cs" />
     <Compile Include="DBObjectDefinition\Artist.cs" />

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Database>  
+<Database>
   <Countries>
     <Country>
       <ID>1</ID>
@@ -75,6 +75,7 @@
   </Locations>
   <Concerts></Concerts>
   <Bands></Bands>
+  <Albums></Albums>
   <Tracks>
     <Track>
       <ID>1</ID>
@@ -118,4 +119,5 @@
   <ConcertsBands></ConcertsBands>
   <BandsArtists></BandsArtists>
   <ArtistsInstruments></ArtistsInstruments>
+  <TracksAlbums></TracksAlbums>
 </Database>

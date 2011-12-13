@@ -2,17 +2,19 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
   <xs:element name="Database">
     <xs:complexType>
-      <xs:sequence>
+      <xs:sequence>        
         <xs:element ref="Countries"/>
         <xs:element ref="Locations" />
         <xs:element ref="Concerts"/>
         <xs:element ref="Bands"/>
+        <xs:element ref="Albums"/>        
         <xs:element ref="Tracks"/>
         <xs:element ref="Artists"/>
         <xs:element ref="Instruments"/>
         <xs:element ref="ConcertsBands"/>
         <xs:element ref="BandsArtists"/>
         <xs:element ref="ArtistsInstruments"/>
+        <xs:element ref="TracksAlbums"/>
       </xs:sequence>
     </xs:complexType>
     <xs:keyref name="LocationCountry" refer="CountryPK">
@@ -28,8 +30,12 @@
       <xs:field xpath="ArtistID"/>
     </xs:keyref>
     <xs:keyref name ="TrackAlbum" refer="AlbumPK">
-      <xs:selector xpath=".//Track"/>
+      <xs:selector xpath=".//TrackAlbum"/>
       <xs:field xpath="AlbumID" />
+    </xs:keyref>
+    <xs:keyref name ="AlbumTrack" refer="TrackPK">
+      <xs:selector xpath=".//TrackAlbum"/>
+      <xs:field xpath="TrackID" />
     </xs:keyref>
     <xs:keyref name="ArtistBandFK" refer="BandPK">
       <xs:selector xpath=".//Artist/Bands"/>
@@ -74,6 +80,11 @@
     <xs:key name="TrackPK">
       <xs:selector xpath=".//Track"/>
       <xs:field xpath="ID"/>
+    </xs:key>
+    <xs:key name="TrackAlbumPK">
+      <xs:selector xpath=".//TrackAlbum"/>
+      <xs:field xpath="TrackID"/>
+      <xs:field xpath="AlbumID"/>
     </xs:key>
     <xs:key name="ArtistPK">
       <xs:selector xpath=".//Artist"/>
@@ -210,8 +221,22 @@
         <xs:element name="Length" type="xs:int" nillable="false"/>
         <xs:element name="Uploaded" type="xs:boolean"/>
         <xs:element name="Name" type="xs:string" nillable="false"/>
-        <xs:element name="Path" type="xs:string" nillable="false"/>
-        <xs:element name="AlbumID" type="xs:int" minOccurs="0" maxOccurs="1"/>
+        <xs:element name="Path" type="xs:string" nillable="false"/>        
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name ="TracksAlbums">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="TrackAlbum" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TrackAlbum">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="AlbumID" type="xs:int" nillable="false" />
+        <xs:element name="TrackID" type="xs:int" nillable="false" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
