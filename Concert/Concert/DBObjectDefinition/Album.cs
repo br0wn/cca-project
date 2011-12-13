@@ -6,7 +6,7 @@ using System.Xml.Linq;
 
 namespace Concert.DBObjectDefinition
 {
-    public class Album
+    public class Album : IComparable
     {
         public int ID { get; set; }
         public Band Band { get; set; }
@@ -22,5 +22,15 @@ namespace Concert.DBObjectDefinition
                                                     );                 
             return album;            
        }
+
+        public override string ToString()
+        {
+            return Name.ToString();
+        }
+
+        public int CompareTo(object obj)
+        {
+            return Name.CompareTo(obj.ToString());
+        }
     }
 }

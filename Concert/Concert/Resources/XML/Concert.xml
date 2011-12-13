@@ -86,6 +86,16 @@
       <Name>Black</Name>
       <BandID>1</BandID>
     </Album>
+    <Album>
+      <ID>2</ID>
+      <Name>Justice</Name>
+      <BandID>1</BandID>
+    </Album>
+    <Album>
+      <ID>3</ID>
+      <Name>Kill em all</Name>
+      <BandID>1</BandID>
+    </Album>
   </Albums>
   <Tracks>
     <Track>
@@ -144,10 +154,5 @@
   <ConcertsBands></ConcertsBands>
   <BandsArtists></BandsArtists>
   <ArtistsInstruments />
-  <TracksAlbums>
-    <TrackAlbum>
-      <AlbumID>1</AlbumID>
-      <TrackID>1</TrackID>
-    </TrackAlbum>
-  </TracksAlbums>
+  <TracksAlbums />
 </Database>
