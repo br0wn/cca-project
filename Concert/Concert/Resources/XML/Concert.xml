@@ -133,6 +133,22 @@
       <Path></Path>
       <AlbumID>0</AlbumID>
     </Track>
+    <Track>
+      <ID>4</ID>
+      <Length>546</Length>
+      <Uploaded>false</Uploaded>
+      <Name>Pjevajte nešto ljubavno</Name>
+      <Path></Path>
+      <AlbumID>0</AlbumID>
+    </Track>
+    <Track>
+      <ID>5</ID>
+      <Length>546</Length>
+      <Uploaded>true</Uploaded>
+      <Name>Pjesma</Name>
+      <Path>Resources\Audio\02Brkovi - Tolerancija.mp3</Path>
+      <AlbumID>0</AlbumID>
+    </Track>
   </Tracks>
   <Artists>
     <Artist>

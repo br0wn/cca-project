@@ -11,6 +11,7 @@
         <!--OK-->
         <xs:element ref="Tracks"/>
         <xs:element ref="Artists"/>
+        <!--OK-->
         <xs:element ref="Instruments"/>
         <xs:element ref="ConcertsBands"/>
         <xs:element ref="BandsArtists"/>
@@ -28,6 +29,10 @@
     <xs:keyref name="BandArtistFK" refer="ArtistPK">
       <xs:selector xpath=".//Band/Artists"/>
       <xs:field xpath="ArtistID"/>
+    </xs:keyref>
+    <xs:keyref name="AlbumBandFK" refer="BandPK">
+      <xs:selector xpath=".//Album"/>
+      <xs:field xpath="BandID"/>
     </xs:keyref>
     <xs:keyref name ="TrackAlbum" refer="AlbumPK">
       <xs:selector xpath=".//Track"/>
@@ -196,7 +201,7 @@
       <xs:sequence>
         <xs:element ref="ID"/>
         <xs:element name="Name" type="xs:string" nillable="false"/>
-        <xs:element name="BandID" type="xs:int" minOccurs="0" maxOccurs="1"/>
+        <xs:element name="BandID" type="xs:int" nillable="false"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
