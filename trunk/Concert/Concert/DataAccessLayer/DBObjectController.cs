@@ -397,7 +397,7 @@ namespace Concert.DataAccessLayer
                                                          .First()
                                                          .Element("Name").Value
                        },
-                       Tracks = (List<Track>) from t in db.Descendants(Track)
+                       Tracks = (List<Track>) from t in db.Descendants("Track")
                                               where int.Parse(t.Element("AlbumID").Value) == int.Parse(a.Element("ID").Value)
                                               select new Track() 
                                               {
@@ -406,7 +406,7 @@ namespace Concert.DataAccessLayer
                                                   Path = t.Element("Name").Value,
                                                   Length = int.Parse(t.Element("Length").Value)
                                               }
-                   });
+                      });
         }
 
         public static void StoreObject(Band band)
@@ -437,7 +437,9 @@ namespace Concert.DataAccessLayer
 
         public static IEnumerable<Band> GetAllBands() 
         {
-            return db.Descendants("Band").Select(a => new Band() {
+            return db.Descendants("Band").Where( b => int.Parse(b.Element("ID").Value) != 0)
+                                         .Select(a => new Band() 
+            {
                 ID = int.Parse(a.Element("ID").Value),
                 Name = a.Element("Name").Value
             });

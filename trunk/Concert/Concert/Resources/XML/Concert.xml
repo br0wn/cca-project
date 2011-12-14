@@ -106,6 +106,7 @@
     <Album>
       <ID>0</ID>
       <Name>NULL</Name>
+      <BandID>0</BandID>
     </Album>
   </Albums>
   <Tracks>

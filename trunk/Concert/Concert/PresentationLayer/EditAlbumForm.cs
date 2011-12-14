@@ -59,7 +59,6 @@ namespace Concert.PresentationLayer {
             Album album = this.albums[albumIndex];
 
             album.Name = albumName;
-            DBObjectController.DeleteRelation(album);
             album.Tracks.Clear();
             foreach (Track addedSong in this.addedSongs)
             {
