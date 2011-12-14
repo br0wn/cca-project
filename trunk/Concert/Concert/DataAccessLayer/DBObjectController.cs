@@ -184,8 +184,9 @@ namespace Concert.DataAccessLayer
         public static IEnumerable<Location> GetAllLocations()
         {
             return from l in db.Descendants("Location")
-                    select new Location()
-                    {
+                   where int.Parse(l.Element("ID").Value) != 0
+                   select new Location()
+                   {
                         ID         = int.Parse(l.Element("ID").Value),
                         SeatCount  = int.Parse(l.Element("SeatCount").Value),
                         PostalCode = int.Parse(l.Element("PostalCode").Value),
@@ -195,7 +196,7 @@ namespace Concert.DataAccessLayer
                             ID = int.Parse(db.Descendants("Country").Where(c => c.Element("ID").Value == l.Element("CountryID").Value).First().Element("ID").Value),
                             Name = db.Descendants("Country").Where(c => c.Element("ID").Value == l.Element("CountryID").Value).First().Element("Name").Value
                         }
-                    };
+                   };
         }
 
         public static void DeleteObject(Track track)
@@ -231,147 +232,30 @@ namespace Concert.DataAccessLayer
                    };
         }
 
-        //public static IEnumerable<Track> GetAvailableTracks()
-        //{
-        //    List<Track> availableTracks = new List<Track>();
-        //    IEnumerable<Album> albums = GetAllAlbums();
-        //    foreach (Track track in GetAllTracks())
-        //    {
-        //        bool available = true;
-        //        foreach (Album album in albums)
-        //        {
-        //            if (album.Track.Contains(track))
-        //            {
-        //                available = false;
-        //                break;
-        //            }
-        //        }
-        //        if (available)
-        //        {
-        //            availableSongs.Add(track);
-        //        }
-        //    }
-        //    return availableSongs;
-        //}
+        public static IEnumerable<Track> GetAvailableTracks()
+        {
+            return from t in db.Descendants("Track")
+                   where int.Parse(t.Element("ID").Value) != 0 && int.Parse(t.Element("AlbumID").Value) == 0
+                   select new Track()
+                   {
+                       ID       = int.Parse(t.Element("ID").Value),
+                       Length   = int.Parse(t.Element("Length").Value),
+                       Name     = t.Element("Name").Value,
+                       Path     = t.Element("Path").Value,
+                       Uploaded = bool.Parse(t.Element("Uploaded").Value)
+                   };
+         }
 
-    //    public static void DeleteObject(Artist artist)
-    //    {
-    //        foreach (Instrument instrument in context.Instrument)
-    //        {
-    //            if (instrument.Artist.Contains(artist))
-    //            {
-    //                instrument.Artist.Remove(artist);
-    //            }
-    //        }
-
-    //        foreach (Band band in context.Band)
-    //        {
-    //            if (band.Artist.Contains(artist))
-    //            {
-    //                band.Artist.Remove(artist);
-    //            }
-    //        }
-
-    //        context.Artist.DeleteObject(artist);
-    //        SaveChanges();
-    //    }
-
-    //    public static void StoreObject(Artist artist)
-    //    {
-    //        context.Artist.AddObject(artist);
-    //        SaveChanges();
-    //    }
-
-    //    public static IEnumerable<Artist> GetAllArtists()
-    //    {
-    //        return context.Artist;
-    //    }
-
-    //    public static void DeleteObject(Album album)
-    //    {
-    //        List<int> tracks = new List<int>();
-    //        foreach (Track track in album.Track)
-    //        {
-    //            tracks.Add(track.Id);
-    //        }
-
-    //        context.Album.DeleteObject(album);
-    //        SaveChanges();
-
-    //        foreach (Track track in context.Track.Where(t => tracks.Contains(t.Id)))
-    //        {
-    //            DeleteObject(track);
-    //        }
-    //        SaveChanges();
-    //    }
-
-    //    public static void StoreObject(Album album)
-    //    {
-    //        context.Album.AddObject(album);
-    //        SaveChanges();
-    //    }
-
-    //    public static IEnumerable<Album> GetAllAlbums( )
-    //    {
-    //        return context.Album;
-    //    }
-
-    //    public static void DeleteObject(Band band)
-    //    {
-    //        foreach (Artist artist in context.Artist)
-    //        {
-    //            if (artist.Band.Contains(band))
-    //            {
-    //                artist.Band.Remove(band);
-    //            }
-    //        }
-
-    //        foreach (Concert concert in context.Concert)
-    //        {
-    //            if (concert.Band.Contains(band))
-    //            {
-    //                concert.Band.Remove(band);
-    //            }
-    //        }
-
-    //        List<int> albums = new List<int>();
-
-    //        foreach (Album album in band.Album)
-    //        {
-    //            albums.Add(album.Id);
-    //        }
-
-    //        context.Band.DeleteObject(band);
-    //        SaveChanges();
-
-    //        foreach (Album album in context.Album.Where(a => albums.Contains(a.Id)))
-    //        {
-    //            DeleteObject(album);
-    //        }
-    //        SaveChanges();
-    //    }
-
-    //    public static void StoreObject(Band band)
-    //    {
-    //        context.Band.AddObject(band);
-    //        SaveChanges();
-    //    }
-
-    //    public static IEnumerable<Band> GetAllBands( )
-    //    {
-    //        return context.Band;
-    //    }
-
-    //    public static IEnumerable<Band> GetAdjectiveBands(IEnumerable<Band> bands)
-    //    {
-    //        List<Band> adjectiveBands = new List<Band>();
-    //        adjectiveBands.AddRange(GetAllBands());
-    //        foreach (Band band in bands)
-    //        {
-    //            adjectiveBands.Remove(band);
-    //        }
-    //        return adjectiveBands;
-    //    }
+        public static IEnumerable<Band> GetAdjectiveBands(IEnumerable<Band> bands)
+        {
+            List<Band> adjectiveBands = new List<Band>();
+            adjectiveBands.AddRange(GetAllBands());
+            foreach (Band band in bands)
+            {
+                adjectiveBands.Remove(band);
+            }
+            return adjectiveBands;
+        }
 
         public static void DeleteObject(Instrument instrument)
         {
@@ -417,9 +301,7 @@ namespace Concert.DataAccessLayer
         {
             if (country.ID != 0)
             {
-                XElement xCountry = GetElement(country.ID, "Country");
-
-                xCountry.Remove();
+                GetElement(country.ID, "Country").Remove();
             }
             else
             {
