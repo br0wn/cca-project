@@ -113,7 +113,7 @@
   <xs:element name="ID">
     <xs:simpleType>
       <xs:restriction base="xs:integer">
-        <xs:minInclusive value="1" />
+        <xs:minInclusive value="0" />
       </xs:restriction>
     </xs:simpleType>
   </xs:element>
@@ -153,7 +153,7 @@
         <xs:element name="SeatCount" type="xs:int" nillable="false"/>
         <xs:element name="PostalCode" type="xs:int" nillable="false" />
         <xs:element name="Address" type="xs:string" nillable="false" />
-        <xs:element name="CountryID" type="xs:int" nillable="false" />
+        <xs:element name="CountryID" type="xs:int" nillable="true" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -203,7 +203,6 @@
         <xs:element ref="ID"/>
         <xs:element name="Name" type="xs:string" nillable="false"/>
         <xs:element name="BandID" type="xs:int" minOccurs="0" maxOccurs="1"/>
-
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -221,7 +220,8 @@
         <xs:element name="Length" type="xs:int" nillable="false"/>
         <xs:element name="Uploaded" type="xs:boolean"/>
         <xs:element name="Name" type="xs:string" nillable="false"/>
-        <xs:element name="Path" type="xs:string" nillable="false"/>        
+        <xs:element name="Path" type="xs:string" nillable="false"/>
+        <xs:element name="AlbumID" type="xs:int" minOccurs="0" maxOccurs="1"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>

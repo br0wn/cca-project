@@ -29,7 +29,8 @@ namespace Concert.DBObjectDefinition
                                     new XElement("Length", Length),
                                     new XElement("Uploaded", Uploaded),
                                     new XElement("Name", Name),
-                                    new XElement("Path", path));
+                                    new XElement("Path", path),
+                                    new XElement("AlbumID", Album == null ? 0 : Album.ID));
         }
     }
 }
