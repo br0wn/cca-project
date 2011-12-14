@@ -60,7 +60,6 @@
     <Compile Include="DBObjectDefinition\Instrument.cs" />
     <Compile Include="DBObjectDefinition\Location.cs" />
     <Compile Include="DBObjectDefinition\Track.cs" />
-    <Compile Include="DBObjectDefinition\TrackComparer.cs" />
     <Compile Include="PresentationLayer\ConcertAddBand.cs">
       <SubType>Form</SubType>
     </Compile>

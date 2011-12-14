@@ -6,7 +6,7 @@ using System.Xml.Linq;
 
 namespace Concert.DBObjectDefinition
 {
-    public class Track 
+    public class Track : IEqualityComparer<Track>
     {
         private int    id;
         private int    length;
@@ -31,6 +31,16 @@ namespace Concert.DBObjectDefinition
                                     new XElement("Name", Name),
                                     new XElement("Path", path),
                                     new XElement("AlbumID", Album == null ? 0 : Album.ID));
+        }
+
+        public bool Equals(Track x, Track y)
+        {
+            return x.ID == y.ID;
+        }
+
+        public int GetHashCode(Track obj)
+        {
+            return obj.ID.GetHashCode();
         }
     }
 }

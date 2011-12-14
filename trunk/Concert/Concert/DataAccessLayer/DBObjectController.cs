@@ -283,6 +283,7 @@ namespace Concert.DataAccessLayer
         public static IEnumerable<Instrument> GetAllInstruments()
         {
             return from i in db.Descendants("Instrument")
+                   where int.Parse(i.Element("ID").Value) != 0
                    select new Instrument()
                    {
                        ID = int.Parse(i.Element("ID").Value),
@@ -333,91 +334,82 @@ namespace Concert.DataAccessLayer
 
             XElement XAlbums = db.Descendants("Albums").First();
             XAlbums.Add(album.toXML());
-            db.Descendants("TrackAlbum").Where(a => int.Parse(a.Element("AlbumID").Value) == album.ID).Remove();
-            AddRelation(album);
-        }
 
-        public static void AddRelation(Album album)
-        {
+            IEnumerable<int> trackIDs = from t in album.Tracks
+                                        select t.ID;
+
+            IEnumerable<Track> tracks = from t in db.Descendants("Track")
+                                        where int.Parse(t.Element("AlbumID").Value) == album.ID &&
+                                              trackIDs.Contains(int.Parse(t.Element("AlbumID").Value))
+                                        select new Track()
+                                        {
+                                            ID = int.Parse(t.Element("ID").Value),
+                                            Length = int.Parse(t.Element("Length").Value),
+                                            Name = t.Element("Name").Value,
+                                            Path = t.Element("Path").Value,
+                                            Uploaded = bool.Parse(t.Element("Uploaded").Value)
+                                        };
+
+            foreach (Track track in tracks)
+            {
+                StoreObject(track);
+            }
+
             foreach (Track track in album.Tracks)
             {
-                XElement XAlbumsTracks = db.Descendants("TracksAlbums").First();
-                XAlbumsTracks.Add(new XElement("TrackAlbum",
-                    new XElement("AlbumID", album.ID),
-                    new XElement("TrackID", track.ID)));
+                StoreObject(track);
             }
-        }
-
-        public static void DeleteRelation(Album album)
-        {
-            db.Descendants("TrackAlbum").Where(a => int.Parse(a.Element("AlbumID").Value) == album.ID).Remove();
-            
         }
 
         public static void DeleteObject(Album album) 
         {
-            db.Descendants("TrackAlbum").Where(a => int.Parse(a.Element("AlbumID").Value) == album.ID).Remove();
+            db.Descendants("Track").Where(t => int.Parse(t.Element("AlbumID").Value) == album.ID).Remove();
 
             DeleteElement(GetElement(album.ID, "Album"));
         }
 
         public static List<Track> GetTracksByAlbum(int albumID)
         {
-            IEnumerable<Track> nekaj = from at in db.Descendants("TrackAlbum")
-                   where int.Parse(at.Element("AlbumID").Value) == albumID
-                   select new Track()
-                              {
-                                  ID = int.Parse(at.Element("TrackID").Value),
-                                  Name =
-                                      db.Descendants("Track").Where(
-                                          t => t.Element("ID").Value == at.Element("TrackID").Value).First().Element(
-                                              "Name").Value
-                              };
-            return nekaj.ToList();
+            IEnumerable<Track> tracks = from t in db.Descendants("Track")
+                                        where int.Parse(t.Element("AlbumID").Value) == albumID
+                                        select new Track()
+                                        {
+                                            ID = int.Parse(t.Element("ID").Value),
+                                            Length = int.Parse(t.Element("Length").Value),
+                                            Name = t.Element("Name").Value,
+                                            Path = t.Element("Path").Value,
+                                            Uploaded = bool.Parse(t.Element("Uploaded").Value)
+                                        };
+            return tracks.ToList();
         }
 
         public static IEnumerable<Album> GetAllAlbums()
         {
             return db.Descendants("Album").Select(a => new Album()
-                                                           {
-                                                               ID = int.Parse(a.Element("ID").Value),
-                                                               Name = a.Element("Name").Value,
-                                                               Band = new Band()
-                                                                          {
-                                                                              ID =
-                                                                                  int.Parse(
-                                                                                      db.Descendants("Band").Where(
-                                                                                          b =>
-                                                                                          b.Element("ID").Value ==
-                                                                                          a.Element("BandID").Value).
-                                                                                          First().Element("ID").Value),
-                                                                              Name =
-                                                                                  db.Descendants("Band").Where(
-                                                                                      b =>
-                                                                                      b.Element("ID").Value ==
-                                                                                      a.Element("BandID").Value).First()
-                                                                                  .Element("Name").Value                                                                             
-                                                                          },
-                                                                Tracks = GetTracksByAlbum(int.Parse(a.Element("ID").Value))
+                   {
+                       ID = int.Parse(a.Element("ID").Value),
+                       Name = a.Element("Name").Value,
+                        //ID = int.Parse(a.Element("ID").Value),
+                        //Name = a.Element("Name").Value,
+                        //Band = new Band()
+                        //            {
+                        //                ID =
+                        //                    int.Parse(
+                        //                        db.Descendants("Band").Where(
+                        //                            b =>
+                        //                            b.Element("ID").Value ==
+                        //                            a.Element("BandID").Value).
+                        //                            First().Element("ID").Value),
+                        //                Name =
+                        //                    db.Descendants("Band").Where(
+                        //                        b =>
+                        //                        b.Element("ID").Value ==
+                        //                        a.Element("BandID").Value).First()
+                        //                    .Element("Name").Value                                                                             
+                        //            },
+                        //Tracks = GetTracksByAlbum(int.Parse(a.Element("ID").Value))
 
-            });
-        }
-
-        public static IEnumerable<Track> GetAvailableTracks()
-        {
-            
-            List<Track> allTracks = (List<Track>) GetAllTracks().ToList();
-            List<Track> tracksInAlbums = (List<Track>) (from at in db.Descendants("TrackAlbum")                   
-                                                 select new Track()
-                                                            {
-                                                                ID = int.Parse(at.Element("TrackID").Value),
-                                                                Name =
-                                                                    db.Descendants("Track").Where(
-                                                                        t => t.Element("ID").Value == at.Element("TrackID").Value).First().Element(
-                                                                            "Name").Value
-                                                            }).Distinct().ToList();
-            IEnumerable<Track> available = allTracks.Except(tracksInAlbums, new TrackComparer());
-            return available.ToList();
+        });
         }
 
         public static void StoreObject(Band band)
