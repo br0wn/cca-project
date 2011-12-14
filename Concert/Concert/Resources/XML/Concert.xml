@@ -2,6 +2,10 @@
 <Database>
   <Countries>
     <Country>
+      <ID>0</ID>
+      <Name>NULL</Name>
+    </Country>
+    <Country>
       <ID>1</ID>
       <Name>Hrvatska</Name>
     </Country>
@@ -52,6 +56,13 @@
   </Countries>
   <Locations>
     <Location>
+      <ID>0</ID>
+      <SeatCount>0</SeatCount>
+      <PostalCode>0</PostalCode>
+      <Address>NULL</Address>
+      <CountryID>0</CountryID>
+    </Location>
+    <Location>
       <ID>1</ID>
       <SeatCount>1233</SeatCount>
       <PostalCode>1000</PostalCode>
@@ -72,16 +83,31 @@
       <Address>Strasse 23</Address>
       <CountryID>5</CountryID>
     </Location>
+    <Location>
+      <ID>4</ID>
+      <SeatCount>123</SeatCount>
+      <PostalCode>123</PostalCode>
+      <Address>nekaj novo</Address>
+      <CountryID>7</CountryID>
+    </Location>
   </Locations>
-  <Concerts>
-  </Concerts>
+  <Concerts></Concerts>
   <Bands>
+    <Band>
+      <ID>0</ID>
+      <Name>NULL</Name>
+    </Band>
     <Band>
       <ID>1</ID>
       <Name>MEtallica</Name>
     </Band>
   </Bands>
-  <Albums />
+  <Albums>
+    <Album>
+      <ID>0</ID>
+      <Name>NULL</Name>
+    </Album>
+  </Albums>
   <Tracks>
     <Track>
       <ID>1</ID>
@@ -89,6 +115,7 @@
       <Uploaded>false</Uploaded>
       <Name>nekaja1</Name>
       <Path></Path>
+      <AlbumID>0</AlbumID>
     </Track>
     <Track>
       <ID>2</ID>
@@ -96,6 +123,7 @@
       <Uploaded>false</Uploaded>
       <Name>nekaja2</Name>
       <Path></Path>
+      <AlbumID>0</AlbumID>
     </Track>
     <Track>
       <ID>3</ID>
@@ -103,10 +131,22 @@
       <Uploaded>false</Uploaded>
       <Name>nekaja3</Name>
       <Path></Path>
+      <AlbumID>0</AlbumID>
     </Track>
   </Tracks>
-  <Artists />
+  <Artists>
+    <Artist>
+      <ID>0</ID>
+      <FirstName>NULL</FirstName>
+      <LastName>NULL</LastName>
+      <BirthDate>01.01.1970</BirthDate>
+    </Artist>
+  </Artists>
   <Instruments>
+    <Instrument>
+      <ID>0</ID>
+      <Name>NULL</Name>
+    </Instrument>
     <Instrument>
       <ID>2</ID>
       <Name>Ajmo</Name>
@@ -139,5 +179,4 @@
   <ConcertsBands></ConcertsBands>
   <BandsArtists></BandsArtists>
   <ArtistsInstruments />
-  <TracksAlbums />
 </Database>
