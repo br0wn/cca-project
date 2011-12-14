@@ -21,7 +21,6 @@ namespace Concert.PresentationLayer
         {
             InitializeComponent();
             LoadTrackData();
-            LoadAlbumData();
             dataGridViewTracks.Select();
         }
 
@@ -41,13 +40,6 @@ namespace Concert.PresentationLayer
                 row.Tag = track;
                 dataGridViewTracks.Rows.Add(row);
             }
-        }
-
-        private void LoadAlbumData()
-        {
-            //comboBoxAlbumName.DataSource = DBObjectController.GetAllAlbums();
-
-            comboBoxAlbumName.DisplayMember = "Name";
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)
@@ -75,7 +67,6 @@ namespace Concert.PresentationLayer
                     Length = length,
                     Uploaded = trackUploaded,
                     Path = trackPath,
-                    Album = (Album)comboBoxAlbumName.SelectedItem
                 };
 
                 DBObjectController.StoreObject(track);
@@ -95,8 +86,7 @@ namespace Concert.PresentationLayer
         private bool ErrorProviderSet()
         {
             return errorProviderTrack.GetError(textBoxTrackLength) == string.Empty &&
-                   errorProviderTrack.GetError(textBoxTrackName)   == string.Empty &&
-                   errorProviderTrack.GetError(comboBoxAlbumName)  == string.Empty; 
+                   errorProviderTrack.GetError(textBoxTrackName)   == string.Empty;
         }
 
         private void ClearForm()
@@ -149,7 +139,6 @@ namespace Concert.PresentationLayer
             ClearForm();
             errorProviderTrack.SetError(textBoxTrackName, string.Empty);
             errorProviderTrack.SetError(textBoxTrackLength, string.Empty);
-            errorProviderTrack.SetError(comboBoxAlbumName, string.Empty);
         }
 
         private void buttonSave_Click(object sender, EventArgs e)
@@ -310,18 +299,6 @@ namespace Concert.PresentationLayer
                 {
                     axWindowsMediaPlayer.URL = url;
                 }
-            }
-        }
-
-        private void comboBoxAlbumName_Validating(object sender, CancelEventArgs e)
-        {
-            if (comboBoxAlbumName.SelectedIndex < 0)
-            {
-                errorProviderTrack.SetError(comboBoxAlbumName, "Select valid album name, or add album if empty");
-            }
-            else
-            {
-                errorProviderTrack.SetError(comboBoxAlbumName, string.Empty);
             }
         }
     }

@@ -73,7 +73,8 @@
       <CountryID>5</CountryID>
     </Location>
   </Locations>
-  <Concerts></Concerts>
+  <Concerts>
+  </Concerts>
   <Bands>
     <Band>
       <ID>1</ID>

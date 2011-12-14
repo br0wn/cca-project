@@ -111,19 +111,10 @@ namespace Concert.DataAccessLayer
             ValidateDatabase();
         }
 
-    //    public static void DeleteObject(Concert concert)
-    //    {
-    //        foreach (Band band in context.Band)
-    //        {
-    //            if (band.Concert.Contains(concert))
-    //            {
-    //                band.Concert.Remove(concert);
-    //            }
-    //        }
-
-    //        context.Concert.DeleteObject(concert);
-    //        SaveChanges();
-    //    }
+        public static void DeleteObject(DBObjectDefinition.Concert concert)
+        {
+            //for db in db.Descendants("ConcertBand")
+        }
 
     //    public static void StoreObject(Concert concert)
     //    {
@@ -229,6 +220,7 @@ namespace Concert.DataAccessLayer
         public static IEnumerable<Track> GetAllTracks()
         {
             return from t in db.Descendants("Track")
+                   where int.Parse(t.Element("ID").Value) != 0 
                    select new Track() 
                    {
                        ID = int.Parse(t.Element("ID").Value),
