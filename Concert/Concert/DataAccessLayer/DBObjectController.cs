@@ -385,31 +385,28 @@ namespace Concert.DataAccessLayer
 
         public static IEnumerable<Album> GetAllAlbums()
         {
-            return db.Descendants("Album").Select(a => new Album()
+            return db.Descendants("Album").Where(a => int.Parse(a.Element("ID").Value) != 0)
+                                          .Select(a => new Album()
                    {
                        ID = int.Parse(a.Element("ID").Value),
                        Name = a.Element("Name").Value,
-                        //ID = int.Parse(a.Element("ID").Value),
-                        //Name = a.Element("Name").Value,
-                        //Band = new Band()
-                        //            {
-                        //                ID =
-                        //                    int.Parse(
-                        //                        db.Descendants("Band").Where(
-                        //                            b =>
-                        //                            b.Element("ID").Value ==
-                        //                            a.Element("BandID").Value).
-                        //                            First().Element("ID").Value),
-                        //                Name =
-                        //                    db.Descendants("Band").Where(
-                        //                        b =>
-                        //                        b.Element("ID").Value ==
-                        //                        a.Element("BandID").Value).First()
-                        //                    .Element("Name").Value                                                                             
-                        //            },
-                        //Tracks = GetTracksByAlbum(int.Parse(a.Element("ID").Value))
-
-        });
+                       Band = int.Parse(a.Element("BandID").Value) == 0 ? null : new Band()
+                       {
+                           ID = int.Parse(a.Element("BandID").Value),
+                           Name = db.Descendants("Band").Where(b => int.Parse(b.Element("ID").Value) == int.Parse(a.Element("BandID").Value))
+                                                         .First()
+                                                         .Element("Name").Value
+                       },
+                       Tracks = (List<Track>) from t in db.Descendants(Track)
+                                              where int.Parse(t.Element("AlbumID").Value) == int.Parse(a.Element("ID").Value)
+                                              select new Track() 
+                                              {
+                                                  ID = int.Parse(t.Element("ID").Value),
+                                                  Name = t.Element("Name").Value,
+                                                  Path = t.Element("Name").Value,
+                                                  Length = int.Parse(t.Element("Length").Value)
+                                              }
+                   });
         }
 
         public static void StoreObject(Band band)
