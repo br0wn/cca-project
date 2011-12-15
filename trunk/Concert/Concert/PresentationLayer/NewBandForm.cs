@@ -29,6 +29,8 @@ namespace Concert.PresentationLayer
             this.availableArtists = DBObjectController.GetAllArtists().ToList();
 
 			this.listBoxAvailableArtists.DataSource = this.availableArtists;
+			this.listBoxAddedArtists.DisplayMember = "FullName";
+			this.listBoxAvailableArtists.DisplayMember = "FullName";
         }
 
 		private void refresh( )
@@ -43,6 +45,8 @@ namespace Concert.PresentationLayer
 			this.listBoxAvailableArtists.DataSource = this.availableArtists;
 			this.listBoxAddedArtists.DataSource = this.addedArtists;
 
+			this.listBoxAddedArtists.DisplayMember = "FullName" ;
+			this.listBoxAvailableArtists.DisplayMember = "FullName";
 		}
 
         // EVENTS
