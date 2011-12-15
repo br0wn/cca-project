@@ -521,13 +521,13 @@ namespace Concert.DataAccessLayer
                                                BirthDate = Convert.ToDateTime(c.Element("BirthDate").Value),
                                                Instruments = new List<Instrument>
                                                (
-                                                                 from ai in db.Descendants("ArtistInstrument")
-                                                                 where ai.Element("ArtistID").Value ==  c.Element("ID").Value                                               
-                                                                 select new Instrument()
-                                                                 {
-                                                                     ID = int.Parse(ai.Element("InstrumentID").Value),
-                                                                     Name = db.Descendants("Instrument").Where( i => i.Element("ID").Value  == ai.Element("InstrumentID").Value).First().Element("Name").Value
-                                                                 }
+                                                    from ai in db.Descendants("ArtistInstrument")
+                                                    where ai.Element("ArtistID").Value == c.Element("ID").Value                                               
+                                                    select new Instrument()
+                                                    {
+                                                        ID = int.Parse(ai.Element("InstrumentID").Value),
+                                                        Name = db.Descendants("Instrument").Where( i => i.Element("ID").Value  == ai.Element("InstrumentID").Value).First().Element("Name").Value
+                                                    }
                                                 )
                                            };
 
