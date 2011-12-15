@@ -48,11 +48,11 @@ namespace Concert.PresentationLayer
 
         private void LoadBands()
         {
-            //foreach (Band band in DBObjectController.GetAllBands())
-            //{
-            //    bands.Add(band);
-            //    checkedListBoxBands.Items.Add(band.Name);
-            //}
+            foreach (Band band in DBObjectController.GetAllBands())
+            {
+                bands.Add(band);
+                checkedListBoxBands.Items.Add(band.Name);
+            }
             checkedListBoxBands.CheckOnClick = true;
         }
 
@@ -76,7 +76,7 @@ namespace Concert.PresentationLayer
 
                     AddHiredBands(concert);
 
-                    //DBObjectController.StoreObject( concert );
+                    DBObjectController.StoreObject(concert);
 
                     MessageBox.Show("You have successfully added new concert.", "Success confirmation");
                     ClearForm();
