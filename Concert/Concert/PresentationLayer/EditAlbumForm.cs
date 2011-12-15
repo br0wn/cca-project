@@ -60,15 +60,7 @@ namespace Concert.PresentationLayer {
 
             album.Name = albumName;
             album.Tracks.Clear();
-            try
-            {
-                DBObjectController.StoreObject(album);
-            }
-            catch
-            {
-                MessageBox.Show("Error while updating record");
-                return;
-            }
+            
             foreach (Track addedSong in this.addedSongs)
             {
                 album.Tracks.Add(addedSong);
@@ -77,8 +69,8 @@ namespace Concert.PresentationLayer {
 
                 DBObjectController.StoreObject(album);
             }
-            catch {
-                MessageBox.Show("Error while updating record");
+            catch (Exception exfff){
+                MessageBox.Show("Error while updating record" + exfff.StackTrace);
                 return;
             }
             MessageBox.Show("Album updated");
