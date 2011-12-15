@@ -30,11 +30,11 @@ namespace Concert.PresentationLayer
             bands = new List<Band>();
             
             checkedListBoxBands.CheckOnClick = true;
-            //foreach (Band band in DBObjectController.GetAdjectiveBands(concert.Bands))
-            //{
-            //    bands.Add(band);
-            //    checkedListBoxBands.Items.Add(band.Name);
-            //}
+            foreach (Band band in DBObjectController.GetAdjectiveBands(concert.Bands))
+            {
+                bands.Add(band);
+                checkedListBoxBands.Items.Add(band.Name);
+            }
         }
 
         private void ConcertAddBand_FormClosing(object sender, FormClosingEventArgs e)

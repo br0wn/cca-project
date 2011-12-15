@@ -113,46 +113,75 @@ namespace Concert.DataAccessLayer
 
         public static void DeleteObject(DBObjectDefinition.Concert concert)
         {
-            //for db in db.Descendants("ConcertBand")
+            DeleteElement(GetElement(concert.ID, "Concert"));
         }
 
-    //    public static void StoreObject(Concert concert)
-    //    {
-    //        context.Concert.AddObject(concert);
-    //        SaveChanges();
-    //    }
+        public static void StoreObject(DBObjectDefinition.Concert concert)
+        {
+            if (concert.ID != 0)
+                GetElement(concert.ID, "Concert").Remove();
+            else
+                concert.ID = GetElementID("Concert");
+        }
 
-    //    public static IEnumerable<Concert> GetAllConcerts()
-    //    {
-    //        return context.Concert;
-    //    }
+        public static IEnumerable<DBObjectDefinition.Concert> GetAllConcerts()
+        {
+            return from c in db.Descendants("Concert")
+                   where int.Parse(c.Element("ID").Value) != 0
+                   select new DBObjectDefinition.Concert()
+                   {
+                       ID = int.Parse(c.Element("ID").Value),
+                       Name = c.Element("Name").Value,
+                       TicketPrice = int.Parse(c.Element("TicketPrice").Value),
+                       Date = DateTime.Parse(c.Element("Date").Value),
+                       GeoLocation = db.Descendants("Location")
+                                       .Where(l => int.Parse(l.Element("ID").Value) != 0 &&
+                                                   int.Parse(l.Element("ID").Value) == int.Parse(c.Element("LocationID").Value))
+                                       .Select(l => new Location()
+                                       {
+                                           ID = int.Parse(l.Element("ID").Value),
+                                           PostalCode = int.Parse(l.Element("PostalCode").Value),
+                                           SeatCount = int.Parse(l.Element("SeatCOunt").Value),
+                                           Address = l.Element("ID").Value,
+                                           Country = db.Descendants("Country")
+                                                       .Where(d => int.Parse(d.Element("ID").Value) == int.Parse(l.Element("CountryID").Value))
+                                                       .Select(d => new Country()
+                                                       {
+                                                           Name = d.Element("Name").Value
+                                                       })
+                                                       .First()
+                                       })
+                                       .First()
+                       //Bands = db.De
+                   };
+        }
 
-    //    public static IEnumerable<Concert> GetCustomConcerts(string name, int fromPrice, int toPrice, DateTime fromDate, DateTime toDate)
-    //    {
-    //        List<Concert> concerts = new List<Concert>();
-    //        if (!string.IsNullOrEmpty(name))
-    //        {
-    //            foreach (Concert concert in context.Concert.Where(c => c.Name.ToLower().Contains(name.ToLower()) &&
-    //                                                                   c.TicketPrice >= fromPrice                &&
-    //                                                                   c.TicketPrice <= toPrice                  &&
-    //                                                                   c.Date >= fromDate                        &&
-    //                                                                   c.Date <= toDate ))
-    //            {
-    //                concerts.Add(concert);
-    //            }
-    //        }
-    //        else
-    //        {
-    //            foreach (Concert concert in context.Concert.Where(c => c.TicketPrice >= fromPrice &&
-    //                                                                   c.TicketPrice <= toPrice   &&
-    //                                                                   c.Date >= fromDate         &&
-    //                                                                   c.Date <= toDate))
-    //            {
-    //                concerts.Add(concert);
-    //            }
-    //        }
-    //        return concerts;
-    //    }
+        //public static IEnumerable<Concert> GetCustomConcerts(string name, int fromPrice, int toPrice, DateTime fromDate, DateTime toDate)
+        //{
+        //    List<Concert> concerts = new List<Concert>();
+        //    if (!string.IsNullOrEmpty(name))
+        //    {
+        //        foreach (Concert concert in context.Concert.Where(c => c.Name.ToLower().Contains(name.ToLower()) &&
+        //                                                               c.TicketPrice >= fromPrice &&
+        //                                                               c.TicketPrice <= toPrice &&
+        //                                                               c.Date >= fromDate &&
+        //                                                               c.Date <= toDate))
+        //        {
+        //            concerts.Add(concert);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        foreach (Concert concert in context.Concert.Where(c => c.TicketPrice >= fromPrice &&
+        //                                                               c.TicketPrice <= toPrice &&
+        //                                                               c.Date >= fromDate &&
+        //                                                               c.Date <= toDate))
+        //        {
+        //            concerts.Add(concert);
+        //        }
+        //    }
+        //    return concerts;
+        //}
 
         public static void DeleteObject(Location location)
         {
@@ -248,13 +277,7 @@ namespace Concert.DataAccessLayer
 
         public static IEnumerable<Band> GetAdjectiveBands(IEnumerable<Band> bands)
         {
-            List<Band> adjectiveBands = new List<Band>();
-            adjectiveBands.AddRange(GetAllBands());
-            foreach (Band band in bands)
-            {
-                adjectiveBands.Remove(band);
-            }
-            return adjectiveBands;
+            return GetAllBands().Except(bands);
         }
 
         public static void DeleteObject(Instrument instrument)
@@ -317,6 +340,7 @@ namespace Concert.DataAccessLayer
         public static IEnumerable<Country> GetAllCountries()
         {
             IEnumerable<Country> countries = from c in db.Descendants("Country")
+                                             where int.Parse(c.Element("ID").Value) != 0
                                              select new Country()
                                              {
                                                  ID = int.Parse(c.Element("ID").Value),
