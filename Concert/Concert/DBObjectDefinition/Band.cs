@@ -7,7 +7,7 @@ using System.Xml.Linq;
 
 namespace Concert.DBObjectDefinition
 {
-    public class Band : IEqualityComparer<Band>
+    public class Band : IEquatable<Band>
     {
         private int _id;
         private string _name;
@@ -47,14 +47,14 @@ namespace Concert.DBObjectDefinition
             return band;
         }
 
-        public bool Equals(Band x, Band y)
+        public bool Equals(Band other)
         {
-            return x.ID == y.ID;
+            return this.ID == other.ID;
         }
 
-        public int GetHashCode(Band obj)
+        public override int GetHashCode()
         {
-            return obj.ID.GetHashCode();
+            return ID.GetHashCode();
         }
     }
 }

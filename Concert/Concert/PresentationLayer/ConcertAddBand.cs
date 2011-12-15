@@ -30,6 +30,11 @@ namespace Concert.PresentationLayer
             bands = new List<Band>();
             
             checkedListBoxBands.CheckOnClick = true;
+            IEnumerable<Band> nekaj = DBObjectController.GetAdjectiveBands(concert.Bands);
+
+            int count = nekaj.Count();
+
+
             foreach (Band band in DBObjectController.GetAdjectiveBands(concert.Bands))
             {
                 bands.Add(band);
