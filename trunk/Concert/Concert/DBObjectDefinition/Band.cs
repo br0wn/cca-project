@@ -11,8 +11,8 @@ namespace Concert.DBObjectDefinition
     {
         private int _id;
         private string _name;
-        private List<Album> _albums;
-        private List<Artist> _artists;
+        private List<Album> _albums = new List<Album>();
+        private List<Artist> _artists = new List<Artist>();
 
         public int ID
         {
