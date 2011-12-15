@@ -3,10 +3,13 @@
   <xs:element name="Database">
     <xs:complexType>
       <xs:sequence>
+        <!--OK-->
         <xs:element ref="Countries"/>
+        <!--OK-->
         <xs:element ref="Locations" />
         <xs:element ref="Concerts"/>
         <xs:element ref="Bands"/>
+        <!--OK-->
         <xs:element ref="Albums"/>
         <!--OK-->
         <xs:element ref="Tracks"/>
