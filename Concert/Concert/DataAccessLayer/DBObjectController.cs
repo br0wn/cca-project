@@ -113,6 +113,9 @@ namespace Concert.DataAccessLayer
 
         public static void DeleteObject(DBObjectDefinition.Concert concert)
         {
+            db.Descendants("ConcertBand")
+              .Where(cb => int.Parse(cb.Element("ConcertID").Value) == concert.ID).Remove();
+
             DeleteElement(GetElement(concert.ID, "Concert"));
         }
 
@@ -122,6 +125,8 @@ namespace Concert.DataAccessLayer
                 GetElement(concert.ID, "Concert").Remove();
             else
                 concert.ID = GetElementID("Concert");
+
+
         }
 
         public static IEnumerable<DBObjectDefinition.Concert> GetAllConcerts()
@@ -151,8 +156,13 @@ namespace Concert.DataAccessLayer
                                                        })
                                                        .First()
                                        })
-                                       .First()
-                       //Bands = db.De
+                                       .First(),
+                       Bands = db.Descendants("ConcertBand")
+                                 .Where(cb => int.Parse(cb.Element("ConcertID").Value) == int.Parse(c.Element("ID").Value))
+                                 .Select(b => new Band() 
+                                 {
+
+                                 })
                    };
         }
 
