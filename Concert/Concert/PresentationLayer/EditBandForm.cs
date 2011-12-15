@@ -263,10 +263,11 @@ namespace Concert.PresentationLayer
 			MessageBox.Show( "Band successfully edited!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information ); 
 
 			this.EditMode = false;
-			loadBandData( bandIndex );
-			
-			this.listBoxBands.DataSource = null;
-			this.listBoxBands.DataSource = bands;
+			//loadBandData( bandIndex );
+
+			getBands( );
+			//this.listBoxBands.DataSource = null;
+			//this.listBoxBands.DataSource = bands;
 			this.listBoxBands.SelectedIndex = bandIndex;
 
 			setListsDisplayMember( );
