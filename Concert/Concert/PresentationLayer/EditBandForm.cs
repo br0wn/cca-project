@@ -288,7 +288,7 @@ namespace Concert.PresentationLayer
 
 			try
             {
-                //DBObjectController.DeleteObject( band );
+				DBObjectController.DeleteObject( band );
 			}
 			catch ( Exception ex )
 			{
@@ -298,8 +298,7 @@ namespace Concert.PresentationLayer
 
 			bands.RemoveAt( selectedIndex );
 
-			this.listBoxBands.DataSource = null;
-			this.listBoxBands.DataSource = bands;
+			getBands( );
 
 			this.listBoxBands.SelectedIndex = ( bands.Count == 0 ) ? -1 : 0 ;
 			if ( this.bands.Count == 0 )
