@@ -157,41 +157,31 @@ namespace Concert.DataAccessLayer
                                                        .First()
                                        })
                                        .First(),
-                       Bands = db.Descendants("ConcertBand")
-                                 .Where(cb => int.Parse(cb.Element("ConcertID").Value) == int.Parse(c.Element("ID").Value))
-                                 .Select(b => new Band() 
-                                 {
-
-                                 }).ToList()
+                        Bands = GetAllBands().Where(b => db.Descendants("ConcertBand")
+                                                         .Where(cb => int.Parse(cb.Element("ConcertID").Value) == int.Parse(c.Element("ID").Value))
+                                                         .Select( cb => int.Parse(cb.Element("BandID").Value))
+                                                         .Contains(b.ID)).ToList()
                    };
         }
 
-        //public static IEnumerable<Concert> GetCustomConcerts(string name, int fromPrice, int toPrice, DateTime fromDate, DateTime toDate)
-        //{
-        //    List<Concert> concerts = new List<Concert>();
-        //    if (!string.IsNullOrEmpty(name))
-        //    {
-        //        foreach (Concert concert in context.Concert.Where(c => c.Name.ToLower().Contains(name.ToLower()) &&
-        //                                                               c.TicketPrice >= fromPrice &&
-        //                                                               c.TicketPrice <= toPrice &&
-        //                                                               c.Date >= fromDate &&
-        //                                                               c.Date <= toDate))
-        //        {
-        //            concerts.Add(concert);
-        //        }
-        //    }
-        //    else
-        //    {
-        //        foreach (Concert concert in context.Concert.Where(c => c.TicketPrice >= fromPrice &&
-        //                                                               c.TicketPrice <= toPrice &&
-        //                                                               c.Date >= fromDate &&
-        //                                                               c.Date <= toDate))
-        //        {
-        //            concerts.Add(concert);
-        //        }
-        //    }
-        //    return concerts;
-        //}
+        public static IEnumerable<DBObjectDefinition.Concert> GetCustomConcerts(string name, int fromPrice, int toPrice, DateTime fromDate, DateTime toDate)
+        {
+            if (!string.IsNullOrEmpty(name))
+            {
+               return GetAllConcerts().Where(c => c.Name.ToLower().Contains(name.ToLower()) &&
+                                                  c.TicketPrice >= fromPrice &&
+                                                  c.TicketPrice <= toPrice &&
+                                                  c.Date >= fromDate &&
+                                                  c.Date <= toDate);
+            }
+            else
+            {
+                return GetAllConcerts().Where(c => c.TicketPrice >= fromPrice &&
+                                                   c.TicketPrice <= toPrice &&
+                                                   c.Date >= fromDate &&
+                                                   c.Date <= toDate);
+            }
+        }
 
         public static void DeleteObject(Location location)
         {

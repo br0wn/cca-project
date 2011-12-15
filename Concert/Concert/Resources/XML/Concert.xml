@@ -183,6 +183,24 @@
       <LastName>NULL</LastName>
       <BirthDate>01.01.1970</BirthDate>
     </Artist>
+    <Artist>
+      <ID>1</ID>
+      <FirstName>asdas</FirstName>
+      <LastName>asdasd</LastName>
+      <BirthDate>20.11.1990</BirthDate>
+    </Artist>
+    <Artist>
+      <ID>2</ID>
+      <FirstName>asdasd</FirstName>
+      <LastName>sdasdasd</LastName>
+      <BirthDate>02.02.2011</BirthDate>
+    </Artist>
+    <Artist>
+      <ID>3</ID>
+      <FirstName>rtzwrtz</FirstName>
+      <LastName>rtzretz</LastName>
+      <BirthDate>23.12.2000</BirthDate>
+    </Artist>
   </Artists>
   <Instruments>
     <Instrument>
@@ -219,6 +237,24 @@
     </Instrument>
   </Instruments>
   <ConcertsBands></ConcertsBands>
-  <BandsArtists></BandsArtists>
-  <ArtistsInstruments />
+  <BandsArtists>
+    <BandArtist>
+      <BandID>1</BandID>
+      <ArtistID>1</ArtistID>
+    </BandArtist>
+    <BandArtist>
+      <BandID>1</BandID>
+      <ArtistID>2</ArtistID>
+    </BandArtist>
+  </BandsArtists>
+  <ArtistsInstruments>
+    <ArtistInstrument>
+      <ArtistID>1</ArtistID>
+      <InstrumentID>3</InstrumentID>
+    </ArtistInstrument>
+    <ArtistInstrument>
+      <ArtistID>1</ArtistID>
+      <InstrumentID>1</InstrumentID>
+    </ArtistInstrument>
+  </ArtistsInstruments>
 </Database>
