@@ -515,6 +515,18 @@ namespace Concert.DataAccessLayer
 			//}
         }
 
+		public static void DeleteObject( Band band )
+		{
+			foreach ( Album album in band.Albums )
+			{
+				DeleteObject( album );
+			}
+
+			db.Descendants( "BandArtist" ).Where( ba => int.Parse( ba.Element( "BandID" ).Value ) == band.ID ).Remove( );
+			db.Descendants( "ConcertBand" ).Where( cb => int.Parse( cb.Element( "BandID" ).Value ) == band.ID ).Remove( );
+			db.Descendants( "Band" ).Where( b => int.Parse( b.Element( "ID" ).Value ) == band.ID ).Remove( );
+		}
+
         public static IEnumerable<Band> GetAllBands() 
         {
             var bands = db.Descendants("Band").Where( b => int.Parse(b.Element("ID").Value) != 0)
