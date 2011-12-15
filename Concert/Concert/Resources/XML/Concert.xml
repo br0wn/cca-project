@@ -108,31 +108,45 @@
       <Name>NULL</Name>
       <BandID>0</BandID>
     </Album>
+    <Album>
+      <ID>1</ID>
+      <Name>nekialbum</Name>
+      <BandID>1</BandID>
+    </Album>
+    <Album>
+      <ID>2</ID>
+      <Name>idemo</Name>
+      <BandID>1</BandID>
+    </Album>
+    <Album>
+      <ID>3</ID>
+      <Name>novi album</Name>
+      <BandID>1</BandID>
+    </Album>
+    <Album>
+      <ID>4</ID>
+      <Name>nekaj</Name>
+      <BandID>1</BandID>
+    </Album>
+    <Album>
+      <ID>5</ID>
+      <Name>kaj je ovo</Name>
+      <BandID>1</BandID>
+    </Album>
+    <Album>
+      <ID>6</ID>
+      <Name>asdasd</Name>
+      <BandID>1</BandID>
+    </Album>
   </Albums>
   <Tracks>
-    <Track>
-      <ID>1</ID>
-      <Length>12</Length>
-      <Uploaded>false</Uploaded>
-      <Name>nekaja1</Name>
-      <Path></Path>
-      <AlbumID>0</AlbumID>
-    </Track>
-    <Track>
-      <ID>2</ID>
-      <Length>12</Length>
-      <Uploaded>false</Uploaded>
-      <Name>nekaja2</Name>
-      <Path></Path>
-      <AlbumID>0</AlbumID>
-    </Track>
     <Track>
       <ID>3</ID>
       <Length>12</Length>
       <Uploaded>false</Uploaded>
       <Name>nekaja3</Name>
       <Path></Path>
-      <AlbumID>0</AlbumID>
+      <AlbumID>3</AlbumID>
     </Track>
     <Track>
       <ID>4</ID>
@@ -140,7 +154,7 @@
       <Uploaded>false</Uploaded>
       <Name>Pjevajte nešto ljubavno</Name>
       <Path></Path>
-      <AlbumID>0</AlbumID>
+      <AlbumID>3</AlbumID>
     </Track>
     <Track>
       <ID>5</ID>
@@ -148,7 +162,23 @@
       <Uploaded>true</Uploaded>
       <Name>Pjesma</Name>
       <Path>Resources\Audio\02Brkovi - Tolerancija.mp3</Path>
-      <AlbumID>0</AlbumID>
+      <AlbumID>4</AlbumID>
+    </Track>
+    <Track>
+      <ID>1</ID>
+      <Length>12</Length>
+      <Uploaded>false</Uploaded>
+      <Name>nekaja1</Name>
+      <Path></Path>
+      <AlbumID>4</AlbumID>
+    </Track>
+    <Track>
+      <ID>2</ID>
+      <Length>546</Length>
+      <Uploaded>true</Uploaded>
+      <Name>Pjesma</Name>
+      <Path>Resources\Audio\02Brkovi - Tolerancija.mp3</Path>
+      <AlbumID>5</AlbumID>
     </Track>
   </Tracks>
   <Artists>

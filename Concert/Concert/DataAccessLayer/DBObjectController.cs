@@ -357,6 +357,7 @@ namespace Concert.DataAccessLayer
 
             foreach (Track track in album.Tracks)
             {
+                track.Album = album;
                 StoreObject(track);
             }
         }
