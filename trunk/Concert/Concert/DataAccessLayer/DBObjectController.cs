@@ -487,18 +487,33 @@ namespace Concert.DataAccessLayer
                 band.ID = GetElementID("Band");
             }
 
-            XElement XAlbums = db.Descendants("Band").First();
-            XAlbums.Add(band.toXML());
+            XElement XBands = db.Descendants("Bands").First();
+			XBands.Add( band.toXML( ) );
 
+			// osvjezi veze sa izvodjacima
+			db.Descendants( "BandArtist" ).Where( dba => int.Parse( dba.Element( "BandID" ).Value ) == band.ID ).Remove( );
             foreach (Artist artist in band.Artists)
             {
                 XElement xBandsArtists = db.Descendants("BandsArtists").First();
-                XElement bandArtist = new XElement("BandInstrument",
-                                    new XElement("BandID", band.ID),
-                                    new XElement("ArtistID", artist.ID));
+                XElement bandArtist = 
+					new XElement("BandArtist",
+						new XElement("BandID", band.ID),
+						new XElement("ArtistID", artist.ID)
+					);
 
                 xBandsArtists.Add(bandArtist);
             }
+
+			db.Save( XML_PATH );
+			// osvjezi veze sa albumima, tj. pobrisi one albume koji su prije bili vezani za bend a sad vise nisu
+			//List<Album> albums = GetAllAlbums( ).Where( a => a.Band.ID == band.ID ).ToList( );
+			//foreach ( Album album in albums.ToList( ) )
+			//{
+			//    if ( !band.Albums.Contains( album ) )
+			//    {
+			//        DeleteObject( album );
+			//    }
+			//}
         }
 
         public static IEnumerable<Band> GetAllBands() 
@@ -543,7 +558,7 @@ namespace Concert.DataAccessLayer
 
 		public static IEnumerable<Artist> GetArtistByBand( int bandID )
 		{
-			var artistsIDs = from a in db.Descendants( "BandsArtists" )
+			var artistsIDs = from a in db.Descendants( "BandsArtist" )
 						  where int.Parse( a.Element( "BandID" ).Value ) == bandID
 						  select int.Parse( a.Element( "ArtistId" ).Value );
 
