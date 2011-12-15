@@ -162,7 +162,7 @@ namespace Concert.DataAccessLayer
                                  .Select(b => new Band() 
                                  {
 
-                                 })
+                                 }).ToList()
                    };
         }
 
@@ -472,15 +472,72 @@ namespace Concert.DataAccessLayer
 
         public static IEnumerable<Band> GetAllBands() 
         {
-            return db.Descendants("Band").Where( b => int.Parse(b.Element("ID").Value) != 0)
+            var bands = db.Descendants("Band").Where( b => int.Parse(b.Element("ID").Value) != 0)
                                          .Select(a => new Band() 
             {
                 ID = int.Parse(a.Element("ID").Value),
-                Name = a.Element("Name").Value
+                Name = a.Element("Name").Value,
+				Artists = GetArtistByBand( int.Parse( a.Element( "ID" ).Value ) ).ToList(),
+				Albums =  
+					(from b in db.Descendants( "Album" )
+					where int.Parse( b.Element( "BandID" ).Value ) == int.Parse( a.Element( "ID" ).Value )
+					select new Album( )
+					{
+						ID = int.Parse(b.Element("ID").Value),
+						Name = b.Element("Name").Value,
+						Tracks =		(from t in db.Descendants("Track")
+									where int.Parse(t.Element("AlbumID").Value) == int.Parse(b.Element("ID").Value)
+									select new Track() 
+									{
+										ID = int.Parse(t.Element("ID").Value),
+										Name = t.Element("Name").Value,
+										Path = t.Element("Name").Value,
+										Length = int.Parse(t.Element("Length").Value)
+									}).ToList()      
+					}).ToList()
             });
+
+			foreach ( Band band in bands )
+			{
+				foreach ( Album album in band.Albums )
+				{
+					album.Band = band;
+				}
+			}
+
+			return bands;
         }
 
         #region ArtistFunctions
+
+		public static IEnumerable<Artist> GetArtistByBand( int bandID )
+		{
+			var artistsIDs = from a in db.Descendants( "BandsArtists" )
+						  where int.Parse( a.Element( "BandID" ).Value ) == bandID
+						  select int.Parse( a.Element( "ArtistId" ).Value );
+
+			return from c in db.Descendants( "Artist" )
+				   where artistsIDs.Contains( int.Parse( c.Element( "ID" ).Value ) )
+				   select new Artist( )
+				   {
+					   // skopirano iz GetAllArtists
+					   ID = int.Parse( c.Element( "ID" ).Value ),
+					   FirstName = c.Element( "FirstName" ).Value,
+					   LastName = c.Element( "LastName" ).Value,
+					   BirthDate = Convert.ToDateTime( c.Element( "BirthDate" ).Value ),
+					   Instruments = new List<Instrument>
+					   (
+							from ai in db.Descendants( "ArtistInstrument" )
+							where ai.Element( "ArtistID" ).Value == c.Element( "ID" ).Value
+							select new Instrument( )
+							{
+								ID = int.Parse( ai.Element( "InstrumentID" ).Value ),
+								Name = db.Descendants( "Instrument" ).Where( i => i.Element( "ID" ).Value == ai.Element( "InstrumentID" ).Value ).First( ).Element( "Name" ).Value
+							}
+						)
+				   };
+		}
+
         public static void StoreObject(Artist artist)
         {
             if (artist.ID != 0)
