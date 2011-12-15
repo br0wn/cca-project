@@ -198,13 +198,13 @@ namespace Concert.DataAccessLayer
 
         public static void DeleteObject(Location location)
         {
-            IEnumerable<XElement> concerts = from c in db.Descendants("Concert")
-                                             where int.Parse(c.Element("LocationID").Value) == location.ID
-                                             select c;
+            IEnumerable<DBObjectDefinition.Concert> concerts = GetAllConcerts().Where(c => c.GeoLocation != null &&
+                                                                                           c.GeoLocation.ID != location.ID);
 
-            foreach (XElement concert in concerts)
+            foreach (DBObjectDefinition.Concert concert in concerts)
             {
-                concert.Element("LocationID").Value = string.Empty;
+                concert.GeoLocation = null;
+                StoreObject(concert);
             }
 
             DeleteElement(GetElement(location.ID, "Location"));
@@ -329,7 +329,15 @@ namespace Concert.DataAccessLayer
 
         public static void DeleteObject(Country country)
         {
-            db.Descendants("Location").Where(l => int.Parse(l.Element("CountryID").Value) == country.ID).Remove();
+            IEnumerable<Location> locations =  db.Descendants("Location").Where(l => int.Parse(l.Element("CountryID").Value) == country.ID)
+                                                 .Select(l => new Location()
+                                                 {
+                                                     ID = int.Parse(l.Element("ID").Value)
+                                                 });
+            foreach (Location location in locations)
+	        {
+                DeleteObject(location);
+	        }
 
             DeleteElement(GetElement(country.ID, "Country"));
         }
