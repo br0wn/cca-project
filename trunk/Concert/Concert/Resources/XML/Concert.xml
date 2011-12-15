@@ -91,7 +91,29 @@
       <CountryID>7</CountryID>
     </Location>
   </Locations>
-  <Concerts></Concerts>
+  <Concerts>
+    <Concert>
+      <ID>3</ID>
+      <TicketPrice>234</TicketPrice>
+      <Name>nekj</Name>
+      <Date>21.12.2011</Date>
+      <LocationID>2</LocationID>
+    </Concert>
+    <Concert>
+      <ID>1</ID>
+      <TicketPrice>123123</TicketPrice>
+      <Name>sad14</Name>
+      <Date>15.12.2011</Date>
+      <LocationID>3</LocationID>
+    </Concert>
+    <Concert>
+      <ID>2</ID>
+      <TicketPrice>234</TicketPrice>
+      <Name>nekja</Name>
+      <Date>14.12.2011</Date>
+      <LocationID>3</LocationID>
+    </Concert>
+  </Concerts>
   <Bands>
     <Band>
       <ID>0</ID>
@@ -236,7 +258,12 @@
       <Name>nekaj</Name>
     </Instrument>
   </Instruments>
-  <ConcertsBands></ConcertsBands>
+  <ConcertsBands>
+    <ConcertBand>
+      <ConcertID>3</ConcertID>
+      <BandID>1</BandID>
+    </ConcertBand>
+  </ConcertsBands>
   <BandsArtists>
     <BandArtist>
       <BandID>1</BandID>

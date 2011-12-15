@@ -16,7 +16,7 @@ namespace Concert.DataAccessLayer
         const string XML_PATH    = "../../Resources/XML/Concert.xml";
         const string SCHEMA_PATH = "../../Resources/XML/ConcertSchema.xsd";
 
-        private static XDocument db;
+        public static XDocument db;
         private static XmlSchemaSet schema;
 
         public static void InitializeDataBase()
@@ -126,7 +126,20 @@ namespace Concert.DataAccessLayer
             else
                 concert.ID = GetElementID("Concert");
 
+            XElement xConcerts = db.Descendants("Concerts").First();
 
+            xConcerts.Add(concert.toXML());
+
+            db.Descendants("ConcertBand").Where(cb => int.Parse(cb.Element("ConcertID").Value) == concert.ID).Remove();
+
+            XElement xConcertsBands = db.Descendants("ConcertsBands").First();
+
+            foreach (Band band in concert.Bands)
+            {
+                xConcertsBands.Add(new XElement("ConcertBand",
+                                                                new XElement("ConcertID", concert.ID),
+                                                                new XElement("BandID", band.ID)));
+            }
         }
 
         public static IEnumerable<DBObjectDefinition.Concert> GetAllConcerts()
@@ -146,7 +159,7 @@ namespace Concert.DataAccessLayer
                                        {
                                            ID = int.Parse(l.Element("ID").Value),
                                            PostalCode = int.Parse(l.Element("PostalCode").Value),
-                                           SeatCount = int.Parse(l.Element("SeatCOunt").Value),
+                                           SeatCount = int.Parse(l.Element("SeatCount").Value),
                                            Address = l.Element("ID").Value,
                                            Country = db.Descendants("Country")
                                                        .Where(d => int.Parse(d.Element("ID").Value) == int.Parse(l.Element("CountryID").Value))

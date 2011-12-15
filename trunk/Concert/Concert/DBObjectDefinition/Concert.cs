@@ -13,7 +13,7 @@ namespace Concert.DBObjectDefinition
         private string     name;
         private DateTime   date;
         private Location   geoLocation;
-        private List<Band> bands;
+        private List<Band> bands = new List<Band>(); 
 
         public int ID               { get { return id;              } set { id = value;          } }
         public int TicketPrice      { get { return ticketPrice;     } set { ticketPrice = value; } }
@@ -22,13 +22,16 @@ namespace Concert.DBObjectDefinition
         public List<Band> Bands     { get { return bands;           } set { bands = value;       } }
         public Location GeoLocation { get { return geoLocation; }     set { geoLocation = value; } }
 
+
+
         public XElement toXML()
         {
             return new XElement("Concert",
                                             new XElement("ID", ID),
                                             new XElement("TicketPrice", TicketPrice),
                                             new XElement("Name", Name),
-                                            new XElement("Date", date));
+                                            new XElement("Date", date.ToString("dd.MM.yyyy")),
+                                            new XElement("LocationID", geoLocation == null ? 0 : geoLocation.ID));
         }
     }
 }
