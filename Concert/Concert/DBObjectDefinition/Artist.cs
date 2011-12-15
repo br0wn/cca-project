@@ -22,6 +22,7 @@ namespace Concert.DBObjectDefinition
         public DateTime BirthDate { get { return birthDate; } set { birthDate = value; } }
         //public List<Band> Bands { get { return bands; } set { bands = value; } }
         public List<Instrument> Instruments { get { return instruments; } set { instruments = value; } }
+		public string FullName { get { return FirstName + " " + LastName; } }
 
         public XElement toXML()
         {
