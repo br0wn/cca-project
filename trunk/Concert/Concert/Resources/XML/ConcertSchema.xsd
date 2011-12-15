@@ -10,11 +10,13 @@
         <xs:element ref="Albums"/>
         <!--OK-->
         <xs:element ref="Tracks"/>
+        <!--OK-->
         <xs:element ref="Artists"/>
         <!--OK-->
         <xs:element ref="Instruments"/>
         <xs:element ref="ConcertsBands"/>
         <xs:element ref="BandsArtists"/>
+        <!--OK-->
         <xs:element ref="ArtistsInstruments"/>
       </xs:sequence>
     </xs:complexType>

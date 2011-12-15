@@ -82,7 +82,7 @@ namespace Concert.PresentationLayer {
                     MessageBox.Show("Album name cannot be empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                Album album = new Album {Name = albumName};
+                Album album = new Album {Name = albumName, Tracks = new List<Track>()};
                 foreach (Track song in this._addedSongs)
                 {
                     album.Tracks.Add(song);
