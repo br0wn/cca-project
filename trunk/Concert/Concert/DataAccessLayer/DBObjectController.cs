@@ -420,28 +420,59 @@ namespace Concert.DataAccessLayer
 
         public static IEnumerable<Album> GetAllAlbums()
         {
-            return db.Descendants("Album").Where(a => int.Parse(a.Element("ID").Value) != 0)
-                                          .Select(a => new Album()
-                   {
-                       ID = int.Parse(a.Element("ID").Value),
-                       Name = a.Element("Name").Value,
-                       Band = int.Parse(a.Element("BandID").Value) == 0 ? null : new Band()
-                       {
-                           ID = int.Parse(a.Element("BandID").Value),
-                           Name = db.Descendants("Band").Where(b => int.Parse(b.Element("ID").Value) == int.Parse(a.Element("BandID").Value))
-                                                         .First()
-                                                         .Element("Name").Value
-                       },
-                       Tracks = (List<Track>) from t in db.Descendants("Track")
-                                              where int.Parse(t.Element("AlbumID").Value) == int.Parse(a.Element("ID").Value)
-                                              select new Track() 
-                                              {
-                                                  ID = int.Parse(t.Element("ID").Value),
-                                                  Name = t.Element("Name").Value,
-                                                  Path = t.Element("Name").Value,
-                                                  Length = int.Parse(t.Element("Length").Value)
-                                              }
-                      });
+            IEnumerable<Album> allAlbums =  from a in db.Descendants("Album")
+                                                  where int.Parse(a.Element("ID").Value) != 0
+                                                  select new Album
+                                                             {
+                                                                 ID = int.Parse(a.Element("ID").Value),
+                                                                 Name = a.Element("Name").Value,
+                                                                 Band = int.Parse(a.Element("BandID").Value) == 0
+                                                                            ? null
+                                                                            : new Band
+                                                                                  {
+                                                                                      ID =
+                                                                                          int.Parse(
+                                                                                              a.Element("BandID").Value),
+                                                                                      Name =
+                                                                                          db.Descendants("Band").Where(
+                                                                                              b =>
+                                                                                              int.Parse(
+                                                                                                  b.Element("ID").Value) ==
+                                                                                              int.Parse(
+                                                                                                  a.Element("BandID").
+                                                                                                      Value))
+                                                                                          .First()
+                                                                                          .Element("Name").Value
+                                                                                  },
+                                                                 Tracks =
+                                                                     (List<Track>) (from t in db.Descendants("Track")
+                                                                                    where
+                                                                                        int.Parse(
+                                                                                            t.Element("AlbumID").Value) ==
+                                                                                        int.Parse(a.Element("ID").Value)
+                                                                                    select new Track
+                                                                                               {
+                                                                                                   ID =
+                                                                                                       int.Parse(
+                                                                                                           t.Element(
+                                                                                                               "ID").
+                                                                                                               Value),
+                                                                                                   Name =
+                                                                                                       t.Element("Name")
+                                                                                                       .Value,
+                                                                                                   Path =
+                                                                                                       t.Element("Name")
+                                                                                                       .Value,
+                                                                                                   Length =
+                                                                                                       int.Parse(
+                                                                                                           t.Element(
+                                                                                                               "Length")
+                                                                                                               .Value),
+                                                                                                   Uploaded = false,
+                                                                                                   Album = null
+                                                                                               }).ToList()
+                                                             };    
+            return allAlbums.ToList();
         }
 
         public static void StoreObject(Band band)
