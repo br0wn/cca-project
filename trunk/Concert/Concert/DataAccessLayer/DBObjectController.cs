@@ -466,7 +466,6 @@ namespace Concert.DataAccessLayer
                                     new XElement("ArtistID", artist.ID));
 
                 xBandsArtists.Add(bandArtist);
-
             }
         }
 
