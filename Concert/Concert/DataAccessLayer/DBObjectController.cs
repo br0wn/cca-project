@@ -504,7 +504,6 @@ namespace Concert.DataAccessLayer
                 xBandsArtists.Add(bandArtist);
             }
 
-			db.Save( XML_PATH );
 			// osvjezi veze sa albumima, tj. pobrisi one albume koji su prije bili vezani za bend a sad vise nisu
 			//List<Album> albums = GetAllAlbums( ).Where( a => a.Band.ID == band.ID ).ToList( );
 			//foreach ( Album album in albums.ToList( ) )
@@ -558,9 +557,9 @@ namespace Concert.DataAccessLayer
 
 		public static IEnumerable<Artist> GetArtistByBand( int bandID )
 		{
-			var artistsIDs = from a in db.Descendants( "BandsArtist" )
-						  where int.Parse( a.Element( "BandID" ).Value ) == bandID
-						  select int.Parse( a.Element( "ArtistId" ).Value );
+			var artistsIDs = from a in db.Descendants( "BandArtist" )
+							 where int.Parse( a.Element( "BandID" ).Value ) == bandID
+						  select int.Parse( a.Element( "ArtistID" ).Value );
 
 			return from c in db.Descendants( "Artist" )
 				   where artistsIDs.Contains( int.Parse( c.Element( "ID" ).Value ) )
@@ -616,6 +615,7 @@ namespace Concert.DataAccessLayer
         public static IEnumerable<Artist> GetAllArtists()
         {
             IEnumerable<Artist> artists = from c in db.Descendants("Artist")
+										  where int.Parse( c.Element( "ID" ).Value ) != 0
                                           select new Artist()
                                            {
                                                ID = int.Parse(c.Element("ID").Value),
