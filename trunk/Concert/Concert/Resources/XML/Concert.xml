@@ -109,13 +109,8 @@
       <BandID>0</BandID>
     </Album>
     <Album>
-      <ID>1</ID>
-      <Name>nekialbum</Name>
-      <BandID>1</BandID>
-    </Album>
-    <Album>
-      <ID>2</ID>
-      <Name>idemo</Name>
+      <ID>3</ID>
+      <Name>novi album</Name>
       <BandID>1</BandID>
     </Album>
     <Album>
@@ -129,13 +124,13 @@
       <BandID>1</BandID>
     </Album>
     <Album>
-      <ID>6</ID>
-      <Name>asdasd</Name>
+      <ID>1</ID>
+      <Name>nekialbum</Name>
       <BandID>1</BandID>
     </Album>
     <Album>
-      <ID>3</ID>
-      <Name>novi album</Name>
+      <ID>2</ID>
+      <Name>idemo</Name>
       <BandID>1</BandID>
     </Album>
   </Albums>
@@ -146,15 +141,7 @@
       <Uploaded>false</Uploaded>
       <Name>nekaja3</Name>
       <Path></Path>
-      <AlbumID>3</AlbumID>
-    </Track>
-    <Track>
-      <ID>5</ID>
-      <Length>546</Length>
-      <Uploaded>true</Uploaded>
-      <Name>Pjesma</Name>
-      <Path>Resources\Audio\02Brkovi - Tolerancija.mp3</Path>
-      <AlbumID>4</AlbumID>
+      <AlbumID>1</AlbumID>
     </Track>
     <Track>
       <ID>1</ID>
@@ -162,7 +149,7 @@
       <Uploaded>false</Uploaded>
       <Name>nekaja1</Name>
       <Path></Path>
-      <AlbumID>4</AlbumID>
+      <AlbumID>0</AlbumID>
     </Track>
     <Track>
       <ID>2</ID>
@@ -170,7 +157,7 @@
       <Uploaded>true</Uploaded>
       <Name>Pjesma</Name>
       <Path>Resources\Audio\02Brkovi - Tolerancija.mp3</Path>
-      <AlbumID>5</AlbumID>
+      <AlbumID>0</AlbumID>
     </Track>
     <Track>
       <ID>4</ID>
@@ -178,7 +165,15 @@
       <Uploaded>false</Uploaded>
       <Name>Pjevajte nešto ljubavno</Name>
       <Path></Path>
-      <AlbumID>3</AlbumID>
+      <AlbumID>0</AlbumID>
+    </Track>
+    <Track>
+      <ID>5</ID>
+      <Length>546</Length>
+      <Uploaded>true</Uploaded>
+      <Name>Pjesma</Name>
+      <Path>Resources\Audio\02Brkovi - Tolerancija.mp3</Path>
+      <AlbumID>2</AlbumID>
     </Track>
   </Tracks>
   <Artists>

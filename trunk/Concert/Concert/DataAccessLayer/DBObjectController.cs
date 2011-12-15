@@ -372,20 +372,21 @@ namespace Concert.DataAccessLayer
             IEnumerable<int> trackIDs = from t in album.Tracks
                                         select t.ID;
 
-            IEnumerable<Track> tracks = from t in db.Descendants("Track")
-                                        where int.Parse(t.Element("AlbumID").Value) == album.ID &&
-                                              trackIDs.Contains(int.Parse(t.Element("AlbumID").Value))
-                                        select new Track()
-                                        {
-                                            ID = int.Parse(t.Element("ID").Value),
-                                            Length = int.Parse(t.Element("Length").Value),
-                                            Name = t.Element("Name").Value,
-                                            Path = t.Element("Path").Value,
-                                            Uploaded = bool.Parse(t.Element("Uploaded").Value)
-                                        };
+            List<Track> tracks = (List<Track>) (from t in db.Descendants("Track")
+                                         where int.Parse(t.Element("AlbumID").Value) == album.ID// &&
+                                         //trackIDs.Contains(int.Parse(t.Element("AlbumID").Value))
+                                         select new Track()
+                                                    {
+                                                        ID = int.Parse(t.Element("ID").Value),
+                                                        Length = int.Parse(t.Element("Length").Value),
+                                                        Name = t.Element("Name").Value,
+                                                        Path = t.Element("Path").Value,
+                                                        Uploaded = bool.Parse(t.Element("Uploaded").Value)
+                                                    }).ToList();
 
             foreach (Track track in tracks)
             {
+                track.Album = null;
                 StoreObject(track);
             }
 
