@@ -174,6 +174,7 @@
             // dataGridViewConcerts
             // 
             this.dataGridViewConcerts.AllowUserToAddRows = false;
+            this.dataGridViewConcerts.AllowUserToDeleteRows = false;
             this.dataGridViewConcerts.AllowUserToResizeColumns = false;
             this.dataGridViewConcerts.AllowUserToResizeRows = false;
             this.dataGridViewConcerts.BackgroundColor = System.Drawing.Color.White;
