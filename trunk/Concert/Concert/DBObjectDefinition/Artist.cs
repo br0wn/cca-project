@@ -6,7 +6,7 @@ using System.Xml.Linq;
 
 namespace Concert.DBObjectDefinition
 {
-    public class Artist:IComparable<Artist>
+    public class Artist : IComparable<Artist>
     {
 
         private int id;
