@@ -47,6 +47,7 @@
             this.comboBoxCountry = new System.Windows.Forms.ComboBox();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.groupBoxLocationPanel = new System.Windows.Forms.GroupBox();
+            this.comboBoxCountryCurrent = new System.Windows.Forms.ComboBox();
             this.labelSeatCountCurrent = new System.Windows.Forms.Label();
             this.labelPostalCodeCurrent = new System.Windows.Forms.Label();
             this.labelAddressCurrent = new System.Windows.Forms.Label();
@@ -55,7 +56,6 @@
             this.textBoxAddressCurrent = new System.Windows.Forms.TextBox();
             this.textBoxPostalCodeCurrent = new System.Windows.Forms.TextBox();
             this.textBoxSeatCountCurrent = new System.Windows.Forms.TextBox();
-            this.comboBoxCountryCurrent = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderLocation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewLocation)).BeginInit();
             this.groupBoxLocation.SuspendLayout();
@@ -140,6 +140,7 @@
             // dataGridViewLocation
             // 
             this.dataGridViewLocation.AllowUserToAddRows = false;
+            this.dataGridViewLocation.AllowUserToDeleteRows = false;
             this.dataGridViewLocation.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewLocation.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.LocationCountry,
@@ -235,6 +236,14 @@
             this.groupBoxLocationPanel.TabStop = false;
             this.groupBoxLocationPanel.Text = "Location Control";
             // 
+            // comboBoxCountryCurrent
+            // 
+            this.comboBoxCountryCurrent.FormattingEnabled = true;
+            this.comboBoxCountryCurrent.Location = new System.Drawing.Point(63, 239);
+            this.comboBoxCountryCurrent.Name = "comboBoxCountryCurrent";
+            this.comboBoxCountryCurrent.Size = new System.Drawing.Size(81, 21);
+            this.comboBoxCountryCurrent.TabIndex = 21;
+            // 
             // labelSeatCountCurrent
             // 
             this.labelSeatCountCurrent.AutoSize = true;
@@ -301,14 +310,6 @@
             this.textBoxSeatCountCurrent.Name = "textBoxSeatCountCurrent";
             this.textBoxSeatCountCurrent.Size = new System.Drawing.Size(48, 20);
             this.textBoxSeatCountCurrent.TabIndex = 7;
-            // 
-            // comboBoxCountryCurrent
-            // 
-            this.comboBoxCountryCurrent.FormattingEnabled = true;
-            this.comboBoxCountryCurrent.Location = new System.Drawing.Point(63, 239);
-            this.comboBoxCountryCurrent.Name = "comboBoxCountryCurrent";
-            this.comboBoxCountryCurrent.Size = new System.Drawing.Size(81, 21);
-            this.comboBoxCountryCurrent.TabIndex = 21;
             // 
             // NewLocation
             // 
