@@ -93,25 +93,25 @@
   </Locations>
   <Concerts>
     <Concert>
-      <ID>3</ID>
+      <ID>4</ID>
       <TicketPrice>234</TicketPrice>
-      <Name>nekj</Name>
-      <Date>21.12.2011</Date>
-      <LocationID>2</LocationID>
+      <Name>kfdgjasd</Name>
+      <Date>16.12.2011</Date>
+      <LocationID>1</LocationID>
     </Concert>
     <Concert>
       <ID>1</ID>
       <TicketPrice>123123</TicketPrice>
-      <Name>sad14</Name>
+      <Name>sad14asd</Name>
       <Date>15.12.2011</Date>
-      <LocationID>3</LocationID>
+      <LocationID>2</LocationID>
     </Concert>
     <Concert>
-      <ID>2</ID>
+      <ID>3</ID>
       <TicketPrice>234</TicketPrice>
-      <Name>nekja</Name>
-      <Date>14.12.2011</Date>
-      <LocationID>3</LocationID>
+      <Name>nekjawasd</Name>
+      <Date>21.12.2011</Date>
+      <LocationID>1</LocationID>
     </Concert>
   </Concerts>
   <Bands>
@@ -122,6 +122,10 @@
     <Band>
       <ID>1</ID>
       <Name>MEtallica</Name>
+    </Band>
+    <Band>
+      <ID>2</ID>
+      <Name>lalal</Name>
     </Band>
   </Bands>
   <Albums>
@@ -260,6 +264,10 @@
   </Instruments>
   <ConcertsBands>
     <ConcertBand>
+      <ConcertID>4</ConcertID>
+      <BandID>1</BandID>
+    </ConcertBand>
+    <ConcertBand>
       <ConcertID>3</ConcertID>
       <BandID>1</BandID>
     </ConcertBand>
@@ -271,6 +279,14 @@
     </BandArtist>
     <BandArtist>
       <BandID>1</BandID>
+      <ArtistID>2</ArtistID>
+    </BandArtist>
+    <BandArtist>
+      <BandID>2</BandID>
+      <ArtistID>1</ArtistID>
+    </BandArtist>
+    <BandArtist>
+      <BandID>2</BandID>
       <ArtistID>2</ArtistID>
     </BandArtist>
   </BandsArtists>
