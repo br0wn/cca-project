@@ -160,16 +160,16 @@ namespace Concert.DataAccessLayer
                                            ID = int.Parse(l.Element("ID").Value),
                                            PostalCode = int.Parse(l.Element("PostalCode").Value),
                                            SeatCount = int.Parse(l.Element("SeatCount").Value),
-                                           Address = l.Element("ID").Value,
+                                           Address = l.Element("Address").Value,
                                            Country = db.Descendants("Country")
                                                        .Where(d => int.Parse(d.Element("ID").Value) == int.Parse(l.Element("CountryID").Value))
                                                        .Select(d => new Country()
                                                        {
                                                            Name = d.Element("Name").Value
                                                        })
-                                                       .First()
+                                                       .FirstOrDefault()
                                        })
-                                       .First(),
+                                       .FirstOrDefault(),
                         Bands = GetAllBands().Where(b => db.Descendants("ConcertBand")
                                                          .Where(cb => int.Parse(cb.Element("ConcertID").Value) == int.Parse(c.Element("ID").Value))
                                                          .Select( cb => int.Parse(cb.Element("BandID").Value))
@@ -199,12 +199,22 @@ namespace Concert.DataAccessLayer
         public static void DeleteObject(Location location)
         {
             IEnumerable<DBObjectDefinition.Concert> concerts = GetAllConcerts().Where(c => c.GeoLocation != null &&
-                                                                                           c.GeoLocation.ID != location.ID);
+                                        c.GeoLocation.ID == location.ID);
+
+            GetAllConcerts().Where(c => c.GeoLocation != null &&
+                                        c.GeoLocation.ID == location.ID)
+                            .Select(c => GetElement(c.ID, "Concert")).Remove();
+
+
+            XElement xConcerts = db.Descendants("Concerts").First();
 
             foreach (DBObjectDefinition.Concert concert in concerts)
             {
+                //GetElement(concert.ID, "Concert").Remove();
+
                 concert.GeoLocation = null;
-                StoreObject(concert);
+
+                xConcerts.Add(concert.toXML());
             }
 
             DeleteElement(GetElement(location.ID, "Location"));

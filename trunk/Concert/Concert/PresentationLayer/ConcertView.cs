@@ -37,6 +37,16 @@ namespace Concert.PresentationLayer
             }
         }
 
+        private void RefreshLocationData()
+        {
+            DBObjectDefinition.Concert concert = (DBObjectDefinition.Concert)dataGridViewConcerts.CurrentRow.Tag;
+
+            textBoxCountry.Text = concert.GeoLocation.Country.Name;
+            textBoxAddress.Text = concert.GeoLocation.Address;
+            textBoxPostalCode.Text = concert.GeoLocation.PostalCode.ToString();
+            textBoxSeatCount.Text = concert.GeoLocation.SeatCount.ToString();
+        }
+
         private void RefreshBandData()
         {
             dataGridViewBand.Rows.Clear();
@@ -100,8 +110,8 @@ namespace Concert.PresentationLayer
                 if (changeLocation.geoLocation != null)
                 {
                     ((DBObjectDefinition.Concert)dataGridViewConcerts.CurrentRow.Tag).GeoLocation = changeLocation.geoLocation;
-                    DBObjectController.SaveChanges();
-                    LoadConcertData();
+                    DBObjectController.StoreObject((DBObjectDefinition.Concert)dataGridViewConcerts.CurrentRow.Tag);
+                    RefreshLocationData();
                 }
             }
         }
@@ -274,7 +284,7 @@ namespace Concert.PresentationLayer
 
                     dataGridViewConcerts.CurrentRow.Cells[0].Value = textBoxCurrentName.Text;
                     dataGridViewConcerts.CurrentRow.Cells[1].Value = int.Parse(textBoxCurrentTicketPrice.Text);
-                    dataGridViewConcerts.CurrentRow.Cells[2].Value = DateTime.Parse(concert.Date.ToString("dd.MM.yyyy"));
+                    dataGridViewConcerts.CurrentRow.Cells[2].Value = concert.Date.ToString("dd.MM.yyyy.");
                 }
             }
             else
@@ -365,7 +375,7 @@ namespace Concert.PresentationLayer
             Band band = (Band)dataGridViewBand.CurrentRow.Tag;
             concert.Bands.Remove(band);
             
-            DBObjectController.SaveChanges();
+            DBObjectController.StoreObject(concert);
         }
 
         private void buttonAddBands_Click(object sender, EventArgs e)
@@ -374,6 +384,7 @@ namespace Concert.PresentationLayer
             {
                 ConcertAddBand hireBand = new ConcertAddBand((DBObjectDefinition.Concert)dataGridViewConcerts.CurrentRow.Tag);
                 hireBand.ShowDialog();
+                DBObjectController.StoreObject((DBObjectDefinition.Concert)dataGridViewConcerts.CurrentRow.Tag);
                 RefreshBandData();
             }
         }
