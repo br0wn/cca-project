@@ -14,6 +14,7 @@ namespace Concert.DataAccessLayer
     class DBObjectController
     {
         const string XML_PATH    = "../../Resources/XML/Concert.xml";
+        const string INIT_PATH   = "../../Resources/XML/InitialConcert.xml";
         const string SCHEMA_PATH = "../../Resources/XML/ConcertSchema.xsd";
 
         public static XDocument db;
@@ -23,21 +24,21 @@ namespace Concert.DataAccessLayer
         {
             try
             {
-                db = XDocument.Load(XML_PATH);
                 schema = new XmlSchemaSet();
                 schema.Add("", XmlReader.Create(new StreamReader(SCHEMA_PATH)));
+                db = XDocument.Load(XML_PATH);
+                ValidateDatabase();
             }
             catch (Exception e)
             {
-                MessageBox.Show(String.Format("Failed to read xml or xsd document.\r\n" + 
-                                              "Check paths:\r\n\t" + 
-                                              ".xml: {0}\r\n\t" + 
-                                              ".xsd: {1}\r\n" + 
+                MessageBox.Show(String.Format("Failed to read (.xml or .xsd) document or validate xml document.\r\n" +
+                                              "Loading initial database from : ./Resources/XML/InitialConcert.xml\r\n" + 
                                               "Error message :\r\n" + 
                                               "###############\r\n" +
-                                              "{2}", XML_PATH, SCHEMA_PATH, e.Message));
+                                              "{0}", e.Message));
+
+                db = XDocument.Load(INIT_PATH);
             }
-            ValidateDatabase();
         }
 
         private static XElement GetElement(int ID, string Xname)

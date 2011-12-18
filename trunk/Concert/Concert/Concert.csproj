@@ -228,6 +228,7 @@
     <Content Include="Resources\XML\Concert.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Resources\XML\InitialConcert.xml" />
     <None Include="Resources\speaker-music-blue11.jpg" />
     <None Include="Resources\pikachu.ico" />
   </ItemGroup>

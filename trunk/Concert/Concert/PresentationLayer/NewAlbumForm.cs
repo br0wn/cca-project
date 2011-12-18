@@ -40,16 +40,19 @@ namespace Concert.PresentationLayer {
                 return;
             }
 
-            int songIndex = this.listBoxSongs.SelectedIndex;
-            Track song = this._addedSongs[songIndex];
-            this._addedSongs.RemoveAt(songIndex);
-            this._availableSongs.Add(song);
+            if (this.listBoxSongs.SelectedIndex >= 0)
+            {
+                int songIndex = this.listBoxSongs.SelectedIndex;
+                Track song = this._addedSongs[songIndex];
+                this._addedSongs.RemoveAt(songIndex);
+                this._availableSongs.Add(song);
 
-            this.listBoxAvaliableSongs.DataSource = null;
-            this.listBoxSongs.DataSource = null;
-            this.listBoxAvaliableSongs.DataSource = this._availableSongs;
-            this.listBoxSongs.DataSource = this._addedSongs;
-            this.SetDisplayMember();
+                this.listBoxAvaliableSongs.DataSource = null;
+                this.listBoxSongs.DataSource = null;
+                this.listBoxAvaliableSongs.DataSource = this._availableSongs;
+                this.listBoxSongs.DataSource = this._addedSongs;
+                this.SetDisplayMember(); 
+            }
 
         }
 
@@ -59,17 +62,21 @@ namespace Concert.PresentationLayer {
                 return;
             }
 
-            int songIndex = this.listBoxAvaliableSongs.SelectedIndex;
-            Track song = this._availableSongs[songIndex];
-            this._availableSongs.RemoveAt(songIndex);
-            this._addedSongs.Add(song);
 
-            this.listBoxSongs.DataSource = null;
-            this.listBoxAvaliableSongs.DataSource = null;
-            this.listBoxAvaliableSongs.DataSource = this._availableSongs;
-            this.listBoxSongs.DataSource = this._addedSongs;
-            this.SetDisplayMember();
+            if (this.listBoxAvaliableSongs.SelectedIndex >= 0)
+            {
+                int songIndex = this.listBoxAvaliableSongs.SelectedIndex;
+                Track song = this._availableSongs[songIndex];
+                this._availableSongs.RemoveAt(songIndex);
+                this._addedSongs.Add(song);
 
+                this.listBoxSongs.DataSource = null;
+                this.listBoxAvaliableSongs.DataSource = null;
+                this.listBoxAvaliableSongs.DataSource = this._availableSongs;
+                this.listBoxSongs.DataSource = this._addedSongs;
+                this.SetDisplayMember();
+                
+            }
         }
 
         private void buttonAddAlbum_Click(object sender, EventArgs e)

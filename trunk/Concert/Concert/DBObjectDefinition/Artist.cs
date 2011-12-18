@@ -38,5 +38,10 @@ namespace Concert.DBObjectDefinition
         {
             return a.ID.CompareTo(this.ID);
         }
+
+        public override string ToString()
+        {
+            return FirstName + " " + LastName;
+        }
     }
 }
