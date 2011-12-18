@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
@@ -17,11 +18,11 @@ namespace Concert
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            
-            DBObjectController.InitializeDataBase();
 
-            Application.Run(new MainControlPanel());
+            DBObjectController.InitializeDataBase();
             
+            Application.Run(new MainControlPanel());
+
             if (DBObjectController.ValidateDatabase())
             {
                 DBObjectController.SaveChanges();

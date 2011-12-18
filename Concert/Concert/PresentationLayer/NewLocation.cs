@@ -100,7 +100,10 @@ namespace Concert.PresentationLayer
 
         private void ClearForm()
         {
-            comboBoxCountry.SelectedIndex = 0;
+            if (comboBoxCountry.SelectedIndex >= 0)
+            {
+                comboBoxCountry.SelectedIndex = 0;
+            }
             textBoxAddress.Clear();
             textBoxPostalCode.Clear();
             textBoxSeatCount.Clear();

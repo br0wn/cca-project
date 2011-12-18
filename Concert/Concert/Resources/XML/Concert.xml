@@ -19,39 +19,11 @@
     </Country>
     <Country>
       <ID>4</ID>
-      <Name>Italija</Name>
-    </Country>
-    <Country>
-      <ID>5</ID>
       <Name>Austrija</Name>
     </Country>
     <Country>
-      <ID>6</ID>
-      <Name>Grčka</Name>
-    </Country>
-    <Country>
-      <ID>7</ID>
-      <Name>Njemačka</Name>
-    </Country>
-    <Country>
-      <ID>8</ID>
-      <Name>Francuska</Name>
-    </Country>
-    <Country>
-      <ID>9</ID>
-      <Name>Portugal</Name>
-    </Country>
-    <Country>
-      <ID>10</ID>
-      <Name>Španjolska</Name>
-    </Country>
-    <Country>
-      <ID>11</ID>
-      <Name>Velika Britanija</Name>
-    </Country>
-    <Country>
-      <ID>12</ID>
-      <Name>Irska</Name>
+      <ID>5</ID>
+      <Name>Italija</Name>
     </Country>
   </Countries>
   <Locations>
@@ -64,54 +36,61 @@
     </Location>
     <Location>
       <ID>1</ID>
-      <SeatCount>1233</SeatCount>
+      <SeatCount>4550</SeatCount>
       <PostalCode>1000</PostalCode>
-      <Address>Savski putic</Address>
+      <Address>Ilica 12</Address>
       <CountryID>1</CountryID>
     </Location>
     <Location>
       <ID>2</ID>
-      <SeatCount>1850</SeatCount>
-      <PostalCode>1000</PostalCode>
-      <Address>Ilica 11</Address>
+      <SeatCount>1300</SeatCount>
+      <PostalCode>42000</PostalCode>
+      <Address>Stjepan Radić 145</Address>
       <CountryID>1</CountryID>
     </Location>
     <Location>
       <ID>3</ID>
-      <SeatCount>2344</SeatCount>
-      <PostalCode>12001</PostalCode>
-      <Address>Strasse 23</Address>
-      <CountryID>5</CountryID>
+      <SeatCount>30000</SeatCount>
+      <PostalCode>52100</PostalCode>
+      <Address>Flavijevska ulica</Address>
+      <CountryID>1</CountryID>
     </Location>
     <Location>
       <ID>4</ID>
-      <SeatCount>123</SeatCount>
-      <PostalCode>123</PostalCode>
-      <Address>nekaj novo</Address>
-      <CountryID>7</CountryID>
+      <SeatCount>20000</SeatCount>
+      <PostalCode>10000</PostalCode>
+      <Address>Lanište</Address>
+      <CountryID>1</CountryID>
+    </Location>
+    <Location>
+      <ID>5</ID>
+      <SeatCount>150</SeatCount>
+      <PostalCode>1000</PostalCode>
+      <Address>Unska 3</Address>
+      <CountryID>1</CountryID>
+    </Location>
+    <Location>
+      <ID>6</ID>
+      <SeatCount>56000</SeatCount>
+      <PostalCode>23000</PostalCode>
+      <Address>Osterich strasse 12</Address>
+      <CountryID>4</CountryID>
     </Location>
   </Locations>
   <Concerts>
     <Concert>
-      <ID>4</ID>
-      <TicketPrice>234</TicketPrice>
-      <Name>kfdgjasd</Name>
-      <Date>16.12.2011</Date>
-      <LocationID>1</LocationID>
+      <ID>0</ID>
+      <TicketPrice>0</TicketPrice>
+      <Name>NULL</Name>
+      <Date>01.01.1970</Date>
+      <LocationID>0</LocationID>
     </Concert>
     <Concert>
       <ID>1</ID>
-      <TicketPrice>123123</TicketPrice>
-      <Name>sad14asd</Name>
-      <Date>15.12.2011</Date>
-      <LocationID>2</LocationID>
-    </Concert>
-    <Concert>
-      <ID>3</ID>
-      <TicketPrice>234</TicketPrice>
-      <Name>nekjawasd</Name>
-      <Date>21.12.2011</Date>
-      <LocationID>1</LocationID>
+      <TicketPrice>12</TicketPrice>
+      <Name>Ferabolic</Name>
+      <Date>07.12.2011</Date>
+      <LocationID>3</LocationID>
     </Concert>
   </Concerts>
   <Bands>
@@ -121,11 +100,27 @@
     </Band>
     <Band>
       <ID>1</ID>
-      <Name>MEtallica</Name>
+      <Name>Novi Band</Name>
     </Band>
     <Band>
       <ID>2</ID>
-      <Name>lalal</Name>
+      <Name>SoloBand</Name>
+    </Band>
+    <Band>
+      <ID>3</ID>
+      <Name>Duet</Name>
+    </Band>
+    <Band>
+      <ID>4</ID>
+      <Name>Svi</Name>
+    </Band>
+    <Band>
+      <ID>5</ID>
+      <Name>Stonoga</Name>
+    </Band>
+    <Band>
+      <ID>6</ID>
+      <Name>Quatro</Name>
     </Band>
   </Bands>
   <Albums>
@@ -135,50 +130,87 @@
       <BandID>0</BandID>
     </Album>
     <Album>
-      <ID>5</ID>
-      <Name>kaj je ovo</Name>
-      <BandID>1</BandID>
+      <ID>1</ID>
+      <Name>Slolo Prvi uradak</Name>
+      <BandID>2</BandID>
     </Album>
     <Album>
       <ID>2</ID>
-      <Name>idemo</Name>
-      <BandID>1</BandID>
+      <Name>Bang Bang</Name>
+      <BandID>4</BandID>
     </Album>
     <Album>
-      <ID>1</ID>
-      <Name>nekialbum</Name>
-      <BandID>1</BandID>
+      <ID>3</ID>
+      <Name>Slina</Name>
+      <BandID>6</BandID>
     </Album>
     <Album>
       <ID>4</ID>
-      <Name>nekaj</Name>
-      <BandID>1</BandID>
+      <Name>Album</Name>
+      <BandID>5</BandID>
+    </Album>
+    <Album>
+      <ID>5</ID>
+      <Name>Smrzotina</Name>
+      <BandID>4</BandID>
     </Album>
   </Albums>
   <Tracks>
     <Track>
-      <ID>4</ID>
-      <Length>546</Length>
+      <ID>0</ID>
+      <Length>0</Length>
       <Uploaded>false</Uploaded>
-      <Name>Pjevajte nešto ljubavno</Name>
-      <Path></Path>
+      <Name>NULL</Name>
+      <Path>NULL</Path>
       <AlbumID>0</AlbumID>
     </Track>
     <Track>
       <ID>5</ID>
-      <Length>546</Length>
-      <Uploaded>true</Uploaded>
-      <Name>Pjesma</Name>
-      <Path>Resources\Audio\02Brkovi - Tolerancija.mp3</Path>
-      <AlbumID>2</AlbumID>
+      <Length>52</Length>
+      <Uploaded>false</Uploaded>
+      <Name>La Route</Name>
+      <Path></Path>
+      <AlbumID>1</AlbumID>
+    </Track>
+    <Track>
+      <ID>6</ID>
+      <Length>309</Length>
+      <Uploaded>false</Uploaded>
+      <Name>Samantha</Name>
+      <Path></Path>
+      <AlbumID>1</AlbumID>
     </Track>
     <Track>
       <ID>3</ID>
-      <Length>12</Length>
+      <Length>64</Length>
       <Uploaded>false</Uploaded>
-      <Name>nekaja3</Name>
+      <Name>Flash light</Name>
       <Path></Path>
-      <AlbumID>0</AlbumID>
+      <AlbumID>2</AlbumID>
+    </Track>
+    <Track>
+      <ID>1</ID>
+      <Length>123</Length>
+      <Uploaded>false</Uploaded>
+      <Name>Lako je</Name>
+      <Path></Path>
+      <AlbumID>3</AlbumID>
+    </Track>
+    <Track>
+      <ID>2</ID>
+      <Length>324</Length>
+      <Uploaded>false</Uploaded>
+      <Name>Be quick or be dead</Name>
+      <Path></Path>
+      <AlbumID>4</AlbumID>
+    </Track>
+    <Track>
+      <ID>4</ID>
+      <Length>234</Length>
+      <Uploaded>false</Uploaded>
+      <Name>SongKiller</Name>
+      <Path></Path>
+      <AlbumID>5</AlbumID>
     </Track>
   </Tracks>
   <Artists>
@@ -190,21 +222,27 @@
     </Artist>
     <Artist>
       <ID>1</ID>
-      <FirstName>asdas</FirstName>
-      <LastName>asdasd</LastName>
-      <BirthDate>20.11.1990</BirthDate>
+      <FirstName>Mali</FirstName>
+      <LastName>Ivica</LastName>
+      <BirthDate>06.12.2011</BirthDate>
     </Artist>
     <Artist>
       <ID>2</ID>
-      <FirstName>asdasd</FirstName>
-      <LastName>sdasdasd</LastName>
-      <BirthDate>02.02.2011</BirthDate>
+      <FirstName>Zoki</FirstName>
+      <LastName>Mamo</LastName>
+      <BirthDate>15.12.2011</BirthDate>
     </Artist>
     <Artist>
       <ID>3</ID>
-      <FirstName>rtzwrtz</FirstName>
-      <LastName>rtzretz</LastName>
-      <BirthDate>23.12.2000</BirthDate>
+      <FirstName>Aki</FirstName>
+      <LastName>Ramazan</LastName>
+      <BirthDate>13.09.2011</BirthDate>
+    </Artist>
+    <Artist>
+      <ID>4</ID>
+      <FirstName>Silvo</FirstName>
+      <LastName>Stanac</LastName>
+      <BirthDate>11.11.2009</BirthDate>
     </Artist>
   </Artists>
   <Instruments>
@@ -213,42 +251,46 @@
       <Name>NULL</Name>
     </Instrument>
     <Instrument>
+      <ID>1</ID>
+      <Name>Guitar</Name>
+    </Instrument>
+    <Instrument>
       <ID>2</ID>
-      <Name>Ajmo</Name>
+      <Name>Sax</Name>
     </Instrument>
     <Instrument>
       <ID>3</ID>
-      <Name>idemo</Name>
+      <Name>Vocal</Name>
     </Instrument>
     <Instrument>
       <ID>4</ID>
-      <Name>lkjahs</Name>
+      <Name>Bass</Name>
     </Instrument>
     <Instrument>
       <ID>5</ID>
-      <Name>sad</Name>
-    </Instrument>
-    <Instrument>
-      <ID>1</ID>
-      <Name>zadarasdasd</Name>
+      <Name>Trumpet</Name>
     </Instrument>
     <Instrument>
       <ID>6</ID>
-      <Name>slikovnica</Name>
+      <Name>Flute</Name>
     </Instrument>
     <Instrument>
       <ID>7</ID>
-      <Name>nekaj</Name>
+      <Name>Drums</Name>
     </Instrument>
   </Instruments>
   <ConcertsBands>
     <ConcertBand>
-      <ConcertID>4</ConcertID>
-      <BandID>1</BandID>
+      <ConcertID>1</ConcertID>
+      <BandID>2</BandID>
     </ConcertBand>
     <ConcertBand>
-      <ConcertID>3</ConcertID>
-      <BandID>1</BandID>
+      <ConcertID>1</ConcertID>
+      <BandID>3</BandID>
+    </ConcertBand>
+    <ConcertBand>
+      <ConcertID>1</ConcertID>
+      <BandID>4</BandID>
     </ConcertBand>
   </ConcertsBands>
   <BandsArtists>
@@ -262,21 +304,93 @@
     </BandArtist>
     <BandArtist>
       <BandID>2</BandID>
+      <ArtistID>4</ArtistID>
+    </BandArtist>
+    <BandArtist>
+      <BandID>3</BandID>
+      <ArtistID>2</ArtistID>
+    </BandArtist>
+    <BandArtist>
+      <BandID>3</BandID>
+      <ArtistID>3</ArtistID>
+    </BandArtist>
+    <BandArtist>
+      <BandID>4</BandID>
       <ArtistID>1</ArtistID>
     </BandArtist>
     <BandArtist>
-      <BandID>2</BandID>
+      <BandID>4</BandID>
       <ArtistID>2</ArtistID>
+    </BandArtist>
+    <BandArtist>
+      <BandID>4</BandID>
+      <ArtistID>3</ArtistID>
+    </BandArtist>
+    <BandArtist>
+      <BandID>4</BandID>
+      <ArtistID>4</ArtistID>
+    </BandArtist>
+    <BandArtist>
+      <BandID>5</BandID>
+      <ArtistID>4</ArtistID>
+    </BandArtist>
+    <BandArtist>
+      <BandID>5</BandID>
+      <ArtistID>3</ArtistID>
+    </BandArtist>
+    <BandArtist>
+      <BandID>6</BandID>
+      <ArtistID>1</ArtistID>
+    </BandArtist>
+    <BandArtist>
+      <BandID>6</BandID>
+      <ArtistID>2</ArtistID>
+    </BandArtist>
+    <BandArtist>
+      <BandID>6</BandID>
+      <ArtistID>3</ArtistID>
+    </BandArtist>
+    <BandArtist>
+      <BandID>6</BandID>
+      <ArtistID>4</ArtistID>
     </BandArtist>
   </BandsArtists>
   <ArtistsInstruments>
+    <ArtistInstrument>
+      <ArtistID>1</ArtistID>
+      <InstrumentID>2</InstrumentID>
+    </ArtistInstrument>
     <ArtistInstrument>
       <ArtistID>1</ArtistID>
       <InstrumentID>3</InstrumentID>
     </ArtistInstrument>
     <ArtistInstrument>
       <ArtistID>1</ArtistID>
+      <InstrumentID>5</InstrumentID>
+    </ArtistInstrument>
+    <ArtistInstrument>
+      <ArtistID>2</ArtistID>
+      <InstrumentID>3</InstrumentID>
+    </ArtistInstrument>
+    <ArtistInstrument>
+      <ArtistID>2</ArtistID>
+      <InstrumentID>4</InstrumentID>
+    </ArtistInstrument>
+    <ArtistInstrument>
+      <ArtistID>2</ArtistID>
+      <InstrumentID>5</InstrumentID>
+    </ArtistInstrument>
+    <ArtistInstrument>
+      <ArtistID>3</ArtistID>
       <InstrumentID>1</InstrumentID>
+    </ArtistInstrument>
+    <ArtistInstrument>
+      <ArtistID>3</ArtistID>
+      <InstrumentID>2</InstrumentID>
+    </ArtistInstrument>
+    <ArtistInstrument>
+      <ArtistID>3</ArtistID>
+      <InstrumentID>5</InstrumentID>
     </ArtistInstrument>
   </ArtistsInstruments>
 </Database>
